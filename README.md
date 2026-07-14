@@ -9,7 +9,7 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - Instant client-side search by name; keyboard navigation (arrow keys or the on-device **D-pad**).
 - Filters: element (9, with real element icons), work suitability (12), base/variant, breedable-as-result, nocturnal.
 - Sort by dex, name, breeding power, rarity, or any stat.
-- Detail panel: element-tinted hero, **partner skill** (name + effect, all 299), **animated stat bars** (normalized to the dex max), work-level pips, a breeding-power rarity gauge, and cross-links — **Bred from** (every parent pair) and **Breeds into** (every child), all with art. The panel is sticky — it follows as you scroll the grid.
+- Detail panel: element-tinted hero, **partner skill** (name + effect, all 299), a **habitat heat map** (day/night toggle, rendered from the game's own spawn-distribution table — 259 Pals with wild habitats; the rest honestly say so), **animated stat bars** (normalized to the dex max), work-level pips, a breeding-power rarity gauge, and cross-links — **Bred from** (every parent pair) and **Breeds into** (every child), all with art. The panel is sticky — it follows as you scroll the grid.
 - **Night LCD mode** (amber button, bottom-right): the screens switch to a backlit palette; persists across sessions. The blue button jumps to a random Pal.
 
 **Breeding calculator**
@@ -39,7 +39,8 @@ The shipped `breeding_1.0.json` was diffed byte-for-byte against upstream palcal
 python _fetch_partner_skills.py  # wiki.gg Partner Skills page + paldb.cc gap-fill -> _partner_skills_fill.json
 python _merge_elements.py        # pals_1.0.json + element fill + partner skills -> pals_1.0.filled.json
 python _fetch_icons.py           # downloads 298 Pal + 9 element icons from palcalc (pinned commit) -> _icons.json
-python _assemble.py              # pals + breeding + icons + _app_template.html -> index.html (~6.3 MB)
+python _fetch_spawns.py          # game spawn-distribution table (via paldb.cc) + world map (wiki.gg) -> _spawns.json
+python _assemble.py              # pals + breeding + icons + spawns + _app_template.html -> index.html (~6.5 MB)
 python _verify_logic.py          # runs the spec §10 verification checklist
 ```
 
@@ -55,6 +56,8 @@ python _verify_logic.py          # runs the spec §10 verification checklist
 | `_fetch_partner_skills.py` | Scrapes partner skills (palworld.wiki.gg + paldb.cc gap-fill). |
 | `_partner_skills_fill.json` | Partner skill name + effect for all 298 names (source tagged per entry). |
 | `_fetch_icons.py` | Downloads Pal + element icons from palcalc (pinned commit) as data-URIs. |
+| `_fetch_spawns.py` | Builds habitat heat-map data from the game's DT_PaldexDistributionData (via paldb.cc) + world map image (wiki.gg), land-mask calibrated. |
+| `_spawns.json` | 259 Pals × day/night spawn cells (96×96 grid) + embedded 1024px world map. |
 | `_icons.json` | 298 Pal + 9 element icons, base64 data-URIs (embedded at build). |
 | `_app_template.html` | HTML/CSS/JS template (data injected at build). |
 | `_assemble.py` | Injects the JSON datasets into the template. |
@@ -64,4 +67,4 @@ python _verify_logic.py          # runs the spec §10 verification checklist
 
 ## Credits
 
-Data: [tylercamp/palcalc](https://github.com/tylercamp/palcalc) (game-file extracted, v26) · elements from [paldb.cc](https://paldb.cc) · partner skills from [palworld.wiki.gg](https://palworld.wiki.gg/wiki/Partner_Skills) and [paldb.cc](https://paldb.cc) · pre-1.0 element schema from [mlg404/palworld-paldex-api](https://github.com/mlg404/palworld-paldex-api). Pal &amp; element icons are Palworld game assets © Pocketpair, redistributed via palcalc, embedded for personal offline use. Palworld © Pocketpair.
+Data: [tylercamp/palcalc](https://github.com/tylercamp/palcalc) (game-file extracted, v26) · elements from [paldb.cc](https://paldb.cc) · partner skills from [palworld.wiki.gg](https://palworld.wiki.gg/wiki/Partner_Skills) and [paldb.cc](https://paldb.cc) · habitat data from the game's `DT_PaldexDistributionData` table (via [paldb.cc](https://paldb.cc)) with the world map from [palworld.wiki.gg](https://palworld.wiki.gg) · pre-1.0 element schema from [mlg404/palworld-paldex-api](https://github.com/mlg404/palworld-paldex-api). Pal &amp; element icons are Palworld game assets © Pocketpair, redistributed via palcalc, embedded for personal offline use. Palworld © Pocketpair.

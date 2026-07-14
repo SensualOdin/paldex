@@ -408,6 +408,15 @@ footer b{color:#fff}
 
 /* ---- sticky detail: the column must stretch for sticky to track scroll ---- */
 #detailCol{align-self:stretch}
+
+/* ---- habitat heat map ---- */
+.habwrap{background:var(--card);border:2px solid var(--screen-edge);border-radius:10px;padding:8px}
+#habCanvas{width:100%;height:auto;display:block;border-radius:8px}
+.habctl{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+.habcount{font-size:11px;color:var(--muted2);font-weight:700}
+.habnone{background:var(--card);border:2px dashed var(--screen-edge);border-radius:10px;padding:12px;
+  font-size:12px;color:var(--muted);font-weight:600;line-height:1.5}
+.habsrc{font-size:10px;color:var(--muted2);font-weight:600;margin-top:6px}
 .minipal{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--text);background:var(--panel2);
   border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 4px;font-weight:800;cursor:pointer;transition:.12s}
 .minipal:hover{border-color:var(--accent);background:var(--card)}
@@ -648,7 +657,11 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
 <script>/*__PALS__*/</script>
 <script>/*__BRD__*/</script>
 <script>/*__ICONS__*/</script>
-<script>if (typeof ICONS === 'undefined') { window.ICONS = { pals: {}, elements: {} }; }</script>
+<script>/*__SPAWNS__*/</script>
+<script>
+if (typeof ICONS === 'undefined') { window.ICONS = { pals: {}, elements: {} }; }
+if (typeof SPAWNS === 'undefined') { window.SPAWNS = { grid: 96, map: null, pals: {} }; }
+</script>
 <script>
 /* ============================================================= *
  *  Palworld 1.0 Paldex + Breeding Calculator — vanilla JS
@@ -955,6 +968,21 @@ function renderDetail(p){
           <div class="ps-desc">${p.partnerSkill.desc}</div>
         </div>
       </div>`:''}
+      ${SPAWNS.map?`<div class="dsection">
+        <h3>Habitat</h3>
+        ${SPAWNS.pals[p.internalName]?`
+        <div class="habwrap">
+          <canvas id="habCanvas" width="720" height="720" role="img" aria-label="Spawn heat map for ${p.name}"></canvas>
+          <div class="habctl">
+            <div class="gseg habseg">
+              <button data-ht="d"${p.nocturnal?'':' class="on"'}>☀ Day</button>
+              <button data-ht="n"${p.nocturnal?' class="on"':''}>🌙 Night</button>
+            </div>
+            <span class="habcount" id="habCount"></span>
+          </div>
+        </div>`
+        :`<div class="habnone">No open-world habitat data — obtain via breeding, dungeons, raids, or the World Tree.</div>`}
+      </div>`:''}
       <div class="dsection">
         <h3>Stats</h3>
         <div class="statbars">${statBlock}</div>
@@ -972,7 +1000,61 @@ function renderDetail(p){
         ${breedsIntoHtml}
       </div>
     </div>`;
+  initHabitat(p);
 }
+/* ---- habitat heat map ---- */
+let MAP_IMG=null, MAP_READY=false;
+function ensureMapImg(cb){
+  if(!SPAWNS.map) return;
+  if(MAP_READY){ cb(); return; }
+  if(!MAP_IMG){
+    MAP_IMG=new Image();
+    MAP_IMG.onload=()=>{ MAP_READY=true; cb(); };
+    MAP_IMG.src=SPAWNS.map;
+  } else {
+    MAP_IMG.addEventListener("load",cb,{once:true});
+  }
+}
+function drawHabitat(p,time){
+  const cv=$("#habCanvas"); if(!cv||!MAP_READY) return;
+  const sp=SPAWNS.pals[p.internalName]; if(!sp) return;
+  const ctx=cv.getContext("2d");
+  const W=cv.width,H=cv.height,G=SPAWNS.grid;
+  ctx.globalCompositeOperation="source-over";
+  ctx.clearRect(0,0,W,H);
+  ctx.drawImage(MAP_IMG,0,0,W,H);
+  ctx.fillStyle="rgba(8,12,22,.28)"; ctx.fillRect(0,0,W,H); // dim for glow contrast
+  const cells=sp[time]||[];
+  const cnt=$("#habCount");
+  if(cnt) cnt.textContent = cells.length
+    ? cells.length+" zone"+(cells.length===1?"":"s")
+    : "no "+(time==="d"?"daytime":"nighttime")+" spawns";
+  ctx.globalCompositeOperation="lighter";
+  const cs=W/G, r=cs*1.7;
+  for(const c of cells){
+    const gx=c%G, gy=(c-gx)/G;
+    const x=(gx+.5)*cs, y=(gy+.5)*cs;
+    const g=ctx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,"rgba(255,216,70,.9)");
+    g.addColorStop(.45,"rgba(255,178,36,.38)");
+    g.addColorStop(1,"rgba(255,150,20,0)");
+    ctx.fillStyle=g;
+    ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill();
+  }
+  ctx.globalCompositeOperation="source-over";
+}
+function initHabitat(p){
+  const seg=document.querySelector(".habseg"); if(!seg) return;
+  let time=p.nocturnal?"n":"d";
+  ensureMapImg(()=>drawHabitat(p,time));
+  seg.querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    seg.querySelectorAll("button").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
+    time=b.dataset.ht;
+    ensureMapImg(()=>drawHabitat(p,time));
+  });
+}
+
 function xlinkPair(a,b){
   return `<button class="xlink pairx" onclick="selectPal(${a.internalIndex})">
     ${avatarHtml(a,"mini-av3")}<span style="font-weight:800">${a.name}</span>
