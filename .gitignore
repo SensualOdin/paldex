@@ -8,3 +8,4 @@ pals_1.0.enriched.json
 .DS_Store
 Thumbs.db
 *.log
+__pycache__/
