@@ -9,7 +9,7 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - Instant client-side search by name; keyboard navigation (arrow keys or the on-device **D-pad**).
 - Filters: element (9, with real element icons), work suitability (12), base/variant, breedable-as-result, nocturnal.
 - Sort by dex, name, breeding power, rarity, or any stat.
-- Detail panel: element-tinted hero, **animated stat bars** (normalized to the dex max), work-level pips, a breeding-power rarity gauge, and cross-links — **Bred from** (every parent pair) and **Breeds into** (every child), all with art.
+- Detail panel: element-tinted hero, **partner skill** (name + effect, all 299), **animated stat bars** (normalized to the dex max), work-level pips, a breeding-power rarity gauge, and cross-links — **Bred from** (every parent pair) and **Breeds into** (every child), all with art. The panel is sticky — it follows as you scroll the grid.
 - **Night LCD mode** (amber button, bottom-right): the screens switch to a backlit palette; persists across sessions. The blue button jumps to a random Pal.
 
 **Breeding calculator**
@@ -36,10 +36,11 @@ The shipped `breeding_1.0.json` was diffed byte-for-byte against upstream palcal
 ## Rebuilding from source
 
 ```
-python _merge_elements.py   # pals_1.0.json + _elements_fill.json -> pals_1.0.filled.json
-python _fetch_icons.py       # downloads 298 Pal + 9 element icons from palcalc (pinned commit) -> _icons.json
-python _assemble.py          # pals + breeding + icons + _app_template.html -> index.html (~6.2 MB)
-python _verify_logic.py      # runs the spec §10 verification checklist
+python _fetch_partner_skills.py  # wiki.gg Partner Skills page + paldb.cc gap-fill -> _partner_skills_fill.json
+python _merge_elements.py        # pals_1.0.json + element fill + partner skills -> pals_1.0.filled.json
+python _fetch_icons.py           # downloads 298 Pal + 9 element icons from palcalc (pinned commit) -> _icons.json
+python _assemble.py              # pals + breeding + icons + _app_template.html -> index.html (~6.3 MB)
+python _verify_logic.py          # runs the spec §10 verification checklist
 ```
 
 ## Files
@@ -51,6 +52,8 @@ python _verify_logic.py      # runs the spec §10 verification checklist
 | `pals_1.0.filled.json` | Same, with all 161 element gaps filled. |
 | `breeding_1.0.json` | Authoritative breeding table (44,849 pairs). |
 | `_elements_fill.json` | The 161 element values merged in. |
+| `_fetch_partner_skills.py` | Scrapes partner skills (palworld.wiki.gg + paldb.cc gap-fill). |
+| `_partner_skills_fill.json` | Partner skill name + effect for all 298 names (source tagged per entry). |
 | `_fetch_icons.py` | Downloads Pal + element icons from palcalc (pinned commit) as data-URIs. |
 | `_icons.json` | 298 Pal + 9 element icons, base64 data-URIs (embedded at build). |
 | `_app_template.html` | HTML/CSS/JS template (data injected at build). |
@@ -61,4 +64,4 @@ python _verify_logic.py      # runs the spec §10 verification checklist
 
 ## Credits
 
-Data: [tylercamp/palcalc](https://github.com/tylercamp/palcalc) (game-file extracted, v26) · elements from [paldb.cc](https://paldb.cc) · pre-1.0 element schema from [mlg404/palworld-paldex-api](https://github.com/mlg404/palworld-paldex-api). Pal &amp; element icons are Palworld game assets © Pocketpair, redistributed via palcalc, embedded for personal offline use. Palworld © Pocketpair.
+Data: [tylercamp/palcalc](https://github.com/tylercamp/palcalc) (game-file extracted, v26) · elements from [paldb.cc](https://paldb.cc) · partner skills from [palworld.wiki.gg](https://palworld.wiki.gg/wiki/Partner_Skills) and [paldb.cc](https://paldb.cc) · pre-1.0 element schema from [mlg404/palworld-paldex-api](https://github.com/mlg404/palworld-paldex-api). Pal &amp; element icons are Palworld game assets © Pocketpair, redistributed via palcalc, embedded for personal offline use. Palworld © Pocketpair.

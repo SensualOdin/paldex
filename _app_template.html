@@ -398,6 +398,16 @@ footer b{color:#fff}
   box-shadow:0 0 0 2px var(--card), 0 1px 3px rgba(0,0,0,.4);transform:translateX(-50%)}
 .gcap{display:flex;justify-content:space-between;font-size:10px;color:var(--muted2);font-weight:700;margin-top:5px}
 .xlink.pairx{display:flex;align-items:center;gap:8px}
+
+/* ---- partner skill card ---- */
+.pskill{background:var(--card);border:2px solid var(--screen-edge);border-radius:10px;padding:10px 12px;position:relative;overflow:hidden}
+.pskill::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--accent),var(--accent-dk))}
+.ps-name{font-weight:900;font-size:13.5px;color:var(--ink);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.ps-name::before{content:"◆";color:var(--accent);font-size:10px}
+.ps-desc{font-size:12px;line-height:1.55;color:var(--muted);font-weight:600}
+
+/* ---- sticky detail: the column must stretch for sticky to track scroll ---- */
+#detailCol{align-self:stretch}
 .minipal{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--text);background:var(--panel2);
   border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 4px;font-weight:800;cursor:pointer;transition:.12s}
 .minipal:hover{border-color:var(--accent);background:var(--card)}
@@ -933,12 +943,18 @@ function renderDetail(p){
         <div class="kv">
           <span class="k">Wild level</span><span class="v">${p.wildLevel && (p.wildLevel[0]||p.wildLevel[1]) ? p.wildLevel[0]+'–'+p.wildLevel[1] : '—'}</span>
           <span class="k">Price</span><span class="v">${p.price?.toLocaleString?.()||p.price||'—'}</span>
-          <span class="k">Partner skill</span><span class="v">${p.partnerSkill?(p.partnerSkill.name||'yes'):'—'}</span>
         </div>
         <div style="margin-top:12px;font-size:12px;font-weight:800;color:var(--muted)">Breeding Power <b style="color:var(--ink)">${p.breedingPower}</b></div>
         <div class="gauge"><span class="gmark" style="left:${gpct}%"></span></div>
         <div class="gcap"><span>${BP_MIN} · rarest</span><span>${BP_MAX} · most common</span></div>
       </div>
+      ${p.partnerSkill?`<div class="dsection">
+        <h3>Partner skill</h3>
+        <div class="pskill">
+          <div class="ps-name">${p.partnerSkill.name}</div>
+          <div class="ps-desc">${p.partnerSkill.desc}</div>
+        </div>
+      </div>`:''}
       <div class="dsection">
         <h3>Stats</h3>
         <div class="statbars">${statBlock}</div>

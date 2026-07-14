@@ -50,5 +50,23 @@ for x in pals:
         c[e]+=1
 print("element distribution:", dict(sorted(c.items(), key=lambda kv:-kv[1])))
 
+# ---- partner skills (from _partner_skills_fill.json; wiki.gg + paldb.cc) ----
+try:
+    ps = json.load(open('_partner_skills_fill.json', encoding='utf-8'))
+except FileNotFoundError:
+    ps = None
+    print("NOTE: _partner_skills_fill.json not found — partnerSkill left as-is")
+if ps is not None:
+    ps_missing = []
+    for x in pals:
+        e = ps.get(x['name'])
+        if e:
+            x['partnerSkill'] = {"name": e["name"], "desc": e["desc"], "source": e["source"]}
+        else:
+            ps_missing.append(x['name'])
+    print("partner skills applied:", len(pals) - len(ps_missing), "missing:", ps_missing or 0)
+    if ps_missing:
+        sys.exit(1)
+
 json.dump(pals, open('pals_1.0.filled.json','w',encoding='utf-8'), ensure_ascii=False)
 print("\nWROTE pals_1.0.filled.json  OK")
