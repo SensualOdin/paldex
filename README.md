@@ -12,6 +12,10 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - Detail panel: element-tinted hero, **partner skill** (name + effect, all 299), a **habitat heat map** (day/night toggle, rendered from the game's own spawn-distribution table — 259 Pals with wild habitats; the rest honestly say so), **animated stat bars** (normalized to the dex max), work-level pips, a breeding-power rarity gauge, and cross-links — **Bred from** (every parent pair) and **Breeds into** (every child), all with art. The panel is sticky — it follows as you scroll the grid.
 - **Night LCD mode** (amber button, bottom-right): the screens switch to a backlit palette; persists across sessions. The blue button jumps to a random Pal.
 
+**Tier lists**
+- **Combat** and **Base Work** boards curated from the most recent 1.0 community tier lists (NextTier Jul 14 2026, cross-checked vs PalMods and oslink; sources linked in-app). Every name is validated against the dex at build time.
+- **Elements** (9 boards, ranked by base Attack) and **Jobs** (12 boards, grouped by work level — 1.0 specialists reach Lv 8) are computed from the embedded game data, so they're complete and objective.
+
 **Breeding calculator**
 - **Forward** — pick two parents → child, with a *special-combo* badge when the fixed recipe overrides the averaging formula, a *gender-locked* badge for Katress×Wixen, and a plain-language formula explainer.
 - **Reverse** — pick a target → every parent pair that produces it, each clickable to pivot.
@@ -57,6 +61,7 @@ python _verify_logic.py          # runs the spec §10 verification checklist
 | `_partner_skills_fill.json` | Partner skill name + effect for all 298 names (source tagged per entry). |
 | `_fetch_icons.py` | Downloads Pal + element icons from palcalc (pinned commit) as data-URIs. |
 | `_fetch_spawns.py` | Builds habitat heat-map data from the game's DT_PaldexDistributionData (via paldb.cc) + world map image (wiki.gg), land-mask calibrated. |
+| `_tiers.json` | Curated 1.0 Combat + Base Work tiers with sources; names validated at build. |
 | `_spawns.json` | 259 Pals × day/night spawn cells (96×96 grid) + embedded 1024px world map. |
 | `_icons.json` | 298 Pal + 9 element icons, base64 data-URIs (embedded at build). |
 | `_app_template.html` | HTML/CSS/JS template (data injected at build). |

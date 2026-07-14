@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "curatedDate": "2026-07-14",
+  "sources": [
+    {"name": "NextTier — Combat Rankings (1.0)", "url": "https://nexttier.pro/guide/palworld-best-pals-tier-list", "updated": "2026-07-14"},
+    {"name": "NextTier — Best Base Pals (1.0)", "url": "https://nexttier.pro/guide/palworld-best-base-pals", "updated": "2026-07-14"},
+    {"name": "PalMods — Data-Ranked Combat (1.0)", "url": "https://www.palmods.gg/guides/tier-list/combat", "updated": "2026-07-13"},
+    {"name": "oslink — Palworld Tier List (1.0)", "url": "https://www.oslink.io/blog/guide/palworld-tier-list.html", "updated": "2026-07-12"}
+  ],
+  "combat": {
+    "note": "Community consensus, primary source NextTier (Jul 14) cross-checked against PalMods' stat-ranked list and oslink. Tier lists are opinion — the meta is still settling.",
+    "S": ["Jetragon", "Xenolord", "Necromus", "Paladius", "Frostallion", "Frostallion Noct", "Jormuntide Ignis", "Blazamut Ryu", "Shadowbeak", "Bellanoir Libero", "Hartalis", "Anubis"],
+    "A": ["Suzaku", "Faleris", "Grizzbolt", "Orserk", "Relaxaurus Lux", "Astegon", "Beakon", "Bastigor", "Neptilius", "Selyne"],
+    "B": ["Incineram", "Reptyro Cryst", "Helzephyr", "Menasting", "Warsect", "Quivern", "Elphidran"],
+    "C": ["Ragnahawk", "Pyrin", "Direhowl"]
+  },
+  "workers": {
+    "note": "From NextTier's per-job 1.0 rankings (Jul 14): S = the Lv8 specialists and the best pick for a job, A = other job-toppers, B = strong alternatives, C = early-game all-rounders.",
+    "S": ["Renjishi", "Solenne", "Aegidron", "Selyne", "Anubis", "Jormuntide Ignis", "Blazamut Ryu", "Jormuntide", "Lyleen", "Orserk", "Frostallion Noct", "Wumpo Botan", "Vixy"],
+    "A": ["Faleris Aqua", "Azurmane", "Splatterina", "Celesdir", "Hartalis", "Blazamut", "Astegon", "Knocklem", "Bellanoir", "Bellanoir Libero", "Frostallion", "Whalaska", "Wumpo"],
+    "B": ["Ragnahawk", "Blazehowl", "Suzaku", "Azurobe", "Suzaku Aqua", "Broncherry Aqua", "Broncherry", "Petallia", "Prunelia", "Relaxaurus Lux", "Grizzbolt", "Puffolt", "Lunaris", "Verdash", "Dogen", "Knocklem Ignis", "Bushi", "Prixter", "Warsect", "Silvegis", "Digtoise", "Menasting", "Bastigor", "Vaelet", "Felbat", "Pengullet", "Mossanda", "Beakon", "Chikipi", "Mozzarina", "Beegarde"],
+    "C": ["Tombat", "Penking", "Arsox", "Wispaw"]
+  }
+}

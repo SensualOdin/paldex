@@ -4,6 +4,14 @@ pals   = json.load(open('pals_1.0.filled.json', encoding='utf-8'))
 brd    = json.load(open('breeding_1.0.json', encoding='utf-8'))
 icons  = json.load(open('_icons.json', encoding='utf-8'))
 spawns = json.load(open('_spawns.json', encoding='utf-8'))
+tiers  = json.load(open('_tiers.json', encoding='utf-8'))
+
+# validate every curated tier name against the dex — fail loudly on typos
+_names = {p['name'] for p in pals}
+_bad = [n for board in ('combat', 'workers')
+        for t, lst in tiers[board].items() if t != 'note'
+        for n in lst if n not in _names]
+assert not _bad, f"_tiers.json has unknown pal names: {_bad}"
 
 tpl = open('_app_template.html', encoding='utf-8').read()
 
@@ -11,15 +19,18 @@ pals_js   = "const PALS = "   + json.dumps(pals,   ensure_ascii=False, separator
 brd_js    = "const BRD = "    + json.dumps(brd,    ensure_ascii=False, separators=(',',':')) + ";"
 icons_js  = "const ICONS = "  + json.dumps(icons,  ensure_ascii=False, separators=(',',':')) + ";"
 spawns_js = "const SPAWNS = " + json.dumps(spawns, ensure_ascii=False, separators=(',',':')) + ";"
+tiers_js  = "const TIERS = "  + json.dumps(tiers,  ensure_ascii=False, separators=(',',':')) + ";"
 
 assert tpl.count("/*__PALS__*/") == 1
 assert tpl.count("/*__BRD__*/") == 1
 assert tpl.count("/*__ICONS__*/") == 1
 assert tpl.count("/*__SPAWNS__*/") == 1
+assert tpl.count("/*__TIERS__*/") == 1
 out = (tpl.replace("/*__PALS__*/", pals_js)
           .replace("/*__BRD__*/", brd_js)
           .replace("/*__ICONS__*/", icons_js)
-          .replace("/*__SPAWNS__*/", spawns_js))
+          .replace("/*__SPAWNS__*/", spawns_js)
+          .replace("/*__TIERS__*/", tiers_js))
 
 with open('index.html','w',encoding='utf-8') as f:
     f.write(out)

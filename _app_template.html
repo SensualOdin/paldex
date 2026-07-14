@@ -421,6 +421,30 @@ footer b{color:#fff}
   font-size:12px;color:var(--muted);font-weight:600;line-height:1.5}
 .habsrc{font-size:10px;color:var(--muted2);font-weight:600;margin-top:6px}
 
+/* ---- tier boards ---- */
+.tierboard{margin-bottom:22px}
+.tierboard h4{margin:0 0 10px;font-size:15px;font-weight:900;color:var(--ink);display:flex;align-items:center;gap:8px}
+.tierboard h4 img{width:18px;height:18px}
+.tierrow{display:flex;align-items:stretch;gap:0;border:2px solid var(--screen-edge);border-radius:10px;overflow:hidden;margin-bottom:8px;background:var(--card)}
+.tierlabel{flex:0 0 54px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.tier-S .tierlabel{background:linear-gradient(135deg,#ffd76a,#e3a91f);color:#3d2c00;text-shadow:none}
+.tier-A .tierlabel{background:linear-gradient(135deg,#9a5fd0,#63359a)}
+.tier-B .tierlabel{background:linear-gradient(135deg,#4a90d0,#2a5f96)}
+.tier-C .tierlabel{background:linear-gradient(135deg,#6da65a,#4a7a3c)}
+.tier-D .tierlabel{background:linear-gradient(135deg,#9aa08a,#6f7562)}
+.tierpals{flex:1;display:flex;flex-wrap:wrap;gap:6px;padding:9px}
+.tierpal{display:inline-flex;align-items:center;gap:7px;background:var(--panel2);border:1.5px solid var(--line);
+  border-radius:999px;padding:4px 12px 4px 5px;font-size:12px;font-weight:800;color:var(--text);cursor:pointer;transition:.12s}
+.tierpal:hover{border-color:var(--accent);background:var(--card);transform:translateY(-1px)}
+.tierpal .mini-av3{width:26px;height:26px}
+.tierpal .tlvl{color:var(--accent);font-weight:900;font-size:11px}
+.tiernote{color:var(--muted);font-size:12px;font-weight:600;line-height:1.55;background:var(--screen3);
+  border:2px solid var(--screen-edge);border-radius:8px;padding:9px 12px;margin-bottom:14px}
+.tiersrc{color:var(--muted2);font-size:11px;font-weight:600;line-height:1.6;margin-top:14px}
+.tiersrc a{font-weight:700}
+.tiergrid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:18px}
+@media(max-width:960px){.tiergrid2{grid-template-columns:1fr}}
+
 /* ---- fullscreen habitat lightbox ---- */
 #habModal{position:fixed;inset:0;z-index:1000;background:rgba(9,11,8,.94)}
 #habModal[hidden]{display:none}
@@ -538,6 +562,7 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
     <div class="tabs" role="tablist" aria-label="App sections">
       <button class="tab active" data-view="paldex" role="tab" aria-selected="true">Paldex</button>
       <button class="tab" data-view="breeding" role="tab" aria-selected="false">Breeding</button>
+      <button class="tab" data-view="tiers" role="tab" aria-selected="false">Tiers</button>
     </div>
     <div class="counts" id="counts"></div>
   </header>
@@ -663,6 +688,19 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
     </div>
   </section>
 
+  <!-- ================= TIERS ================= -->
+  <section class="view" id="view-tiers">
+    <div class="screen bpanel">
+      <div class="bsub" role="tablist" aria-label="Tier boards">
+        <button class="t active" data-tmode="combat" role="tab" aria-selected="true">Combat</button>
+        <button class="t" data-tmode="workers" role="tab" aria-selected="false">Base Work</button>
+        <button class="t" data-tmode="elements" role="tab" aria-selected="false">Elements</button>
+        <button class="t" data-tmode="jobs" role="tab" aria-selected="false">Jobs</button>
+      </div>
+      <div id="tierBody"></div>
+    </div>
+  </section>
+
   <div class="dev-foot">
     <div class="dpad" role="group" aria-label="Move Paldex selection">
       <button class="darm up" data-dir="up" aria-label="Selection up" title="Selection up"></button>
@@ -703,9 +741,11 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
 <script>/*__BRD__*/</script>
 <script>/*__ICONS__*/</script>
 <script>/*__SPAWNS__*/</script>
+<script>/*__TIERS__*/</script>
 <script>
 if (typeof ICONS === 'undefined') { window.ICONS = { pals: {}, elements: {} }; }
 if (typeof SPAWNS === 'undefined') { window.SPAWNS = { grid: 96, map: null, pals: {} }; }
+if (typeof TIERS === 'undefined') { window.TIERS = { sources: [], combat: {}, workers: {} }; }
 </script>
 <script>
 /* ============================================================= *
@@ -1315,10 +1355,10 @@ function initBreeding(){
   makePicker($('.picker[data-role=tgt]'),p=>{chain.target=p;},{placeholder:"Target Pal…"});
   $("#runChain").onclick=runChainFinder;
 
-  // breeding submode tabs
-  $$('.bsub .t').forEach(t=>{
+  // breeding submode tabs (scoped: the Tiers view has its own .bsub)
+  $$('#view-breeding .bsub .t').forEach(t=>{
     t.onclick=()=>{
-      $$('.bsub .t').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false');});
+      $$('#view-breeding .bsub .t').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false');});
       t.classList.add('active'); t.setAttribute('aria-selected','true');
       $$('.bmode').forEach(m=>m.style.display='none');
       $('#bmode-'+t.dataset.bmode).style.display='block';
@@ -1488,6 +1528,83 @@ function runChainFinder(){
 }
 
 /* ============================================================= *
+ *  TIERS
+ * ============================================================= */
+const TIER_ORDER=["S","A","B","C","D"];
+const WORK_FULL={GenerateElectricity:"Electricity",MedicineProduction:"Medicine"};
+function tierPalChip(p,extra){
+  return `<button class="tierpal" onclick="gotoPaldex(${p.internalIndex})">${avatarHtml(p,"mini-av3")}${p.name}${extra!=null?` <span class="tlvl">${extra}</span>`:""}</button>`;
+}
+function tierRow(tier,items){
+  if(!items.length) return "";
+  return `<div class="tierrow tier-${tier}"><div class="tierlabel">${tier}</div><div class="tierpals">${items.join("")}</div></div>`;
+}
+function curatedBoard(key){
+  const board=TIERS[key]; if(!board) return "";
+  let html=board.note?`<div class="tiernote">${board.note}</div>`:"";
+  for(const t of TIER_ORDER){
+    const items=(board[t]||[]).map(n=>byName.get(n.toLowerCase())).filter(Boolean).map(p=>tierPalChip(p));
+    html+=tierRow(t,items);
+  }
+  return `<div class="tierboard">${html}</div>`;
+}
+function elementBoards(){
+  let html=`<div class="tiernote">Ranked by base <b>Attack</b> from the embedded 1.0 game data — an objective cut, not a meta opinion. Tap any Pal for full stats.</div><div class="tiergrid2">`;
+  for(const e of ELEMENTS){
+    const list=PALS.filter(p=>p.elements&&p.elements.includes(e))
+      .sort((a,b)=>b.stats.attack-a.stats.attack).slice(0,12);
+    const rows=
+      tierRow("S",list.slice(0,3).map(p=>tierPalChip(p,p.stats.attack)))+
+      tierRow("A",list.slice(3,7).map(p=>tierPalChip(p,p.stats.attack)))+
+      tierRow("B",list.slice(7,12).map(p=>tierPalChip(p,p.stats.attack)));
+    html+=`<div class="tierboard"><h4>${elIco(e)}${cap(e)}</h4>${rows}</div>`;
+  }
+  return html+"</div>";
+}
+function jobBoards(){
+  let html=`<div class="tiernote">Grouped by <b>work suitability level</b> from the embedded 1.0 game data (1.0 raised the cap — top specialists now reach Lv 8). Top three level bands per job.</div><div class="tiergrid2">`;
+  for(const w of WORK_KEYS){
+    const list=PALS.filter(p=>p.work&&p.work[w]>0).sort((a,b)=>b.work[w]-a.work[w]||a.dex-b.dex);
+    if(!list.length) continue;
+    const levels=[...new Set(list.map(p=>p.work[w]))].sort((a,b)=>b-a).slice(0,3);
+    const tierNames=["S","A","B"];
+    let rows="";
+    levels.forEach((lv,i)=>{
+      const at=list.filter(p=>p.work[w]===lv);
+      const shown=at.slice(0,14).map(p=>tierPalChip(p,"Lv "+lv));
+      if(at.length>14) shown.push(`<span class="tierpal" style="cursor:default">+${at.length-14} more</span>`);
+      rows+=tierRow(tierNames[i],shown);
+    });
+    html+=`<div class="tierboard"><h4>${WORK_FULL[w]||w}</h4>${rows}</div>`;
+  }
+  return html+"</div>";
+}
+function tierSources(){
+  const s=TIERS.sources||[]; if(!s.length) return "";
+  return `<div class="tiersrc">Curated ${TIERS.curatedDate||""} · sources: `+
+    s.map(x=>`<a href="${x.url}" target="_blank" rel="noopener">${x.name}</a> (updated ${x.updated})`).join(" · ")+
+    `.<br>Combat &amp; Base Work boards are community consensus (opinion). Elements &amp; Jobs boards are computed from the embedded game data.</div>`;
+}
+function renderTiers(mode){
+  const box=$("#tierBody");
+  if(mode==="combat") box.innerHTML=curatedBoard("combat")+tierSources();
+  else if(mode==="workers") box.innerHTML=curatedBoard("workers")+tierSources();
+  else if(mode==="elements") box.innerHTML=elementBoards();
+  else box.innerHTML=jobBoards();
+}
+function initTiers(){
+  $$('#view-tiers .bsub .t').forEach(t=>{
+    t.onclick=()=>{
+      $$('#view-tiers .bsub .t').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false');});
+      t.classList.add('active'); t.setAttribute('aria-selected','true');
+      renderTiers(t.dataset.tmode);
+      blink("y");
+    };
+  });
+  renderTiers("combat");
+}
+
+/* ============================================================= *
  *  WIRING
  * ============================================================= */
 function initTabs(){
@@ -1549,7 +1666,7 @@ function initControls(){
   };
 }
 function boot(){
-  buildFilters(); initControls(); initTabs(); initBreeding(); initDevice(); initHabModal();
+  buildFilters(); initControls(); initTabs(); initBreeding(); initDevice(); initHabModal(); initTiers();
   renderOwned();
   render();
   renderForward();
