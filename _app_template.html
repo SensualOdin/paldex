@@ -440,6 +440,11 @@ footer b{color:#fff}
 .tierpal .tlvl{color:var(--accent);font-weight:900;font-size:11px}
 .tiernote{color:var(--muted);font-size:12px;font-weight:600;line-height:1.55;background:var(--screen3);
   border:2px solid var(--screen-edge);border-radius:8px;padding:9px 12px;margin-bottom:14px}
+.stagebar{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.stagelbl{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted2);font-weight:800}
+.stageseg button{padding:8px 18px;font-size:13px}
+.stageseg button.on{background:var(--accent);color:#fff}
+.stageblurb{color:var(--muted);font-size:12.5px;font-weight:700;margin-bottom:12px;padding-left:2px}
 .tiersrc{color:var(--muted2);font-size:11px;font-weight:600;line-height:1.6;margin-top:14px}
 .tiersrc a{font-weight:700}
 .tiergrid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:18px}
@@ -1539,11 +1544,21 @@ function tierRow(tier,items){
   if(!items.length) return "";
   return `<div class="tierrow tier-${tier}"><div class="tierlabel">${tier}</div><div class="tierpals">${items.join("")}</div></div>`;
 }
+const TSTATE={stage:"end"};
+const STAGES=[["early","🌱 Early"],["mid","⚒ Mid"],["end","👑 End"]];
+function stageBar(){
+  return `<div class="stagebar"><span class="stagelbl">Game stage</span><div class="gseg stageseg">`+
+    STAGES.map(([k,label])=>`<button data-stage="${k}"${TSTATE.stage===k?' class="on"':''}>${label}</button>`).join("")+
+    `</div></div>`;
+}
 function curatedBoard(key){
-  const board=TIERS[key]; if(!board) return "";
-  let html=board.note?`<div class="tiernote">${board.note}</div>`:"";
+  const board=TIERS[key]; if(!board||!board.stages) return "";
+  const stage=board.stages[TSTATE.stage]||board.stages.end;
+  let html=stageBar();
+  if(board.note) html+=`<div class="tiernote">${board.note}</div>`;
+  if(stage.blurb) html+=`<div class="stageblurb">${stage.blurb}</div>`;
   for(const t of TIER_ORDER){
-    const items=(board[t]||[]).map(n=>byName.get(n.toLowerCase())).filter(Boolean).map(p=>tierPalChip(p));
+    const items=(stage[t]||[]).map(n=>byName.get(n.toLowerCase())).filter(Boolean).map(p=>tierPalChip(p));
     html+=tierRow(t,items);
   }
   return `<div class="tierboard">${html}</div>`;
@@ -1585,12 +1600,20 @@ function tierSources(){
     s.map(x=>`<a href="${x.url}" target="_blank" rel="noopener">${x.name}</a> (updated ${x.updated})`).join(" · ")+
     `.<br>Combat &amp; Base Work boards are community consensus (opinion). Elements &amp; Jobs boards are computed from the embedded game data.</div>`;
 }
+let TMODE="combat";
 function renderTiers(mode){
+  TMODE=mode;
   const box=$("#tierBody");
   if(mode==="combat") box.innerHTML=curatedBoard("combat")+tierSources();
   else if(mode==="workers") box.innerHTML=curatedBoard("workers")+tierSources();
   else if(mode==="elements") box.innerHTML=elementBoards();
   else box.innerHTML=jobBoards();
+  // stage selector wiring (present on curated boards only)
+  box.querySelectorAll(".stageseg button").forEach(b=>b.onclick=()=>{
+    TSTATE.stage=b.dataset.stage;
+    renderTiers(TMODE);
+    blink("g");
+  });
 }
 function initTiers(){
   $$('#view-tiers .bsub .t').forEach(t=>{

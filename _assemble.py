@@ -9,7 +9,8 @@ tiers  = json.load(open('_tiers.json', encoding='utf-8'))
 # validate every curated tier name against the dex — fail loudly on typos
 _names = {p['name'] for p in pals}
 _bad = [n for board in ('combat', 'workers')
-        for t, lst in tiers[board].items() if t != 'note'
+        for stage in tiers[board]['stages'].values()
+        for t, lst in stage.items() if t != 'blurb'
         for n in lst if n not in _names]
 assert not _bad, f"_tiers.json has unknown pal names: {_bad}"
 

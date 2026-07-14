@@ -13,7 +13,7 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - **Night LCD mode** (amber button, bottom-right): the screens switch to a backlit palette; persists across sessions. The blue button jumps to a random Pal.
 
 **Tier lists**
-- **Combat** and **Base Work** boards curated from the most recent 1.0 community tier lists (NextTier Jul 14 2026, cross-checked vs PalMods and oslink; sources linked in-app). Every name is validated against the dex at build time.
+- **Combat** and **Base Work** boards curated from the most recent 1.0 community tier lists (NextTier Jul 14 2026, cross-checked vs PalMods, Game8, oslink; early-game picks from NeonLightsMedia — sources linked in-app), with an **Early / Mid / End game-stage selector** so new players get day-one value. Every name is validated against the dex at build time.
 - **Elements** (9 boards, ranked by base Attack) and **Jobs** (12 boards, grouped by work level — 1.0 specialists reach Lv 8) are computed from the embedded game data, so they're complete and objective.
 
 **Breeding calculator**
