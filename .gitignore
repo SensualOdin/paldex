@@ -1,0 +1,10 @@
+# Transient verification scratch (not part of the build)
+_upstream/
+_diff_upstream.py
+_diff_pals.py
+pals_1.0.enriched.json
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log

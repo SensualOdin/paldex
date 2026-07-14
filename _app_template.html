@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palworld 1.0 Paldex &amp; Breeding Calculator</title>
+<style>
+:root{
+  --bg:#0e1015; --panel:#171a21; --panel2:#1f2530; --panel3:#262d3a;
+  --line:#2c3444; --line2:#3a4456;
+  --text:#e6e9ef; --muted:#9aa4b5; --muted2:#6d7688;
+  --accent:#5ad1c8; --accent2:#7c8cff; --warn:#ffcf5c; --special:#ff8bd0;
+  --el-neutral:#B4AC9C; --el-fire:#E8552B; --el-water:#2FA9E0; --el-grass:#57B947;
+  --el-electric:#F2C21B; --el-ice:#79CEDC; --el-ground:#C0883E; --el-dark:#6A4C93; --el-dragon:#7B5FD6;
+  --radius:12px; --radius-sm:8px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:radial-gradient(1200px 700px at 80% -10%, #1a2030 0%, var(--bg) 55%) fixed, var(--bg);
+  color:var(--text); font:14px/1.45 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent2);text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
+.wrap{max-width:1400px;margin:0 auto;padding:18px 20px 60px}
+header.top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand h1{font-size:20px;margin:0;letter-spacing:.3px;font-weight:800}
+.brand .ver{color:var(--muted);font-size:12px;font-weight:600;border:1px solid var(--line);padding:2px 8px;border-radius:999px}
+.tabs{display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px}
+.tab{padding:7px 16px;border-radius:999px;color:var(--muted);font-weight:700;font-size:13px;transition:.15s}
+.tab.active{background:linear-gradient(180deg,var(--accent2),#6577f0);color:#fff;box-shadow:0 2px 10px rgba(124,140,255,.35)}
+.tab:not(.active):hover{color:var(--text);background:var(--panel2)}
+.counts{margin-left:auto;color:var(--muted);font-size:12px;display:flex;gap:14px;flex-wrap:wrap}
+.counts b{color:var(--text)}
+
+/* layout */
+.view{display:none}
+.view.active{display:block}
+.grid-2{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:18px;align-items:start}
+@media(max-width:1000px){.grid-2{grid-template-columns:1fr}}
+
+/* controls */
+.controls{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:16px}
+.searchrow{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.search{flex:1;display:flex;align-items:center;gap:8px;background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:9px 12px}
+.search input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:15px}
+.search svg{opacity:.6}
+select,.mini{background:var(--panel2);border:1px solid var(--line2);color:var(--text);border-radius:8px;padding:8px 10px;outline:none}
+.filters{display:flex;flex-wrap:wrap;gap:14px}
+.fgroup{display:flex;flex-direction:column;gap:6px}
+.fgroup .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted2);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:5px 10px;border-radius:999px;border:1px solid var(--line2);color:var(--muted);font-size:12px;font-weight:700;background:var(--panel2);transition:.12s;user-select:none}
+.chip:hover{color:var(--text);border-color:var(--muted2)}
+.chip.on{color:#0e1015;border-color:transparent}
+.chip.el.on{color:#0b0d12}
+.toggle-row{display:flex;gap:8px;flex-wrap:wrap;align-items:end}
+.reset{color:var(--muted);font-size:12px;border:1px solid var(--line2);border-radius:8px;padding:8px 12px}
+.reset:hover{color:var(--text)}
+
+/* element chip colors */
+.el[data-el=neutral]{background:var(--el-neutral)} .el[data-el=fire]{background:var(--el-fire)}
+.el[data-el=water]{background:var(--el-water)} .el[data-el=grass]{background:var(--el-grass)}
+.el[data-el=electric]{background:var(--el-electric)} .el[data-el=ice]{background:var(--el-ice)}
+.el[data-el=ground]{background:var(--el-ground)} .el[data-el=dark]{background:var(--el-dark)}
+.el[data-el=dragon]{background:var(--el-dragon)}
+
+/* pal grid */
+.palgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--radius);padding:12px;cursor:pointer;transition:.14s;position:relative;overflow:hidden}
+.card:hover{border-color:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.card.sel{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.card .dex{position:absolute;top:10px;right:12px;font-size:11px;color:var(--muted2);font-weight:700}
+.card .avatar{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:#0b0d12;margin-bottom:8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
+.card .nm{font-weight:800;font-size:15px;margin-bottom:2px;letter-spacing:.2px}
+.card .sub{color:var(--muted);font-size:11px;margin-bottom:8px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.elbadge{font-size:10.5px;font-weight:800;color:#0b0d12;padding:2px 8px;border-radius:999px;text-transform:capitalize}
+.pill{font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;border:1px solid var(--line2);color:var(--muted)}
+.pill.variant{color:var(--special);border-color:var(--special)}
+.pill.selfonly{color:var(--warn);border-color:var(--warn)}
+.workrow{display:flex;gap:4px;flex-wrap:wrap}
+.wk{font-size:10px;color:var(--muted);background:var(--panel3);border-radius:6px;padding:2px 6px;font-weight:700}
+.bp{font-size:11px;color:var(--muted);margin-top:8px}
+.bp b{color:var(--accent)}
+.empty{color:var(--muted);padding:40px;text-align:center}
+
+/* detail panel */
+.detail{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:0;position:sticky;top:14px;overflow:hidden}
+.detail .hd{padding:16px 16px 14px;background:linear-gradient(180deg,var(--panel2),var(--panel));border-bottom:1px solid var(--line)}
+.detail .hd .top2{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.detail .hd h2{margin:0;font-size:22px;font-weight:900}
+.detail .hd .idn{color:var(--muted2);font-size:12px;margin-top:2px}
+.detail .body{padding:16px;max-height:calc(100vh - 220px);overflow:auto}
+.detail .close{color:var(--muted);font-size:20px;line-height:1;padding:4px 8px;border-radius:8px}
+.detail .close:hover{color:var(--text);background:var(--panel3)}
+.dsection{margin-bottom:16px}
+.dsection h3{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted2);margin:0 0 8px;font-weight:800}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:13px}
+.kv .k{color:var(--muted)}
+.kv .v{color:var(--text);text-align:right;font-weight:600}
+.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.stat .sl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.stat .sv{font-size:16px;font-weight:800;margin-top:2px}
+.worklist{display:flex;flex-wrap:wrap;gap:6px}
+.workitem{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:5px 9px;font-size:12px;font-weight:700;display:flex;gap:6px;align-items:center}
+.workitem .lvl{color:var(--accent);font-weight:900}
+.xlink{display:block;width:100%;text-align:left;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:6px;font-size:13px;transition:.12s}
+.xlink:hover{border-color:var(--accent2);background:var(--panel3)}
+.xlink .arrow{color:var(--muted2)}
+.note{background:rgba(255,207,92,.08);border:1px solid rgba(255,207,92,.3);color:var(--warn);border-radius:8px;padding:8px 10px;font-size:12px;margin-bottom:12px}
+.detail-empty{padding:50px 20px;text-align:center;color:var(--muted)}
+.detail-empty .big{font-size:34px;margin-bottom:10px}
+
+/* breeding */
+.bpanel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:16px}
+.bsub{display:flex;gap:6px;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:4px;width:max-content;margin-bottom:18px}
+.bsub .t{padding:7px 16px;border-radius:999px;font-weight:700;font-size:13px;color:var(--muted)}
+.bsub .t.active{background:var(--accent);color:#0b0d12}
+.picker{position:relative}
+.picker input{width:100%;background:var(--panel2);border:1px solid var(--line2);color:var(--text);border-radius:10px;padding:11px 12px;font-size:15px;outline:none}
+.picker input:focus{border-color:var(--accent2)}
+.pickmenu{position:absolute;z-index:30;top:calc(100% + 4px);left:0;right:0;background:var(--panel2);border:1px solid var(--line2);border-radius:10px;max-height:280px;overflow:auto;box-shadow:0 12px 30px rgba(0,0,0,.5);display:none}
+.pickmenu.open{display:block}
+.pickopt{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--line)}
+.pickopt:hover,.pickopt.hi{background:var(--panel3)}
+.pickopt .mini-av{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#0b0d12;flex-shrink:0}
+.pickopt .po-nm{font-weight:700}
+.pickopt .po-sub{color:var(--muted2);font-size:11px;margin-left:auto}
+.parents{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin-bottom:18px}
+@media(max-width:700px){.parents{grid-template-columns:1fr}}
+.slot .slbl{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted2);font-weight:800;margin-bottom:6px}
+.plus{font-size:26px;color:var(--muted2);font-weight:300;text-align:center;padding-top:20px}
+@media(max-width:700px){.plus{padding:0}}
+.genderpick{margin-top:10px;display:none;gap:8px;align-items:center}
+.genderpick.show{display:flex}
+.gseg{display:flex;border:1px solid var(--line2);border-radius:8px;overflow:hidden}
+.gseg button{padding:6px 12px;font-size:12px;font-weight:700;color:var(--muted)}
+.gseg button.on{background:var(--accent2);color:#fff}
+.result{margin-top:6px}
+.rescard{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:12px;padding:16px;display:flex;gap:16px;align-items:center}
+.rescard .big-av{width:64px;height:64px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;color:#0b0d12;flex-shrink:0}
+.rescard .rinfo{flex:1;min-width:0}
+.rescard h3{margin:0 0 4px;font-size:20px;font-weight:900}
+.explain{color:var(--muted);font-size:12.5px;margin-top:10px;line-height:1.5;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+.tag{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 9px;border-radius:999px;margin-left:6px}
+.tag.special{background:var(--special);color:#2a0d20}
+.tag.gender{background:var(--warn);color:#3a2c00}
+.tag.same{background:var(--accent);color:#08201e}
+.reverse-list{display:flex;flex-direction:column;gap:8px}
+.pairrow{display:flex;align-items:center;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.pairrow .p{display:flex;align-items:center;gap:8px;flex:1;cursor:pointer;padding:4px;border-radius:8px}
+.pairrow .p:hover{background:var(--panel3)}
+.pairrow .x{color:var(--muted2);font-weight:700}
+.mini-av2{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#0b0d12;flex-shrink:0}
+.owned-wrap{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;min-height:20px}
+.owned-tag{display:flex;align-items:center;gap:6px;background:var(--panel3);border:1px solid var(--line2);border-radius:999px;padding:4px 6px 4px 10px;font-size:12px;font-weight:700}
+.owned-tag button{color:var(--muted);font-weight:900;padding:0 4px}
+.owned-tag button:hover{color:var(--special)}
+.chain-steps{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.cstep{display:flex;align-items:center;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-weight:700}
+.cstep .num{width:22px;height:22px;border-radius:999px;background:var(--accent2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
+.cstep .eq{color:var(--muted2)}
+.cstep .to{color:var(--accent)}
+.advrow{display:flex;align-items:center;gap:10px;margin-top:14px;color:var(--muted);font-size:12px}
+.advrow input[type=number]{width:60px;background:var(--panel2);border:1px solid var(--line2);color:var(--text);border-radius:6px;padding:5px 8px}
+.msg{color:var(--muted);padding:16px;text-align:center;font-size:13px}
+.msg.err{color:var(--warn)}
+.helpbox{color:var(--muted);font-size:12px;line-height:1.6;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-top:8px}
+footer{margin-top:30px;color:var(--muted2);font-size:11px;text-align:center;line-height:1.7}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--line2);border-radius:6px}
+::-webkit-scrollbar-track{background:transparent}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>Paldex</h1><span class="ver" id="verTag">1.0 · build 1.100.427</span>
+    </div>
+    <div class="tabs">
+      <button class="tab active" data-view="paldex">Paldex</button>
+      <button class="tab" data-view="breeding">Breeding</button>
+    </div>
+    <div class="counts" id="counts"></div>
+  </header>
+
+  <!-- ================= PALDEX ================= -->
+  <section class="view active" id="view-paldex">
+    <div class="controls">
+      <div class="searchrow">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="q" type="text" placeholder="Search Pals by name…" autocomplete="off">
+        </div>
+        <select id="sort">
+          <option value="dex">Sort: Dex #</option>
+          <option value="name">Sort: Name</option>
+          <option value="breedingPower">Sort: Breeding Power</option>
+          <option value="rarity">Sort: Rarity</option>
+          <option value="hp">Sort: HP</option>
+          <option value="attack">Sort: Attack</option>
+          <option value="defense">Sort: Defense</option>
+        </select>
+        <button class="reset" id="reset">Reset</button>
+      </div>
+      <div class="filters">
+        <div class="fgroup">
+          <span class="lbl">Element</span>
+          <div class="chips" id="elFilters"></div>
+        </div>
+        <div class="fgroup">
+          <span class="lbl">Work</span>
+          <div class="chips" id="workFilters"></div>
+        </div>
+        <div class="fgroup">
+          <span class="lbl">Form / Type</span>
+          <div class="chips" id="typeFilters"></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div>
+        <div class="palgrid" id="palgrid"></div>
+        <div class="empty" id="gridEmpty" style="display:none">No Pals match your filters.</div>
+      </div>
+      <div id="detailCol">
+        <div class="detail">
+          <div class="detail-empty" id="detailEmpty">
+            <div class="big">🐾</div>
+            <div>Select a Pal to see full stats, work suitability, and breeding links.</div>
+          </div>
+          <div id="detailContent" style="display:none"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BREEDING ================= -->
+  <section class="view" id="view-breeding">
+    <div class="bpanel">
+      <div class="bsub">
+        <button class="t active" data-bmode="forward">Forward</button>
+        <button class="t" data-bmode="reverse">Reverse</button>
+        <button class="t" data-bmode="chain">Chain</button>
+      </div>
+
+      <!-- FORWARD -->
+      <div class="bmode" id="bmode-forward">
+        <div class="parents">
+          <div class="slot">
+            <div class="slbl">Parent A</div>
+            <div class="picker" data-role="pA"></div>
+            <div class="genderpick" data-gender="A">
+              <span style="font-size:11px;color:var(--muted2);font-weight:700">Gender</span>
+              <div class="gseg"><button data-g="FEMALE" class="on">♀ Female</button><button data-g="MALE">♂ Male</button></div>
+            </div>
+          </div>
+          <div class="plus">+</div>
+          <div class="slot">
+            <div class="slbl">Parent B</div>
+            <div class="picker" data-role="pB"></div>
+            <div class="genderpick" data-gender="B">
+              <span style="font-size:11px;color:var(--muted2);font-weight:700">Gender</span>
+              <div class="gseg"><button data-g="MALE" class="on">♂ Male</button><button data-g="FEMALE">♀ Female</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="result" id="fwdResult"><div class="msg">Pick two parents to see the offspring.</div></div>
+      </div>
+
+      <!-- REVERSE -->
+      <div class="bmode" id="bmode-reverse" style="display:none">
+        <div class="slot" style="max-width:520px">
+          <div class="slbl">Target child</div>
+          <div class="picker" data-role="rev"></div>
+        </div>
+        <div class="result" id="revResult"><div class="msg">Pick a target to see every parent pair that produces it.</div></div>
+      </div>
+
+      <!-- CHAIN -->
+      <div class="bmode" id="bmode-chain" style="display:none">
+        <div class="parents" style="grid-template-columns:1fr 1fr">
+          <div class="slot">
+            <div class="slbl">Add a Pal you own</div>
+            <div class="picker" data-role="own"></div>
+          </div>
+          <div class="slot">
+            <div class="slbl">Target Pal</div>
+            <div class="picker" data-role="tgt"></div>
+          </div>
+        </div>
+        <div class="owned-wrap" id="ownedWrap"></div>
+        <div class="advrow">
+          <label>Max depth <input type="number" id="maxDepth" value="6" min="1" max="10"></label>
+          <button class="mini" id="runChain">Find shortest chain</button>
+        </div>
+        <div class="result" id="chainResult"></div>
+        <div class="helpbox">
+          The chain finder does a breadth-first search over every species you can reach by breeding pairs from what you own,
+          then reconstructs the shortest path to the target. Pathing is gender-agnostic (you can always obtain the needed gender);
+          the Katress/Wixen gender rule is only surfaced on the final step if relevant. Self-only Pals (legendaries, tower bosses,
+          uniques, collab Pals) are only reachable if you already own one.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Data derived from <b>tylercamp/palcalc</b> (v26, game-file extracted) — breeding power, stats, work, full breeding table ·
+    element/type filled from <b>paldb.cc</b> · Palworld 1.0 (build 1.100.427, released Jul 10 2026).<br>
+    Self-contained · all data embedded · no server, no telemetry. Verify big cake investments in-game — 1.0 data is fresh.
+  </footer>
+</div>
+
+<script>/*__PALS__*/</script>
+<script>/*__BRD__*/</script>
+<script>
+/* ============================================================= *
+ *  Palworld 1.0 Paldex + Breeding Calculator — vanilla JS
+ * ============================================================= */
+"use strict";
+
+const ELEMENTS = ["neutral","fire","water","grass","electric","ice","ground","dark","dragon"];
+const WORK_KEYS = ["Kindling","Watering","Planting","GenerateElectricity","Handiwork","Gathering","Lumbering","Mining","MedicineProduction","Cooling","Transporting","Farming"];
+const WORK_SHORT = {Kindling:"Kindle",Watering:"Water",Planting:"Plant",GenerateElectricity:"Power",Handiwork:"Craft",Gathering:"Gather",Lumbering:"Lumber",Mining:"Mine",MedicineProduction:"Medic",Cooling:"Cool",Transporting:"Haul",Farming:"Farm"};
+const EL_COLOR = {neutral:"#B4AC9C",fire:"#E8552B",water:"#2FA9E0",grass:"#57B947",electric:"#F2C21B",ice:"#79CEDC",ground:"#C0883E",dark:"#6A4C93",dragon:"#7B5FD6"};
+
+/* ---- indexes ---- */
+const byIndex = new Map(PALS.map(p => [p.internalIndex, p]));
+const byName  = new Map(PALS.map(p => [p.name.toLowerCase(), p]));
+
+// forward map "min,max" -> child index
+const FORWARD = new Map();
+for (const [child, pairs] of Object.entries(BRD.combos))
+  for (const [a,b] of pairs){
+    const k = a < b ? a+","+b : b+","+a;
+    FORWARD.set(k, +child);
+  }
+// which pals appear as a parent (for "breeds into")
+const PARENT_OF = new Map(); // idx -> Set(childIdx)
+for (const [child, pairs] of Object.entries(BRD.combos))
+  for (const [a,b] of pairs){
+    (PARENT_OF.get(a) || PARENT_OF.set(a,new Set()).get(a)).add(+child);
+    (PARENT_OF.get(b) || PARENT_OF.set(b,new Set()).get(b)).add(+child);
+  }
+
+const totalPairs = Object.values(BRD.combos).reduce((s,v)=>s+v.length,0);
+
+/* ---- core breeding ---- */
+function breed(aIdx,bIdx,aGender,bGender){
+  for (const g of BRD.genderLocked){
+    const match =
+      (g.p1===aIdx && g.p2===bIdx && g.p1g===aGender && g.p2g===bGender) ||
+      (g.p1===bIdx && g.p2===aIdx && g.p1g===bGender && g.p2g===aGender);
+    if (match) return byIndex.get(g.child);
+  }
+  const k = aIdx < bIdx ? aIdx+","+bIdx : bIdx+","+aIdx;
+  const child = FORWARD.get(k);
+  return child != null ? byIndex.get(child) : null;
+}
+function isGenderLockedPair(aIdx,bIdx){
+  return BRD.genderLocked.some(g =>
+    (g.p1===aIdx&&g.p2===bIdx)||(g.p1===bIdx&&g.p2===aIdx));
+}
+function parentsOf(childIdx){
+  return (BRD.combos[childIdx]||[]).map(([a,b])=>[byIndex.get(a),byIndex.get(b)]);
+}
+function formulaTarget(a,b){ return Math.floor((a.breedingPower+b.breedingPower+1)/2); }
+function formulaExplain(a,b){
+  return `Parents average to combi rank ~${formulaTarget(a,b)}; the closest breedable Pal wins (ties → higher rank).`;
+}
+function shortestChain(ownedIdxs,targetIdx,maxDepth=6){
+  const reachable=new Set(ownedIdxs);
+  const from=new Map();
+  if(reachable.has(targetIdx)) return [];
+  for(let depth=0;depth<maxDepth;depth++){
+    const current=[...reachable]; let grew=false;
+    for(let i=0;i<current.length;i++)
+      for(let j=i;j<current.length;j++){
+        const c=breed(current[i],current[j]);
+        if(c && !reachable.has(c.internalIndex)){
+          reachable.add(c.internalIndex);
+          from.set(c.internalIndex,[current[i],current[j]]);
+          grew=true;
+          if(c.internalIndex===targetIdx){
+            const steps=[];
+            const walk=idx=>{const pr=from.get(idx);if(!pr)return;walk(pr[0]);walk(pr[1]);steps.push([pr[0],pr[1],idx]);};
+            walk(targetIdx);
+            return steps;
+          }
+        }
+      }
+    if(!grew) break;
+  }
+  return null;
+}
+
+/* ---- helpers ---- */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+function el(tag,cls,html){const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+function initials(name){
+  const parts=name.replace(/[^A-Za-z ]/g,"").split(" ").filter(Boolean);
+  if(parts.length>=2) return (parts[0][0]+parts[1][0]).toUpperCase();
+  return name.slice(0,2).toUpperCase();
+}
+function avatarStyle(p){
+  const c = p.elements && p.elements.length ? EL_COLOR[p.elements[0]] : "#3a4456";
+  const c2 = p.elements && p.elements.length>1 ? EL_COLOR[p.elements[1]] : c;
+  return `background:linear-gradient(135deg,${c},${c2})`;
+}
+function elBadges(p){
+  if(!p.elements||!p.elements.length) return `<span class="elbadge" style="background:#3a4456;color:#cfd6e2">?</span>`;
+  return p.elements.map(e=>`<span class="elbadge" style="background:${EL_COLOR[e]}">${e}</span>`).join("");
+}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+/* ============================================================= *
+ *  PALDEX
+ * ============================================================= */
+const state = { q:"", els:new Set(), works:new Set(), types:new Set(), sort:"dex", selected:null };
+
+function buildFilters(){
+  const elc=$("#elFilters");
+  ELEMENTS.forEach(e=>{
+    const c=el("button","chip el","");
+    c.dataset.el=e; c.textContent=cap(e);
+    c.onclick=()=>{ toggleSet(state.els,e,c); render(); };
+    elc.appendChild(c);
+  });
+  const wc=$("#workFilters");
+  WORK_KEYS.forEach(w=>{
+    const c=el("button","chip",WORK_SHORT[w]);
+    c.onclick=()=>{ toggleSet(state.works,w,c); render(); };
+    wc.appendChild(c);
+  });
+  const tc=$("#typeFilters");
+  [["base","Base"],["variant","Variant"],["breedable","Breedable result"],["nocturnal","Nocturnal"]].forEach(([k,label])=>{
+    const c=el("button","chip",label);
+    c.onclick=()=>{ toggleSet(state.types,k,c); render(); };
+    tc.appendChild(c);
+  });
+}
+function toggleSet(set,val,chip){
+  if(set.has(val)){set.delete(val);chip.classList.remove("on");chip.style.background="";}
+  else{
+    set.add(val);chip.classList.add("on");
+    if(chip.classList.contains("el")) chip.style.background=EL_COLOR[val];
+    else chip.style.background="var(--accent)";
+    if(!chip.classList.contains("el")) chip.style.color="#0e1015";
+  }
+}
+function passesFilters(p){
+  if(state.q && !p.name.toLowerCase().includes(state.q)) return false;
+  if(state.els.size){ if(!p.elements||!p.elements.some(e=>state.els.has(e))) return false; }
+  if(state.works.size){ for(const w of state.works){ if(!(p.work&&p.work[w]>0)) return false; } }
+  if(state.types.size){
+    if(state.types.has("base") && p.isVariant) return false;
+    if(state.types.has("variant") && !p.isVariant) return false;
+    if(state.types.has("breedable") && p.selfOnly) return false;
+    if(state.types.has("nocturnal") && !p.nocturnal) return false;
+  }
+  return true;
+}
+function sortPals(list){
+  const s=state.sort;
+  const cmp={
+    dex:(a,b)=> a.dex-b.dex || a.internalIndex-b.internalIndex,
+    name:(a,b)=> a.name.localeCompare(b.name),
+    breedingPower:(a,b)=> a.breedingPower-b.breedingPower,
+    rarity:(a,b)=> b.rarity-a.rarity || a.dex-b.dex,
+    hp:(a,b)=> b.stats.hp-a.stats.hp,
+    attack:(a,b)=> b.stats.attack-a.stats.attack,
+    defense:(a,b)=> b.stats.defense-a.stats.defense,
+  }[s];
+  return list.slice().sort(cmp);
+}
+function render(){
+  const list=sortPals(PALS.filter(passesFilters));
+  const grid=$("#palgrid"); grid.innerHTML="";
+  $("#gridEmpty").style.display = list.length ? "none":"block";
+  const frag=document.createDocumentFragment();
+  for(const p of list){
+    const card=el("div","card"+(state.selected===p.internalIndex?" sel":""));
+    card.dataset.idx=p.internalIndex;
+    const works=Object.entries(p.work||{}).filter(([,v])=>v>0).slice(0,4)
+      .map(([k,v])=>`<span class="wk">${WORK_SHORT[k]} ${v}</span>`).join("");
+    card.innerHTML=`
+      <span class="dex">#${p.dex}</span>
+      <div class="avatar" style="${avatarStyle(p)}">${initials(p.name)}</div>
+      <div class="nm">${p.name}</div>
+      <div class="sub">${p.internalName} · ${p.size}</div>
+      <div class="badges">${elBadges(p)}
+        ${p.isVariant?'<span class="pill variant">variant</span>':''}
+        ${p.selfOnly?'<span class="pill selfonly">self-only</span>':''}
+      </div>
+      <div class="workrow">${works||'<span class="wk" style="opacity:.5">no work</span>'}</div>
+      <div class="bp">Breeding Power <b>${p.breedingPower}</b> · Rarity ${p.rarity}</div>`;
+    card.onclick=()=>selectPal(p.internalIndex);
+    frag.appendChild(card);
+  }
+  grid.appendChild(frag);
+  updateCounts(list.length);
+}
+function updateCounts(shown){
+  $("#counts").innerHTML =
+    `<span><b>${shown}</b>/${PALS.length} Pals</span>`+
+    `<span><b>${totalPairs.toLocaleString()}</b> breeding pairs</span>`+
+    `<span><b>${PALS.filter(p=>p.selfOnly).length}</b> self-only</span>`;
+}
+function selectPal(idx){
+  state.selected=idx;
+  $$(".card").forEach(c=>c.classList.toggle("sel",+c.dataset.idx===idx));
+  renderDetail(byIndex.get(idx));
+}
+function renderDetail(p){
+  $("#detailEmpty").style.display="none";
+  const dc=$("#detailContent"); dc.style.display="block";
+  const stats=p.stats;
+  const statBlock=[["HP",stats.hp],["Attack",stats.attack],["Defense",stats.defense],
+    ["Run Speed",stats.runSpeed],["Ride Sprint",stats.rideSprint],["Transport",stats.transport],
+    ["Stamina",stats.stamina]]
+    .map(([l,v])=>`<div class="stat"><div class="sl">${l}</div><div class="sv">${v}</div></div>`).join("");
+  const works=Object.entries(p.work||{}).filter(([,v])=>v>0)
+    .map(([k,v])=>`<div class="workitem">${WORK_SHORT[k]} <span class="lvl">${v}</span></div>`).join("")
+    || '<span style="color:var(--muted);font-size:12px">No work suitabilities.</span>';
+
+  const bredFrom=parentsOf(p.internalIndex);
+  const breedsInto=[...(PARENT_OF.get(p.internalIndex)||[])].map(i=>byIndex.get(i))
+    .sort((a,b)=>a.dex-b.dex);
+
+  const bredFromHtml = bredFrom.length
+    ? bredFrom.slice(0,40).map(([a,b])=>xlinkPair(a,b)).join("")+
+      (bredFrom.length>40?`<div style="color:var(--muted2);font-size:11px;padding:4px 2px">…and ${bredFrom.length-40} more pairs</div>`:"")
+    : `<div style="color:var(--muted);font-size:12px">Not produced by any breeding pair${p.selfOnly?' (self-only Pal).':'.'}</div>`;
+  const breedsIntoHtml = breedsInto.length
+    ? `<div style="display:flex;flex-wrap:wrap;gap:6px">`+breedsInto.slice(0,60).map(c=>miniLink(c)).join("")+
+      (breedsInto.length>60?`<span style="color:var(--muted2);font-size:11px">+${breedsInto.length-60}</span>`:"")+`</div>`
+    : `<div style="color:var(--muted);font-size:12px">Never appears as a parent in the table.</div>`;
+
+  dc.innerHTML=`
+    <div class="hd">
+      <div class="top2">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div class="avatar" style="width:52px;height:52px;font-size:20px;${avatarStyle(p)}">${initials(p.name)}</div>
+          <div>
+            <h2>${p.name}</h2>
+            <div class="idn">#${p.dex} · ${p.internalName} · index ${p.internalIndex}</div>
+          </div>
+        </div>
+        <button class="close" onclick="closeDetail()">×</button>
+      </div>
+      <div class="badges" style="margin-top:12px">${elBadges(p)}
+        ${p.isVariant?'<span class="pill variant">variant</span>':''}
+        ${p.selfOnly?'<span class="pill selfonly">self-only</span>':''}
+        <span class="pill">Rarity ${p.rarity}</span>
+        <span class="pill">Size ${p.size}</span>
+        ${p.nocturnal?'<span class="pill">nocturnal</span>':''}
+      </div>
+    </div>
+    <div class="body">
+      ${p.selfOnly?'<div class="note">Same-species only — never appears as a formula result. Breed by pairing two of this Pal (legendary / tower boss / unique / collab).</div>':''}
+      <div class="dsection">
+        <h3>Overview</h3>
+        <div class="kv">
+          <span class="k">Breeding Power</span><span class="v">${p.breedingPower} <span style="color:var(--muted2);font-weight:400">(lower = rarer)</span></span>
+          <span class="k">Wild level</span><span class="v">${p.wildLevel && (p.wildLevel[0]||p.wildLevel[1]) ? p.wildLevel[0]+'–'+p.wildLevel[1] : '—'}</span>
+          <span class="k">Price</span><span class="v">${p.price?.toLocaleString?.()||p.price||'—'}</span>
+          <span class="k">Partner skill</span><span class="v">${p.partnerSkill?(p.partnerSkill.name||'yes'):'—'}</span>
+        </div>
+      </div>
+      <div class="dsection">
+        <h3>Stats</h3>
+        <div class="statgrid">${statBlock}</div>
+      </div>
+      <div class="dsection">
+        <h3>Work suitability</h3>
+        <div class="worklist">${works}</div>
+      </div>
+      <div class="dsection">
+        <h3>Bred from (${bredFrom.length} pair${bredFrom.length===1?'':'s'})</h3>
+        ${bredFromHtml}
+      </div>
+      <div class="dsection">
+        <h3>Breeds into (${breedsInto.length})</h3>
+        ${breedsIntoHtml}
+      </div>
+    </div>`;
+}
+function xlinkPair(a,b){
+  return `<button class="xlink" onclick="selectPal(${a.internalIndex})">
+    <span style="font-weight:800">${a.name}</span> <span class="arrow">+</span> <span style="font-weight:800">${b.name}</span>
+  </button>`;
+}
+function miniLink(c){
+  return `<button class="wk" style="cursor:pointer;background:var(--panel2);border:1px solid var(--line)" onclick="selectPal(${c.internalIndex})">${c.name}</button>`;
+}
+function closeDetail(){
+  state.selected=null;
+  $$(".card").forEach(c=>c.classList.remove("sel"));
+  $("#detailContent").style.display="none";
+  $("#detailEmpty").style.display="block";
+}
+window.selectPal=selectPal; window.closeDetail=closeDetail;
+
+/* ============================================================= *
+ *  PICKER widget (typeahead)
+ * ============================================================= */
+function makePicker(container, onPick, opts={}){
+  const inp=el("input","");
+  inp.placeholder=opts.placeholder||"Search a Pal…";
+  const menu=el("div","pickmenu");
+  container.appendChild(inp); container.appendChild(menu);
+  let hi=-1, results=[];
+  const source = opts.filter ? PALS.filter(opts.filter) : PALS;
+  function open(){
+    const q=inp.value.trim().toLowerCase();
+    results = (q? source.filter(p=>p.name.toLowerCase().includes(q)) : source.slice())
+      .sort((a,b)=>a.dex-b.dex).slice(0,60);
+    menu.innerHTML="";
+    results.forEach((p,i)=>{
+      const o=el("div","pickopt"+(i===hi?" hi":""));
+      o.innerHTML=`<div class="mini-av" style="${avatarStyle(p)}">${initials(p.name)}</div>
+        <span class="po-nm">${p.name}</span>
+        <span class="po-sub">#${p.dex} · BP ${p.breedingPower}${p.isVariant?' · var':''}${p.selfOnly?' · self':''}</span>`;
+      o.onclick=()=>{ choose(p); };
+      menu.appendChild(o);
+    });
+    menu.classList.add("open");
+  }
+  function close(){ menu.classList.remove("open"); hi=-1; }
+  function choose(p){ inp.value=p.name; close(); onPick(p); }
+  inp.addEventListener("focus",open);
+  inp.addEventListener("input",()=>{hi=-1;open();});
+  inp.addEventListener("keydown",e=>{
+    if(!menu.classList.contains("open"))return;
+    if(e.key==="ArrowDown"){hi=Math.min(hi+1,results.length-1);open();e.preventDefault();}
+    else if(e.key==="ArrowUp"){hi=Math.max(hi-1,0);open();e.preventDefault();}
+    else if(e.key==="Enter"){if(results[hi])choose(results[hi]);else if(results.length===1)choose(results[0]);e.preventDefault();}
+    else if(e.key==="Escape")close();
+  });
+  document.addEventListener("click",e=>{ if(!container.contains(e.target)) close(); });
+  return { clear:()=>{inp.value="";}, input:inp };
+}
+
+/* ============================================================= *
+ *  BREEDING UI
+ * ============================================================= */
+let fwd={a:null,b:null,ag:"FEMALE",bg:"MALE"};
+
+function initBreeding(){
+  // forward pickers
+  const pkA=makePicker($('.picker[data-role=pA]'),p=>{fwd.a=p;updateGenderVis();renderForward();},{placeholder:"Parent A…"});
+  const pkB=makePicker($('.picker[data-role=pB]'),p=>{fwd.b=p;updateGenderVis();renderForward();},{placeholder:"Parent B…"});
+  // gender buttons
+  $$('.genderpick').forEach(gp=>{
+    const which=gp.dataset.gender;
+    gp.querySelectorAll('button').forEach(btn=>{
+      btn.onclick=()=>{
+        gp.querySelectorAll('button').forEach(b=>b.classList.remove('on'));
+        btn.classList.add('on');
+        if(which==="A") fwd.ag=btn.dataset.g; else fwd.bg=btn.dataset.g;
+        renderForward();
+      };
+    });
+  });
+  // reverse
+  makePicker($('.picker[data-role=rev]'),p=>renderReverse(p),{placeholder:"Target child…"});
+  // chain
+  makePicker($('.picker[data-role=own]'),p=>{addOwned(p);},{placeholder:"Add owned Pal…"});
+  makePicker($('.picker[data-role=tgt]'),p=>{chain.target=p;},{placeholder:"Target Pal…"});
+  $("#runChain").onclick=runChainFinder;
+
+  // breeding submode tabs
+  $$('.bsub .t').forEach(t=>{
+    t.onclick=()=>{
+      $$('.bsub .t').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      $$('.bmode').forEach(m=>m.style.display='none');
+      $('#bmode-'+t.dataset.bmode).style.display='block';
+    };
+  });
+}
+function updateGenderVis(){
+  const both = fwd.a && fwd.b && isGenderLockedPair(fwd.a.internalIndex,fwd.b.internalIndex);
+  $$('.genderpick').forEach(gp=>gp.classList.toggle('show',both));
+}
+function renderForward(){
+  const box=$("#fwdResult");
+  if(!fwd.a||!fwd.b){ box.innerHTML='<div class="msg">Pick two parents to see the offspring.</div>'; return; }
+  const a=fwd.a,b=fwd.b;
+  const glocked=isGenderLockedPair(a.internalIndex,b.internalIndex);
+  const child=breed(a.internalIndex,b.internalIndex,fwd.ag,fwd.bg);
+  if(!child){
+    box.innerHTML=`<div class="rescard"><div class="big-av" style="background:#3a4456">?</div>
+      <div class="rinfo"><h3>No offspring</h3>
+      <div style="color:var(--muted);font-size:12.5px">This pairing isn't in the 1.0 breeding table. (Some self-only / collab Pals can't be parents of a generic result.)</div></div></div>`;
+    return;
+  }
+  const sameSpecies = a.internalIndex===b.internalIndex ||
+    (child.internalIndex===a.internalIndex && a.internalIndex===b.internalIndex);
+  // special-combo detection: does the table result differ from the pure-formula prediction?
+  const special = detectSpecial(a,b,child);
+  let tags="";
+  if(a.internalIndex===b.internalIndex) tags+='<span class="tag same">same species</span>';
+  else if(special) tags+='<span class="tag special">special combo</span>';
+  if(glocked) tags+='<span class="tag gender">gender-locked</span>';
+
+  box.innerHTML=`
+    <div class="rescard">
+      <div class="big-av" style="${avatarStyle(child)}">${initials(child.name)}</div>
+      <div class="rinfo">
+        <h3>${child.name}${tags}</h3>
+        <div class="badges">${elBadges(child)}
+          ${child.isVariant?'<span class="pill variant">variant</span>':''}
+          <span class="pill">Rarity ${child.rarity}</span>
+          <span class="pill">BP ${child.breedingPower}</span></div>
+        <div class="explain">${formulaExplain(a,b)}${special?' <b style="color:var(--special)">This pairing is a fixed special combo, so it overrides that formula.</b>':''}
+        ${glocked?'<br><b style="color:var(--warn)">Gender-locked:</b> '+glockedNote(a,b,fwd.ag,fwd.bg,child):''}</div>
+        <div style="margin-top:8px"><button class="xlink" style="margin:0" onclick="gotoPaldex(${child.internalIndex})">View ${child.name} in Paldex →</button></div>
+      </div>
+    </div>`;
+}
+function detectSpecial(a,b,child){
+  if(a.internalIndex===b.internalIndex) return false; // same-species handled separately
+  // formula prediction from generic pool
+  const t=formulaTarget(a,b);
+  const pred=formulaPredict(t);
+  return pred==null || pred.internalIndex!==child.internalIndex;
+}
+// generic pool = pals that are NOT selfOnly and NOT variant (per spec §2.3)
+let GENERIC_POOL=null;
+function formulaPredict(target){
+  if(!GENERIC_POOL) GENERIC_POOL=PALS.filter(p=>!p.selfOnly && !p.isVariant);
+  let best=null,bestDist=Infinity;
+  for(const p of GENERIC_POOL){
+    const d=Math.abs(p.breedingPower-target);
+    if(d<bestDist || (d===bestDist && (p.breedingPower>best.breedingPower ||
+        (p.breedingPower===best.breedingPower && p.dex<best.dex)))){
+      best=p;bestDist=d;
+    }
+  }
+  return best;
+}
+function glockedNote(a,b,ag,bg,child){
+  // find the matching genderLocked row
+  for(const g of BRD.genderLocked){
+    const pa=byIndex.get(g.p1),pb=byIndex.get(g.p2);
+    const m=(g.p1===a.internalIndex&&g.p2===b.internalIndex&&g.p1g===ag&&g.p2g===bg)||
+            (g.p1===b.internalIndex&&g.p2===a.internalIndex&&g.p1g===bg&&g.p2g===ag);
+    if(m) return `${pa.name} (${g.p1g[0]}) + ${pb.name} (${g.p2g[0]}) → ${byIndex.get(g.child).name}. Flip the genders for the other outcome.`;
+  }
+  return "Swap parent genders to change the result.";
+}
+function gotoPaldex(idx){
+  $$('.tab').forEach(t=>t.classList.remove('active'));
+  $('.tab[data-view=paldex]').classList.add('active');
+  $$('.view').forEach(v=>v.classList.remove('active'));
+  $('#view-paldex').classList.add('active');
+  selectPal(idx);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+window.gotoPaldex=gotoPaldex;
+
+function renderReverse(target){
+  const box=$("#revResult");
+  const pairs=parentsOf(target.internalIndex);
+  if(!pairs.length){
+    box.innerHTML=`<div class="msg err">${target.name} has no breeding recipe${target.selfOnly?' — it\'s self-only. Pair two of them (same-species) or catch it.':'.'}</div>`;
+    return;
+  }
+  const rows=pairs.map(([a,b])=>`
+    <div class="pairrow">
+      <div class="p" onclick="revPivot(${a.internalIndex})">
+        <div class="mini-av2" style="${avatarStyle(a)}">${initials(a.name)}</div>
+        <span>${a.name}</span></div>
+      <span class="x">+</span>
+      <div class="p" onclick="revPivot(${b.internalIndex})">
+        <div class="mini-av2" style="${avatarStyle(b)}">${initials(b.name)}</div>
+        <span>${b.name}</span></div>
+    </div>`).join("");
+  box.innerHTML=`<div style="margin-bottom:10px;color:var(--muted);font-size:12.5px">
+      <b style="color:var(--text)">${pairs.length}</b> parent pair${pairs.length===1?'':'s'} produce <b style="color:var(--accent)">${target.name}</b>. Click a parent to see how to breed <i>it</i>.</div>
+    <div class="reverse-list">${rows}</div>`;
+}
+function revPivot(idx){
+  const p=byIndex.get(idx);
+  const pk=$('.picker[data-role=rev] input'); if(pk) pk.value=p.name;
+  renderReverse(p);
+}
+window.revPivot=revPivot;
+
+/* chain */
+let chain={owned:[],target:null};
+function addOwned(p){
+  if(chain.owned.some(o=>o.internalIndex===p.internalIndex))return;
+  chain.owned.push(p); renderOwned();
+  const inp=$('.picker[data-role=own] input'); if(inp)inp.value="";
+}
+function removeOwned(idx){ chain.owned=chain.owned.filter(o=>o.internalIndex!==idx); renderOwned(); }
+window.removeOwned=removeOwned;
+function renderOwned(){
+  const w=$("#ownedWrap");
+  if(!chain.owned.length){ w.innerHTML='<span style="color:var(--muted2);font-size:12px">No owned Pals added yet.</span>'; return; }
+  w.innerHTML=chain.owned.map(p=>`<span class="owned-tag">
+    <div class="mini-av" style="width:18px;height:18px;font-size:9px;${avatarStyle(p)}">${initials(p.name)}</div>
+    ${p.name}<button onclick="removeOwned(${p.internalIndex})">×</button></span>`).join("");
+}
+function runChainFinder(){
+  const box=$("#chainResult");
+  if(!chain.owned.length){ box.innerHTML='<div class="msg err">Add at least one Pal you own.</div>'; return; }
+  if(!chain.target){ box.innerHTML='<div class="msg err">Pick a target Pal.</div>'; return; }
+  const md=Math.max(1,Math.min(10,+$("#maxDepth").value||6));
+  const owned=chain.owned.map(o=>o.internalIndex);
+  const t=chain.target.internalIndex;
+  const steps=shortestChain(owned,t,md);
+  if(steps===null){
+    box.innerHTML=`<div class="msg err">No breeding chain to <b>${chain.target.name}</b> within depth ${md} from those Pals.
+      ${chain.target.selfOnly?'It\'s a self-only Pal — you must already own one (or its same-species pair).':'Try adding more owned Pals or raising max depth.'}</div>`;
+    return;
+  }
+  if(steps.length===0){ box.innerHTML=`<div class="msg">You already own <b>${chain.target.name}</b>.</div>`; return; }
+  const rows=steps.map(([a,b,c],i)=>{
+    const pa=byIndex.get(a),pb=byIndex.get(b),pc=byIndex.get(c);
+    let gnote="";
+    if(isGenderLockedPair(a,b)) gnote=' <span class="tag gender" style="margin-left:6px">check gender</span>';
+    return `<div class="cstep"><div class="num">${i+1}</div>
+      <span>${pa.name}</span><span class="eq">+</span><span>${pb.name}</span>
+      <span class="eq">=</span><span class="to">${pc.name}</span>${gnote}</div>`;
+  }).join("");
+  box.innerHTML=`<div style="margin:6px 0 4px;color:var(--muted);font-size:12.5px">Shortest chain: <b style="color:var(--text)">${steps.length}</b> breeding step${steps.length===1?'':'s'} to <b style="color:var(--accent)">${chain.target.name}</b>.</div>
+    <div class="chain-steps">${rows}</div>`;
+}
+
+/* ============================================================= *
+ *  WIRING
+ * ============================================================= */
+function initTabs(){
+  $$('.tab').forEach(t=>{
+    t.onclick=()=>{
+      $$('.tab').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      $$('.view').forEach(v=>v.classList.remove('active'));
+      $('#view-'+t.dataset.view).classList.add('active');
+    };
+  });
+}
+function initControls(){
+  $("#q").addEventListener("input",e=>{state.q=e.target.value.trim().toLowerCase();render();});
+  $("#sort").addEventListener("change",e=>{state.sort=e.target.value;render();});
+  $("#reset").onclick=()=>{
+    state.q="";state.els.clear();state.works.clear();state.types.clear();state.sort="dex";
+    $("#q").value="";$("#sort").value="dex";
+    $$(".chip").forEach(c=>{c.classList.remove("on");c.style.background="";c.style.color="";});
+    render();
+  };
+}
+function boot(){
+  buildFilters(); initControls(); initTabs(); initBreeding();
+  renderOwned();
+  render();
+  // sanity log for the §10 checklist
+  console.log("[Paldex] records:",PALS.length,"| combo pairs:",totalPairs,"| genderLocked:",BRD.genderLocked.length,
+    "| self-only:",PALS.filter(p=>p.selfOnly).length,"| missing elements:",PALS.filter(p=>!p.elements||!p.elements.length).length);
+}
+boot();
+</script>
+</body>
+</html>
