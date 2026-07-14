@@ -30,6 +30,7 @@
   /* element colors */
   --el-neutral:#B4AC9C; --el-fire:#E8552B; --el-water:#2FA9E0; --el-grass:#57B947;
   --el-electric:#F2C21B; --el-ice:#79CEDC; --el-ground:#C0883E; --el-dark:#6A4C93; --el-dragon:#7B5FD6;
+  --card:#fff; --card2:#eef3e6;
   --radius:11px; --radius-sm:7px;
   --font:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
   --display:"Archivo","Inter",system-ui,sans-serif;
@@ -194,10 +195,14 @@ select:hover,.mini:hover{border-color:var(--muted2)}
 .el[data-el=electric]{background:var(--el-electric)} .el[data-el=ice]{background:var(--el-ice)}
 .el[data-el=ground]{background:var(--el-ground)} .el[data-el=dark]{background:var(--el-dark)}
 .el[data-el=dragon]{background:var(--el-dragon)}
+.chip.el{color:#242018}
+.chip.el[data-el=dark],.chip.el[data-el=dragon]{color:#fff}
+.chip.el:hover{color:#000;filter:brightness(1.06)}
+.chip.el[data-el=dark]:hover,.chip.el[data-el=dragon]:hover{color:#fff}
 
 /* pal grid */
 .palgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(184px,1fr));gap:13px}
-.card{background:linear-gradient(180deg,#fff,var(--screen2));border:2px solid var(--screen-edge);border-radius:var(--radius);padding:13px;cursor:pointer;transition:transform .16s cubic-bezier(.2,.8,.3,1.2),box-shadow .16s,border-color .16s;position:relative;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,.08)}
+.card{background:linear-gradient(180deg,var(--card),var(--screen2));border:2px solid var(--screen-edge);border-radius:var(--radius);padding:13px;cursor:pointer;transition:transform .16s cubic-bezier(.2,.8,.3,1.2),box-shadow .16s,border-color .16s;position:relative;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,.08)}
 .card::before{ /* faint pokéball ring watermark behind the avatar */
   content:""; position:absolute; top:-14px; left:-14px; width:78px; height:78px; border-radius:50%;
   border:9px solid rgba(0,0,0,.04); pointer-events:none;
@@ -231,7 +236,11 @@ select:hover,.mini:hover{border-color:var(--muted2)}
 /* detail panel — styled as the device "entry screen" (green LCD glow) */
 .detail{background:linear-gradient(180deg,var(--lcd),var(--lcd2));border:4px solid var(--bezel);border-radius:16px;padding:0;position:sticky;top:14px;overflow:hidden;
   box-shadow:0 0 0 2px var(--bezel-hi), 0 0 0 5px rgba(0,0,0,.18), 0 10px 24px rgba(0,0,0,.3), 0 0 40px rgba(80,200,150,.08) inset}
-.detail .hd{padding:16px 18px 14px;background:linear-gradient(180deg,#fff,#eef3e6);border-bottom:2px solid var(--screen-edge)}
+.detail .hd{padding:16px 18px 14px;border-bottom:2px solid var(--screen-edge);position:relative;
+  background:
+    radial-gradient(130% 150% at 88% -25%, var(--h2,transparent) 0%, transparent 55%),
+    linear-gradient(135deg, var(--h1,transparent) 0%, transparent 62%),
+    linear-gradient(180deg,var(--card),var(--card2));}
 .detail .hd .top2{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .detail .hd h2{margin:0;font-family:var(--display);font-size:25px;font-weight:800;color:var(--ink);letter-spacing:.3px}
 .detail .hd .idn{color:var(--muted2);font-size:12px;margin-top:2px;font-weight:600}
@@ -244,13 +253,13 @@ select:hover,.mini:hover{border-color:var(--muted2)}
 .kv .k{color:var(--muted);font-weight:600}
 .kv .v{color:var(--text);text-align:right;font-weight:800}
 .statgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.stat{background:#fff;border:2px solid var(--screen-edge);border-radius:8px;padding:8px 10px}
+.stat{background:var(--card);border:2px solid var(--screen-edge);border-radius:8px;padding:8px 10px}
 .stat .sl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;font-weight:700}
 .stat .sv{font-size:17px;font-weight:900;margin-top:2px;color:var(--ink)}
 .worklist{display:flex;flex-wrap:wrap;gap:6px}
-.workitem{background:#fff;border:2px solid var(--screen-edge);border-radius:8px;padding:5px 9px;font-size:12px;font-weight:800;display:flex;gap:6px;align-items:center}
+.workitem{background:var(--card);border:2px solid var(--screen-edge);border-radius:8px;padding:5px 9px;font-size:12px;font-weight:800;display:flex;gap:6px;align-items:center}
 .workitem .lvl{color:var(--accent);font-weight:900}
-.xlink{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--screen-edge);border-radius:8px;padding:8px 10px;margin-bottom:6px;font-size:13px;transition:.12s;font-weight:700}
+.xlink{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--screen-edge);border-radius:8px;padding:8px 10px;margin-bottom:6px;font-size:13px;transition:.12s;font-weight:700}
 .xlink:hover{border-color:var(--accent);background:var(--screen3)}
 .xlink .arrow{color:var(--muted2)}
 .note{background:#fff6e2;border:2px solid var(--warn);color:#8a5a00;border-radius:8px;padding:8px 10px;font-size:12px;margin-bottom:12px;font-weight:600}
@@ -264,9 +273,9 @@ select:hover,.mini:hover{border-color:var(--muted2)}
 .bsub .t.active{background:var(--accent);color:#fff;box-shadow:0 2px 5px rgba(0,0,0,.2)}
 .picker{position:relative;z-index:1}
 .picker:focus-within{z-index:60}
-.picker input{width:100%;background:#fff;border:2px solid var(--screen-edge);color:var(--text);border-radius:10px;padding:11px 13px;font-size:15px;outline:none;font-weight:700}
+.picker input{width:100%;background:var(--card);border:2px solid var(--screen-edge);color:var(--text);border-radius:10px;padding:11px 13px;font-size:15px;outline:none;font-weight:700}
 .picker input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(43,138,126,.18)}
-.pickmenu{position:absolute;z-index:200;top:calc(100% + 5px);left:0;right:0;background:#fff;border:2px solid var(--accent);border-radius:10px;max-height:300px;overflow:auto;box-shadow:0 16px 40px rgba(0,0,0,.42);display:none}
+.pickmenu{position:absolute;z-index:200;top:calc(100% + 5px);left:0;right:0;background:var(--card);border:2px solid var(--accent);border-radius:10px;max-height:300px;overflow:auto;box-shadow:0 16px 40px rgba(0,0,0,.42);display:none}
 .pickmenu.open{display:block}
 .pickopt{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--line)}
 .pickopt:hover,.pickopt.hi{background:var(--screen3)}
@@ -281,10 +290,10 @@ select:hover,.mini:hover{border-color:var(--muted2)}
 .genderpick{margin-top:10px;display:none;gap:8px;align-items:center}
 .genderpick.show{display:flex}
 .gseg{display:flex;border:2px solid var(--screen-edge);border-radius:8px;overflow:hidden}
-.gseg button{padding:6px 12px;font-size:12px;font-weight:800;color:var(--muted);background:#fff}
+.gseg button{padding:6px 12px;font-size:12px;font-weight:800;color:var(--muted);background:var(--card)}
 .gseg button.on{background:var(--accent);color:#fff}
 .result{margin-top:6px}
-.rescard{background:linear-gradient(180deg,#fff,var(--screen2));border:2px solid var(--screen-edge);border-radius:12px;padding:16px;display:flex;gap:16px;align-items:center;box-shadow:0 3px 8px rgba(0,0,0,.1)}
+.rescard{background:linear-gradient(180deg,var(--card),var(--screen2));border:2px solid var(--screen-edge);border-radius:12px;padding:16px;display:flex;gap:16px;align-items:center;box-shadow:0 3px 8px rgba(0,0,0,.1)}
 .rescard .big-av{width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;color:#0b0d12;flex-shrink:0;box-shadow:inset 0 0 0 3px rgba(255,255,255,.35), 0 2px 6px rgba(0,0,0,.2)}
 .rescard .rinfo{flex:1;min-width:0}
 .rescard h3{margin:0 0 4px;font-size:21px;font-weight:900;color:var(--ink)}
@@ -294,22 +303,22 @@ select:hover,.mini:hover{border-color:var(--muted2)}
 .tag.gender{background:var(--warn);color:#fff}
 .tag.same{background:var(--accent);color:#fff}
 .reverse-list{display:flex;flex-direction:column;gap:8px}
-.pairrow{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--screen-edge);border-radius:10px;padding:8px 12px}
+.pairrow{display:flex;align-items:center;gap:10px;background:var(--card);border:2px solid var(--screen-edge);border-radius:10px;padding:8px 12px}
 .pairrow .p{display:flex;align-items:center;gap:8px;flex:1;cursor:pointer;padding:4px;border-radius:8px}
 .pairrow .p:hover{background:var(--screen3)}
 .pairrow .x{color:var(--accent2);font-weight:900}
 .mini-av2{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#0b0d12;flex-shrink:0;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
 .owned-wrap{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;min-height:20px}
-.owned-tag{display:flex;align-items:center;gap:6px;background:#fff;border:2px solid var(--screen-edge);border-radius:999px;padding:4px 6px 4px 10px;font-size:12px;font-weight:800}
+.owned-tag{display:flex;align-items:center;gap:6px;background:var(--card);border:2px solid var(--screen-edge);border-radius:999px;padding:4px 6px 4px 10px;font-size:12px;font-weight:800}
 .owned-tag button{color:var(--muted);font-weight:900;padding:0 4px}
 .owned-tag button:hover{color:var(--accent2)}
 .chain-steps{display:flex;flex-direction:column;gap:8px;margin-top:14px}
-.cstep{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--screen-edge);border-radius:10px;padding:10px 12px;font-weight:800}
+.cstep{display:flex;align-items:center;gap:10px;background:var(--card);border:2px solid var(--screen-edge);border-radius:10px;padding:10px 12px;font-weight:800}
 .cstep .num{width:24px;height:24px;border-radius:999px;background:var(--accent2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
 .cstep .eq{color:var(--muted2)}
 .cstep .to{color:var(--accent)}
 .advrow{display:flex;align-items:center;gap:10px;margin-top:14px;color:var(--muted);font-size:12px;font-weight:700}
-.advrow input[type=number]{width:60px;background:#fff;border:2px solid var(--screen-edge);color:var(--text);border-radius:6px;padding:5px 8px;font-weight:700}
+.advrow input[type=number]{width:60px;background:var(--card);border:2px solid var(--screen-edge);color:var(--text);border-radius:6px;padding:5px 8px;font-weight:700}
 .msg{color:var(--muted);padding:16px;text-align:center;font-size:13px;font-weight:600}
 .msg.err{color:var(--accent2)}
 .helpbox{color:var(--muted);font-size:12px;line-height:1.6;background:var(--screen3);border:2px solid var(--screen-edge);border-radius:8px;padding:12px 14px;margin-top:8px;font-weight:600}
@@ -325,6 +334,143 @@ select:hover,.mini:hover{border-color:var(--muted2)}
 footer{color:#ffdad6;font-size:11px;text-align:center;line-height:1.6;font-weight:600;flex:1}
 footer b{color:#fff}
 @media(max-width:640px){.dpad,.dbtns{display:none}}
+/* ================================================================
+   MK-II UPGRADES — real art, tinted cards, gauges, night LCD
+   ================================================================ */
+
+/* ---- avatars host real art (rounded-square "party slot", fits both icon styles) ---- */
+.avatar,.mini-av,.mini-av2,.big-av,.mini-av3,.hero-av{overflow:hidden;border-radius:26%}
+.avatar img,.mini-av img,.mini-av2 img,.big-av img,.mini-av3 img,.hero-av img{transform:scale(1.04)}
+.avatar img,.mini-av img,.mini-av2 img,.big-av img,.mini-av3 img,.hero-av img{
+  width:100%;height:100%;object-fit:contain;display:block;pointer-events:none}
+.mini-av3{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:9px;color:#0b0d12;flex-shrink:0;vertical-align:-6px;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
+.hero-av{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:30px;color:#0b0d12;flex-shrink:0;
+  box-shadow:0 0 0 3px rgba(255,255,255,.75), 0 0 0 5px var(--ring,var(--screen-edge)), 0 6px 14px rgba(0,0,0,.28)}
+
+/* ---- cards: element edge, ring, moon, shine, stagger ---- */
+.card{outline:none}
+.card .avatar{width:60px;height:60px;
+  box-shadow:inset 0 -3px 6px rgba(0,0,0,.14), 0 0 0 2.5px var(--ring,var(--screen-edge)), 0 2px 6px rgba(0,0,0,.2)}
+.card .eledge{position:absolute;top:0;left:0;right:0;height:4px;background:var(--edge,transparent);opacity:.95;pointer-events:none}
+.card .moon{position:absolute;top:7px;right:44px;font-size:11px;opacity:.6;pointer-events:none}
+.card .shine{position:absolute;inset:0;pointer-events:none;transform:translateX(-135%) skewX(-14deg);
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.42) 50%,transparent 58%)}
+.card:focus-visible{border-color:var(--accent);box-shadow:0 0 0 3px rgba(43,138,126,.4), 0 8px 18px rgba(0,0,0,.18)}
+@media (prefers-reduced-motion: no-preference){
+  .card{animation:cardIn .38s cubic-bezier(.2,.8,.3,1) backwards;animation-delay:calc(var(--i,0)*14ms)}
+  @keyframes cardIn{from{opacity:0;transform:translateY(10px) scale(.985)}}
+  .card:hover .shine{animation:shine .65s ease}
+  @keyframes shine{to{transform:translateX(135%) skewX(-14deg)}}
+}
+
+/* ---- rarity tiers (game-style: blue rare / purple epic / gold legendary) ---- */
+.rar{font-size:10px;font-weight:900;padding:2px 8px;border-radius:999px;border:1.5px solid var(--line2);color:var(--muted);letter-spacing:.3px}
+.rar.blue{color:#fff;border-color:transparent;background:linear-gradient(135deg,#4a90d0,#2a5f96)}
+.rar.purple{color:#fff;border-color:transparent;background:linear-gradient(135deg,#9a5fd0,#63359a)}
+.rar.gold{color:#3d2c00;border-color:transparent;background:linear-gradient(135deg,#ffd76a,#e3a91f);box-shadow:0 0 9px rgba(255,205,80,.5)}
+
+/* ---- element badges & chips with real element icons ---- */
+.elbadge img{width:13px;height:13px;display:block}
+.elbadge.has-ico::before{display:none}
+.chip.el img{width:13px;height:13px;vertical-align:-2.5px;margin-right:5px}
+
+/* ---- detail: stat bars, pips, gauge ---- */
+.statbars{display:flex;flex-direction:column;gap:7px}
+.srow{display:grid;grid-template-columns:82px 1fr 46px;gap:9px;align-items:center;font-size:12px}
+.srow .sl{color:var(--muted);text-transform:uppercase;letter-spacing:.4px;font-weight:700;font-size:10px}
+.srow .sv2{font-weight:900;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.strack{height:10px;background:rgba(0,0,0,.10);border-radius:999px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.15) inset}
+.sfill{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-dk));
+  box-shadow:0 1px 0 rgba(255,255,255,.35) inset}
+@media (prefers-reduced-motion: no-preference){
+  .sfill{animation:barIn .55s cubic-bezier(.2,.8,.2,1) backwards}
+  @keyframes barIn{from{width:0}}
+}
+.pips{display:inline-flex;gap:2.5px;margin-left:6px;align-items:center}
+.pip{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.13);box-shadow:0 1px 1px rgba(0,0,0,.15) inset}
+.pip.on{background:var(--accent);box-shadow:0 0 4px rgba(43,138,126,.5)}
+.gauge{position:relative;height:12px;border-radius:999px;margin-top:8px;
+  background:linear-gradient(90deg,#e3a91f 0%,#9a5fd0 28%,#4a90d0 58%,#a8ae96 100%);
+  box-shadow:0 1px 3px rgba(0,0,0,.25) inset}
+.gmark{position:absolute;top:-4px;width:5px;height:20px;background:var(--ink);border-radius:3px;
+  box-shadow:0 0 0 2px var(--card), 0 1px 3px rgba(0,0,0,.4);transform:translateX(-50%)}
+.gcap{display:flex;justify-content:space-between;font-size:10px;color:var(--muted2);font-weight:700;margin-top:5px}
+.xlink.pairx{display:flex;align-items:center;gap:8px}
+.minipal{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--text);background:var(--panel2);
+  border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 4px;font-weight:800;cursor:pointer;transition:.12s}
+.minipal:hover{border-color:var(--accent);background:var(--card)}
+
+/* ---- breeding ceremony ---- */
+.ceremony{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;padding:20px 14px;
+  background:linear-gradient(180deg,var(--card),var(--screen2));border:2px solid var(--screen-edge);
+  border-radius:12px;box-shadow:0 3px 8px rgba(0,0,0,.1)}
+.cer-p{display:flex;flex-direction:column;align-items:center;gap:7px;font-weight:800;font-size:12.5px;min-width:88px;text-align:center}
+.cer-p .mini-av2{width:58px;height:58px;font-size:20px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35), 0 0 0 2.5px var(--ring,var(--screen-edge)), 0 2px 6px rgba(0,0,0,.2)}
+.cer-op{font-size:24px;font-weight:900;color:var(--accent2)}
+.cer-egg svg{display:block}
+@media (prefers-reduced-motion: no-preference){
+  .cer-egg{animation:eggWobble 2.4s ease-in-out infinite;transform-origin:50% 90%}
+  @keyframes eggWobble{0%,72%,100%{transform:none}78%{transform:rotate(-5deg)}84%{transform:rotate(4deg)}90%{transform:rotate(-2deg)}}
+}
+.cer-child{display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 18px;border-radius:12px;
+  background:rgba(255,255,255,.05);border:2px dashed var(--screen-edge)}
+.cer-child h3{margin:0;font-size:19px;font-weight:900;color:var(--ink)}
+.cer-child .big-av{width:84px;height:84px;box-shadow:inset 0 0 0 3px rgba(255,255,255,.35), 0 0 0 3px var(--ring,var(--screen-edge)), 0 4px 10px rgba(0,0,0,.25)}
+.eggidle{display:flex;flex-direction:column;align-items:center;gap:10px;padding:28px;color:var(--muted);font-weight:600;text-align:center}
+@media (prefers-reduced-motion: no-preference){
+  .eggidle svg{animation:eggFloat 3s ease-in-out infinite}
+  @keyframes eggFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+}
+
+/* ---- functional D-pad ---- */
+.dpad .darm{position:absolute;z-index:2;background:transparent;border-radius:4px;padding:0;transition:background .12s}
+.dpad .darm:hover{background:rgba(255,255,255,.14)}
+.dpad .darm:active{background:rgba(255,255,255,.28)}
+.dpad .darm:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.darm.up{left:18px;top:0;width:16px;height:19px}
+.darm.down{left:18px;bottom:0;width:16px;height:19px}
+.darm.left{left:0;top:18px;width:19px;height:16px}
+.darm.right{right:0;top:18px;width:19px;height:16px}
+.dbtn{border:none;padding:0;cursor:pointer;transition:transform .1s}
+.dbtn:hover{transform:scale(1.12)}
+.dbtn:active{transform:scale(.94)}
+.dbtn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.dbtn[aria-pressed="true"]{box-shadow:0 0 10px #ffd28f, 0 2px 3px rgba(0,0,0,.4), 0 1px 1px rgba(255,255,255,.25) inset}
+
+/* ---- LEDs blink on activity ---- */
+@keyframes ledblink{0%,100%{filter:brightness(1)}50%{filter:brightness(2.4)}}
+.light.blink{animation:ledblink .38s ease 2}
+
+/* ---- lens glint ---- */
+@media (prefers-reduced-motion: no-preference){
+  .lens::after{animation:glint 7s ease-in-out infinite}
+  @keyframes glint{0%,86%,100%{opacity:.6;transform:scale(1)}92%{opacity:1;transform:scale(1.7)}}
+}
+
+/* ---- night LCD mode (screens go backlit; shell stays hardware-red) ---- */
+body.night{
+  --screen:#1c2417; --screen2:#151c11; --screen3:#232d1b; --screen-edge:#3f4a31;
+  --card:#242e1c; --card2:#1b2415;
+  --lcd:#17200f; --lcd2:#111a0c;
+  --text:#cfe6ad; --muted:#9ab180; --muted2:#7c9264; --ink:#e9f7c9;
+  --line:#37422a; --line2:#48553a;
+  --panel:#20291a; --panel2:#252f1d; --panel3:#2b3620;
+  --accent:#7fd06a; --accent-dk:#529b41;
+}
+body.night .screen,body.night .detail{box-shadow:0 2px 0 rgba(255,255,255,.06) inset, 0 0 0 2px var(--bezel-hi),
+  0 0 0 5px rgba(0,0,0,.18), 0 12px 26px rgba(0,0,0,.4), 0 0 44px rgba(140,230,110,.10) inset}
+body.night .screen::before{background:
+  radial-gradient(4px 4px at 14px 14px, rgba(180,255,150,.10) 40%, transparent 42%),
+  repeating-linear-gradient(0deg, rgba(180,255,150,.028) 0 2px, transparent 2px 4px)}
+body.night .note{background:#332a10;color:#e8c877;border-color:#8a6a1e}
+body.night .strack{background:rgba(0,0,0,.4)}
+body.night .pip{background:rgba(255,255,255,.12)}
+body.night .card:hover{border-color:var(--accent)}
+body.night .search input,body.night select,body.night .mini{color:var(--text)}
+body.night .cer-child{background:rgba(255,255,255,.03)}
+
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:6px;border:2px solid transparent;background-clip:padding-box}
 ::-webkit-scrollbar-thumb:hover{background:var(--muted2);background-clip:padding-box}
@@ -343,9 +489,9 @@ footer b{color:#fff}
     <div class="brand">
       <h1>PALDEX</h1><span class="ver" id="verTag">Palworld 1.0 · build 1.100.427</span>
     </div>
-    <div class="tabs">
-      <button class="tab active" data-view="paldex">Paldex</button>
-      <button class="tab" data-view="breeding">Breeding</button>
+    <div class="tabs" role="tablist" aria-label="App sections">
+      <button class="tab active" data-view="paldex" role="tab" aria-selected="true">Paldex</button>
+      <button class="tab" data-view="breeding" role="tab" aria-selected="false">Breeding</button>
     </div>
     <div class="counts" id="counts"></div>
   </header>
@@ -392,8 +538,8 @@ footer b{color:#fff}
       <div id="detailCol">
         <div class="detail">
           <div class="detail-empty" id="detailEmpty">
-            <div class="big">🐾</div>
-            <div>Select a Pal to see full stats, work suitability, and breeding links.</div>
+            <div class="eggidle"><svg width="46" height="56" viewBox="0 0 46 56" aria-hidden="true"><path d="M23 2C12 2 3 20 3 34a20 20 0 0 0 40 0C43 20 34 2 23 2Z" fill="#f6efd9" stroke="#b9ac82" stroke-width="2"/><circle cx="16" cy="24" r="3.4" fill="#d8c894"/><circle cx="29" cy="35" r="4.2" fill="#d8c894"/><circle cx="22" cy="14" r="2.6" fill="#d8c894"/></svg>
+            <div>Select a Pal to see full stats, work suitability, and breeding links.</div></div>
           </div>
           <div id="detailContent" style="display:none"></div>
         </div>
@@ -404,10 +550,10 @@ footer b{color:#fff}
   <!-- ================= BREEDING ================= -->
   <section class="view" id="view-breeding">
     <div class="screen bpanel">
-      <div class="bsub">
-        <button class="t active" data-bmode="forward">Forward</button>
-        <button class="t" data-bmode="reverse">Reverse</button>
-        <button class="t" data-bmode="chain">Chain</button>
+      <div class="bsub" role="tablist" aria-label="Breeding modes">
+        <button class="t active" data-bmode="forward" role="tab" aria-selected="true">Forward</button>
+        <button class="t" data-bmode="reverse" role="tab" aria-selected="false">Reverse</button>
+        <button class="t" data-bmode="chain" role="tab" aria-selected="false">Chain</button>
       </div>
 
       <!-- FORWARD -->
@@ -472,17 +618,27 @@ footer b{color:#fff}
   </section>
 
   <div class="dev-foot">
-    <div class="dpad" aria-hidden="true"></div>
+    <div class="dpad" role="group" aria-label="Move Paldex selection">
+      <button class="darm up" data-dir="up" aria-label="Selection up" title="Selection up"></button>
+      <button class="darm down" data-dir="down" aria-label="Selection down" title="Selection down"></button>
+      <button class="darm left" data-dir="left" aria-label="Selection left" title="Selection left"></button>
+      <button class="darm right" data-dir="right" aria-label="Selection right" title="Selection right"></button>
+    </div>
     <footer>
-      Data from <b>tylercamp/palcalc</b> (v26, game-file extracted) · elements from <b>paldb.cc</b> · Palworld 1.0 (build 1.100.427, Jul 10 2026).<br>
+      Data &amp; art from <b>tylercamp/palcalc</b> (v26, game-file extracted) · elements from <b>paldb.cc</b> · Palworld 1.0 (build 1.100.427, Jul 10 2026).<br>
       Self-contained · all data embedded · no server, no telemetry. Verify big cake investments in-game — 1.0 data is fresh.
     </footer>
-    <div class="dbtns" aria-hidden="true"><span class="dbtn b"></span><span class="dbtn a"></span></div>
+    <div class="dbtns">
+      <button class="dbtn b" id="randBtn" aria-label="Show a random Pal" title="Random Pal"></button>
+      <button class="dbtn a" id="nightBtn" aria-label="Toggle night screen" aria-pressed="false" title="Night screen"></button>
+    </div>
   </div>
 </div>
 
 <script>/*__PALS__*/</script>
 <script>/*__BRD__*/</script>
+<script>/*__ICONS__*/</script>
+<script>if (typeof ICONS === 'undefined') { window.ICONS = { pals: {}, elements: {} }; }</script>
 <script>
 /* ============================================================= *
  *  Palworld 1.0 Paldex + Breeding Calculator — vanilla JS
@@ -578,11 +734,31 @@ function avatarStyle(p){
   const c2 = p.elements && p.elements.length>1 ? EL_COLOR[p.elements[1]] : c;
   return `background:linear-gradient(135deg,${c},${c2})`;
 }
+/* Mk-II: real art + element icon helpers */
+const EL_TEXT = {dark:"#fff", dragon:"#fff"};            // legible text on dark chip colors
+function palImg(p){ return ICONS.pals[p.name] || null; }
+function avatarHtml(p, cls){
+  const img = palImg(p);
+  const ring = p.elements && p.elements.length ? EL_COLOR[p.elements[0]] : "var(--screen-edge)";
+  const body = img ? `<img src="${img}" alt="" draggable="false">` : initials(p.name);
+  return `<div class="${cls}" style="${avatarStyle(p)};--ring:${ring}">${body}</div>`;
+}
+function elIco(e){ const s = ICONS.elements[e]; return s ? `<img src="${s}" alt="">` : ""; }
+function rarityTier(r){ return r>=10 ? "gold" : r>=8 ? "purple" : r>=5 ? "blue" : ""; }
+function rarBadge(p){ return `<span class="rar ${rarityTier(p.rarity)}" title="Rarity ${p.rarity}">★ ${p.rarity}</span>`; }
 function elBadges(p){
   if(!p.elements||!p.elements.length) return `<span class="elbadge" style="background:#3a4456;color:#cfd6e2">?</span>`;
-  return p.elements.map(e=>`<span class="elbadge" style="background:${EL_COLOR[e]}">${e}</span>`).join("");
+  return p.elements.map(e=>`<span class="elbadge${ICONS.elements[e]?' has-ico':''}" style="background:${EL_COLOR[e]};color:${EL_TEXT[e]||'#0b0d12'}">${elIco(e)}${e}</span>`).join("");
 }
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+const EGG_SVG = `<svg width="46" height="56" viewBox="0 0 46 56" aria-hidden="true"><path d="M23 2C12 2 3 20 3 34a20 20 0 0 0 40 0C43 20 34 2 23 2Z" fill="#f6efd9" stroke="#b9ac82" stroke-width="2"/><circle cx="16" cy="24" r="3.4" fill="#d8c894"/><circle cx="29" cy="35" r="4.2" fill="#d8c894"/><circle cx="22" cy="14" r="2.6" fill="#d8c894"/></svg>`;
+const STAT_KEYS=[["HP","hp"],["Attack","attack"],["Defense","defense"],["Run Speed","runSpeed"],["Ride Sprint","rideSprint"],["Transport","transport"],["Stamina","stamina"]];
+const DEX_MAX={}; for(const [,k] of STAT_KEYS) DEX_MAX[k]=Math.max(...PALS.map(p=>p.stats[k]||0));
+const BP_MIN=Math.min(...PALS.map(p=>p.breedingPower)), BP_MAX=Math.max(...PALS.map(p=>p.breedingPower));
+function pips(v){ const n=Math.max(5,v); let s='<span class="pips">';
+  for(let i=0;i<n;i++) s+=`<span class="pip${i<v?' on':''}"></span>`; return s+'</span>'; }
+function blink(cls){ const l=document.querySelector('.light.'+cls); if(!l) return;
+  l.classList.remove('blink'); void l.offsetWidth; l.classList.add('blink'); }
 
 /* ============================================================= *
  *  PALDEX
@@ -593,7 +769,8 @@ function buildFilters(){
   const elc=$("#elFilters");
   ELEMENTS.forEach(e=>{
     const c=el("button","chip el","");
-    c.dataset.el=e; c.textContent=cap(e);
+    c.dataset.el=e; c.innerHTML=elIco(e)+cap(e);
+    c.setAttribute("aria-pressed","false");
     c.onclick=()=>{ toggleSet(state.els,e,c); render(); };
     elc.appendChild(c);
   });
@@ -611,13 +788,18 @@ function buildFilters(){
   });
 }
 function toggleSet(set,val,chip){
-  if(set.has(val)){set.delete(val);chip.classList.remove("on");chip.style.background="";}
+  if(set.has(val)){set.delete(val);chip.classList.remove("on");chip.style.background="";chip.style.color="";}
   else{
     set.add(val);chip.classList.add("on");
-    if(chip.classList.contains("el")) chip.style.background=EL_COLOR[val];
-    else chip.style.background="var(--accent)";
-    if(!chip.classList.contains("el")) chip.style.color="#0e1015";
+    if(chip.classList.contains("el")){
+      chip.style.background=EL_COLOR[val];
+      chip.style.color=EL_TEXT[val]||"#0b0d12";
+    } else {
+      chip.style.background="var(--accent)";
+      chip.style.color="#fff";
+    }
   }
+  chip.setAttribute("aria-pressed", set.has(val) ? "true" : "false");
 }
 function passesFilters(p){
   if(state.q && !p.name.toLowerCase().includes(state.q)) return false;
@@ -646,28 +828,41 @@ function sortPals(list){
 }
 function render(){
   const list=sortPals(PALS.filter(passesFilters));
+  state.list=list;
   const grid=$("#palgrid"); grid.innerHTML="";
   $("#gridEmpty").style.display = list.length ? "none":"block";
   const frag=document.createDocumentFragment();
-  for(const p of list){
+  list.forEach((p,i)=>{
     const card=el("div","card"+(state.selected===p.internalIndex?" sel":""));
     card.dataset.idx=p.internalIndex;
+    card.style.setProperty("--i",Math.min(i,40));
+    const ec = p.elements&&p.elements.length ? EL_COLOR[p.elements[0]] : "var(--screen-edge)";
+    const ec2 = p.elements&&p.elements.length>1 ? EL_COLOR[p.elements[1]] : ec;
+    card.style.setProperty("--ring",ec);
+    card.style.setProperty("--edge",`linear-gradient(90deg,${ec},${ec2})`);
     const works=Object.entries(p.work||{}).filter(([,v])=>v>0).slice(0,4)
       .map(([k,v])=>`<span class="wk">${WORK_SHORT[k]} ${v}</span>`).join("");
     card.innerHTML=`
+      <span class="eledge" aria-hidden="true"></span><span class="shine" aria-hidden="true"></span>
       <span class="dex">#${p.dex}</span>
-      <div class="avatar" style="${avatarStyle(p)}">${initials(p.name)}</div>
+      ${p.nocturnal?'<span class="moon" title="Nocturnal">🌙</span>':''}
+      ${avatarHtml(p,"avatar")}
       <div class="nm">${p.name}</div>
       <div class="sub">${p.internalName} · ${p.size}</div>
       <div class="badges">${elBadges(p)}
+        ${rarBadge(p)}
         ${p.isVariant?'<span class="pill variant">variant</span>':''}
         ${p.selfOnly?'<span class="pill selfonly">self-only</span>':''}
       </div>
       <div class="workrow">${works||'<span class="wk" style="opacity:.5">no work</span>'}</div>
-      <div class="bp">Breeding Power <b>${p.breedingPower}</b> · Rarity ${p.rarity}</div>`;
+      <div class="bp">Breeding Power <b>${p.breedingPower}</b></div>`;
+    card.setAttribute("role","button");
+    card.tabIndex=0;
+    card.setAttribute("aria-label",`${p.name}, dex ${p.dex}`);
     card.onclick=()=>selectPal(p.internalIndex);
+    card.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); selectPal(p.internalIndex); } };
     frag.appendChild(card);
-  }
+  });
   grid.appendChild(frag);
   updateCounts(list.length);
 }
@@ -681,18 +876,22 @@ function selectPal(idx){
   state.selected=idx;
   $$(".card").forEach(c=>c.classList.toggle("sel",+c.dataset.idx===idx));
   renderDetail(byIndex.get(idx));
+  blink("g");
 }
 function renderDetail(p){
   $("#detailEmpty").style.display="none";
   const dc=$("#detailContent"); dc.style.display="block";
   const stats=p.stats;
-  const statBlock=[["HP",stats.hp],["Attack",stats.attack],["Defense",stats.defense],
-    ["Run Speed",stats.runSpeed],["Ride Sprint",stats.rideSprint],["Transport",stats.transport],
-    ["Stamina",stats.stamina]]
-    .map(([l,v])=>`<div class="stat"><div class="sl">${l}</div><div class="sv">${v}</div></div>`).join("");
+  const statBlock=STAT_KEYS.map(([l,k])=>{
+    const v=stats[k]||0, pct=DEX_MAX[k]?Math.max(2,Math.round(v/DEX_MAX[k]*100)):0;
+    return `<div class="srow"><span class="sl">${l}</span><span class="strack"><span class="sfill" style="width:${pct}%"></span></span><span class="sv2">${v}</span></div>`;
+  }).join("");
   const works=Object.entries(p.work||{}).filter(([,v])=>v>0)
-    .map(([k,v])=>`<div class="workitem">${WORK_SHORT[k]} <span class="lvl">${v}</span></div>`).join("")
+    .map(([k,v])=>`<div class="workitem">${WORK_SHORT[k]} ${pips(v)}<span class="lvl">${v}</span></div>`).join("")
     || '<span style="color:var(--muted);font-size:12px">No work suitabilities.</span>';
+  const h1 = p.elements&&p.elements.length ? EL_COLOR[p.elements[0]]+"59" : "transparent";
+  const h2 = p.elements&&p.elements.length>1 ? EL_COLOR[p.elements[1]]+"40" : (p.elements&&p.elements.length?EL_COLOR[p.elements[0]]+"26":"transparent");
+  const gpct=((p.breedingPower-BP_MIN)/(BP_MAX-BP_MIN)*100).toFixed(1);
 
   const bredFrom=parentsOf(p.internalIndex);
   const breedsInto=[...(PARENT_OF.get(p.internalIndex)||[])].map(i=>byIndex.get(i))
@@ -708,23 +907,23 @@ function renderDetail(p){
     : `<div style="color:var(--muted);font-size:12px">Never appears as a parent in the table.</div>`;
 
   dc.innerHTML=`
-    <div class="hd">
+    <div class="hd" style="--h1:${h1};--h2:${h2}">
       <div class="top2">
-        <div style="display:flex;gap:12px;align-items:center">
-          <div class="avatar" style="width:52px;height:52px;border-radius:50%;font-size:20px;${avatarStyle(p)}">${initials(p.name)}</div>
+        <div style="display:flex;gap:14px;align-items:center">
+          ${avatarHtml(p,"hero-av")}
           <div>
             <h2>${p.name}</h2>
             <div class="idn">#${p.dex} · ${p.internalName} · index ${p.internalIndex}</div>
           </div>
         </div>
-        <button class="close" onclick="closeDetail()">×</button>
+        <button class="close" onclick="closeDetail()" aria-label="Close detail">×</button>
       </div>
       <div class="badges" style="margin-top:12px">${elBadges(p)}
+        ${rarBadge(p)}
         ${p.isVariant?'<span class="pill variant">variant</span>':''}
         ${p.selfOnly?'<span class="pill selfonly">self-only</span>':''}
-        <span class="pill">Rarity ${p.rarity}</span>
         <span class="pill">Size ${p.size}</span>
-        ${p.nocturnal?'<span class="pill">nocturnal</span>':''}
+        ${p.nocturnal?'<span class="pill">🌙 nocturnal</span>':''}
       </div>
     </div>
     <div class="body">
@@ -732,15 +931,17 @@ function renderDetail(p){
       <div class="dsection">
         <h3>Overview</h3>
         <div class="kv">
-          <span class="k">Breeding Power</span><span class="v">${p.breedingPower} <span style="color:var(--muted2);font-weight:400">(lower = rarer)</span></span>
           <span class="k">Wild level</span><span class="v">${p.wildLevel && (p.wildLevel[0]||p.wildLevel[1]) ? p.wildLevel[0]+'–'+p.wildLevel[1] : '—'}</span>
           <span class="k">Price</span><span class="v">${p.price?.toLocaleString?.()||p.price||'—'}</span>
           <span class="k">Partner skill</span><span class="v">${p.partnerSkill?(p.partnerSkill.name||'yes'):'—'}</span>
         </div>
+        <div style="margin-top:12px;font-size:12px;font-weight:800;color:var(--muted)">Breeding Power <b style="color:var(--ink)">${p.breedingPower}</b></div>
+        <div class="gauge"><span class="gmark" style="left:${gpct}%"></span></div>
+        <div class="gcap"><span>${BP_MIN} · rarest</span><span>${BP_MAX} · most common</span></div>
       </div>
       <div class="dsection">
         <h3>Stats</h3>
-        <div class="statgrid">${statBlock}</div>
+        <div class="statbars">${statBlock}</div>
       </div>
       <div class="dsection">
         <h3>Work suitability</h3>
@@ -757,12 +958,14 @@ function renderDetail(p){
     </div>`;
 }
 function xlinkPair(a,b){
-  return `<button class="xlink" onclick="selectPal(${a.internalIndex})">
-    <span style="font-weight:800">${a.name}</span> <span class="arrow">+</span> <span style="font-weight:800">${b.name}</span>
+  return `<button class="xlink pairx" onclick="selectPal(${a.internalIndex})">
+    ${avatarHtml(a,"mini-av3")}<span style="font-weight:800">${a.name}</span>
+    <span class="arrow">+</span>
+    ${avatarHtml(b,"mini-av3")}<span style="font-weight:800">${b.name}</span>
   </button>`;
 }
 function miniLink(c){
-  return `<button class="wk" style="cursor:pointer;background:var(--panel2);border:1px solid var(--line)" onclick="selectPal(${c.internalIndex})">${c.name}</button>`;
+  return `<button class="minipal" onclick="selectPal(${c.internalIndex})">${avatarHtml(c,"mini-av3")}${c.name}</button>`;
 }
 function closeDetail(){
   state.selected=null;
@@ -789,7 +992,7 @@ function makePicker(container, onPick, opts={}){
     menu.innerHTML="";
     results.forEach((p,i)=>{
       const o=el("div","pickopt"+(i===hi?" hi":""));
-      o.innerHTML=`<div class="mini-av" style="${avatarStyle(p)}">${initials(p.name)}</div>
+      o.innerHTML=`${avatarHtml(p,"mini-av")}
         <span class="po-nm">${p.name}</span>
         <span class="po-sub">#${p.dex} · BP ${p.breedingPower}${p.isVariant?' · var':''}${p.selfOnly?' · self':''}</span>`;
       o.onclick=()=>{ choose(p); };
@@ -843,10 +1046,11 @@ function initBreeding(){
   // breeding submode tabs
   $$('.bsub .t').forEach(t=>{
     t.onclick=()=>{
-      $$('.bsub .t').forEach(x=>x.classList.remove('active'));
-      t.classList.add('active');
+      $$('.bsub .t').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false');});
+      t.classList.add('active'); t.setAttribute('aria-selected','true');
       $$('.bmode').forEach(m=>m.style.display='none');
       $('#bmode-'+t.dataset.bmode).style.display='block';
+      blink("y");
     };
   });
 }
@@ -856,7 +1060,10 @@ function updateGenderVis(){
 }
 function renderForward(){
   const box=$("#fwdResult");
-  if(!fwd.a||!fwd.b){ box.innerHTML='<div class="msg">Pick two parents to see the offspring.</div>'; return; }
+  if(!fwd.a||!fwd.b){
+    box.innerHTML=`<div class="eggidle">${EGG_SVG}<div>Pick two parents to see what hatches.</div></div>`;
+    return;
+  }
   const a=fwd.a,b=fwd.b;
   const glocked=isGenderLockedPair(a.internalIndex,b.internalIndex);
   const child=breed(a.internalIndex,b.internalIndex,fwd.ag,fwd.bg);
@@ -866,29 +1073,35 @@ function renderForward(){
       <div style="color:var(--muted);font-size:12.5px">This pairing isn't in the 1.0 breeding table. (Some self-only / collab Pals can't be parents of a generic result.)</div></div></div>`;
     return;
   }
-  const sameSpecies = a.internalIndex===b.internalIndex ||
-    (child.internalIndex===a.internalIndex && a.internalIndex===b.internalIndex);
   // special-combo detection: does the table result differ from the pure-formula prediction?
   const special = detectSpecial(a,b,child);
   let tags="";
   if(a.internalIndex===b.internalIndex) tags+='<span class="tag same">same species</span>';
   else if(special) tags+='<span class="tag special">special combo</span>';
   if(glocked) tags+='<span class="tag gender">gender-locked</span>';
+  blink("r");
 
   box.innerHTML=`
-    <div class="rescard">
-      <div class="big-av" style="${avatarStyle(child)}">${initials(child.name)}</div>
-      <div class="rinfo">
-        <h3>${child.name}${tags}</h3>
-        <div class="badges">${elBadges(child)}
+    <div class="ceremony">
+      <div class="cer-p">${avatarHtml(a,"mini-av2")}<span>${a.name}</span></div>
+      <span class="cer-op" aria-hidden="true">×</span>
+      <div class="cer-p">${avatarHtml(b,"mini-av2")}<span>${b.name}</span></div>
+      <span class="cer-op" aria-hidden="true">→</span>
+      <span class="cer-egg">${EGG_SVG}</span>
+      <span class="cer-op" aria-hidden="true">→</span>
+      <div class="cer-child" style="--ring:${child.elements&&child.elements.length?EL_COLOR[child.elements[0]]:'var(--screen-edge)'}">
+        ${avatarHtml(child,"big-av")}
+        <h3>${child.name}</h3>
+        <div class="badges" style="justify-content:center;margin:0">${elBadges(child)}
+          ${rarBadge(child)}
           ${child.isVariant?'<span class="pill variant">variant</span>':''}
-          <span class="pill">Rarity ${child.rarity}</span>
           <span class="pill">BP ${child.breedingPower}</span></div>
-        <div class="explain">${formulaExplain(a,b)}${special?' <b style="color:var(--special)">This pairing is a fixed special combo, so it overrides that formula.</b>':''}
-        ${glocked?'<br><b style="color:var(--warn)">Gender-locked:</b> '+glockedNote(a,b,fwd.ag,fwd.bg,child):''}</div>
-        <div style="margin-top:8px"><button class="xlink" style="margin:0" onclick="gotoPaldex(${child.internalIndex})">View ${child.name} in Paldex →</button></div>
+        ${tags?`<div>${tags}</div>`:''}
       </div>
-    </div>`;
+    </div>
+    <div class="explain">${formulaExplain(a,b)}${special?' <b style="color:var(--special)">This pairing is a fixed special combo, so it overrides that formula.</b>':''}
+    ${glocked?'<br><b style="color:var(--warn)">Gender-locked:</b> '+glockedNote(a,b,fwd.ag,fwd.bg,child):''}</div>
+    <div style="margin-top:8px"><button class="xlink" style="margin:0" onclick="gotoPaldex(${child.internalIndex})">View ${child.name} in Paldex →</button></div>`;
 }
 function detectSpecial(a,b,child){
   if(a.internalIndex===b.internalIndex) return false; // same-species handled separately
@@ -941,11 +1154,11 @@ function renderReverse(target){
   const rows=pairs.map(([a,b])=>`
     <div class="pairrow">
       <div class="p" onclick="revPivot(${a.internalIndex})">
-        <div class="mini-av2" style="${avatarStyle(a)}">${initials(a.name)}</div>
+        ${avatarHtml(a,"mini-av2")}
         <span>${a.name}</span></div>
       <span class="x">+</span>
       <div class="p" onclick="revPivot(${b.internalIndex})">
-        <div class="mini-av2" style="${avatarStyle(b)}">${initials(b.name)}</div>
+        ${avatarHtml(b,"mini-av2")}
         <span>${b.name}</span></div>
     </div>`).join("");
   box.innerHTML=`<div style="margin-bottom:10px;color:var(--muted);font-size:12.5px">
@@ -972,8 +1185,8 @@ function renderOwned(){
   const w=$("#ownedWrap");
   if(!chain.owned.length){ w.innerHTML='<span style="color:var(--muted2);font-size:12px">No owned Pals added yet.</span>'; return; }
   w.innerHTML=chain.owned.map(p=>`<span class="owned-tag">
-    <div class="mini-av" style="width:18px;height:18px;font-size:9px;${avatarStyle(p)}">${initials(p.name)}</div>
-    ${p.name}<button onclick="removeOwned(${p.internalIndex})">×</button></span>`).join("");
+    ${avatarHtml(p,"mini-av3")}
+    ${p.name}<button onclick="removeOwned(${p.internalIndex})" aria-label="Remove ${p.name}">×</button></span>`).join("");
 }
 function runChainFinder(){
   const box=$("#chainResult");
@@ -994,8 +1207,9 @@ function runChainFinder(){
     let gnote="";
     if(isGenderLockedPair(a,b)) gnote=' <span class="tag gender" style="margin-left:6px">check gender</span>';
     return `<div class="cstep"><div class="num">${i+1}</div>
-      <span>${pa.name}</span><span class="eq">+</span><span>${pb.name}</span>
-      <span class="eq">=</span><span class="to">${pc.name}</span>${gnote}</div>`;
+      ${avatarHtml(pa,"mini-av3")}<span>${pa.name}</span><span class="eq">+</span>
+      ${avatarHtml(pb,"mini-av3")}<span>${pb.name}</span>
+      <span class="eq">=</span>${avatarHtml(pc,"mini-av3")}<span class="to">${pc.name}</span>${gnote}</div>`;
   }).join("");
   box.innerHTML=`<div style="margin:6px 0 4px;color:var(--muted);font-size:12.5px">Shortest chain: <b style="color:var(--text)">${steps.length}</b> breeding step${steps.length===1?'':'s'} to <b style="color:var(--accent)">${chain.target.name}</b>.</div>
     <div class="chain-steps">${rows}</div>`;
@@ -1007,12 +1221,50 @@ function runChainFinder(){
 function initTabs(){
   $$('.tab').forEach(t=>{
     t.onclick=()=>{
-      $$('.tab').forEach(x=>x.classList.remove('active'));
-      t.classList.add('active');
+      $$('.tab').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false');});
+      t.classList.add('active'); t.setAttribute('aria-selected','true');
       $$('.view').forEach(v=>v.classList.remove('active'));
       $('#view-'+t.dataset.view).classList.add('active');
+      blink("y");
     };
   });
+}
+/* ---- Mk-II device hardware ---- */
+function moveSel(dir){
+  const list=state.list||[]; if(!list.length) return;
+  const grid=$("#palgrid");
+  const cols=Math.max(1,getComputedStyle(grid).gridTemplateColumns.split(" ").length);
+  let i=list.findIndex(p=>p.internalIndex===state.selected);
+  if(i<0){ i=0; }
+  else if(dir==="left"){ i=Math.max(0,i-1); }
+  else if(dir==="right"){ i=Math.min(list.length-1,i+1); }
+  else if(dir==="up"){ i=Math.max(0,i-cols); }
+  else if(dir==="down"){ i=Math.min(list.length-1,i+cols); }
+  selectPal(list[i].internalIndex);
+  const card=document.querySelector(`.card[data-idx="${list[i].internalIndex}"]`);
+  if(card){ card.focus({preventScroll:true}); card.scrollIntoView({block:"nearest",behavior:"smooth"}); }
+}
+function initDevice(){
+  // D-pad + arrow keys
+  $$(".darm").forEach(b=>b.onclick=()=>moveSel(b.dataset.dir));
+  document.addEventListener("keydown",e=>{
+    const t=e.target;
+    if(t && (t.tagName==="INPUT"||t.tagName==="SELECT"||t.tagName==="TEXTAREA")) return;
+    if(!$("#view-paldex").classList.contains("active")) return;
+    const dir={ArrowUp:"up",ArrowDown:"down",ArrowLeft:"left",ArrowRight:"right"}[e.key];
+    if(dir){ e.preventDefault(); moveSel(dir); }
+  });
+  // night LCD toggle (amber button), persisted
+  const nightBtn=$("#nightBtn");
+  const setNight=on=>{
+    document.body.classList.toggle("night",on);
+    nightBtn.setAttribute("aria-pressed",on?"true":"false");
+    try{ localStorage.setItem("paldex-night",on?"1":"0"); }catch(e){}
+  };
+  nightBtn.onclick=()=>{ setNight(!document.body.classList.contains("night")); blink("y"); };
+  try{ if(localStorage.getItem("paldex-night")==="1") setNight(true); }catch(e){}
+  // random Pal (blue button)
+  $("#randBtn").onclick=()=>{ const p=PALS[Math.floor(Math.random()*PALS.length)]; gotoPaldex(p.internalIndex); };
 }
 function initControls(){
   $("#q").addEventListener("input",e=>{state.q=e.target.value.trim().toLowerCase();render();});
@@ -1025,9 +1277,10 @@ function initControls(){
   };
 }
 function boot(){
-  buildFilters(); initControls(); initTabs(); initBreeding();
+  buildFilters(); initControls(); initTabs(); initBreeding(); initDevice();
   renderOwned();
   render();
+  renderForward();
   // sanity log for the §10 checklist
   console.log("[Paldex] records:",PALS.length,"| combo pairs:",totalPairs,"| genderLocked:",BRD.genderLocked.length,
     "| self-only:",PALS.filter(p=>p.selfOnly).length,"| missing elements:",PALS.filter(p=>!p.elements||!p.elements.length).length);
