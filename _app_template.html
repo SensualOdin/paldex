@@ -410,13 +410,40 @@ footer b{color:#fff}
 #detailCol{align-self:stretch}
 
 /* ---- habitat heat map ---- */
-.habwrap{background:var(--card);border:2px solid var(--screen-edge);border-radius:10px;padding:8px}
-#habCanvas{width:100%;height:auto;display:block;border-radius:8px}
+.habwrap{background:var(--card);border:2px solid var(--screen-edge);border-radius:10px;padding:8px;position:relative}
+#habCanvas{width:100%;height:auto;display:block;border-radius:8px;cursor:zoom-in}
+#habCanvas:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.habexpand{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.45);color:#fff;font-size:11px;font-weight:800;
+  padding:3px 9px;border-radius:999px;pointer-events:none;letter-spacing:.3px}
 .habctl{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
 .habcount{font-size:11px;color:var(--muted2);font-weight:700}
 .habnone{background:var(--card);border:2px dashed var(--screen-edge);border-radius:10px;padding:12px;
   font-size:12px;color:var(--muted);font-weight:600;line-height:1.5}
 .habsrc{font-size:10px;color:var(--muted2);font-weight:600;margin-top:6px}
+
+/* ---- fullscreen habitat lightbox ---- */
+#habModal{position:fixed;inset:0;z-index:1000;background:rgba(9,11,8,.94)}
+#habModal[hidden]{display:none}
+#habBigCanvas{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:none;display:block}
+#habBigCanvas.dragging{cursor:grabbing}
+.hm-top{position:absolute;top:14px;left:18px;right:18px;display:flex;align-items:center;gap:14px;z-index:2;flex-wrap:wrap}
+.hm-title{color:#fff;font-weight:900;font-size:18px;display:flex;align-items:center;gap:10px;text-shadow:0 2px 5px rgba(0,0,0,.7)}
+.hm-title .mini-av2{width:40px;height:40px}
+.hm-close{margin-left:auto;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;
+  font-size:22px;font-weight:900;border:1.5px solid rgba(255,255,255,.3);line-height:1}
+.hm-close:hover{background:var(--accent2);border-color:transparent}
+.hm-zoom{position:absolute;right:18px;bottom:48px;display:flex;flex-direction:column;gap:8px;z-index:2}
+.hm-zoom button{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.12);
+  border:1.5px solid rgba(255,255,255,.3);color:#fff;font-size:19px;font-weight:900}
+.hm-zoom button:hover{background:rgba(255,255,255,.28)}
+.hm-hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:rgba(255,255,255,.5);
+  font-size:11px;font-weight:700;z-index:2;pointer-events:none}
+#hmSeg{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25)}
+#hmSeg button{background:transparent;color:#cfd4c2}
+#hmSeg button.on{background:var(--accent);color:#fff}
+#habModal .habcount{color:rgba(255,255,255,.75)}
+#habModal button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media(max-width:640px){.hm-hint{display:none}}
 .minipal{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--text);background:var(--panel2);
   border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 4px;font-weight:800;cursor:pointer;transition:.12s}
 .minipal:hover{border-color:var(--accent);background:var(--card)}
@@ -652,6 +679,24 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
       <button class="dbtn a" id="nightBtn" aria-label="Toggle night screen" aria-pressed="false" title="Night screen"></button>
     </div>
   </div>
+</div>
+
+<div id="habModal" role="dialog" aria-modal="true" aria-label="Fullscreen habitat map" hidden>
+  <canvas id="habBigCanvas"></canvas>
+  <div class="hm-top">
+    <div class="hm-title" id="hmTitle"></div>
+    <div class="gseg habseg" id="hmSeg">
+      <button data-ht="d">☀ Day</button><button data-ht="n">🌙 Night</button>
+    </div>
+    <span class="habcount" id="hmCount"></span>
+    <button class="hm-close" id="hmClose" aria-label="Close map">×</button>
+  </div>
+  <div class="hm-zoom">
+    <button id="hmZoomIn" aria-label="Zoom in">+</button>
+    <button id="hmZoomOut" aria-label="Zoom out">−</button>
+    <button id="hmReset" aria-label="Reset view" title="Reset view">⤢</button>
+  </div>
+  <div class="hm-hint">scroll or pinch to zoom · drag to pan · double-click to zoom in · Esc to close</div>
 </div>
 
 <script>/*__PALS__*/</script>
@@ -972,7 +1017,8 @@ function renderDetail(p){
         <h3>Habitat</h3>
         ${SPAWNS.pals[p.internalName]?`
         <div class="habwrap">
-          <canvas id="habCanvas" width="720" height="720" role="img" aria-label="Spawn heat map for ${p.name}"></canvas>
+          <canvas id="habCanvas" width="720" height="720" tabindex="0" role="button" aria-label="Spawn heat map for ${p.name} — open fullscreen with zoom"></canvas>
+          <span class="habexpand">⛶ zoom</span>
           <div class="habctl">
             <div class="gseg habseg">
               <button data-ht="d"${p.nocturnal?'':' class="on"'}>☀ Day</button>
@@ -1044,7 +1090,7 @@ function drawHabitat(p,time){
   ctx.globalCompositeOperation="source-over";
 }
 function initHabitat(p){
-  const seg=document.querySelector(".habseg"); if(!seg) return;
+  const seg=document.querySelector(".detail .habseg"); if(!seg) return;
   let time=p.nocturnal?"n":"d";
   ensureMapImg(()=>drawHabitat(p,time));
   seg.querySelectorAll("button").forEach(b=>b.onclick=()=>{
@@ -1053,6 +1099,134 @@ function initHabitat(p){
     time=b.dataset.ht;
     ensureMapImg(()=>drawHabitat(p,time));
   });
+  // click / Enter -> fullscreen lightbox
+  const cv=$("#habCanvas");
+  if(cv){
+    cv.onclick=()=>openHabModal(p,time);
+    cv.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openHabModal(p,time); } };
+  }
+}
+
+/* ---- fullscreen habitat lightbox (zoom + pan) ---- */
+const HM={pal:null,time:"d",scale:1,tx:0,ty:0,glow:null,glowKey:"",lastFocus:null,pointers:new Map(),pinchD:0};
+function hmGlowLayer(){
+  const key=HM.pal.internalName+"|"+HM.time;
+  if(HM.glowKey===key && HM.glow) return HM.glow;
+  const S=2048,G=SPAWNS.grid,cs=S/G,r=cs*1.7;
+  const off=document.createElement("canvas"); off.width=S; off.height=S;
+  const ctx=off.getContext("2d");
+  const sp=SPAWNS.pals[HM.pal.internalName]||{};
+  for(const c of (sp[HM.time]||[])){
+    const gx=c%G, gy=(c-gx)/G, x=(gx+.5)*cs, y=(gy+.5)*cs;
+    const g=ctx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,"rgba(255,216,70,.9)");
+    g.addColorStop(.45,"rgba(255,178,36,.38)");
+    g.addColorStop(1,"rgba(255,150,20,0)");
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill();
+  }
+  HM.glow=off; HM.glowKey=key;
+  return off;
+}
+function hmFit(){
+  const side=Math.min(innerWidth,innerHeight)*.94;
+  return {side, ox:(innerWidth-side)/2, oy:(innerHeight-side)/2};
+}
+function hmClampPan(){
+  const {side}=hmFit(), lim=side*(HM.scale-1);
+  HM.tx=Math.min(0,Math.max(-lim,HM.tx));
+  HM.ty=Math.min(0,Math.max(-lim,HM.ty));
+}
+function hmDraw(){
+  const cv=$("#habBigCanvas"); if(!cv||!MAP_READY||!HM.pal) return;
+  const dpr=Math.min(2,window.devicePixelRatio||1);
+  const W=Math.round(innerWidth*dpr), H=Math.round(innerHeight*dpr);
+  if(cv.width!==W||cv.height!==H){ cv.width=W; cv.height=H; }
+  const ctx=cv.getContext("2d");
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,innerWidth,innerHeight);
+  const {side,ox,oy}=hmFit();
+  const x=ox+HM.tx, y=oy+HM.ty, w=side*HM.scale;
+  ctx.imageSmoothingQuality="high";
+  ctx.drawImage(MAP_IMG,x,y,w,w);
+  ctx.fillStyle="rgba(8,12,22,.22)"; ctx.fillRect(x,y,w,w);
+  ctx.globalCompositeOperation="lighter";
+  ctx.drawImage(hmGlowLayer(),x,y,w,w);
+  ctx.globalCompositeOperation="source-over";
+  const sp=SPAWNS.pals[HM.pal.internalName]||{}, n=(sp[HM.time]||[]).length;
+  const cnt=$("#hmCount");
+  if(cnt) cnt.textContent=n?n+" zone"+(n===1?"":"s")+" · "+HM.scale.toFixed(1)+"×"
+    :"no "+(HM.time==="d"?"daytime":"nighttime")+" spawns";
+}
+function hmZoomAt(px,py,f){
+  const {side,ox,oy}=hmFit();
+  const ns=Math.min(10,Math.max(1,HM.scale*f)), k=ns/HM.scale;
+  HM.tx=px-ox-(px-ox-HM.tx)*k;
+  HM.ty=py-oy-(py-oy-HM.ty)*k;
+  HM.scale=ns; hmClampPan(); hmDraw();
+}
+function openHabModal(p,time){
+  HM.pal=p; HM.time=time; HM.scale=1; HM.tx=HM.ty=0; HM.glowKey="";
+  HM.lastFocus=document.activeElement;
+  const seg=$("#hmSeg");
+  seg.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.ht===time));
+  $("#hmTitle").innerHTML=avatarHtml(p,"mini-av2")+"<span>"+p.name+" — habitat</span>";
+  const modal=$("#habModal");
+  modal.hidden=false;
+  document.body.style.overflow="hidden";
+  $("#hmClose").focus();
+  ensureMapImg(hmDraw);
+  blink("y");
+}
+function closeHabModal(){
+  $("#habModal").hidden=true;
+  document.body.style.overflow="";
+  HM.pointers.clear();
+  if(HM.lastFocus&&HM.lastFocus.focus) HM.lastFocus.focus();
+}
+function initHabModal(){
+  const modal=$("#habModal"), cv=$("#habBigCanvas");
+  $("#hmClose").onclick=closeHabModal;
+  $("#hmZoomIn").onclick=()=>hmZoomAt(innerWidth/2,innerHeight/2,1.5);
+  $("#hmZoomOut").onclick=()=>hmZoomAt(innerWidth/2,innerHeight/2,1/1.5);
+  $("#hmReset").onclick=()=>{ HM.scale=1; HM.tx=HM.ty=0; hmDraw(); };
+  $("#hmSeg").querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    $("#hmSeg").querySelectorAll("button").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on"); HM.time=b.dataset.ht; hmDraw();
+  });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!modal.hidden) closeHabModal(); });
+  window.addEventListener("resize",()=>{ if(!modal.hidden){ hmClampPan(); hmDraw(); } });
+  cv.addEventListener("wheel",e=>{
+    e.preventDefault();
+    const f=Math.exp(-e.deltaY*(e.ctrlKey?0.01:0.0022));
+    hmZoomAt(e.clientX,e.clientY,f);
+  },{passive:false});
+  cv.addEventListener("dblclick",e=>hmZoomAt(e.clientX,e.clientY,2));
+  cv.addEventListener("pointerdown",e=>{
+    cv.setPointerCapture(e.pointerId);
+    HM.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(HM.pointers.size===2){
+      const [a,b]=[...HM.pointers.values()];
+      HM.pinchD=Math.hypot(a.x-b.x,a.y-b.y);
+    }
+    cv.classList.add("dragging");
+  });
+  cv.addEventListener("pointermove",e=>{
+    const prev=HM.pointers.get(e.pointerId); if(!prev) return;
+    if(HM.pointers.size===1){
+      HM.tx+=e.clientX-prev.x; HM.ty+=e.clientY-prev.y;
+      HM.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      hmClampPan(); hmDraw();
+    } else if(HM.pointers.size===2){
+      HM.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      const [a,b]=[...HM.pointers.values()];
+      const d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(HM.pinchD>0) hmZoomAt((a.x+b.x)/2,(a.y+b.y)/2,d/HM.pinchD);
+      HM.pinchD=d;
+    }
+  });
+  const lift=e=>{ HM.pointers.delete(e.pointerId); HM.pinchD=0; if(!HM.pointers.size) cv.classList.remove("dragging"); };
+  cv.addEventListener("pointerup",lift);
+  cv.addEventListener("pointercancel",lift);
 }
 
 function xlinkPair(a,b){
@@ -1375,7 +1549,7 @@ function initControls(){
   };
 }
 function boot(){
-  buildFilters(); initControls(); initTabs(); initBreeding(); initDevice();
+  buildFilters(); initControls(); initTabs(); initBreeding(); initDevice(); initHabModal();
   renderOwned();
   render();
   renderForward();

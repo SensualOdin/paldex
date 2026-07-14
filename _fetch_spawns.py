@@ -83,9 +83,9 @@ def main():
     print("fetching world map…")
     from PIL import Image
     im = Image.open(io.BytesIO(fetch(MAP_URL)))
-    im = im.convert("RGB").resize((1024, 1024), Image.LANCZOS)
+    im = im.convert("RGB").resize((2048, 2048), Image.LANCZOS)  # 2048 keeps fullscreen zoom crisp
     buf = io.BytesIO()
-    im.save(buf, "JPEG", quality=72, optimize=True)
+    im.save(buf, "JPEG", quality=70, optimize=True)
     map_uri = "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
     print(f"map image: {len(buf.getvalue()) // 1024}KB")
 
