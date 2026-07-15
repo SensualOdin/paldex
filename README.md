@@ -16,6 +16,9 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - **Element matchups**: deals-2×/takes-2× chips on every Pal (Palworld's 9-element wheel) plus a full type chart under Tiers → Elements.
 - **Pal Compare**: ⚖ button opens A-vs-B — mirrored stat bars, work levels, partner skills, and what the pair breeds into.
 - **Movesets & drops**: per-Pal active skills (level learned, element, power, cooldown) and possible drops with quantities/probabilities, from paldb.cc (1.0).
+- **Lore & boss titles**: Paldeck flavor text and alpha titles ("Guardian of the Dark Sun") on every Pal, plus **guaranteed passives** (46 Pals) from the palcalc game-file data.
+- **Mounts tier boards**: Flying / Ground / Water, detected from partner skills and ranked by Ride Sprint speed.
+- **Per-Pal URLs**: `#pal=<slug>` deep links in the app, plus 299 static `/pal/<slug>` pages (real content + interlinks) for search engines.
 
 **Tier lists**
 - **Combat** and **Base Work** boards curated from the most recent 1.0 community tier lists (NextTier Jul 14 2026, cross-checked vs PalMods, Game8, oslink; early-game picks from NeonLightsMedia — sources linked in-app), with an **Early / Mid / End game-stage selector** so new players get day-one value. Every name is validated against the dex at build time.
@@ -46,7 +49,8 @@ The shipped `breeding_1.0.json` was diffed byte-for-byte against upstream palcal
 
 ```
 python _fetch_partner_skills.py  # wiki.gg Partner Skills page + paldb.cc gap-fill -> _partner_skills_fill.json
-python _fetch_paldetails.py      # paldb.cc per-Pal pages: drops + movesets -> _paldetails.json
+python _fetch_paldetails.py      # paldb.cc per-Pal pages: drops, movesets, lore, boss titles + palcalc passives -> _paldetails.json
+python _gen_pages.py             # 299 static SEO pages (pal/<slug>.html) + sitemap.xml + vercel.json
 python _merge_elements.py        # pals_1.0.json + element fill + partner skills -> pals_1.0.filled.json
 python _fetch_icons.py           # downloads 298 Pal + 9 element icons from palcalc (pinned commit) -> _icons.json
 python _fetch_spawns.py          # game spawn-distribution table (via paldb.cc) + world map (wiki.gg) -> _spawns.json

@@ -456,6 +456,16 @@ footer b{color:#fff}
   font-size:12px;color:var(--muted);font-weight:600;line-height:1.5}
 .habsrc{font-size:10px;color:var(--muted2);font-weight:600;margin-top:6px}
 
+/* ---- lore, boss title, passives ---- */
+.bosstitle{font-size:11.5px;font-weight:800;color:#a05a00;font-style:italic;margin-top:2px;letter-spacing:.2px}
+.lorebox{background:var(--card);border:2px solid var(--screen-edge);border-left:4px solid var(--warn);
+  border-radius:8px;padding:9px 12px;font-size:12px;line-height:1.6;color:var(--muted);
+  font-style:italic;font-weight:600;margin-bottom:14px}
+.passlist{display:flex;flex-direction:column;gap:6px}
+.passrow{background:var(--card);border:1.5px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12px}
+.passrow b{color:var(--special);display:block;margin-bottom:1px}
+.passrow span{color:var(--muted);font-weight:600;font-size:11.5px}
+
 /* ---- skills & drops ---- */
 .skilllist{display:flex;flex-direction:column;gap:5px}
 .skillrow{display:flex;align-items:center;gap:8px;background:var(--card);border:1.5px solid var(--line);
@@ -856,6 +866,7 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
       <div class="bsub" role="tablist" aria-label="Tier boards">
         <button class="t active" data-tmode="combat" role="tab" aria-selected="true">Combat</button>
         <button class="t" data-tmode="workers" role="tab" aria-selected="false">Base Work</button>
+        <button class="t" data-tmode="mounts" role="tab" aria-selected="false">Mounts</button>
         <button class="t" data-tmode="elements" role="tab" aria-selected="false">Elements</button>
         <button class="t" data-tmode="jobs" role="tab" aria-selected="false">Jobs</button>
       </div>
@@ -1220,11 +1231,24 @@ function updateCounts(shown){
 }
 const MOBILE_MQ=window.matchMedia("(max-width:760px)");
 const isMobile=()=>MOBILE_MQ.matches;
+
+/* ---- per-pal deep links (#pal=slug) ---- */
+function palSlug(p){
+  let s=p.name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+  if(p.isVariant&&p.name==="Gumoss") s+="-special";  // the one duplicate display name
+  return s;
+}
+const SLUG2IDX=new Map(PALS.map(p=>[palSlug(p),p.internalIndex]));
+function openFromHash(){
+  const m=location.hash.match(/^#pal=([a-z0-9-]+)/);
+  if(m&&SLUG2IDX.has(m[1])) gotoPaldex(SLUG2IDX.get(m[1]));
+}
 function selectPal(idx){
   state.selected=idx;
   $$(".card").forEach(c=>c.classList.toggle("sel",+c.dataset.idx===idx));
   renderDetail(byIndex.get(idx));
   if(isMobile()) document.body.classList.add("sheet-open");
+  try{ history.replaceState(null,"","#pal="+palSlug(byIndex.get(idx))); }catch(e){}
   blink("g");
 }
 function renderDetail(p){
@@ -1238,6 +1262,7 @@ function renderDetail(p){
   const works=Object.entries(p.work||{}).filter(([,v])=>v>0)
     .map(([k,v])=>`<div class="workitem">${WORK_SHORT[k]} ${pips(v)}<span class="lvl">${v}</span></div>`).join("")
     || '<span style="color:var(--muted);font-size:12px">No work suitabilities.</span>';
+  const dd = DETAILS[p.name] || {};
   const h1 = p.elements&&p.elements.length ? EL_COLOR[p.elements[0]]+"59" : "transparent";
   const h2 = p.elements&&p.elements.length>1 ? EL_COLOR[p.elements[1]]+"40" : (p.elements&&p.elements.length?EL_COLOR[p.elements[0]]+"26":"transparent");
   const gpct=((p.breedingPower-BP_MIN)/(BP_MAX-BP_MIN)*100).toFixed(1);
@@ -1263,6 +1288,7 @@ function renderDetail(p){
           <div>
             <h2>${p.name}</h2>
             <div class="idn">#${p.dex} · ${p.internalName} · index ${p.internalIndex}</div>
+            ${dd.bossTitle?`<div class="bosstitle">“${dd.bossTitle}”</div>`:''}
           </div>
         </div>
         <div class="dbtns2">
@@ -1284,6 +1310,7 @@ function renderDetail(p){
       <div style="margin-top:10px">${matchupCard(p)}</div>
     </div>
     <div class="body">
+      ${dd.lore?`<div class="lorebox">${dd.lore}</div>`:''}
       ${p.selfOnly?'<div class="note">Same-species only — never appears as a formula result. Breed by pairing two of this Pal (legendary / tower boss / unique / collab).</div>':''}
       <div class="dsection">
         <h3>Overview</h3>
@@ -1301,6 +1328,10 @@ function renderDetail(p){
           <div class="ps-name">${p.partnerSkill.name}</div>
           <div class="ps-desc">${p.partnerSkill.desc}</div>
         </div>
+      </div>`:''}
+      ${dd.passives&&dd.passives.length?`<div class="dsection">
+        <h3>Guaranteed passives</h3>
+        <div class="passlist">${dd.passives.map(x=>`<div class="passrow"><b>◆ ${x.name}</b>${x.desc?`<span>${x.desc}</span>`:''}</div>`).join("")}</div>
       </div>`:''}
       ${SPAWNS.map?`<div class="dsection">
         <h3>Habitat</h3>
@@ -1549,6 +1580,7 @@ function closeDetail(){
   $("#detailContent").style.display="none";
   $("#detailEmpty").style.display="block";
   document.body.classList.remove("sheet-open");
+  try{ history.replaceState(null,"",location.pathname+location.search); }catch(e){}
 }
 window.selectPal=selectPal; window.closeDetail=closeDetail;
 
@@ -1918,6 +1950,25 @@ function jobBoards(){
   }
   return html+"</div>";
 }
+function mountBoards(){
+  const ps=p=>(p.partnerSkill&&p.partnerSkill.desc)||"";
+  const fly=PALS.filter(p=>/flying mount/i.test(ps(p)))
+    .sort((a,b)=>b.stats.rideSprint-a.stats.rideSprint);
+  const water=PALS.filter(p=>/ridden (on|to travel on|across).{0,12}water|surf/i.test(ps(p))&&!/flying mount/i.test(ps(p)))
+    .sort((a,b)=>b.stats.rideSprint-a.stats.rideSprint);
+  const grd=PALS.filter(p=>/can be ridden/i.test(ps(p))&&!fly.includes(p)&&!water.includes(p))
+    .sort((a,b)=>b.stats.rideSprint-a.stats.rideSprint);
+  const board=(title,list)=>{
+    if(!list.length) return "";
+    const rows=
+      tierRow("S",list.slice(0,3).map(p=>tierPalChip(p,p.stats.rideSprint)))+
+      tierRow("A",list.slice(3,8).map(p=>tierPalChip(p,p.stats.rideSprint)))+
+      tierRow("B",list.slice(8,16).map(p=>tierPalChip(p,p.stats.rideSprint)));
+    return `<div class="tierboard"><h4>${title} <span style="color:var(--muted2);font-weight:600;font-size:11px">(${list.length} rideable)</span></h4>${rows}</div>`;
+  };
+  return `<div class="tiernote">Mount type detected from each Pal's <b>partner skill</b>; ranked by <b>Ride Sprint speed</b> from the embedded 1.0 game data (shown on each chip).</div>`+
+    board("✈ Flying mounts",fly)+board("🐎 Ground mounts",grd)+board("🌊 Water mounts",water);
+}
 function tierSources(){
   const s=TIERS.sources||[]; if(!s.length) return "";
   return `<div class="tiersrc">Curated ${TIERS.curatedDate||""} · sources: `+
@@ -1930,6 +1981,7 @@ function renderTiers(mode){
   const box=$("#tierBody");
   if(mode==="combat") box.innerHTML=curatedBoard("combat")+tierSources();
   else if(mode==="workers") box.innerHTML=curatedBoard("workers")+tierSources();
+  else if(mode==="mounts") box.innerHTML=mountBoards();
   else if(mode==="elements") box.innerHTML=elementBoards();
   else box.innerHTML=jobBoards();
   // stage selector wiring (present on curated boards only)
@@ -2025,6 +2077,8 @@ function boot(){
   renderOwned();
   render();
   renderForward();
+  openFromHash();
+  window.addEventListener("hashchange",openFromHash);
   // sanity log for the §10 checklist
   console.log("[Paldex] records:",PALS.length,"| combo pairs:",totalPairs,"| genderLocked:",BRD.genderLocked.length,
     "| self-only:",PALS.filter(p=>p.selfOnly).length,"| missing elements:",PALS.filter(p=>!p.elements||!p.elements.length).length);
