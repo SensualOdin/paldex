@@ -450,6 +450,65 @@ footer b{color:#fff}
 .tiergrid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:18px}
 @media(max-width:960px){.tiergrid2{grid-template-columns:1fr}}
 
+/* ================================================================
+   MOBILE (≤760px) — compact device, 2-col grid, detail bottom sheet
+   ================================================================ */
+#sheetScrim{display:none}
+@media(max-width:760px){
+  .device{margin:0;border-radius:0;padding:12px 10px 16px;border-left:none;border-right:none}
+  .device::after{inset:6px;border-radius:0}
+  .screw{display:none}
+  .dev-top{gap:10px;padding:2px 2px 12px}
+  .lens{width:40px;height:40px;border-width:3px}
+  .lens::before{top:6px;left:8px;width:13px;height:8px}
+  .lens::after{bottom:8px;right:9px;width:5px;height:5px}
+  .lights{gap:6px}
+  .light{width:10px;height:10px}
+  .brand h1{font-size:21px}
+  .brand .ver{font-size:9.5px}
+  .tabs{order:4;width:100%}
+  .tab{flex:1;text-align:center;padding:8px 6px;font-size:12.5px;letter-spacing:.2px}
+  .counts{order:5;margin-left:0;width:100%;gap:6px}
+  .counts span{font-size:10px;padding:4px 9px}
+  .screen{padding:12px;border-radius:12px}
+  .searchrow{flex-wrap:wrap}
+  .search{flex:1 1 100%}
+  .filters{gap:10px}
+  .chip{padding:4px 9px;font-size:11px}
+  .palgrid{grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:9px}
+  .card{padding:10px}
+  .card .avatar{width:46px;height:46px}
+  .card .nm{font-size:13.5px}
+  .card .sub{font-size:10px}
+  .grid-2{gap:0}
+  /* detail becomes a slide-up bottom sheet */
+  #detailCol{position:fixed;left:0;right:0;bottom:0;z-index:520;align-self:auto;
+    transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.25,1);pointer-events:none}
+  body.sheet-open #detailCol{transform:none;pointer-events:auto}
+  @media (prefers-reduced-motion: reduce){ #detailCol{transition:none} }
+  .detail{position:static;border-radius:18px 18px 0 0;max-height:80vh;
+    box-shadow:0 -12px 40px rgba(0,0,0,.5), 0 0 0 2px var(--bezel-hi)}
+  .detail .body{max-height:calc(80vh - 170px)}
+  .detail .hd h2{font-size:20px}
+  .hero-av{width:60px;height:60px;font-size:22px}
+  .detail-empty{display:none}
+  body.sheet-open #sheetScrim{display:block;position:fixed;inset:0;z-index:510;background:rgba(10,12,9,.5)}
+  .detail .close{width:36px;height:36px;font-size:22px;background:var(--panel3)}
+  /* breeding + tiers compact */
+  .bsub{width:100%;flex-wrap:wrap}
+  .bsub .t{flex:1;text-align:center;padding:8px 8px;font-size:12px}
+  .ceremony{gap:8px;padding:14px 8px}
+  .cer-op{font-size:18px}
+  .cer-p{min-width:70px;font-size:11.5px}
+  .tiergrid2{grid-template-columns:1fr;gap:14px}
+  .tierlabel{flex:0 0 38px;font-size:16px}
+  .tierpal{font-size:11px;padding:3px 10px 3px 4px}
+  .stagebar{flex-wrap:wrap;gap:8px}
+  .stageseg button{padding:7px 12px;font-size:12px;flex:1}
+  .dev-foot{margin-top:14px}
+  footer{font-size:9.5px}
+}
+
 /* ---- fullscreen habitat lightbox ---- */
 #habModal{position:fixed;inset:0;z-index:1000;background:rgba(9,11,8,.94)}
 #habModal[hidden]{display:none}
@@ -611,6 +670,7 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
         <div class="palgrid" id="palgrid"></div>
         <div class="empty" id="gridEmpty" style="display:none">No Pals match your filters.</div>
       </div>
+      <div id="sheetScrim" aria-hidden="true"></div>
       <div id="detailCol">
         <div class="detail">
           <div class="detail-empty" id="detailEmpty">
@@ -985,10 +1045,13 @@ function updateCounts(shown){
     `<span><b>${totalPairs.toLocaleString()}</b> breeding pairs</span>`+
     `<span><b>${PALS.filter(p=>p.selfOnly).length}</b> self-only</span>`;
 }
+const MOBILE_MQ=window.matchMedia("(max-width:760px)");
+const isMobile=()=>MOBILE_MQ.matches;
 function selectPal(idx){
   state.selected=idx;
   $$(".card").forEach(c=>c.classList.toggle("sel",+c.dataset.idx===idx));
   renderDetail(byIndex.get(idx));
+  if(isMobile()) document.body.classList.add("sheet-open");
   blink("g");
 }
 function renderDetail(p){
@@ -1289,6 +1352,7 @@ function closeDetail(){
   $$(".card").forEach(c=>c.classList.remove("sel"));
   $("#detailContent").style.display="none";
   $("#detailEmpty").style.display="block";
+  document.body.classList.remove("sheet-open");
 }
 window.selectPal=selectPal; window.closeDetail=closeDetail;
 
@@ -1657,6 +1721,14 @@ function moveSel(dir){
   if(card){ card.focus({preventScroll:true}); card.scrollIntoView({block:"nearest",behavior:"smooth"}); }
 }
 function initDevice(){
+  // mobile bottom-sheet scrim + Esc + breakpoint hygiene
+  $("#sheetScrim").onclick=closeDetail;
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"&&document.body.classList.contains("sheet-open")&&$("#habModal").hidden) closeDetail();
+  });
+  const sheetGuard=()=>{ if(!MOBILE_MQ.matches) document.body.classList.remove("sheet-open"); };
+  MOBILE_MQ.addEventListener("change",sheetGuard);
+  window.addEventListener("resize",sheetGuard);
   // D-pad + arrow keys
   $$(".darm").forEach(b=>b.onclick=()=>moveSel(b.dataset.dir));
   document.addEventListener("keydown",e=>{

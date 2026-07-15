@@ -11,6 +11,7 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - Sort by dex, name, breeding power, rarity, or any stat.
 - Detail panel: element-tinted hero, **partner skill** (name + effect, all 299), a **habitat heat map** (day/night toggle, rendered from the game's own spawn-distribution table — 259 Pals with wild habitats; the rest honestly say so), **animated stat bars** (normalized to the dex max), work-level pips, a breeding-power rarity gauge, and cross-links — **Bred from** (every parent pair) and **Breeds into** (every child), all with art. The panel is sticky — it follows as you scroll the grid.
 - **Night LCD mode** (amber button, bottom-right): the screens switch to a backlit palette; persists across sessions. The blue button jumps to a random Pal.
+- **Mobile friendly**: at phone widths the device compacts (full-width tabs, two-column grid) and the detail panel becomes a slide-up bottom sheet (tap the scrim, ×, or Esc to dismiss).
 
 **Tier lists**
 - **Combat** and **Base Work** boards curated from the most recent 1.0 community tier lists (NextTier Jul 14 2026, cross-checked vs PalMods, Game8, oslink; early-game picks from NeonLightsMedia — sources linked in-app), with an **Early / Mid / End game-stage selector** so new players get day-one value. Every name is validated against the dex at build time.
