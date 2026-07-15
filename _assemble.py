@@ -5,6 +5,11 @@ brd    = json.load(open('breeding_1.0.json', encoding='utf-8'))
 icons  = json.load(open('_icons.json', encoding='utf-8'))
 spawns = json.load(open('_spawns.json', encoding='utf-8'))
 tiers  = json.load(open('_tiers.json', encoding='utf-8'))
+try:
+    details = json.load(open('_paldetails.json', encoding='utf-8'))
+except FileNotFoundError:
+    details = {}
+    print("NOTE: _paldetails.json not found — drops/movesets omitted")
 
 # validate every curated tier name against the dex — fail loudly on typos
 _names = {p['name'] for p in pals}
@@ -21,17 +26,20 @@ brd_js    = "const BRD = "    + json.dumps(brd,    ensure_ascii=False, separator
 icons_js  = "const ICONS = "  + json.dumps(icons,  ensure_ascii=False, separators=(',',':')) + ";"
 spawns_js = "const SPAWNS = " + json.dumps(spawns, ensure_ascii=False, separators=(',',':')) + ";"
 tiers_js  = "const TIERS = "  + json.dumps(tiers,  ensure_ascii=False, separators=(',',':')) + ";"
+details_js = "const DETAILS = " + json.dumps(details, ensure_ascii=False, separators=(',',':')) + ";"
 
 assert tpl.count("/*__PALS__*/") == 1
 assert tpl.count("/*__BRD__*/") == 1
 assert tpl.count("/*__ICONS__*/") == 1
 assert tpl.count("/*__SPAWNS__*/") == 1
 assert tpl.count("/*__TIERS__*/") == 1
+assert tpl.count("/*__DETAILS__*/") == 1
 out = (tpl.replace("/*__PALS__*/", pals_js)
           .replace("/*__BRD__*/", brd_js)
           .replace("/*__ICONS__*/", icons_js)
           .replace("/*__SPAWNS__*/", spawns_js)
-          .replace("/*__TIERS__*/", tiers_js))
+          .replace("/*__TIERS__*/", tiers_js)
+          .replace("/*__DETAILS__*/", details_js))
 
 with open('index.html','w',encoding='utf-8') as f:
     f.write(out)
@@ -42,3 +50,4 @@ print("PALS records:", len(pals))
 print("BRD combos children:", len(brd['combos']))
 print("ICONS:", len(icons['pals']), "pal +", len(icons['elements']), "element")
 print("SPAWNS:", len(spawns['pals']), "pals with habitat data, grid", spawns['grid'])
+print("DETAILS:", len(details), "pals with drops/movesets")

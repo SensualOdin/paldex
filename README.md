@@ -12,6 +12,10 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - Detail panel: element-tinted hero, **partner skill** (name + effect, all 299), a **habitat heat map** (day/night toggle, rendered from the game's own spawn-distribution table — 259 Pals with wild habitats; the rest honestly say so), **animated stat bars** (normalized to the dex max), work-level pips, a breeding-power rarity gauge, and cross-links — **Bred from** (every parent pair) and **Breeds into** (every child), all with art. The panel is sticky — it follows as you scroll the grid.
 - **Night LCD mode** (amber button, bottom-right): the screens switch to a backlit palette; persists across sessions. The blue button jumps to a random Pal.
 - **Mobile friendly**: at phone widths the device compacts (full-width tabs, two-column grid) and the detail panel becomes a slide-up bottom sheet (tap the scrim, ×, or Esc to dismiss).
+- **Caught & Favorites tracker**: ✓/★ toggles on every card and in the detail panel, persisted in localStorage, with a caught-progress pill in the header and Caught / Missing / Favorites filters.
+- **Element matchups**: deals-2×/takes-2× chips on every Pal (Palworld's 9-element wheel) plus a full type chart under Tiers → Elements.
+- **Pal Compare**: ⚖ button opens A-vs-B — mirrored stat bars, work levels, partner skills, and what the pair breeds into.
+- **Movesets & drops**: per-Pal active skills (level learned, element, power, cooldown) and possible drops with quantities/probabilities, from paldb.cc (1.0).
 
 **Tier lists**
 - **Combat** and **Base Work** boards curated from the most recent 1.0 community tier lists (NextTier Jul 14 2026, cross-checked vs PalMods, Game8, oslink; early-game picks from NeonLightsMedia — sources linked in-app), with an **Early / Mid / End game-stage selector** so new players get day-one value. Every name is validated against the dex at build time.
@@ -42,6 +46,7 @@ The shipped `breeding_1.0.json` was diffed byte-for-byte against upstream palcal
 
 ```
 python _fetch_partner_skills.py  # wiki.gg Partner Skills page + paldb.cc gap-fill -> _partner_skills_fill.json
+python _fetch_paldetails.py      # paldb.cc per-Pal pages: drops + movesets -> _paldetails.json
 python _merge_elements.py        # pals_1.0.json + element fill + partner skills -> pals_1.0.filled.json
 python _fetch_icons.py           # downloads 298 Pal + 9 element icons from palcalc (pinned commit) -> _icons.json
 python _fetch_spawns.py          # game spawn-distribution table (via paldb.cc) + world map (wiki.gg) -> _spawns.json
@@ -63,6 +68,8 @@ python _verify_logic.py          # runs the spec §10 verification checklist
 | `_fetch_icons.py` | Downloads Pal + element icons from palcalc (pinned commit) as data-URIs. |
 | `_fetch_spawns.py` | Builds habitat heat-map data from the game's DT_PaldexDistributionData (via paldb.cc) + world map image (wiki.gg), land-mask calibrated. |
 | `_tiers.json` | Curated 1.0 Combat + Base Work tiers with sources; names validated at build. |
+| `_fetch_paldetails.py` | Scrapes per-Pal possible drops + active-skill learnsets from paldb.cc. |
+| `_paldetails.json` | Drops (item/qty/probability) + movesets (level/element/power/CT) for all 298 names. |
 | `_spawns.json` | 259 Pals × day/night spawn cells (96×96 grid) + embedded 1024px world map. |
 | `_icons.json` | 298 Pal + 9 element icons, base64 data-URIs (embedded at build). |
 | `_app_template.html` | HTML/CSS/JS template (data injected at build). |
