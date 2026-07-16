@@ -487,6 +487,50 @@ footer b{color:#fff}
 .typechart{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
 .tcrow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;background:var(--card);border:2px solid var(--screen-edge);border-radius:10px;padding:7px 11px;font-size:11.5px;font-weight:800}
 .tcrow .arrow2{color:var(--muted2);font-weight:900}
+.tcfold{margin-bottom:18px}
+.tcfold summary{cursor:pointer;font-weight:800;font-size:12px;color:var(--muted);padding:6px 2px;user-select:none}
+.tcfold summary:hover{color:var(--ink)}
+.tcfold[open] summary{margin-bottom:8px}
+
+/* ---- element matchup wheel ---- */
+.wheelwrap{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--card);
+  border:2px solid var(--screen-edge);border-radius:14px;padding:14px 10px 10px;margin-bottom:16px}
+.wheelwrap svg{width:min(420px,100%);height:auto;display:block}
+.ewnode{cursor:pointer}
+.ewnode circle.bg{transition:stroke-width .12s}
+.ewnode:hover circle.bg{stroke-width:4}
+.ewnode.sel circle.bg{stroke:var(--ink);stroke-width:4}
+.ewnode text{font-weight:800;font-size:11.5px;fill:var(--ink);text-anchor:middle;pointer-events:none}
+.ewarrow{transition:opacity .15s}
+.ewcap{min-height:38px;text-align:center;font-size:12.5px;font-weight:800;color:var(--muted);
+  display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;padding:0 8px}
+.ewcap .elbadge{font-size:10.5px}
+
+/* ---- items / ingredient finder ---- */
+.itemhead{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.itemhead .search{flex:1;min-width:220px}
+.itemcloud{display:flex;flex-wrap:wrap;gap:7px}
+.itemchip{background:var(--card);border:2px solid var(--screen-edge);border-radius:999px;
+  padding:6px 13px;font-size:12px;font-weight:800;color:var(--ink);cursor:pointer;transition:.12s;
+  display:inline-flex;align-items:center;gap:6px}
+.itemchip:hover{border-color:var(--accent);transform:translateY(-1px)}
+.itemchip.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+.itemchip .icnt{font-size:10px;font-weight:900;color:var(--muted2);background:var(--panel3);
+  border-radius:999px;padding:1px 7px}
+.itemchip.sel .icnt{background:rgba(255,255,255,.25);color:#fff}
+.itempanel{background:var(--card);border:2px solid var(--screen-edge);border-radius:14px;
+  padding:14px 16px;margin-bottom:16px}
+.itempanel h3{margin:0 0 4px;font-family:var(--display);font-size:19px;font-weight:900;color:var(--ink);
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.itempanel h3 .close{margin-left:auto;color:var(--muted);font-size:20px;line-height:1;padding:4px 10px;border-radius:999px;font-weight:900}
+.itempanel h3 .close:hover{color:#fff;background:var(--accent2)}
+.itempanel .isub{font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:12px}
+.itempanel h4{margin:14px 0 8px;font-size:12px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:7px}
+.itempanel .tierpals{display:flex;flex-wrap:wrap;gap:6px}
+.ranchnote{font-size:11px;font-weight:600;color:var(--muted2);margin-top:6px}
+.droprow{cursor:pointer;transition:.12s;font-family:inherit;text-align:left}
+.droprow:hover{border-color:var(--accent);color:var(--ink);transform:translateY(-1px)}
 
 /* ---- caught & favorites ---- */
 .cardtools{position:absolute;bottom:9px;right:9px;display:flex;gap:5px;z-index:2}
@@ -574,6 +618,8 @@ footer b{color:#fff}
   .brand h1{font-size:21px}
   .brand .ver{font-size:9.5px}
   .tabs{order:4;width:100%}
+  .tab{flex:1;text-align:center;padding:9px 4px;font-size:12px;letter-spacing:.2px}
+  .itemhead .habcount{width:100%;text-align:right}
   .tab{flex:1;text-align:center;padding:8px 6px;font-size:12.5px;letter-spacing:.2px}
   .counts{order:5;margin-left:0;width:100%;gap:6px}
   .counts span{font-size:10px;padding:4px 9px}
@@ -734,6 +780,7 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
       <button class="tab active" data-view="paldex" role="tab" aria-selected="true">Paldex</button>
       <button class="tab" data-view="breeding" role="tab" aria-selected="false">Breeding</button>
       <button class="tab" data-view="tiers" role="tab" aria-selected="false">Tiers</button>
+      <button class="tab" data-view="items" role="tab" aria-selected="false">Items</button>
     </div>
     <div class="counts" id="counts"></div>
   </header>
@@ -871,6 +918,22 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
         <button class="t" data-tmode="jobs" role="tab" aria-selected="false">Jobs</button>
       </div>
       <div id="tierBody"></div>
+    </div>
+  </section>
+
+  <!-- ================= ITEMS (ingredient finder) ================= -->
+  <section class="view" id="view-items">
+    <div class="screen bpanel">
+      <div class="itemhead">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="itemQ" type="text" placeholder="Find an ingredient… (Wool, Honey, Ore)" autocomplete="off">
+        </div>
+        <span class="habcount" id="itemCount"></span>
+      </div>
+      <div class="tiernote">Pick any material to see <b>every Pal that drops it</b> (with quantity &amp; drop rate) and which Pals <b>produce it at the Ranch</b> — parsed from the embedded 1.0 drop tables and partner skills.</div>
+      <div id="itemResult"></div>
+      <div class="itemcloud" id="itemCloud"></div>
     </div>
   </section>
 
@@ -1072,6 +1135,60 @@ function matchupCard(p){
     <div class="matchrow"><span class="mlbl down">Takes 2× from</span>${elChipsSmall(takes)}</div>
   </div>`;
 }
+
+/* ---- interactive matchup wheel (SVG rock-paper-scissors) ----
+   Node order puts the fire→grass→ground→electric→water pentagon on one side and the
+   ice→dragon→dark→neutral chain on the other, so 8 of the 9 arrows are short arcs and
+   only water→fire sweeps through the middle to close the loop. */
+let EWSEL=null;
+const EW_ORDER=["fire","grass","ground","electric","water","neutral","dark","dragon","ice"];
+function elWheelInner(){
+  const C=240,RN=165,RA=138,r1=v=>+v.toFixed(1);
+  const ang=e=>(-90+EW_ORDER.indexOf(e)*40)*Math.PI/180;
+  const pt=(a,r)=>[r1(C+r*Math.cos(a)),r1(C+r*Math.sin(a))];
+  let arrows="";
+  for(const from of EW_ORDER) for(const to of (EL_STRONG[from]||[])){
+    const a1=ang(from),a2=ang(to);
+    let d=a2-a1; while(d>Math.PI)d-=2*Math.PI; while(d<-Math.PI)d+=2*Math.PI;
+    const steps=Math.round(Math.abs(d)/(40*Math.PI/180));
+    const sh=Math.sign(d)*0.16;
+    const [x1,y1]=pt(a1+sh,RA),[x2,y2]=pt(a2-sh,RA);
+    const cr=steps<=1?118:steps===2?84:steps===3?52:24;
+    const [cx,cy]=pt(a1+d/2,cr);
+    const tx=x2-cx,ty=y2-cy,tl=Math.hypot(tx,ty)||1,ux=tx/tl,uy=ty/tl,px=-uy,py=ux,hs=9.5;
+    const head=`${r1(x2+ux*hs)},${r1(y2+uy*hs)} ${r1(x2-ux*hs*.35+px*hs*.62)},${r1(y2-uy*hs*.35+py*hs*.62)} ${r1(x2-ux*hs*.35-px*hs*.62)},${r1(y2-uy*hs*.35-py*hs*.62)}`;
+    let op=.5,w=3.2,dash="";
+    if(EWSEL){
+      if(from===EWSEL){op=1;w=4.6;}
+      else if(to===EWSEL){op=.95;w=3.6;dash=' stroke-dasharray="7 5"';}
+      else op=.06;
+    }
+    const col=EL_COLOR[from]||"#888";
+    arrows+=`<g class="ewarrow" opacity="${op}"><path d="M${x1} ${y1} Q${cx} ${cy} ${x2} ${y2}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round"${dash}/><polygon points="${head}" fill="${col}"/></g>`;
+  }
+  let nodes="";
+  for(const e of EW_ORDER){
+    const a=ang(e),[x,y]=pt(a,RN),[lx,ly]=pt(a,RN+47);
+    const related=!EWSEL||e===EWSEL||(EL_STRONG[EWSEL]||[]).includes(e)||(EL_STRONG[e]||[]).includes(EWSEL);
+    nodes+=`<g class="ewnode${e===EWSEL?' sel':''}" opacity="${related?1:.25}" role="button" tabindex="0" aria-label="Show ${cap(e)} matchups"
+      onclick="selectWheelEl('${e}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectWheelEl('${e}')}">
+      <circle class="bg" cx="${x}" cy="${y}" r="27" fill="var(--card)" stroke="${EL_COLOR[e]}" stroke-width="2.5"/>
+      ${ICONS.elements[e]?`<image href="${ICONS.elements[e]}" x="${r1(x-20)}" y="${r1(y-20)}" width="40" height="40" style="pointer-events:none"/>`:""}
+      <text x="${lx}" y="${r1(ly+4)}">${cap(e)}</text></g>`;
+  }
+  let capHtml;
+  if(EWSEL){
+    const deals=EL_STRONG[EWSEL]||[],takes=weakTo(EWSEL);
+    capHtml=`${elChipsSmall([EWSEL])}<span>deals 2× to</span>${elChipsSmall(deals)}<span>· takes 2× from</span>${elChipsSmall(takes)}`;
+  } else capHtml=`<span>Tap an element — <b>solid arrows</b> show what it deals 2× to, <b>dashed</b> what beats it.</span>`;
+  return `<svg viewBox="0 0 480 480" role="img" aria-label="Palworld element matchup wheel — arrows point from attacker to the element that takes double damage">${arrows}${nodes}</svg><div class="ewcap">${capHtml}</div>`;
+}
+function selectWheelEl(e){
+  EWSEL=EWSEL===e?null:e;
+  const b=$("#elwheelBox"); if(b) b.innerHTML=elWheelInner();
+  blink("y");
+}
+window.selectWheelEl=selectWheelEl;
 
 /* ---- caught & favorites (localStorage) ---- */
 function loadSet(k){ try{ return new Set(JSON.parse(localStorage.getItem(k)||"[]")); }catch(e){ return new Set(); } }
@@ -1368,9 +1485,9 @@ function renderDetail(p){
           </div>`).join("")}</div>
       </div>`:''}
       ${(DETAILS[p.name]&&DETAILS[p.name].drops&&DETAILS[p.name].drops.length)?`<div class="dsection">
-        <h3>Possible drops</h3>
+        <h3>Possible drops <span style="font-weight:600;color:var(--muted2);font-size:10px">(tap to see all sources)</span></h3>
         <div class="droplist">${DETAILS[p.name].drops.map(d=>`
-          <span class="droprow"><b>${d.item}</b> ×${d.qty} <span class="dp">${d.p}</span></span>`).join("")}</div>
+          <button class="droprow" data-item="${escA(d.item)}" onclick="gotoItem(this.dataset.item)" title="Every Pal that gives ${escA(d.item)}"><b>${d.item}</b> ×${d.qty} <span class="dp">${d.p}</span></button>`).join("")}</div>
       </div>`:''}
       <div class="dsection">
         <h3>Bred from (${bredFrom.length} pair${bredFrom.length===1?'':'s'})</h3>
@@ -1903,6 +2020,16 @@ function stageBar(){
     STAGES.map(([k,label])=>`<button data-stage="${k}"${TSTATE.stage===k?' class="on"':''}>${label}</button>`).join("")+
     `</div></div>`;
 }
+/* Rarity-based availability cut for the computed boards (Mounts / Elements / Jobs).
+   Early ≈ commons you can catch in the starting regions (rarity ≤ 4, e.g. Nitewing —
+   the classic first flyer); Mid adds rares (≤ 7); End is everything incl. legendaries. */
+const STAGE_MAXRAR={early:4,mid:7,end:99};
+function stagePals(){ return TSTATE.stage==="end" ? PALS : PALS.filter(p=>p.rarity<=STAGE_MAXRAR[TSTATE.stage]); }
+function stageNote(){
+  if(TSTATE.stage==="end") return "";
+  const cut=STAGE_MAXRAR[TSTATE.stage];
+  return `<div class="stageblurb">${TSTATE.stage==="early"?"🌱 Early game":"⚒ Mid game"} — showing only Pals of <b>rarity ≤ ${cut}</b> (★ badge on each card), a good proxy for what you can realistically catch by then. Switch to 👑 End for the full boards.</div>`;
+}
 function curatedBoard(key){
   const board=TIERS[key]; if(!board||!board.stages) return "";
   const stage=board.stages[TSTATE.stage]||board.stages.end;
@@ -1916,13 +2043,16 @@ function curatedBoard(key){
   return `<div class="tierboard">${html}</div>`;
 }
 function elementBoards(){
-  let html=`<div class="tiernote">Ranked by base <b>Attack</b> from the embedded 1.0 game data — an objective cut, not a meta opinion. Tap any Pal for full stats.</div>`;
-  html+=`<div class="typechart">`+ELEMENTS.map(e=>{
+  let html=stageBar()+stageNote();
+  html+=`<div class="tiernote">The wheel below is Palworld's rock-paper-scissors: <b>arrows point from attacker to victim</b> (2× damage). Tap an element to isolate its matchups. Boards are ranked by base <b>Attack</b> from the embedded 1.0 game data — an objective cut, not a meta opinion.</div>`;
+  html+=`<div class="wheelwrap" id="elwheelBox">${elWheelInner()}</div>`;
+  html+=`<details class="tcfold"><summary>📋 Full matchup chart (text version)</summary><div class="typechart">`+ELEMENTS.map(e=>{
     const deals=EL_STRONG[e]||[], takes=weakTo(e);
     return `<div class="tcrow">${elChipsSmall([e])}<span class="arrow2">→ 2× vs</span>${elChipsSmall(deals)}<span class="arrow2">· takes 2× from</span>${elChipsSmall(takes)}</div>`;
-  }).join("")+`</div><div class="tiergrid2">`;
+  }).join("")+`</div></details><div class="tiergrid2">`;
+  const pool=stagePals();
   for(const e of ELEMENTS){
-    const list=PALS.filter(p=>p.elements&&p.elements.includes(e))
+    const list=pool.filter(p=>p.elements&&p.elements.includes(e))
       .sort((a,b)=>b.stats.attack-a.stats.attack).slice(0,12);
     const rows=
       tierRow("S",list.slice(0,3).map(p=>tierPalChip(p,p.stats.attack)))+
@@ -1933,9 +2063,11 @@ function elementBoards(){
   return html+"</div>";
 }
 function jobBoards(){
-  let html=`<div class="tiernote">Grouped by <b>work suitability level</b> from the embedded 1.0 game data (1.0 raised the cap — top specialists now reach Lv 8). Top three level bands per job.</div><div class="tiergrid2">`;
+  let html=stageBar()+stageNote();
+  html+=`<div class="tiernote">Grouped by <b>work suitability level</b> from the embedded 1.0 game data (1.0 raised the cap — top specialists now reach Lv 8). Top three level bands per job.</div><div class="tiergrid2">`;
+  const pool=stagePals();
   for(const w of WORK_KEYS){
-    const list=PALS.filter(p=>p.work&&p.work[w]>0).sort((a,b)=>b.work[w]-a.work[w]||a.dex-b.dex);
+    const list=pool.filter(p=>p.work&&p.work[w]>0).sort((a,b)=>b.work[w]-a.work[w]||a.dex-b.dex);
     if(!list.length) continue;
     const levels=[...new Set(list.map(p=>p.work[w]))].sort((a,b)=>b-a).slice(0,3);
     const tierNames=["S","A","B"];
@@ -1952,21 +2084,23 @@ function jobBoards(){
 }
 function mountBoards(){
   const ps=p=>(p.partnerSkill&&p.partnerSkill.desc)||"";
-  const fly=PALS.filter(p=>/flying mount/i.test(ps(p)))
+  const pool=stagePals();
+  const fly=pool.filter(p=>/flying mount/i.test(ps(p)))
     .sort((a,b)=>b.stats.rideSprint-a.stats.rideSprint);
-  const water=PALS.filter(p=>/ridden (on|to travel on|across).{0,12}water|surf/i.test(ps(p))&&!/flying mount/i.test(ps(p)))
+  const water=pool.filter(p=>/ridden (on|to travel on|across).{0,12}water|surf/i.test(ps(p))&&!/flying mount/i.test(ps(p)))
     .sort((a,b)=>b.stats.rideSprint-a.stats.rideSprint);
-  const grd=PALS.filter(p=>/can be ridden/i.test(ps(p))&&!fly.includes(p)&&!water.includes(p))
+  const grd=pool.filter(p=>/can be ridden/i.test(ps(p))&&!fly.includes(p)&&!water.includes(p))
     .sort((a,b)=>b.stats.rideSprint-a.stats.rideSprint);
   const board=(title,list)=>{
-    if(!list.length) return "";
+    if(!list.length) return `<div class="tierboard"><h4>${title}</h4><div class="tiernote">None available at this game stage — check a later stage.</div></div>`;
     const rows=
       tierRow("S",list.slice(0,3).map(p=>tierPalChip(p,p.stats.rideSprint)))+
       tierRow("A",list.slice(3,8).map(p=>tierPalChip(p,p.stats.rideSprint)))+
       tierRow("B",list.slice(8,16).map(p=>tierPalChip(p,p.stats.rideSprint)));
     return `<div class="tierboard"><h4>${title} <span style="color:var(--muted2);font-weight:600;font-size:11px">(${list.length} rideable)</span></h4>${rows}</div>`;
   };
-  return `<div class="tiernote">Mount type detected from each Pal's <b>partner skill</b>; ranked by <b>Ride Sprint speed</b> from the embedded 1.0 game data (shown on each chip).</div>`+
+  return stageBar()+stageNote()+
+    `<div class="tiernote">Mount type detected from each Pal's <b>partner skill</b>; ranked by <b>Ride Sprint speed</b> from the embedded 1.0 game data (shown on each chip).</div>`+
     board("✈ Flying mounts",fly)+board("🐎 Ground mounts",grd)+board("🌊 Water mounts",water);
 }
 function tierSources(){
@@ -2001,6 +2135,95 @@ function initTiers(){
     };
   });
   renderTiers("combat");
+}
+
+/* ============================================================= *
+ *  ITEMS — ingredient finder
+ * ============================================================= */
+function escA(s){ return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;"); }
+/* item -> {drops:[{i,qty,p}], ranch:[i]} built from the embedded drop tables + partner skills */
+const ITEM_INDEX=new Map();
+const RANCH_ALIAS={"Pal Fluids":"Aquatic Pal Fluids"}; // partner-skill wording vs drop-table name
+(function buildItemIndex(){
+  const entry=n=>{ let e=ITEM_INDEX.get(n); if(!e){ e={drops:[],ranch:[]}; ITEM_INDEX.set(n,e); } return e; };
+  const seen=new Set();
+  for(const p of PALS){
+    if(seen.has(p.name)) continue; seen.add(p.name); // Gumoss appears twice with identical drops
+    const dd=DETAILS[p.name];
+    if(dd&&dd.drops) for(const d of dd.drops) entry(d.item).drops.push({i:p.internalIndex,qty:d.qty,p:d.p});
+    const desc=(p.partnerSkill&&p.partnerSkill.desc)||"";
+    if(/assigned to (a )?Ranch/i.test(desc)){
+      const m=desc.match(/sometimes\s+(?:drops|produces|lays(?:\s+an)?|digs\s+up|makes)\s+(.+?)\s+(?:from its back\s+)?when assigned to (?:a\s+)?Ranch/i);
+      let item=m?m[1].trim():"";
+      if(!item||/^items\b/i.test(item)) item="Assorted items"; // Vixy digs up spheres/arrows/coins
+      item=RANCH_ALIAS[item]||item;
+      entry(item).ranch.push(p.internalIndex);
+    }
+  }
+})();
+const ITEM_EMOJI={Wool:"🧶",Egg:"🥚",Milk:"🥛",Honey:"🍯",Leather:"🟤",Bone:"🦴",Horn:"🦌",Fiber:"🧵",
+  Cloth:"🧵","High Quality Cloth":"🧵","Red Berries":"🍒",Mushroom:"🍄","Mysterious Mushroom":"🍄",
+  "Flame Organ":"🔥","Ice Organ":"❄️","Electric Organ":"⚡","Venom Gland":"☠️","Aquatic Pal Fluids":"💧",
+  "High Quality Pal Oil":"🛢️","Crude Oil":"🛢️","Gold Coin":"🪙",Diamond:"💎",Ruby:"💎",Sapphire:"💎",
+  Ore:"⛏️","Coralum Ore":"⛏️",Coal:"⚫",Ingot:"🔩",Plasteel:"🔩",Hardwood:"🪵",Hexolite:"💠",
+  "Cotton Candy":"🍬","Caramel Cotton Candy":"🍬","Dark Fragment":"🌑","Meteorite Fragment":"☄️",
+  "Beautiful Flower":"🌸","Hallowed Bar":"✨","Thermal Core":"🌡️","Assorted items":"🎁"};
+function itemEmoji(n){
+  if(ITEM_EMOJI[n]) return ITEM_EMOJI[n];
+  if(/seeds$/i.test(n)) return "🌱";
+  if(/soul$/i.test(n)) return "👻";
+  if(/manual$/i.test(n)) return "📘";
+  if(/meds|medical/i.test(n)) return "💊";
+  if(/meat|venison|^raw /i.test(n)) return "🍖";
+  if(/tentacle|squid|fish/i.test(n)) return "🐟";
+  if(/ancient/i.test(n)) return "🏺";
+  return "📦";
+}
+let ITEMSEL=null;
+function renderItemPanel(){
+  const box=$("#itemResult");
+  if(!ITEMSEL||!ITEM_INDEX.has(ITEMSEL)){ box.innerHTML=""; return; }
+  const e=ITEM_INDEX.get(ITEMSEL);
+  const drops=[...e.drops].sort((a,b)=>(parseFloat(b.p)||0)-(parseFloat(a.p)||0)||b.qty-a.qty);
+  const chip=d=>{ const p=byIndex.get(d.i);
+    return `<button class="tierpal" onclick="gotoPaldex(${d.i})">${avatarHtml(p,"mini-av3")}${p.name} <span class="tlvl">×${d.qty} · ${d.p}</span></button>`; };
+  const rchip=i=>{ const p=byIndex.get(i);
+    return `<button class="tierpal" onclick="gotoPaldex(${i})">${avatarHtml(p,"mini-av3")}${p.name}</button>`; };
+  box.innerHTML=`<div class="itempanel">
+    <h3>${itemEmoji(ITEMSEL)} ${ITEMSEL}<button class="close" onclick="gotoItem(null,true)" aria-label="Clear selected item">×</button></h3>
+    <div class="isub">${drops.length?`Dropped by <b>${drops.length}</b> Pal${drops.length===1?"":"s"}`:"Not a battle drop"}${e.ranch.length?` · Ranch-produced by <b>${e.ranch.length}</b>`:""}. Tap a Pal to open its dex entry.</div>
+    ${drops.length?`<h4>⚔ Dropped by (qty · chance)</h4><div class="tierpals">${drops.map(chip).join("")}</div>`:""}
+    ${e.ranch.length?`<h4>🏡 Ranch production</h4><div class="tierpals">${e.ranch.map(rchip).join("")}</div>
+      <div class="ranchnote">Assign these Pals to a Ranch at your base — their partner skill makes them produce ${escA(ITEMSEL)} on their own.</div>`:""}
+  </div>`;
+}
+function renderItems(){
+  const q=(($("#itemQ")||{}).value||"").trim().toLowerCase();
+  const names=[...ITEM_INDEX.keys()].sort((a,b)=>a.localeCompare(b));
+  const vis=q?names.filter(n=>n.toLowerCase().includes(q)):names;
+  $("#itemCount").textContent=`${vis.length} / ${names.length} materials`;
+  $("#itemCloud").innerHTML=vis.map(n=>{
+    const e=ITEM_INDEX.get(n);
+    return `<button class="itemchip${ITEMSEL===n?' sel':''}" data-item="${escA(n)}" onclick="gotoItem(this.dataset.item,true)">${itemEmoji(n)} ${n}${e.ranch.length?" 🏡":""}<span class="icnt">${e.drops.length+e.ranch.length}</span></button>`;
+  }).join("")||`<span style="color:var(--muted2);font-weight:700;font-size:12.5px">No materials match that search.</span>`;
+  renderItemPanel();
+}
+function gotoItem(item,stay){
+  ITEMSEL=item&&ITEM_INDEX.has(item)?(stay&&ITEMSEL===item?null:item):null;
+  if(!stay){
+    if(document.body.classList.contains("sheet-open")&&window.closeDetail) closeDetail();
+    $$('.tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');});
+    const tb=$('.tab[data-view=items]'); tb.classList.add('active'); tb.setAttribute('aria-selected','true');
+    $$('.view').forEach(v=>v.classList.remove('active'));
+    $('#view-items').classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  renderItems(); blink("g");
+}
+window.gotoItem=gotoItem;
+function initItems(){
+  $("#itemQ").addEventListener("input",renderItems);
+  renderItems();
 }
 
 /* ============================================================= *
@@ -2073,7 +2296,7 @@ function initControls(){
   };
 }
 function boot(){
-  buildFilters(); initControls(); initTabs(); initBreeding(); initDevice(); initHabModal(); initTiers(); initCompare();
+  buildFilters(); initControls(); initTabs(); initBreeding(); initDevice(); initHabModal(); initTiers(); initCompare(); initItems();
   renderOwned();
   render();
   renderForward();

@@ -13,7 +13,8 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - **Night LCD mode** (amber button, bottom-right): the screens switch to a backlit palette; persists across sessions. The blue button jumps to a random Pal.
 - **Mobile friendly**: at phone widths the device compacts (full-width tabs, two-column grid) and the detail panel becomes a slide-up bottom sheet (tap the scrim, ×, or Esc to dismiss).
 - **Caught & Favorites tracker**: ✓/★ toggles on every card and in the detail panel, persisted in localStorage, with a caught-progress pill in the header and Caught / Missing / Favorites filters.
-- **Element matchups**: deals-2×/takes-2× chips on every Pal (Palworld's 9-element wheel) plus a full type chart under Tiers → Elements.
+- **Element matchups**: deals-2×/takes-2× chips on every Pal, plus an **interactive matchup wheel** under Tiers → Elements — the 9 element emblems in a circle with attacker→victim arrows; tap an element to isolate what it beats (solid) and what beats it (dashed). Text chart included as a fold-out.
+- **Ingredient finder** (Items tab): pick any of 102 materials to see **every Pal that drops it** (quantity + drop chance) and which Pals **produce it at the Ranch** (parsed from partner skills — 22 producers). Drop chips in the detail panel link straight into it.
 - **Pal Compare**: ⚖ button opens A-vs-B — mirrored stat bars, work levels, partner skills, and what the pair breeds into.
 - **Movesets & drops**: per-Pal active skills (level learned, element, power, cooldown) and possible drops with quantities/probabilities, from paldb.cc (1.0).
 - **Lore & boss titles**: Paldeck flavor text and alpha titles ("Guardian of the Dark Sun") on every Pal, plus **guaranteed passives** (46 Pals) from the palcalc game-file data.
@@ -22,7 +23,7 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 
 **Tier lists**
 - **Combat** and **Base Work** boards curated from the most recent 1.0 community tier lists (NextTier Jul 14 2026, cross-checked vs PalMods, Game8, oslink; early-game picks from NeonLightsMedia — sources linked in-app), with an **Early / Mid / End game-stage selector** so new players get day-one value. Every name is validated against the dex at build time.
-- **Elements** (9 boards, ranked by base Attack) and **Jobs** (12 boards, grouped by work level — 1.0 specialists reach Lv 8) are computed from the embedded game data, so they're complete and objective.
+- **Elements** (9 boards, ranked by base Attack), **Jobs** (12 boards, grouped by work level — 1.0 specialists reach Lv 8) and **Mounts** (Flying/Ground/Water by Ride Sprint) are computed from the embedded game data, so they're complete and objective. The game-stage selector works here too — it filters by in-game rarity (early ≤ 4, mid ≤ 7), so "best flying mount early game" honestly answers *Nitewing*.
 
 **Breeding calculator**
 - **Forward** — pick two parents → child, with a *special-combo* badge when the fixed recipe overrides the averaging formula, a *gender-locked* badge for Katress×Wixen, and a plain-language formula explainer.
