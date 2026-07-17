@@ -104,3 +104,17 @@ curl -sL -o palcalc_breeding.json https://raw.githubusercontent.com/tylercamp/pa
 ```
 
 **Bottom line:** the data is faithfully sourced from the most reliable public 1.0 dataset (game-file-extracted palcalc v26); the provenance and version claims are all true; and every field checkable against an independent source matched. The README's own caveat remains the right one: 1.0 datamined data is fresh — verify a specific result in-game before a big cake investment.
+
+
+## Addendum (2026-07-17): partner-skill data corrected
+
+The original partner-skill scrape used palworld.wiki.gg's "Partner Skills"
+list page, which was still serving **pre-1.0 text** — caught when Surfent
+Terra showed the old ore-carrying skill instead of 1.0's "the player's
+attacks inflict Muddy (2~6)". Re-scraped all 298 from paldb.cc per-Pal pages
+(the same 1.0-current source as drops/movesets/lore): **255 of 298
+descriptions and 48 skill names had changed**. Everything derived from that
+text (Mounts tier boards, Ranch producers in the Items tab, Team-planner
+synergy tags) was rebuilt and re-validated: 29 flying / 11 water mounts,
+29 ranch producers, 24 attack-type imbuers, 7 status-inflicting and 4
+status-payoff partner skills all parse cleanly from the new wording.

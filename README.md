@@ -50,7 +50,7 @@ The shipped `breeding_1.0.json` was diffed byte-for-byte against upstream palcal
 ## Rebuilding from source
 
 ```
-python _fetch_partner_skills.py  # wiki.gg Partner Skills page + paldb.cc gap-fill -> _partner_skills_fill.json
+python _fetch_partner_skills.py  # paldb.cc per-Pal pages (1.0-current) -> _partner_skills_fill.json
 python _fetch_paldetails.py      # paldb.cc per-Pal pages: drops, movesets, lore, boss titles + palcalc passives -> _paldetails.json
 python _gen_pages.py             # 299 static SEO pages (pal/<slug>.html) + sitemap.xml + vercel.json
 python _merge_elements.py        # pals_1.0.json + element fill + partner skills -> pals_1.0.filled.json
@@ -69,7 +69,7 @@ python _verify_logic.py          # runs the spec §10 verification checklist
 | `pals_1.0.filled.json` | Same, with all 161 element gaps filled. |
 | `breeding_1.0.json` | Authoritative breeding table (44,849 pairs). |
 | `_elements_fill.json` | The 161 element values merged in. |
-| `_fetch_partner_skills.py` | Scrapes partner skills (palworld.wiki.gg + paldb.cc gap-fill). |
+| `_fetch_partner_skills.py` | Scrapes 1.0 partner skills from paldb.cc per-Pal pages. |
 | `_partner_skills_fill.json` | Partner skill name + effect for all 298 names (source tagged per entry). |
 | `_fetch_icons.py` | Downloads Pal + element icons from palcalc (pinned commit) as data-URIs. |
 | `_fetch_spawns.py` | Builds habitat heat-map data from the game's DT_PaldexDistributionData (via paldb.cc) + world map image (wiki.gg), land-mask calibrated. |
@@ -86,4 +86,4 @@ python _verify_logic.py          # runs the spec §10 verification checklist
 
 ## Credits
 
-Data: [tylercamp/palcalc](https://github.com/tylercamp/palcalc) (game-file extracted, v26) · elements from [paldb.cc](https://paldb.cc) · partner skills from [palworld.wiki.gg](https://palworld.wiki.gg/wiki/Partner_Skills) and [paldb.cc](https://paldb.cc) · habitat data from the game's `DT_PaldexDistributionData` table (via [paldb.cc](https://paldb.cc)) with the world map from [palworld.wiki.gg](https://palworld.wiki.gg) · pre-1.0 element schema from [mlg404/palworld-paldex-api](https://github.com/mlg404/palworld-paldex-api). Pal &amp; element icons are Palworld game assets © Pocketpair, redistributed via palcalc, embedded for personal offline use. Palworld © Pocketpair.
+Data: [tylercamp/palcalc](https://github.com/tylercamp/palcalc) (game-file extracted, v26) · elements from [paldb.cc](https://paldb.cc) · partner skills from [paldb.cc](https://paldb.cc) per-Pal pages (1.0-current) · habitat data from the game's `DT_PaldexDistributionData` table (via [paldb.cc](https://paldb.cc)) with the world map from [palworld.wiki.gg](https://palworld.wiki.gg) · pre-1.0 element schema from [mlg404/palworld-paldex-api](https://github.com/mlg404/palworld-paldex-api). Pal &amp; element icons are Palworld game assets © Pocketpair, redistributed via palcalc, embedded for personal offline use. Palworld © Pocketpair.

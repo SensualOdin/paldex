@@ -2288,8 +2288,14 @@ const EL_WORD={fire:"fire",water:"water",grass:"grass",ground:"ground",earth:"gr
   electric:"electric",lightning:"electric",ice:"ice",dragon:"dragon",dark:"dark",neutral:"neutral"};
 function palFx(p){
   const d=(p.partnerSkill&&p.partnerSkill.desc)||"";
-  const fx={conv:[],boost:[],enhance:[],resist:[],pass:[]};
+  const fx={conv:[],boost:[],enhance:[],resist:[],pass:[],inflict:[],payoff:[]};
   let m;
+  /* 1.0 status effects: "the player's attacks inflict Muddy (2~6)" and payoff
+     skills like "when the player attacks an enemy afflicted with Electrify" */
+  const rxI=/player[’']?s attacks inflict (\w+)/ig;
+  while((m=rxI.exec(d))){ const s=m[1]; if(!fx.inflict.includes(s)) fx.inflict.push(s); }
+  const rxP=/enemy (?:afflicted with|suffering from) (\w+)/ig;
+  while((m=rxP.exec(d))){ const s=m[1]; if(!fx.payoff.includes(s)) fx.payoff.push(s); }
   const rx1=/changes the player[’']?s attack type to (\w+)/ig;
   while((m=rx1.exec(d))){ const e=EL_WORD[m[1].toLowerCase()]; if(e&&!fx.conv.includes(e)) fx.conv.push(e); }
   const rx2=/increases (?:the )?attack of (\w+) pals/ig;
@@ -2323,6 +2329,8 @@ function fxTags(fx){
   fx.enhance.forEach(x=>t.push(`<span class="syntag">💥 ${x.el} dmg↑</span>`));
   fx.resist.forEach(x=>t.push(`<span class="syntag">🛡 ${x.el} res</span>`));
   fx.pass.forEach(x=>t.push(`<span class="syntag">⭐ ${x.el} +${x.pct}%</span>`));
+  fx.inflict.forEach(s=>t.push(`<span class="syntag">☣ inflicts ${s}</span>`));
+  fx.payoff.forEach(s=>t.push(`<span class="syntag">🎯 punishes ${s}</span>`));
   return t.length?`<div class="syntags">${t.join("")}</div>`:"";
 }
 function renderTeamSlots(){
@@ -2351,6 +2359,11 @@ function renderTeamSyn(){
   for(const a of members) for(const e of a.fx.conv){
     for(const b of members) if(b!==a) for(const x of b.fx.enhance) if(x.el===e)
       rows.push({hot:true,ico:"🔥",html:`<b>${a.p.name}</b> turns your attacks ${elChip(e)} and <b>${b.p.name}</b> boosts ${elChip(e)} damage${x.amt?` by <b>${x.amt}%</b>`:""} — stack them.`});
+  }
+  /* status infliction + payoff combos (inflict Electrify + punish Electrify) */
+  for(const a of members) for(const s of a.fx.inflict){
+    for(const b of members) if(b!==a&&b.fx.payoff.includes(s))
+      rows.push({hot:true,ico:"☣",html:`<b>${a.p.name}</b> makes your attacks inflict <b>${s}</b> and <b>${b.p.name}</b> triggers bonus damage on ${s}-afflicted enemies — a status combo.`});
   }
   /* self imbue+enhance on one pal (Frostallion pattern) */
   for(const a of members) for(const e of a.fx.conv)
