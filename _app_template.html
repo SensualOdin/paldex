@@ -532,6 +532,39 @@ footer b{color:#fff}
 .droprow{cursor:pointer;transition:.12s;font-family:inherit;text-align:left}
 .droprow:hover{border-color:var(--accent);color:var(--ink);transform:translateY(-1px)}
 
+/* ---- team synergy planner ---- */
+.teamtop{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.teamtop .picker{flex:1;min-width:220px}
+.teamgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-bottom:16px}
+.slotcard{background:var(--card);border:2px solid var(--screen-edge);border-radius:12px;padding:11px 12px;
+  display:flex;flex-direction:column;gap:7px;min-height:120px}
+.slotcard.empty{border-style:dashed;align-items:center;justify-content:center;color:var(--muted2);
+  font-weight:700;font-size:12px;text-align:center;gap:8px}
+.slothead{display:flex;align-items:center;gap:8px}
+.slothead .nm{font-weight:900;font-size:14px;color:var(--ink);cursor:pointer;flex:1;line-height:1.15}
+.slothead .nm:hover{color:var(--accent-dk)}
+.slothead .rm{width:24px;height:24px;border-radius:50%;background:var(--panel3);border:1.5px solid var(--line2);
+  color:var(--muted2);font-weight:900;font-size:13px;line-height:1;padding:0}
+.slothead .rm:hover{background:var(--accent2);border-color:var(--accent2);color:#fff}
+.slotps{font-size:11px;line-height:1.5;color:var(--muted);font-weight:600}
+.slotps b{color:var(--ink);display:block;font-size:11.5px}
+.slotpass{font-size:10.5px;font-weight:700;color:var(--special)}
+.syntag{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:10px;
+  font-weight:900;letter-spacing:.3px;text-transform:uppercase;background:var(--panel3);
+  border:1.5px solid var(--line2);color:var(--muted)}
+.syntags{display:flex;flex-wrap:wrap;gap:4px}
+.synpanel{background:var(--card);border:2px solid var(--screen-edge);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.synpanel h4{margin:0 0 9px;font-size:12px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:7px}
+.synrow{display:flex;align-items:flex-start;gap:9px;padding:7px 10px;border:1.5px solid var(--line);
+  border-radius:10px;margin-bottom:6px;font-size:12px;line-height:1.5;color:var(--muted);font-weight:600;flex-wrap:wrap}
+.synrow.hot{border-color:var(--warn);border-width:2px}
+.synrow .sico{font-size:15px;line-height:1.3}
+.synrow b{color:var(--ink)}
+.synrow .elbadge{font-size:10px}
+.covrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:7px}
+.covrow .clbl{min-width:120px}
+
 /* ---- caught & favorites ---- */
 .cardtools{position:absolute;bottom:9px;right:9px;display:flex;gap:5px;z-index:2}
 .ct-btn{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -618,8 +651,13 @@ footer b{color:#fff}
   .brand h1{font-size:21px}
   .brand .ver{font-size:9.5px}
   .tabs{order:4;width:100%}
-  .tab{flex:1;text-align:center;padding:9px 4px;font-size:12px;letter-spacing:.2px}
+  .tab{flex:1;text-align:center;padding:9px 2px;font-size:11px;letter-spacing:.1px}
   .itemhead .habcount{width:100%;text-align:right}
+  .teamgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .slotcard{min-width:0}
+  .syntag{white-space:normal;text-align:left}
+  .slotcard.empty{min-height:84px}
+  .covrow .clbl{min-width:100%;margin-bottom:-2px}
   .tab{flex:1;text-align:center;padding:8px 6px;font-size:12.5px;letter-spacing:.2px}
   .counts{order:5;margin-left:0;width:100%;gap:6px}
   .counts span{font-size:10px;padding:4px 9px}
@@ -781,6 +819,7 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
       <button class="tab" data-view="breeding" role="tab" aria-selected="false">Breeding</button>
       <button class="tab" data-view="tiers" role="tab" aria-selected="false">Tiers</button>
       <button class="tab" data-view="items" role="tab" aria-selected="false">Items</button>
+      <button class="tab" data-view="team" role="tab" aria-selected="false">Team</button>
     </div>
     <div class="counts" id="counts"></div>
   </header>
@@ -934,6 +973,19 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
       <div class="tiernote">Pick any material to see <b>every Pal that drops it</b> (with quantity &amp; drop rate) and which Pals <b>produce it at the Ranch</b> — parsed from the embedded 1.0 drop tables and partner skills.</div>
       <div id="itemResult"></div>
       <div class="itemcloud" id="itemCloud"></div>
+    </div>
+  </section>
+
+  <!-- ================= TEAM (synergy planner) ================= -->
+  <section class="view" id="view-team">
+    <div class="screen bpanel">
+      <div class="teamtop">
+        <div class="picker" data-role="team"></div>
+        <button class="reset" id="teamClear">Clear team</button>
+      </div>
+      <div class="tiernote">Build a party of up to <b>5 Pals</b> and the planner reads their <b>partner skills</b> and <b>guaranteed passives</b> (from the embedded 1.0 data) to surface synergies — attack-type imbues, element damage boosts, team Attack buffs, resistances — plus your offensive coverage and defensive gaps.</div>
+      <div class="teamgrid" id="teamSlots"></div>
+      <div id="teamSyn"></div>
     </div>
   </section>
 
@@ -2227,6 +2279,127 @@ function initItems(){
 }
 
 /* ============================================================= *
+ *  TEAM — synergy planner
+ * ============================================================= */
+/* Parse each Pal's partner skill + guaranteed passives into machine-readable
+   effect tags. Passives use "Earth"/"Lightning" where the element system says
+   ground/electric, so normalize the vocabulary. */
+const EL_WORD={fire:"fire",water:"water",grass:"grass",ground:"ground",earth:"ground",
+  electric:"electric",lightning:"electric",ice:"ice",dragon:"dragon",dark:"dark",neutral:"neutral"};
+function palFx(p){
+  const d=(p.partnerSkill&&p.partnerSkill.desc)||"";
+  const fx={conv:[],boost:[],enhance:[],resist:[],pass:[]};
+  let m;
+  const rx1=/changes the player[’']?s attack type to (\w+)/ig;
+  while((m=rx1.exec(d))){ const e=EL_WORD[m[1].toLowerCase()]; if(e&&!fx.conv.includes(e)) fx.conv.push(e); }
+  const rx2=/increases (?:the )?attack of (\w+) pals/ig;
+  while((m=rx2.exec(d))){ const e=EL_WORD[m[1].toLowerCase()]; if(e&&!fx.boost.includes(e)) fx.boost.push(e); }
+  const rx3=/enhances (\w+) attacks|improves player[’']?s and pals[’']? (\w+) damage(?: to enemy weak points)? by \(([\d~]+)\)%/ig;
+  while((m=rx3.exec(d))){ const e=EL_WORD[(m[1]||m[2]||"").toLowerCase()];
+    if(e&&!fx.enhance.some(x=>x.el===e)) fx.enhance.push({el:e,amt:m[3]||null}); }
+  const rx4=/take \(([\d~]+)\)% less (\w+) damage/ig;
+  while((m=rx4.exec(d))){ const e=EL_WORD[m[2].toLowerCase()]; if(e&&!fx.resist.some(x=>x.el===e)) fx.resist.push({el:e,amt:m[1]}); }
+  const dd=DETAILS[p.name];
+  if(dd&&dd.passives) for(const ps of dd.passives){
+    let mm; const rxp=/(\d+)% increase (?:in|to) (\w+) attack damage/ig;
+    while((mm=rxp.exec(ps.desc||""))){ const e=EL_WORD[mm[2].toLowerCase()];
+      if(e) fx.pass.push({el:e,pct:+mm[1],name:ps.name}); }
+  }
+  return fx;
+}
+let TEAM=(function(){ try{ return (JSON.parse(localStorage.getItem("paldex-team")||"[]")||[])
+  .filter(i=>byIndex.has(i)).slice(0,5); }catch(e){ return []; } })();
+function saveTeam(){ try{ localStorage.setItem("paldex-team",JSON.stringify(TEAM)); }catch(e){} }
+function teamAdd(p){
+  if(TEAM.length>=5||TEAM.includes(p.internalIndex)) return;
+  TEAM.push(p.internalIndex); saveTeam(); renderTeam(); blink("g");
+}
+function teamRemove(i){ TEAM=TEAM.filter(x=>x!==i); saveTeam(); renderTeam(); blink("r"); }
+window.teamRemove=teamRemove;
+function fxTags(fx){
+  const t=[];
+  fx.conv.forEach(e=>t.push(`<span class="syntag">🗡 imbue ${e}</span>`));
+  fx.boost.forEach(e=>t.push(`<span class="syntag">📣 ${e} pals atk↑</span>`));
+  fx.enhance.forEach(x=>t.push(`<span class="syntag">💥 ${x.el} dmg↑</span>`));
+  fx.resist.forEach(x=>t.push(`<span class="syntag">🛡 ${x.el} res</span>`));
+  fx.pass.forEach(x=>t.push(`<span class="syntag">⭐ ${x.el} +${x.pct}%</span>`));
+  return t.length?`<div class="syntags">${t.join("")}</div>`:"";
+}
+function renderTeamSlots(){
+  const box=$("#teamSlots"); let html="";
+  for(let s=0;s<5;s++){
+    const idx=TEAM[s];
+    if(idx==null){ html+=`<div class="slotcard empty">${EGG_SVG}<div>Slot ${s+1} — add a Pal above</div></div>`; continue; }
+    const p=byIndex.get(idx), fx=palFx(p), dd=DETAILS[p.name]||{};
+    html+=`<div class="slotcard">
+      <div class="slothead">${avatarHtml(p,"mini-av2")}
+        <span class="nm" onclick="gotoPaldex(${idx})">${p.name}<br>${elBadges(p)}</span>
+        <button class="rm" onclick="teamRemove(${idx})" aria-label="Remove ${p.name}">×</button></div>
+      ${p.partnerSkill?`<div class="slotps"><b>${p.partnerSkill.name||"Partner skill"}</b>${p.partnerSkill.desc||""}</div>`:""}
+      ${(dd.passives&&dd.passives.length)?`<div class="slotpass">⭐ ${dd.passives.map(x=>x.name).join(" · ")}</div>`:""}
+      ${fxTags(fx)}</div>`;
+  }
+  box.innerHTML=html;
+}
+function elChip(e){ return elChipsSmall([e]); }
+function renderTeamSyn(){
+  const box=$("#teamSyn");
+  if(!TEAM.length){ box.innerHTML=""; return; }
+  const members=TEAM.map(i=>({p:byIndex.get(i),fx:palFx(byIndex.get(i))}));
+  const rows=[];
+  /* imbue × damage-boost combos (the "player does mud damage + mud damage up" case) */
+  for(const a of members) for(const e of a.fx.conv){
+    for(const b of members) if(b!==a) for(const x of b.fx.enhance) if(x.el===e)
+      rows.push({hot:true,ico:"🔥",html:`<b>${a.p.name}</b> turns your attacks ${elChip(e)} and <b>${b.p.name}</b> boosts ${elChip(e)} damage${x.amt?` by <b>${x.amt}%</b>`:""} — stack them.`});
+  }
+  /* self imbue+enhance on one pal (Frostallion pattern) */
+  for(const a of members) for(const e of a.fx.conv)
+    if(a.fx.enhance.some(x=>x.el===e))
+      rows.push({hot:true,ico:"🔥",html:`<b>${a.p.name}</b> both imbues your attacks ${elChip(e)} <i>and</i> boosts ${elChip(e)} damage — a self-contained combo.`});
+  /* team attack buffs hitting actual members */
+  for(const a of members) for(const e of a.fx.boost){
+    const hits=members.filter(b=>b!==a&&b.p.elements&&b.p.elements.includes(e));
+    if(hits.length) rows.push({ico:"📣",html:`<b>${a.p.name}</b> raises Attack of ${elChip(e)} Pals — buffs <b>${hits.map(h=>h.p.name).join(", ")}</b>.`});
+  }
+  /* guaranteed passives that boost the pal's own element */
+  for(const a of members) for(const x of a.fx.pass)
+    if(a.p.elements&&a.p.elements.includes(x.el))
+      rows.push({ico:"⭐",html:`<b>${a.p.name}</b>'s guaranteed passive <b>${x.name}</b> gives +${x.pct}% ${elChip(x.el)} damage to its own skills.`});
+  /* multiple imbuers: only one applies */
+  const convAll=members.flatMap(a=>a.fx.conv.map(e=>({n:a.p.name,e})));
+  if(convAll.length>1)
+    rows.push({ico:"⚠️",html:`You have <b>${convAll.length} attack-type imbuers</b> (${convAll.map(c=>c.n).join(", ")}) — only the one currently active (or mounted) applies to the player.`});
+  /* duplicate resistances don't stack */
+  const resBy={};
+  for(const a of members) for(const x of a.fx.resist) (resBy[x.el]=resBy[x.el]||[]).push(a.p.name);
+  for(const e in resBy){
+    if(resBy[e].length>1) rows.push({ico:"⚠️",html:`${elChip(e)} resistance from <b>${resBy[e].join(" and ")}</b> — these auras <b>do not stack</b>; one is redundant.`});
+    else rows.push({ico:"🛡",html:`<b>${resBy[e][0]}</b> reduces ${elChip(e)} damage for the whole party.`});
+  }
+  /* coverage from team elements + player imbues */
+  const els=[...new Set(members.flatMap(a=>a.p.elements||[]).concat(convAll.map(c=>c.e)))];
+  const covered=[...new Set(els.flatMap(e=>EL_STRONG[e]||[]))];
+  const gaps=ELEMENTS.filter(e=>!covered.includes(e));
+  const threats={};
+  for(const a of members) for(const w of (a.p.elements||[]).flatMap(e=>weakTo(e))) threats[w]=(threats[w]||0)+1;
+  const bigThreats=Object.keys(threats).filter(e=>threats[e]>=2);
+  box.innerHTML=`
+    ${rows.length?`<div class="synpanel"><h4>⚡ Detected synergies</h4>${rows.map(r=>`<div class="synrow${r.hot?' hot':''}"><span class="sico">${r.ico}</span><span>${r.html}</span></div>`).join("")}</div>`:""}
+    <div class="synpanel"><h4>🎯 Type coverage</h4>
+      <div class="covrow"><span class="clbl">Team elements</span>${els.length?elChipsSmall(els):"—"}</div>
+      <div class="covrow"><span class="clbl">Hits 2× against</span>${covered.length?elChipsSmall(covered):"—"}</div>
+      <div class="covrow"><span class="clbl">No 2× answer for</span>${gaps.length?elChipsSmall(gaps):'<b style="color:var(--accent-dk)">nothing — full coverage!</b>'}</div>
+      ${bigThreats.length?`<div class="covrow"><span class="clbl">Shared weakness</span>${elChipsSmall(bigThreats)}<span style="font-weight:600;color:var(--muted2)">(hits ${bigThreats.map(e=>threats[e]).join("/")} of your Pals for 2×)</span></div>`:""}
+    </div>`;
+}
+function renderTeam(){ renderTeamSlots(); renderTeamSyn(); }
+function initTeam(){
+  makePicker($('.picker[data-role=team]'),p=>{ teamAdd(p); },{placeholder:"Add a Pal to your team…"});
+  $("#teamClear").onclick=()=>{ TEAM=[]; saveTeam(); renderTeam(); blink("r"); };
+  renderTeam();
+}
+
+/* ============================================================= *
  *  WIRING
  * ============================================================= */
 function initTabs(){
@@ -2296,7 +2469,7 @@ function initControls(){
   };
 }
 function boot(){
-  buildFilters(); initControls(); initTabs(); initBreeding(); initDevice(); initHabModal(); initTiers(); initCompare(); initItems();
+  buildFilters(); initControls(); initTabs(); initBreeding(); initDevice(); initHabModal(); initTiers(); initCompare(); initItems(); initTeam();
   renderOwned();
   render();
   renderForward();
