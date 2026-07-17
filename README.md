@@ -23,7 +23,7 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - **Per-Pal URLs**: `#pal=<slug>` deep links in the app, plus 299 static `/pal/<slug>` pages (real content + interlinks) for search engines.
 
 **Tier lists**
-- **Combat** and **Base Work** boards curated from the most recent 1.0 community tier lists (NextTier Jul 17 2026, cross-checked vs PalMods, Game8, oslink, GameRant, mein-mmo and creator boards from DPJ, Moxsy, KhrazeGaming and The Pal Professor — sources linked in-app), with an **Early / Mid / End game-stage selector** so new players get day-one value. Every name is validated against the dex at build time.
+- **Combat** and **Base Work** boards curated from the most recent 1.0 community tier lists (NextTier Jul 17 2026, cross-checked vs PalMods, Game8, oslink, GameRant, mein-mmo, creator boards from DPJ, Moxsy, KhrazeGaming and The Pal Professor, plus palworld.gg's stat-formula ranking as an objective cross-check — sources linked in-app), with an **Early / Mid / End game-stage selector** so new players get day-one value. Every name is validated against the dex at build time.
 - **Elements** (9 boards, ranked by base Attack), **Jobs** (12 boards, grouped by work level — 1.0 specialists reach Lv 8) and **Mounts** (Flying/Ground/Water by Ride Sprint) are computed from the embedded game data, so they're complete and objective. The game-stage selector works here too — it filters by in-game rarity (early ≤ 4, mid ≤ 7), so "best flying mount early game" honestly answers *Nitewing*.
 
 **Breeding calculator**

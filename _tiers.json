@@ -61,10 +61,15 @@
    "name": "mein-mmo — Palworld 1.0 Tier List",
    "url": "https://mein-mmo.de/en/palworld-1-0-tier-list-with-all-new-pals-that-came-with-the-full-version,1577812/",
    "updated": "2026-07-14"
+  },
+  {
+   "name": "palworld.gg — Combat Tier List (stat-formula: Atk×√(HP×Def))",
+   "url": "https://palworld.gg/tier-list/combat",
+   "updated": "2026-07-17"
   }
  ],
  "combat": {
-  "note": "Community consensus as of Jul 17: NextTier (updated Jul 17) cross-checked against PalMods (Jul 15), Game8, oslink, GameRant, and creator boards from The Pal Professor, Moxsy and Palworld Raids. Tier lists are opinion — the meta is still settling.",
+  "note": "Community consensus as of Jul 17: NextTier (updated Jul 17) cross-checked against PalMods (Jul 15), Game8, oslink, GameRant, mein-mmo, creator boards from The Pal Professor, Moxsy and Palworld Raids, and palworld.gg's stat-formula ranking (Atk×√(HP×Def)) as an objective cross-check — 10 of its 14 top-5% Pals match this S tier; the rest are base-work chassis. Tier lists are opinion — the meta is still settling.",
   "stages": {
    "early": {
     "blurb": "Roughly levels 1–25: what carries you before real breeding and legendaries.",
