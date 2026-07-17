@@ -1,60 +1,299 @@
 {
-  "version": "1.0",
-  "curatedDate": "2026-07-14",
-  "sources": [
-    {"name": "NextTier — Combat Rankings (1.0)", "url": "https://nexttier.pro/guide/palworld-best-pals-tier-list", "updated": "2026-07-14"},
-    {"name": "NextTier — Best Base Pals (1.0)", "url": "https://nexttier.pro/guide/palworld-best-base-pals", "updated": "2026-07-14"},
-    {"name": "PalMods — Data-Ranked Combat (1.0)", "url": "https://www.palmods.gg/guides/tier-list/combat", "updated": "2026-07-13"},
-    {"name": "Game8 — Best Pals Tier List (1.0)", "url": "https://game8.co/games/Palworld/archives/440209", "updated": "2026-07-12"},
-    {"name": "oslink — Palworld Tier List (1.0)", "url": "https://www.oslink.io/blog/guide/palworld-tier-list.html", "updated": "2026-07-12"},
-    {"name": "NeonLightsMedia — Best Early Game Pals (1.0)", "url": "https://www.neonlightsmedia.com/blog/palworld-1-0-best-early-game-pals", "updated": "2026-07-10"}
-  ],
-  "combat": {
-    "note": "Community consensus, primary source NextTier (Jul 14) cross-checked against PalMods, Game8, and oslink; early-game picks from NeonLightsMedia and GameRant. Tier lists are opinion — the meta is still settling.",
-    "stages": {
-      "early": {
-        "blurb": "Roughly levels 1–25: what carries you before real breeding and legendaries.",
-        "S": ["Daedream", "Foxparks", "Incineram", "Chillet", "Eikthyrdeer"],
-        "A": ["Direhowl", "Penking", "Nitewing", "Rushoar"],
-        "B": ["Lifmunk", "Tanzee", "Gobfin"]
-      },
-      "mid": {
-        "blurb": "Roughly levels 25–45: the reliable bodies that carry you to the endgame roster.",
-        "S": ["Anubis", "Grizzbolt", "Katress Ignis", "Mossanda Lux"],
-        "A": ["Incineram", "Helzephyr", "Menasting", "Warsect", "Quivern", "Elphidran", "Fenglope", "Beakon", "Ragnahawk"],
-        "B": ["Pyrin", "Pyrin Noct", "Chillet Ignis", "Rayhound", "Bushi", "Vanwyrm", "Tombat", "Lunaris"]
-      },
-      "end": {
-        "blurb": "Level 45+: raid- and tower-ready rosters.",
-        "S": ["Jetragon", "Xenolord", "Necromus", "Paladius", "Frostallion", "Frostallion Noct", "Jormuntide Ignis", "Blazamut Ryu", "Shadowbeak", "Bellanoir Libero", "Hartalis", "Anubis"],
-        "A": ["Suzaku", "Faleris", "Grizzbolt", "Orserk", "Relaxaurus Lux", "Astegon", "Beakon", "Bastigor", "Neptilius", "Selyne"],
-        "B": ["Incineram", "Reptyro Cryst", "Helzephyr", "Menasting", "Warsect", "Quivern", "Elphidran"],
-        "C": ["Ragnahawk", "Pyrin", "Direhowl"]
-      }
-    }
+ "version": "1.0",
+ "curatedDate": "2026-07-17",
+ "sources": [
+  {
+   "name": "NextTier — Combat Rankings (1.0)",
+   "url": "https://nexttier.pro/guide/palworld-best-pals-tier-list",
+   "updated": "2026-07-17"
   },
-  "workers": {
-    "note": "From NextTier's per-job 1.0 rankings (Jul 14) plus early-game picks from NeonLightsMedia. S = best available at that stage, A = strong picks, B = fills the gaps.",
-    "stages": {
-      "early": {
-        "blurb": "First bases: cheap, catchable on day one, keeps the workbench moving.",
-        "S": ["Cattiva", "Vixy", "Pupperai", "Wispaw"],
-        "A": ["Lifmunk", "Pengullet", "Tanzee", "Incineram", "Eikthyrdeer", "Rushoar"],
-        "B": ["Lamball", "Chikipi", "Foxparks", "Fuack"]
-      },
-      "mid": {
-        "blurb": "Second base era: specialists start replacing generalists.",
-        "S": ["Anubis", "Verdash", "Digtoise", "Penking"],
-        "A": ["Tombat", "Arsox", "Broncherry", "Mossanda", "Wumpo", "Beegarde"],
-        "B": ["Braloha", "Faleris", "Knocklem", "Mozzarina"]
-      },
-      "end": {
-        "blurb": "Endgame: the Lv8 specialists and the best pick for every job.",
-        "S": ["Renjishi", "Solenne", "Aegidron", "Selyne", "Anubis", "Jormuntide Ignis", "Blazamut Ryu", "Jormuntide", "Lyleen", "Orserk", "Frostallion Noct", "Wumpo Botan", "Vixy"],
-        "A": ["Faleris Aqua", "Azurmane", "Splatterina", "Celesdir", "Hartalis", "Blazamut", "Astegon", "Knocklem", "Bellanoir", "Bellanoir Libero", "Frostallion", "Whalaska", "Wumpo"],
-        "B": ["Ragnahawk", "Blazehowl", "Suzaku", "Azurobe", "Suzaku Aqua", "Broncherry Aqua", "Broncherry", "Petallia", "Prunelia", "Relaxaurus Lux", "Grizzbolt", "Puffolt", "Lunaris", "Verdash", "Dogen", "Knocklem Ignis", "Bushi", "Prixter", "Warsect", "Silvegis", "Digtoise", "Menasting", "Bastigor", "Vaelet", "Felbat", "Pengullet", "Mossanda", "Beakon", "Chikipi", "Mozzarina", "Beegarde"],
-        "C": ["Tombat", "Penking", "Arsox", "Wispaw"]
-      }
-    }
+  {
+   "name": "NextTier — Best Base Pals (1.0)",
+   "url": "https://nexttier.pro/guide/palworld-best-base-pals",
+   "updated": "2026-07-14"
+  },
+  {
+   "name": "PalMods — Data-Ranked Combat (1.0)",
+   "url": "https://www.palmods.gg/guides/tier-list/combat",
+   "updated": "2026-07-15"
+  },
+  {
+   "name": "Game8 — Best Pals Tier List (1.0)",
+   "url": "https://game8.co/games/Palworld/archives/440209",
+   "updated": "2026-07-12"
+  },
+  {
+   "name": "oslink — Palworld Tier List (1.0)",
+   "url": "https://www.oslink.io/blog/guide/palworld-tier-list.html",
+   "updated": "2026-07-12"
+  },
+  {
+   "name": "NeonLightsMedia — Best Early Game Pals (1.0)",
+   "url": "https://www.neonlightsmedia.com/blog/palworld-1-0-best-early-game-pals",
+   "updated": "2026-07-10"
+  },
+  {
+   "name": "DPJ — Best Base Pals (1.0)",
+   "url": "https://www.youtube.com/watch?v=bbwsd1jwris",
+   "updated": "2026-07-15"
+  },
+  {
+   "name": "Moxsy — Top 10 Must Have Pals (1.0)",
+   "url": "https://www.youtube.com/watch?v=yMrnO5OsZ-c",
+   "updated": "2026-07-14"
+  },
+  {
+   "name": "KhrazeGaming — Best Worker Pals 1–80 (1.0)",
+   "url": "https://www.youtube.com/watch?v=An0XN29XfOc",
+   "updated": "2026-07-13"
+  },
+  {
+   "name": "The Pal Professor — End Game Combat Tierlist (1.0)",
+   "url": "https://www.youtube.com/watch?v=z4RG5wAqEbc",
+   "updated": "2026-07-10"
+  },
+  {
+   "name": "GameRant — Best Combat Pals (1.0)",
+   "url": "https://gamerant.com/best-pals-for-combat-in-palworld-1-0/",
+   "updated": "2026-07-13"
+  },
+  {
+   "name": "mein-mmo — Palworld 1.0 Tier List",
+   "url": "https://mein-mmo.de/en/palworld-1-0-tier-list-with-all-new-pals-that-came-with-the-full-version,1577812/",
+   "updated": "2026-07-14"
   }
+ ],
+ "combat": {
+  "note": "Community consensus as of Jul 17: NextTier (updated Jul 17) cross-checked against PalMods (Jul 15), Game8, oslink, GameRant, and creator boards from The Pal Professor, Moxsy and Palworld Raids. Tier lists are opinion — the meta is still settling.",
+  "stages": {
+   "early": {
+    "blurb": "Roughly levels 1–25: what carries you before real breeding and legendaries.",
+    "S": [
+     "Daedream",
+     "Foxparks",
+     "Incineram",
+     "Chillet",
+     "Eikthyrdeer"
+    ],
+    "A": [
+     "Direhowl",
+     "Penking",
+     "Nitewing",
+     "Rushoar"
+    ],
+    "B": [
+     "Lifmunk",
+     "Tanzee",
+     "Gobfin"
+    ]
+   },
+   "mid": {
+    "blurb": "Roughly levels 25–45: the reliable bodies that carry you to the endgame roster. Katress Ignis reads as a base kindling buffer in 1.0 sources, so it slips to A.",
+    "S": [
+     "Anubis",
+     "Grizzbolt",
+     "Mossanda Lux",
+     "Moldron"
+    ],
+    "A": [
+     "Katress Ignis",
+     "Knocklem Ignis",
+     "Incineram",
+     "Helzephyr",
+     "Menasting",
+     "Warsect",
+     "Quivern",
+     "Elphidran",
+     "Fenglope",
+     "Beakon",
+     "Ragnahawk"
+    ],
+    "B": [
+     "Pyrin",
+     "Pyrin Noct",
+     "Chillet Ignis",
+     "Rayhound",
+     "Bushi",
+     "Vanwyrm",
+     "Tombat",
+     "Lunaris"
+    ]
+   },
+   "end": {
+    "blurb": "Level 45+: raid- and tower-ready rosters. Creator meta (Jul 15–17) pushed Orserk (stacking party buff), Selyne, Neptilius and new Panthalus into S; Anubis is now rated a base legend more than a fighter.",
+    "S": [
+     "Jetragon",
+     "Xenolord",
+     "Necromus",
+     "Paladius",
+     "Frostallion",
+     "Frostallion Noct",
+     "Jormuntide Ignis",
+     "Blazamut Ryu",
+     "Shadowbeak",
+     "Bellanoir Libero",
+     "Hartalis",
+     "Neptilius",
+     "Selyne",
+     "Orserk",
+     "Panthalus"
+    ],
+    "A": [
+     "Anubis",
+     "Suzaku",
+     "Faleris",
+     "Grizzbolt",
+     "Relaxaurus Lux",
+     "Astegon",
+     "Beakon",
+     "Bastigor",
+     "Knocklem",
+     "Bellanoir"
+    ],
+    "B": [
+     "Incineram",
+     "Reptyro Cryst",
+     "Helzephyr",
+     "Menasting",
+     "Warsect",
+     "Quivern",
+     "Elphidran"
+    ],
+    "C": [
+     "Ragnahawk",
+     "Pyrin",
+     "Direhowl"
+    ]
+   }
+  }
+ },
+ "workers": {
+  "note": "From NextTier's per-job 1.0 rankings plus creator picks from KhrazeGaming (Jul 13), DPJ (Jul 15) and mein-mmo; early-game picks from NeonLightsMedia. S = best available at that stage, A = strong picks, B = fills the gaps.",
+  "stages": {
+   "early": {
+    "blurb": "First bases: cheap, catchable on day one, keeps the workbench moving.",
+    "S": [
+     "Cattiva",
+     "Vixy",
+     "Pupperai",
+     "Wispaw"
+    ],
+    "A": [
+     "Clovee",
+     "Lifmunk",
+     "Pengullet",
+     "Tanzee",
+     "Incineram",
+     "Eikthyrdeer",
+     "Rushoar"
+    ],
+    "B": [
+     "Lamball",
+     "Chikipi",
+     "Foxparks",
+     "Fuack"
+    ]
+   },
+   "mid": {
+    "blurb": "Second base era: specialists start replacing generalists. Alpha Sekhmet + Anubis is the standout handiwork combo. Note: 1.0 moved Anubis to level 55+ zones and removed the old early breeding shortcut.",
+    "S": [
+     "Anubis",
+     "Sekhmet",
+     "Verdash",
+     "Digtoise",
+     "Penking"
+    ],
+    "A": [
+     "Tombat",
+     "Arsox",
+     "Broncherry",
+     "Mossanda",
+     "Wumpo",
+     "Beegarde"
+    ],
+    "B": [
+     "Braloha",
+     "Faleris",
+     "Knocklem",
+     "Mozzarina"
+    ]
+   },
+   "end": {
+    "blurb": "Endgame: the Lv8 specialists and the best pick for every job — including the new World Tree suitability holders (Dandilord planting, Shaolong watering, Silvance medicine, Celesdir Noct lumbering).",
+    "S": [
+     "Renjishi",
+     "Solenne",
+     "Aegidron",
+     "Selyne",
+     "Anubis",
+     "Jormuntide Ignis",
+     "Blazamut Ryu",
+     "Jormuntide",
+     "Lyleen",
+     "Orserk",
+     "Frostallion Noct",
+     "Wumpo Botan",
+     "Dandilord",
+     "Shaolong",
+     "Silvance",
+     "Celesdir Noct"
+    ],
+    "A": [
+     "Ophydia",
+     "Faleris Aqua",
+     "Azurmane",
+     "Splatterina",
+     "Celesdir",
+     "Hartalis",
+     "Blazamut",
+     "Astegon",
+     "Knocklem",
+     "Bellanoir",
+     "Bellanoir Libero",
+     "Frostallion",
+     "Whalaska",
+     "Wumpo"
+    ],
+    "B": [
+     "Ragnahawk",
+     "Blazehowl",
+     "Suzaku",
+     "Azurobe",
+     "Suzaku Aqua",
+     "Broncherry Aqua",
+     "Broncherry",
+     "Petallia",
+     "Prunelia",
+     "Relaxaurus Lux",
+     "Grizzbolt",
+     "Puffolt",
+     "Lunaris",
+     "Verdash",
+     "Dogen",
+     "Knocklem Ignis",
+     "Bushi",
+     "Prixter",
+     "Warsect",
+     "Silvegis",
+     "Digtoise",
+     "Menasting",
+     "Bastigor",
+     "Vaelet",
+     "Felbat",
+     "Pengullet",
+     "Mossanda",
+     "Beakon",
+     "Chikipi",
+     "Mozzarina",
+     "Beegarde"
+    ],
+    "C": [
+     "Tombat",
+     "Penking",
+     "Arsox",
+     "Wispaw"
+    ]
+   }
+  }
+ }
 }
