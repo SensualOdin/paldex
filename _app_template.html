@@ -348,10 +348,32 @@ select:hover,.mini:hover{border-color:var(--muted2)}
 .owned-tag button{color:var(--muted);font-weight:900;padding:0 4px}
 .owned-tag button:hover{color:var(--accent2)}
 .chain-steps{display:flex;flex-direction:column;gap:8px;margin-top:14px}
-.cstep{display:flex;align-items:center;gap:10px;background:var(--card);border:2px solid var(--screen-edge);border-radius:10px;padding:10px 12px;font-weight:800}
-.cstep .num{width:24px;height:24px;border-radius:999px;background:var(--accent2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
-.cstep .eq{color:var(--muted2)}
-.cstep .to{color:var(--accent)}
+/* chain family tree: target at top, ancestors branch downward, owned Pals are leaves */
+.ftwrap{overflow-x:auto;padding:6px 2px 10px}
+.ft{display:flex;justify-content:center;min-width:max-content;margin:0 auto}
+.ft ul{display:flex;justify-content:center;padding:0;margin:0;list-style:none;position:relative}
+.ft li{display:flex;flex-direction:column;align-items:center;position:relative;padding:20px 10px 0}
+.ft li::before{content:"";position:absolute;top:0;left:50%;width:2px;height:20px;background:var(--line2)}
+.ft li::after{content:"";position:absolute;top:0;height:2px;background:var(--line2);left:0;right:0}
+.ft li:first-child::after{left:50%}
+.ft li:last-child::after{right:50%}
+.ft li:only-child::after{display:none}
+.ft li:only-child{padding-top:0}
+.ft li:only-child::before{display:none}
+.ftdown{width:2px;height:20px;background:var(--line2)}
+.ftchip{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--card);
+  border:2px solid var(--screen-edge);border-radius:12px;padding:8px 12px;cursor:pointer;
+  font-weight:800;font-size:12px;color:var(--ink);position:relative;transition:.12s;min-width:86px}
+.ftchip:hover{border-color:var(--accent);transform:translateY(-1px)}
+.ftchip .mini-av2{width:40px;height:40px}
+.ftchip.target{border-color:var(--accent);border-width:2.5px;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.ftchip.owned{border-color:var(--accent2)}
+.ftchip .fttag{font-size:9px;font-weight:900;letter-spacing:.4px;text-transform:uppercase;color:var(--accent2)}
+.ftchip.target .fttag{color:var(--accent)}
+.ftstep{position:absolute;top:-9px;right:-9px;width:22px;height:22px;border-radius:999px;background:var(--accent2);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;
+  box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.ftgender{font-size:9px;font-weight:900;color:#a05a00;background:#ffe9c2;border-radius:999px;padding:1px 7px}
 .advrow{display:flex;align-items:center;gap:10px;margin-top:14px;color:var(--muted);font-size:12px;font-weight:700}
 .advrow input[type=number]{width:60px;background:var(--card);border:2px solid var(--screen-edge);color:var(--text);border-radius:6px;padding:5px 8px;font-weight:700}
 .msg{color:var(--muted);padding:16px;text-align:center;font-size:13px;font-weight:600}
@@ -1980,17 +2002,28 @@ function runChainFinder(){
     return;
   }
   if(steps.length===0){ box.innerHTML=`<div class="msg">You already own <b>${chain.target.name}</b>.</div>`; return; }
-  const rows=steps.map(([a,b,c],i)=>{
-    const pa=byIndex.get(a),pb=byIndex.get(b),pc=byIndex.get(c);
-    let gnote="";
-    if(isGenderLockedPair(a,b)) gnote=' <span class="tag gender" style="margin-left:6px">check gender</span>';
-    return `<div class="cstep"><div class="num">${i+1}</div>
-      ${avatarHtml(pa,"mini-av3")}<span>${pa.name}</span><span class="eq">+</span>
-      ${avatarHtml(pb,"mini-av3")}<span>${pb.name}</span>
-      <span class="eq">=</span>${avatarHtml(pc,"mini-av3")}<span class="to">${pc.name}</span>${gnote}</div>`;
-  }).join("");
-  box.innerHTML=`<div style="margin:6px 0 4px;color:var(--muted);font-size:12.5px">Shortest chain: <b style="color:var(--text)">${steps.length}</b> breeding step${steps.length===1?'':'s'} to <b style="color:var(--accent)">${chain.target.name}</b>.</div>
-    <div class="chain-steps">${rows}</div>`;
+  /* family tree: childMap traces each bred Pal back to its parents */
+  const childMap=new Map(); // child idx -> {a,b,step}
+  steps.forEach(([a,b,c],i)=>childMap.set(c,{a,b,step:i+1}));
+  const ownedSet=new Set(owned);
+  const chip=(idx,isTarget)=>{
+    const p=byIndex.get(idx), bred=childMap.get(idx);
+    const tag=isTarget?'<span class="fttag">🎯 target</span>'
+      :ownedSet.has(idx)?'<span class="fttag">✓ owned</span>'
+      :'<span class="fttag" style="color:var(--muted2)">bred</span>';
+    const g=bred&&isGenderLockedPair(bred.a,bred.b)?'<span class="ftgender">check gender</span>':'';
+    return `<div class="ftchip${isTarget?' target':''}${ownedSet.has(idx)&&!isTarget?' owned':''}" onclick="gotoPaldex(${idx})" role="button" tabindex="0">
+      ${bred?`<span class="ftstep" title="Breeding step ${bred.step}">${bred.step}</span>`:''}
+      ${avatarHtml(p,"mini-av2")}<span>${p.name}</span>${tag}${g}</div>`;
+  };
+  const node=(idx,isTarget)=>{
+    const bred=childMap.get(idx);
+    if(!bred) return chip(idx,isTarget);
+    return `${chip(idx,isTarget)}<div class="ftdown"></div>
+      <ul><li>${node(bred.a)}</li><li>${node(bred.b)}</li></ul>`;
+  };
+  box.innerHTML=`<div style="margin:6px 0 10px;color:var(--muted);font-size:12.5px">Shortest chain: <b style="color:var(--text)">${steps.length}</b> breeding step${steps.length===1?'':'s'} to <b style="color:var(--accent)">${chain.target.name}</b>. Read the tree bottom-up — breed the numbered pairs in order (step 1 first); ✓ leaves are Pals you already own.</div>
+    <div class="ftwrap"><div class="ft"><div style="display:flex;flex-direction:column;align-items:center">${node(t,true)}</div></div></div>`;
 }
 
 /* ============================================================= *
