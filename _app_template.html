@@ -2274,6 +2274,9 @@ const ITEM_EMOJI={Wool:"🧶",Egg:"🥚",Milk:"🥛",Honey:"🍯",Leather:"🟤"
   Charcoal:"⚫",Gunpowder:"💥",Soralite:"🌌"};
 function itemEmoji(n){
   if(ITEM_EMOJI[n]) return ITEM_EMOJI[n];
+  if(/ingot$/i.test(n)) return "🔩";
+  if(/board|plank|lumber/i.test(n)) return "🪵";
+  if(/cloth$/i.test(n)) return "🧵";
   if(/seeds$/i.test(n)) return "🌱";
   if(/soul$/i.test(n)) return "👻";
   if(/manual$/i.test(n)) return "📘";
@@ -2307,7 +2310,7 @@ function renderItemPanel(){
     ${e.ranch.length?`<h4>🏡 Ranch production</h4><div class="tierpals">${e.ranch.map(rchip).join("")}</div>
       <div class="ranchnote">Assign these Pals to a Ranch at your base — their partner skill makes them produce ${escA(ITEMSEL)} on their own.</div>`:""}
     ${db.sources&&db.sources.length?`<h4>🗺 Also found via</h4><div class="tierpals">${db.sources.map(s=>`<span class="itemchip" style="cursor:default">${s}</span>`).join("")}</div>`:""}
-    ${db.craftedFrom?`<h4>🧪 Crafted from</h4><div class="tierpals">${db.craftedFrom.map(m=>craftChip(m.mat,m.qty,true)).join("")}</div>`:""}
+    ${db.craftedFrom?`<h4>🧪 Crafted from${db.station?` <span style="font-weight:600;text-transform:none;letter-spacing:0">— at ${db.station.join(" / ")}</span>`:""}</h4><div class="tierpals">${db.craftedFrom.map(m=>craftChip(m.mat,m.qty,true)).join("")}</div>`:""}
     ${db.usedIn&&db.usedIn.length?`<h4>🔨 Used to craft <span style="font-weight:600;text-transform:none;letter-spacing:0">(needs ×N of this)</span></h4><div class="tierpals">${db.usedIn.map(u=>craftChip(u.product,u.qty,false)).join("")}</div>`:""}
   </div>`;
 }

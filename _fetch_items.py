@@ -126,6 +126,40 @@ def parse_meta(page):
     return meta
 
 
+def scrape_one(n):
+    slug = urllib.parse.quote(n.replace(" ", "_"))
+    try:
+        page = fetch_retry(PALDB_URL.format(slug), attempts=2)
+    except Exception:
+        # paldb drops apostrophes from some slugs (Elizabee's Staff)
+        page = fetch_retry(PALDB_URL.format(
+            urllib.parse.quote(n.replace("'", "").replace(" ", "_"))))
+    secs = sections(page)
+    entry = parse_meta(page)
+    if "Crafting Materials" in secs:
+        used, crafted = parse_recipes(secs["Crafting Materials"], n)
+        if used: entry["usedIn"] = used
+        if crafted: entry["craftedFrom"] = crafted
+    if "Production" in secs:
+        # the item's own recipe lives here, prefixed by its crafting station(s)
+        head = re.split(r"<table|<thead", secs["Production"], 1)[0]
+        st = re.sub(r"<[^>]+>", "|", head)
+        stations = [s.strip() for s in st.split("|")
+                    if re.fullmatch(r"[A-Za-z][A-Za-z' ]{2,30}", s.strip())]
+        _, crafted = parse_recipes(secs["Production"], n)
+        if crafted: entry["craftedFrom"] = crafted
+        if stations: entry["station"] = stations[:3]
+    src = [lbl for sec, lbl in SECTION_LABEL.items() if sec in secs]
+    if src: entry["sources"] = src
+    return entry, secs
+
+
+def refs(entry):
+    """Item names an entry links to (recipe products + ingredients)."""
+    return {u["product"] for u in entry.get("usedIn", [])} | \
+           {m["mat"] for m in entry.get("craftedFrom", [])}
+
+
 def main():
     details = json.load(open("_paldetails.json", encoding="utf-8"))
     names = set(EXTRA_ITEMS)
@@ -144,22 +178,8 @@ def main():
 
     out, failed, unknown_secs = {}, [], set()
     for i, n in enumerate(names):
-        slug = urllib.parse.quote(n.replace(" ", "_"))
         try:
-            try:
-                page = fetch_retry(PALDB_URL.format(slug), attempts=2)
-            except Exception:
-                # paldb drops apostrophes from some slugs (Elizabee's Staff)
-                page = fetch_retry(PALDB_URL.format(
-                    urllib.parse.quote(n.replace("'", "").replace(" ", "_"))))
-            secs = sections(page)
-            entry = parse_meta(page)
-            if "Crafting Materials" in secs:
-                used, crafted = parse_recipes(secs["Crafting Materials"], n)
-                if used: entry["usedIn"] = used
-                if crafted: entry["craftedFrom"] = crafted
-            src = [lbl for sec, lbl in SECTION_LABEL.items() if sec in secs]
-            if src: entry["sources"] = src
+            entry, secs = scrape_one(n)
             unknown_secs |= set(secs) - set(SECTION_LABEL) - IGNORE_SECTIONS
             if entry:
                 out[n] = entry
@@ -172,8 +192,33 @@ def main():
             print(f"  {i+1}/{len(names)}")
         time.sleep(1.2)
 
+    # Closure pass: follow recipe references and pull in crafted MATERIALS
+    # (Coralum Ingot, boards, cloth tiers, ...) so intermediates are
+    # first-class items. Gear (weapons/armor/saddles) is left out to keep the
+    # materials cloud focused — it still shows as end-of-chain recipe chips.
+    seen_nonmat = set()
+    for round_no in range(3):
+        frontier = sorted({r for e in out.values() for r in refs(e)}
+                          - set(out) - seen_nonmat - SKIP - set(failed))
+        if not frontier:
+            break
+        print(f"closure round {round_no+1}: {len(frontier)} referenced items")
+        for n in frontier:
+            try:
+                entry, secs = scrape_one(n)
+                if entry.get("type") in ("Material", "Ingredient"):
+                    out[n] = entry
+                    unknown_secs |= set(secs) - set(SECTION_LABEL) - IGNORE_SECTIONS
+                else:
+                    seen_nonmat.add(n)
+            except Exception as e:
+                print(f"  ERR {n}: {e}", file=sys.stderr)
+                seen_nonmat.add(n)
+            time.sleep(1.2)
+        print(f"  -> kept materials, total now {len(out)} (skipped gear: {len(seen_nonmat)})")
+
     json.dump(out, open("_items.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-    print(f"OK: {len(out)}/{len(names)} items -> _items.json")
+    print(f"OK: {len(out)} items -> _items.json")
     if failed:
         print("NO DATA:", failed)
     if unknown_secs:

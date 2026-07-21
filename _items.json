@@ -251,6 +251,21 @@
   "type": "Ammo",
   "sell": 1,
   "desc": "Arrows for use with bows.\r Can be crafted at Primitive Workbench.",
+  "craftedFrom": [
+   {
+    "mat": "Wood",
+    "qty": 2
+   },
+   {
+    "mat": "Stone",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "High Quality Workbench",
+   "Production Assembly Line",
+   "Production Assembly Line II"
+  ],
   "sources": [
    "🎁 treasure boxes & caches",
    "🛒 wandering merchant"
@@ -458,6 +473,33 @@
   "type": "Ingredient",
   "sell": 630,
   "desc": "A dish eaten during celebrations. \r Put it in the chest at a Breeding Farm to make Pals lay a particularly healthy egg.",
+  "craftedFrom": [
+   {
+    "mat": "Flour",
+    "qty": 5
+   },
+   {
+    "mat": "Red Berries",
+    "qty": 8
+   },
+   {
+    "mat": "Milk",
+    "qty": 7
+   },
+   {
+    "mat": "Egg",
+    "qty": 8
+   },
+   {
+    "mat": "Honey",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
   "sources": [
    "🎁 treasure boxes & caches"
   ]
@@ -648,6 +690,21 @@
     "qty": 30
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Coal",
+    "qty": 2
+   },
+   {
+    "mat": "Flame Organ",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Production Assembly Line",
+   "Production Assembly Line II",
+   "Advanced Workshop"
+  ],
   "sources": [
    "🔬 lab research"
   ]
@@ -695,6 +752,9 @@
     "qty": 2
    }
   ],
+  "station": [
+   "Mill"
+  ],
   "sources": [
    "🛒 wandering merchant",
    "🔬 lab research"
@@ -741,6 +801,25 @@
     "qty": 30
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Stone",
+    "qty": 20
+   },
+   {
+    "mat": "Bone",
+    "qty": 1
+   },
+   {
+    "mat": "Aquatic Pal Fluids",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "High Quality Workbench",
+   "Production Assembly Line",
+   "Production Assembly Line II"
+  ],
   "sources": [
    "🎁 treasure boxes & caches",
    "🔬 lab research"
@@ -760,6 +839,17 @@
     "product": "Carbon Fiber",
     "qty": 5
    }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Wood",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Primitive Furnace",
+   "Improved Furnace",
+   "Electric Furnace"
   ],
   "sources": [
    "🎁 treasure boxes & caches",
@@ -1083,6 +1173,17 @@
     "product": "Zoe's Halloween Costume",
     "qty": 5
    }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Wool",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "High Quality Workbench",
+   "Production Assembly Line",
+   "Production Assembly Line II"
   ],
   "sources": [
    "🎁 treasure boxes & caches",
@@ -1539,7 +1640,17 @@
   "rarity": "Uncommon",
   "type": "Weapon",
   "sell": 37,
-  "desc": "A spear made from Elizabee's staff, altered for human use.\r It is imbued with Elizabee's indomitable spirit."
+  "desc": "A spear made from Elizabee's staff, altered for human use.\r It is imbued with Elizabee's indomitable spirit.",
+  "craftedFrom": [
+   {
+    "mat": "Wood",
+    "qty": 1
+   },
+   {
+    "mat": "Honey",
+    "qty": 1
+   }
+  ]
  },
  "Emerald": {
   "rarity": "Rare",
@@ -1926,6 +2037,16 @@
     "qty": 120
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Wood",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Crusher",
+   "Refrigerated Crusher"
+  ],
   "sources": [
    "🎁 treasure boxes & caches",
    "🔬 lab research"
@@ -2279,6 +2400,15 @@
     "qty": 1
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Wheat",
+    "qty": 3
+   }
+  ],
+  "station": [
+   "Mill"
+  ],
   "sources": [
    "🔬 lab research"
   ]
@@ -2318,6 +2448,16 @@
     "qty": 1
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Large Pal Soul",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Crusher",
+   "Refrigerated Crusher"
+  ],
   "sources": [
    "🎁 treasure boxes & caches"
   ]
@@ -2356,6 +2496,15 @@
     "product": "Marksman Revolver",
     "qty": 1
    }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Ingot",
+    "qty": 30
+   }
+  ],
+  "station": [
+   "Gold Coin Assembly Line"
   ],
   "sources": [
    "🎁 treasure boxes & caches",
@@ -2484,6 +2633,21 @@
     "product": "Sunreach Rapid-Fire Ammo",
     "qty": 1
    }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Charcoal",
+    "qty": 2
+   },
+   {
+    "mat": "Sulfur",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "High Quality Workbench",
+   "Production Assembly Line",
+   "Production Assembly Line II"
   ],
   "sources": [
    "🔬 lab research"
@@ -2739,6 +2903,20 @@
     "qty": 24
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Chromite",
+    "qty": 1
+   },
+   {
+    "mat": "Hexolite Quartz",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Gigantic Furnace",
+   "Ancient Furnace"
+  ],
   "sources": [
    "🔬 lab research"
   ]
@@ -2950,6 +3128,21 @@
     "qty": 48
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Wool",
+    "qty": 10
+   },
+   {
+    "mat": "Leather",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "High Quality Workbench",
+   "Production Assembly Line",
+   "Production Assembly Line II"
+  ],
   "sources": [
    "🎁 treasure boxes & caches",
    "🛒 wandering merchant",
@@ -3115,6 +3308,33 @@
     "product": "Celesdir Noct Saddle",
     "qty": 6
    }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Cavern Mushroom",
+    "qty": 10
+   },
+   {
+    "mat": "Red Berries",
+    "qty": 20
+   },
+   {
+    "mat": "High Quality Pal Oil",
+    "qty": 5
+   },
+   {
+    "mat": "Cotton Candy",
+    "qty": 5
+   },
+   {
+    "mat": "Sulfur",
+    "qty": 5
+   }
+  ],
+  "station": [
+   "Electric Medicine Workbench",
+   "Advanced Medicine Workbench",
+   "Ancient Workbench"
   ],
   "sources": [
    "🎁 treasure boxes & caches",
@@ -4025,6 +4245,17 @@
     "qty": 50
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Ore",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Primitive Furnace",
+   "Improved Furnace",
+   "Electric Furnace"
+  ],
   "sources": [
    "🎁 treasure boxes & caches",
    "🔬 lab research"
@@ -4143,6 +4374,16 @@
     "product": "Giant Pal Soul",
     "qty": 2
    }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Medium Pal Soul",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Crusher",
+   "Refrigerated Crusher"
   ],
   "sources": [
    "🎁 treasure boxes & caches"
@@ -4831,6 +5072,21 @@
   "type": "Consumable",
   "sell": 78,
   "desc": "Low Grade Medical Supplies good for Sick, Sprain, and Overfull.\r They don't heal Health when eaten, however.",
+  "craftedFrom": [
+   {
+    "mat": "Red Berries",
+    "qty": 5
+   },
+   {
+    "mat": "Horn",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Medieval Medicine Workbench",
+   "Electric Medicine Workbench",
+   "Advanced Medicine Workbench"
+  ],
   "sources": [
    "🎁 treasure boxes & caches",
    "🛒 wandering merchant",
@@ -4876,6 +5132,16 @@
     "qty": 2
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Small Pal Soul",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Crusher",
+   "Refrigerated Crusher"
+  ],
   "sources": [
    "🎁 treasure boxes & caches"
   ]
@@ -4885,6 +5151,29 @@
   "type": "Consumable",
   "sell": 10140,
   "desc": "A potion that allows the player to reset their status points when consumed.\r It has no effect if consumed by a Pal.",
+  "craftedFrom": [
+   {
+    "mat": "Beautiful Flower",
+    "qty": 99
+   },
+   {
+    "mat": "Horn",
+    "qty": 50
+   },
+   {
+    "mat": "Bone",
+    "qty": 50
+   },
+   {
+    "mat": "Aquatic Pal Fluids",
+    "qty": 50
+   }
+  ],
+  "station": [
+   "Electric Medicine Workbench",
+   "Advanced Medicine Workbench",
+   "Ancient Workbench"
+  ],
   "sources": [
    "🎁 treasure boxes & caches"
   ]
@@ -5393,6 +5682,25 @@
     "product": "Sniper Module II",
     "qty": 30
    }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Ore",
+    "qty": 4
+   },
+   {
+    "mat": "Pure Quartz",
+    "qty": 1
+   },
+   {
+    "mat": "Paldium Fragment",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Electric Furnace",
+   "Gigantic Furnace",
+   "Ancient Furnace"
   ],
   "sources": [
    "🔬 lab research"
@@ -6337,6 +6645,16 @@
     "qty": 200
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Stone",
+    "qty": 5
+   }
+  ],
+  "station": [
+   "Crusher",
+   "Refrigerated Crusher"
+  ],
   "sources": [
    "🎁 treasure boxes & caches",
    "🛒 wandering merchant",
@@ -6509,6 +6827,21 @@
     "qty": 43
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Crude Oil",
+    "qty": 2
+   },
+   {
+    "mat": "Ore",
+    "qty": 5
+   }
+  ],
+  "station": [
+   "Electric Furnace",
+   "Gigantic Furnace",
+   "Ancient Furnace"
+  ],
   "sources": [
    "🎁 treasure boxes & caches",
    "🔬 lab research"
@@ -6628,6 +6961,21 @@
     "product": "Nyafia's Shotgun",
     "qty": 30
    }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "High Quality Pal Oil",
+    "qty": 2
+   },
+   {
+    "mat": "Sulfur",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Production Assembly Line",
+   "Production Assembly Line II",
+   "Advanced Workshop"
   ],
   "sources": [
    "🔬 lab research"
@@ -6813,6 +7161,9 @@
     "product": "Revival Potion",
     "qty": 50
    }
+  ],
+  "station": [
+   "Mill"
   ],
   "sources": [
    "🎁 treasure boxes & caches",
@@ -7215,6 +7566,21 @@
     "qty": 30
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Ore",
+    "qty": 2
+   },
+   {
+    "mat": "Coal",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Improved Furnace",
+   "Electric Furnace",
+   "Gigantic Furnace"
+  ],
   "sources": [
    "🎁 treasure boxes & caches",
    "🔬 lab research"
@@ -7337,6 +7703,16 @@
     "product": "Medium Pal Soul",
     "qty": 2
    }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Medium Pal Soul",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Crusher",
+   "Refrigerated Crusher"
   ],
   "sources": [
    "🎁 treasure boxes & caches"
@@ -7578,6 +7954,29 @@
   "type": "Consumable",
   "sell": 540,
   "desc": "Juice that greatly improves mood when consumed.\r Drinking it significantly increases work speed for a period of time,\r but significantly lowers SAN.",
+  "craftedFrom": [
+   {
+    "mat": "Beautiful Flower",
+    "qty": 5
+   },
+   {
+    "mat": "Horn",
+    "qty": 5
+   },
+   {
+    "mat": "Bone",
+    "qty": 2
+   },
+   {
+    "mat": "Aquatic Pal Fluids",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Medieval Medicine Workbench",
+   "Electric Medicine Workbench",
+   "Advanced Medicine Workbench"
+  ],
   "sources": [
    "🛒 wandering merchant"
   ]
@@ -7627,6 +8026,29 @@
   "type": "Consumable",
   "sell": 312,
   "desc": "Juice that improves mood when consumed.\r Drinking it increases work speed for a period of time,\r but lowers SAN.",
+  "craftedFrom": [
+   {
+    "mat": "Beautiful Flower",
+    "qty": 3
+   },
+   {
+    "mat": "Horn",
+    "qty": 3
+   },
+   {
+    "mat": "Bone",
+    "qty": 1
+   },
+   {
+    "mat": "Aquatic Pal Fluids",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Medieval Medicine Workbench",
+   "Electric Medicine Workbench",
+   "Advanced Medicine Workbench"
+  ],
   "sources": [
    "🛒 wandering merchant"
   ]
@@ -7718,6 +8140,29 @@
     "qty": 2
    }
   ],
+  "craftedFrom": [
+   {
+    "mat": "Flame Organ",
+    "qty": 4
+   },
+   {
+    "mat": "Coal",
+    "qty": 8
+   },
+   {
+    "mat": "Corrosive Solvent",
+    "qty": 2
+   },
+   {
+    "mat": "Hexolite",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Production Assembly Line II",
+   "Advanced Workshop",
+   "Ancient Workbench"
+  ],
   "sources": [
    "🔬 lab research"
   ]
@@ -7762,6 +8207,24 @@
   "type": "Consumable",
   "sell": 300,
   "desc": "Training manual that grants a substantial amount\r of EXP when read by a Pal.",
+  "craftedFrom": [
+   {
+    "mat": "Ancient Pal Manuscript",
+    "qty": 500
+   },
+   {
+    "mat": "High Quality Cloth",
+    "qty": 4
+   },
+   {
+    "mat": "Leather",
+    "qty": 5
+   }
+  ],
+  "station": [
+   "Production Assembly Line II",
+   "Advanced Workshop"
+  ],
   "sources": [
    "🎁 treasure boxes & caches"
   ]
@@ -7836,6 +8299,9 @@
     "product": "Flour",
     "qty": 3
    }
+  ],
+  "station": [
+   "Mill"
   ],
   "sources": [
    "🛒 wandering merchant",
@@ -8083,6 +8549,2651 @@
   "sources": [
    "🎁 treasure boxes & caches",
    "🛒 wandering merchant"
+  ]
+ },
+ "Baked Berries": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 6,
+  "desc": "Cooking enhances their nutritional value,\r and surprisingly, they are quite filling.",
+  "craftedFrom": [
+   {
+    "mat": "Red Berries",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Baked Mushroom": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 36,
+  "desc": "Cooking this mushroom enhances its nutritional value.\r Curiously, it's also quite filling.",
+  "craftedFrom": [
+   {
+    "mat": "Mushroom",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Bio Battery": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 223,
+  "desc": "A device that stores bio-energy as electrical power.\r Used for equipment requiring high energy density.\r Can be crafted at Production Assembly Line II.",
+  "usedIn": [
+   {
+    "product": "Energy Cartridge",
+    "qty": 1
+   },
+   {
+    "product": "Laser Gatling Cartridge",
+    "qty": 1
+   },
+   {
+    "product": "Charge Rifle Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Energy Shotgun Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Beam Scatter Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Plasma Rifle Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Beam Launcher Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Plasma Multicutter",
+    "qty": 30
+   },
+   {
+    "product": "Laser Sword",
+    "qty": 30
+   },
+   {
+    "product": "Heavy Assault Rifle",
+    "qty": 30
+   },
+   {
+    "product": "Plasma Rifle",
+    "qty": 50
+   },
+   {
+    "product": "Laser Rifle",
+    "qty": 5
+   },
+   {
+    "product": "Charge Rifle",
+    "qty": 25
+   },
+   {
+    "product": "Beam Launcher",
+    "qty": 50
+   },
+   {
+    "product": "Ultra Shield",
+    "qty": 10
+   },
+   {
+    "product": "Computer",
+    "qty": 2
+   },
+   {
+    "product": "Powerful Fishing Magnet",
+    "qty": 1
+   }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Electric Organ",
+    "qty": 1
+   },
+   {
+    "mat": "Refined Ingot",
+    "qty": 1
+   },
+   {
+    "mat": "Carbon Fiber",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Production Assembly Line II",
+   "Advanced Workshop",
+   "Ancient Workbench"
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Bread": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 30,
+  "desc": "Bread made from baked Flour.\r A tasty staple food.",
+  "craftedFrom": [
+   {
+    "mat": "Flour",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Broiled Dumud": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 26,
+  "desc": "Grilled fish slathered with a secret sauce.\r Soothes both mind and body.\r Perfect for tired Pal Tamers.",
+  "craftedFrom": [
+   {
+    "mat": "Raw Dumud",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Broncherry Fried Noodles": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 114,
+  "desc": "A dish made by stir-frying noodles with vegetables and meat. \r The rich seasoning pairs perfectly with the thick cuts of meat. Eating it will increase your Attack by 20% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Broncherry Meat",
+    "qty": 1
+   },
+   {
+    "mat": "Onion",
+    "qty": 1
+   },
+   {
+    "mat": "Carrot",
+    "qty": 1
+   },
+   {
+    "mat": "Flour",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Broncherry Rib Roast": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 60,
+  "desc": "Grilled meat brimming with the flavor of the king of the wilds.\r Juices from the compressed meat flow from the bone,\r making it surprisingly tender despite the initial toughness.",
+  "craftedFrom": [
+   {
+    "mat": "Broncherry Meat",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Carbonara": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 126,
+  "desc": "A dish mixing pasta with Egg and Milk.\r Eating it makes it improves Defense by +20% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Flour",
+    "qty": 1
+   },
+   {
+    "mat": "Egg",
+    "qty": 2
+   },
+   {
+    "mat": "Milk",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Chikipi Sauté": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 24,
+  "desc": "Plump poultry sautéed in butter.\r Accented with fresh lemons.\r Eating it will slightly increase work speed for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Chikipi Poultry",
+    "qty": 1
+   },
+   {
+    "mat": "Red Berries",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Circuit Board": {
+  "rarity": "Uncommon",
+  "type": "Material",
+  "sell": 250,
+  "desc": "Required to create precision equipment.\r Can be made with a Production Assembly Line.",
+  "usedIn": [
+   {
+    "product": "Megaboost Gun",
+    "qty": 100
+   },
+   {
+    "product": "Computer",
+    "qty": 2
+   }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Pure Quartz",
+    "qty": 2
+   },
+   {
+    "mat": "Polymer",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Production Assembly Line",
+   "Production Assembly Line II",
+   "Advanced Workshop"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Computer": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 2244,
+  "desc": "A component used in the control of automated equipment and precision machinery.\r It's a key component forming the foundation of modern technology.\r Can be crafted at Production Assembly Line II.",
+  "usedIn": [
+   {
+    "product": "Missile Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Plasma Multicutter",
+    "qty": 10
+   },
+   {
+    "product": "Beam Sword",
+    "qty": 1
+   },
+   {
+    "product": "Metal Detector",
+    "qty": 15
+   },
+   {
+    "product": "Energy Shotgun",
+    "qty": 15
+   },
+   {
+    "product": "Rocket Launcher",
+    "qty": 10
+   },
+   {
+    "product": "Laser Rifle",
+    "qty": 3
+   },
+   {
+    "product": "Charge Rifle",
+    "qty": 15
+   },
+   {
+    "product": "Laser Gatling Gun",
+    "qty": 10
+   },
+   {
+    "product": "Guided Missile Launcher",
+    "qty": 5
+   },
+   {
+    "product": "Multi Guided Missile Launcher",
+    "qty": 8
+   },
+   {
+    "product": "Plasma Cannon",
+    "qty": 8
+   },
+   {
+    "product": "AI Core",
+    "qty": 5
+   }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Circuit Board",
+    "qty": 2
+   },
+   {
+    "mat": "Plasteel",
+    "qty": 3
+   },
+   {
+    "mat": "Bio Battery",
+    "qty": 2
+   },
+   {
+    "mat": "Carbon Fiber",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Production Assembly Line II",
+   "Advanced Workshop",
+   "Ancient Workbench"
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Coralum Ingot": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 600,
+  "desc": "An alloy made from Coralum Ore found on the ocean floor. \r Highly resistant to energy, making it ideal for crafting weapons.\r Can be refined at Gigantic Furnace.",
+  "usedIn": [
+   {
+    "product": "Megaboost Gun",
+    "qty": 150
+   },
+   {
+    "product": "Ultra Grappling Gun",
+    "qty": 30
+   },
+   {
+    "product": "Energy Shotgun",
+    "qty": 155
+   },
+   {
+    "product": "Rocket Launcher",
+    "qty": 75
+   },
+   {
+    "product": "Charge Rifle",
+    "qty": 200
+   },
+   {
+    "product": "Overheat Rifle",
+    "qty": 160
+   },
+   {
+    "product": "Advanced Fishing Rod (Depresso)",
+    "qty": 5
+   },
+   {
+    "product": "Triple Air Dash Boots",
+    "qty": 30
+   },
+   {
+    "product": "Air Walker Mk III",
+    "qty": 20
+   },
+   {
+    "product": "Air Walker EX",
+    "qty": 30
+   },
+   {
+    "product": "Aquatic Construction Kit",
+    "qty": 50
+   },
+   {
+    "product": "Univolt Cryst Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Moldron Cryst Saddle",
+    "qty": 18
+   },
+   {
+    "product": "Solmora Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Solmora Lux Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Frostallion Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Frostallion Noct Saddle",
+    "qty": 43
+   },
+   {
+    "product": "Neptilius Saddle",
+    "qty": 48
+   },
+   {
+    "product": "Hartalis Saddle",
+    "qty": 48
+   }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Coralum Ore",
+    "qty": 2
+   },
+   {
+    "mat": "Coal",
+    "qty": 5
+   }
+  ],
+  "station": [
+   "Gigantic Furnace",
+   "Ancient Furnace"
+  ]
+ },
+ "Corrosive Solvent": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 72,
+  "desc": "A dangerous chemical solvent with strong decomposing properties.\r Used for precision processing and special treatments.\r Can be crafted at Production Assembly Line.",
+  "usedIn": [
+   {
+    "product": "Pal Metal Axe",
+    "qty": 5
+   },
+   {
+    "product": "Pal Metal Pickaxe",
+    "qty": 5
+   },
+   {
+    "product": "Katana",
+    "qty": 3
+   },
+   {
+    "product": "Meteor Launcher",
+    "qty": 5
+   },
+   {
+    "product": "Tactical Grenade Launcher",
+    "qty": 15
+   },
+   {
+    "product": "Dark Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Lightweight Plasteel Armor",
+    "qty": 8
+   },
+   {
+    "product": "Lightweight Hexolite Armor",
+    "qty": 10
+   },
+   {
+    "product": "Lightweight Ancient Armor",
+    "qty": 50
+   },
+   {
+    "product": "Thermal Core",
+    "qty": 2
+   },
+   {
+    "product": "Astegon Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Shadowbeak Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Slider Module",
+    "qty": 8
+   }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Venom Gland",
+    "qty": 1
+   },
+   {
+    "mat": "Sulfur",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Production Assembly Line",
+   "Production Assembly Line II",
+   "Advanced Workshop"
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Cryogenic Coolant": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 72,
+  "desc": "A high-efficiency cooling medium made from special components derived from Pals.\r Used to regulate temperature in high-output devices.\r Can be crafted at Production Assembly Line.",
+  "usedIn": [
+   {
+    "product": "Plasma Multicutter",
+    "qty": 10
+   },
+   {
+    "product": "Combat SMG",
+    "qty": 20
+   },
+   {
+    "product": "Overheat Rifle",
+    "qty": 50
+   },
+   {
+    "product": "Flamethrower",
+    "qty": 13
+   },
+   {
+    "product": "Water Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Cold Resistant Refined Metal Armor",
+    "qty": 4
+   },
+   {
+    "product": "Cold Resistant Pal Metal Armor",
+    "qty": 5
+   },
+   {
+    "product": "Cold Resistant Plasteel Armor",
+    "qty": 10
+   },
+   {
+    "product": "Cold Resistant Hexolite Armor",
+    "qty": 10
+   },
+   {
+    "product": "Cold-Resistant Ancient Armor",
+    "qty": 50
+   },
+   {
+    "product": "Powerful Fishing Magnet",
+    "qty": 1
+   },
+   {
+    "product": "Ghangler Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Quivern Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Quivern Botan Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Whalaska Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Jormuntide Saddle",
+    "qty": 24
+   }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Aquatic Pal Fluids",
+    "qty": 1
+   },
+   {
+    "mat": "Ice Organ",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Production Assembly Line",
+   "Production Assembly Line II",
+   "Advanced Workshop"
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Dumud Chowder": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 65,
+  "desc": "Dumud lavishly covered in a thick, creamy soup.\r Eating it will increase work speed\r and stay full slightly longer for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Raw Dumud",
+    "qty": 1
+   },
+   {
+    "mat": "Lettuce",
+    "qty": 2
+   },
+   {
+    "mat": "Tomato",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Eikthyrdeer Loco Moco": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 82,
+  "desc": "Thick hamburger steak accented with a creamy fried egg.\r This sublime combination brings pure joy to the mouths of those who eat it.\r Eating it will increase Attack by +20% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Eikthyrdeer Venison",
+    "qty": 1
+   },
+   {
+    "mat": "Red Berries",
+    "qty": 2
+   },
+   {
+    "mat": "Egg",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Eikthyrdeer Stew": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 127,
+  "desc": "A tender, melt-in-your-mouth venison stew crafted with love.\r The intertwining flavors of vegetables and meat create a harmonious blend that brings out a comforting richness.\r Eating it will increase Defense by +20% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Eikthyrdeer Venison",
+    "qty": 2
+   },
+   {
+    "mat": "Mushroom",
+    "qty": 1
+   },
+   {
+    "mat": "Milk",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Extravagant Vegetable Cake": {
+  "rarity": "Epic",
+  "type": "Ingredient",
+  "sell": 936,
+  "desc": "Place it in the chest at a Breeding Farm to make Pals lay a particularly healthy egg.\r Mutations are more likely to occur, and talents will grow more easily.",
+  "craftedFrom": [
+   {
+    "mat": "Flour",
+    "qty": 12
+   },
+   {
+    "mat": "Cotton Candy",
+    "qty": 8
+   },
+   {
+    "mat": "Potato",
+    "qty": 10
+   },
+   {
+    "mat": "Onion",
+    "qty": 6
+   },
+   {
+    "mat": "Carrot",
+    "qty": 8
+   }
+  ],
+  "station": [
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "French Fries": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 60,
+  "desc": "A dish made by deep-frying Potato. \r Once you start eating, you can't stop. Eating it will make it harder for your SAN value to decrease for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Potato",
+    "qty": 2
+   },
+   {
+    "mat": "High Quality Pal Oil",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Fried Chikipi": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 102,
+  "desc": "Magnificently juicy poultry.\r Eating it will slightly increase work speed\r and make SAN decrease slower for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Chikipi Poultry",
+    "qty": 1
+   },
+   {
+    "mat": "Flour",
+    "qty": 1
+   },
+   {
+    "mat": "Egg",
+    "qty": 1
+   },
+   {
+    "mat": "High Quality Pal Oil",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Fried Egg": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 24,
+  "desc": "An Egg now fried and even more delicious.\r Great for keeping hunger away.",
+  "craftedFrom": [
+   {
+    "mat": "Egg",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Fried Gloopie Balls": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 138,
+  "desc": "Gloopie Tentacle encased in a Flour dough and grilled into round bites. \r Eating it will slightly increase EXP gain for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Gloopie Tentacle",
+    "qty": 2
+   },
+   {
+    "mat": "Flour",
+    "qty": 3
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Fried Kelpsea": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 107,
+  "desc": "Crunchy fried batter perfectly accentuates the Kelpsea's plumpness.\r Eating it will increase Defense by +10%\r and make SAN decrease slower for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Raw Kelpsea",
+    "qty": 1
+   },
+   {
+    "mat": "Flour",
+    "qty": 1
+   },
+   {
+    "mat": "Egg",
+    "qty": 1
+   },
+   {
+    "mat": "High Quality Pal Oil",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Galeclaw Nikujaga": {
+  "rarity": "Epic",
+  "type": "Ingredient",
+  "sell": 96,
+  "desc": "A dish made by simmering meat and potatoes in a sweet and savory sauce. \r It has a mysteriously nostalgic taste. Eating it will increase your Defense by 25% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Galeclaw Poultry",
+    "qty": 1
+   },
+   {
+    "mat": "Onion",
+    "qty": 2
+   },
+   {
+    "mat": "Carrot",
+    "qty": 2
+   },
+   {
+    "mat": "Potato",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Gratin": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 102,
+  "desc": "A dish made by coating potatoes with sauce and baking them to perfection. \r Best enjoyed hot and fresh. Eating it will provide lasting fullness and increase your Defense by 10% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Milk",
+    "qty": 2
+   },
+   {
+    "mat": "Potato",
+    "qty": 2
+   },
+   {
+    "mat": "Flour",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Grilled Chikipi": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 12,
+  "desc": "Chicken skewer slow-grilled over a charcoal fire.\r Light and refreshing on the tongue.",
+  "craftedFrom": [
+   {
+    "mat": "Chikipi Poultry",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Grilled Galeclaw": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 24,
+  "desc": "Grilled meat full of vitality for flying high in the skies.",
+  "craftedFrom": [
+   {
+    "mat": "Galeclaw Poultry",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Grilled Kelpsea": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 17,
+  "desc": "Fresh fish grilled over a charcoal fire.\r Plump and juicy.",
+  "craftedFrom": [
+   {
+    "mat": "Raw Kelpsea",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Grilled Lamball": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 34,
+  "desc": "Marinated mutton slow-cooked over a grill.\r Eating it will slightly increase work speed\r and make SAN decrease slightly slower for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Lamball Mutton",
+    "qty": 1
+   },
+   {
+    "mat": "Lettuce",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Herb Roasted Caprity": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 20,
+  "desc": "Mild roast filled with the natural aromas of\r herbs and berries embedded in the meat.\r Gives a pleasant sense of warmth when eaten outdoors.",
+  "craftedFrom": [
+   {
+    "mat": "Caprity Meat",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Herb Roasted Lamball": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 26,
+  "desc": "Indulging in an abundance of fresh berries\r creates a tantalizing aroma that accentuates the unique flavor of mutton.\r Eating it will increase Defense by +10% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Lamball Mutton",
+    "qty": 1
+   },
+   {
+    "mat": "Red Berries",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "High Quality Wooden Board": {
+  "rarity": "Rare",
+  "type": "Material",
+  "sell": 768,
+  "desc": "Fine planks carefully carved from Hardwood.\r They have beautiful wood grain and are used for structures with a luxurious feel.\r Can be crafted at Production Assembly Line II.",
+  "usedIn": [
+   {
+    "product": "Pal Metal Axe",
+    "qty": 10
+   },
+   {
+    "product": "Pal Metal Pickaxe",
+    "qty": 10
+   },
+   {
+    "product": "Lily's Spear",
+    "qty": 3
+   },
+   {
+    "product": "Enhanced Lily's Spear",
+    "qty": 20
+   },
+   {
+    "product": "Katana",
+    "qty": 2
+   },
+   {
+    "product": "Hyper Glider",
+    "qty": 20
+   },
+   {
+    "product": "Aquatic Construction Kit",
+    "qty": 100
+   },
+   {
+    "product": "Extra Weapon Holster 2",
+    "qty": 40
+   },
+   {
+    "product": "Large Pouch",
+    "qty": 20
+   },
+   {
+    "product": "Giant Pouch",
+    "qty": 50
+   }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Hardwood",
+    "qty": 10
+   },
+   {
+    "mat": "Wood",
+    "qty": 10
+   },
+   {
+    "mat": "High Quality Cloth",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Production Assembly Line II",
+   "Advanced Workshop",
+   "Ancient Workbench"
+  ]
+ },
+ "Hot Milk": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 24,
+  "desc": "Even more delicious when warmed up.\r Great for keeping hunger away.",
+  "craftedFrom": [
+   {
+    "mat": "Milk",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Jam-Filled Bun": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 42,
+  "desc": "Bread with jam spread on it.\r The sweetness of the berries complements it perfectly.",
+  "craftedFrom": [
+   {
+    "mat": "Flour",
+    "qty": 1
+   },
+   {
+    "mat": "Red Berries",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Jelliette's Jiggly Jelly": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 132,
+  "desc": "An unusual treat crafted from Jelliette Bell Flesh and Aquatic Pal Fluids. \r Eating it will slightly increase EXP gain and increase Attack by +10% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Jelliette Bell Flesh",
+    "qty": 2
+   },
+   {
+    "mat": "Aquatic Pal Fluids",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Jellroy's Jolly Jelly": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 72,
+  "desc": "An unusual treat crafted from Jellroy Bell Flesh and Red Berries. \r Eating it will slightly increase EXP gain and increase Defense by +10% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Jellroy Bell Flesh",
+    "qty": 2
+   },
+   {
+    "mat": "Red Berries",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Lamball Kebab": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 14,
+  "desc": "Spiced and roasted mutton.\r Deeply complex with unique flavors.",
+  "craftedFrom": [
+   {
+    "mat": "Lamball Mutton",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Mammorest Curry": {
+  "rarity": "Epic",
+  "type": "Ingredient",
+  "sell": 204,
+  "desc": "A dish made by simmering vegetables and meat with spices. \r The rich flavor is highlighted by large chunks of tender meat. Eating it will increase your Attack by 25% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Mammorest Meat",
+    "qty": 1
+   },
+   {
+    "mat": "Onion",
+    "qty": 2
+   },
+   {
+    "mat": "Carrot",
+    "qty": 2
+   },
+   {
+    "mat": "Potato",
+    "qty": 2
+   },
+   {
+    "mat": "Red Berries",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Mammorest Steak": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 120,
+  "desc": "Boasts a rich and dignified flavor.\r Memories of glaciers and deep forests come rushing back with every bite.",
+  "craftedFrom": [
+   {
+    "mat": "Mammorest Meat",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Marinated Mushrooms": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 48,
+  "desc": "A dish made by marinating Mushrooms in a marinade.\r Eating it improves Defense by +10% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Mushroom",
+    "qty": 1
+   },
+   {
+    "mat": "Red Berries",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Minestrone": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 89,
+  "desc": "A soup simmered with a variety of vegetables. \r Drinking it warms you to the core. Eating it will increase your work speed for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Tomato",
+    "qty": 3
+   },
+   {
+    "mat": "Carrot",
+    "qty": 2
+   },
+   {
+    "mat": "Onion",
+    "qty": 2
+   },
+   {
+    "mat": "Potato",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Mozzarina Cheeseburger": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 143,
+  "desc": "Now with cheese, this dish has reached the highest level of fine cuisine.\r Eating it will increase Attack by +20%\r and stay full longer for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Mozzarina Meat",
+    "qty": 2
+   },
+   {
+    "mat": "Flour",
+    "qty": 1
+   },
+   {
+    "mat": "Tomato",
+    "qty": 2
+   },
+   {
+    "mat": "Milk",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Mozzarina Hamburger": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 72,
+  "desc": "The rich flavor of beef melds with the sweetness of the buns in perfect harmony in this masterpiece.\r Eating it will increase work speed\r and make SAN decrease slightly slower for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Mozzarina Meat",
+    "qty": 1
+   },
+   {
+    "mat": "Flour",
+    "qty": 1
+   },
+   {
+    "mat": "Lettuce",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Mozzarina Steak": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 23,
+  "desc": "Thick, well-done steak.\r Strong flavors give those who eat it an energy boost.",
+  "craftedFrom": [
+   {
+    "mat": "Mozzarina Meat",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Munchill Steak": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 30,
+  "desc": "Charcoal-grilled to perfection, this steak offers a crispy exterior and melt-in-your-mouth juiciness. \r Unique compounds seal in flavor and enhance shelf life.",
+  "craftedFrom": [
+   {
+    "mat": "Munchill Meat",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Mushroom Cake": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 774,
+  "desc": "Place it in the chest at a Breeding Farm to make Pals lay a particularly healthy egg.\r The talents of the resulting Pals will grow slightly more easily.",
+  "craftedFrom": [
+   {
+    "mat": "Flour",
+    "qty": 5
+   },
+   {
+    "mat": "Mushroom",
+    "qty": 5
+   },
+   {
+    "mat": "Cavern Mushroom",
+    "qty": 3
+   },
+   {
+    "mat": "Egg",
+    "qty": 8
+   },
+   {
+    "mat": "Honey",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Mushroom Quiche": {
+  "rarity": "Epic",
+  "type": "Ingredient",
+  "sell": 222,
+  "desc": "A dish made by baking a pastry crust filled with eggs, vegetables, mushrooms, and cream. \r It’s delicious even when cooled. Eating it will help you stay fuller for a while and make it harder for your SAN value to decrease for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Flour",
+    "qty": 1
+   },
+   {
+    "mat": "Mushroom",
+    "qty": 2
+   },
+   {
+    "mat": "Onion",
+    "qty": 2
+   },
+   {
+    "mat": "Egg",
+    "qty": 2
+   },
+   {
+    "mat": "Milk",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Ancient Kitchen"
+  ]
+ },
+ "Mushroom Soup": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 84,
+  "desc": "Cream soup made of Mushrooms.\r Eating it allows you to stay fuller for slightly longer for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Mushroom",
+    "qty": 1
+   },
+   {
+    "mat": "Milk",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Mythical Wooden Board": {
+  "rarity": "Epic",
+  "type": "Material",
+  "sell": 0,
+  "desc": "Planks made by processing mystical wood, emitting a faint light.\r They contain power beyond human understanding and make an ideal core material.",
+  "craftedFrom": [
+   {
+    "mat": "Mythical Wood",
+    "qty": 10
+   },
+   {
+    "mat": "Hardwood",
+    "qty": 10
+   },
+   {
+    "mat": "Chromite",
+    "qty": 5
+   }
+  ]
+ },
+ "Nail": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 6,
+  "desc": "Necessary for building various facilities.\r Can be made with a Primitive Workbench.",
+  "usedIn": [
+   {
+    "product": "Crossbow",
+    "qty": 2
+   },
+   {
+    "product": "Poison Arrow Crossbow",
+    "qty": 3
+   },
+   {
+    "product": "Fire Arrow Crossbow",
+    "qty": 3
+   },
+   {
+    "product": "Compound Bow",
+    "qty": 10
+   },
+   {
+    "product": "Wooden Board",
+    "qty": 1
+   },
+   {
+    "product": "Lockpicking Tool v1",
+    "qty": 5
+   },
+   {
+    "product": "Lockpicking Tool v2",
+    "qty": 10
+   },
+   {
+    "product": "Lockpicking Tool v3",
+    "qty": 20
+   }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Ingot",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "High Quality Workbench",
+   "Production Assembly Line",
+   "Production Assembly Line II"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Omelet": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 58,
+  "desc": "A dish made by frying an Egg and topping it with ketchup.\r Eating it improves Attack by +10% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Tomato",
+    "qty": 1
+   },
+   {
+    "mat": "Egg",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Paloxite Ingot": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 1620,
+  "desc": "An indomitable alloy created by fusing Soralite and Paloxite.\r A highly rare material, crystallizing the technology of ancient civilization and the power of the World Tree.\r It is vital for crafting the highest-grade equipment and structures.",
+  "usedIn": [
+   {
+    "product": "Ancient Sphere",
+    "qty": 6
+   },
+   {
+    "product": "Beam Scatter Ammo",
+    "qty": 3
+   },
+   {
+    "product": "Plasma Rifle Ammo",
+    "qty": 3
+   },
+   {
+    "product": "Beam Launcher Ammo",
+    "qty": 6
+   },
+   {
+    "product": "Beam Scatter",
+    "qty": 50
+   },
+   {
+    "product": "Plasma Rifle",
+    "qty": 80
+   },
+   {
+    "product": "Beam Launcher",
+    "qty": 100
+   },
+   {
+    "product": "Drone Launcher",
+    "qty": 70
+   },
+   {
+    "product": "Heat-Resistant Ancient Armor",
+    "qty": 30
+   },
+   {
+    "product": "Cold-Resistant Ancient Armor",
+    "qty": 30
+   },
+   {
+    "product": "Lightweight Ancient Armor",
+    "qty": 30
+   },
+   {
+    "product": "Wing Pack",
+    "qty": 6
+   },
+   {
+    "product": "Tetroise Primo Saddle",
+    "qty": 16
+   },
+   {
+    "product": "Eidrolon Ignis Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Aegidron Saddle",
+    "qty": 18
+   },
+   {
+    "product": "Jetragon's Missile Launcher",
+    "qty": 60
+   }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Soralite",
+    "qty": 1
+   },
+   {
+    "mat": "Paloxite",
+    "qty": 2
+   },
+   {
+    "mat": "World Tree Holy Water",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Ancient Furnace"
+  ]
+ },
+ "Pancake": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 54,
+  "desc": "A dish made by mixing Flour and Milk together then baking.\r Eating it progressively decreases the rate at which one's sanity decreases for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Flour",
+    "qty": 1
+   },
+   {
+    "mat": "Milk",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Pizza": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 109,
+  "desc": "A dish made by piling Red Berries, Tomato and cheese on Bread.\r Eating it slightly improves work speed and allows you to stay fuller for slightly longer for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Flour",
+    "qty": 1
+   },
+   {
+    "mat": "Red Berries",
+    "qty": 2
+   },
+   {
+    "mat": "Tomato",
+    "qty": 2
+   },
+   {
+    "mat": "Milk",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Reindrix Stew": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 61,
+  "desc": "Stewed vegetables and venison that was reared in a frigid environment.\r The meat's soft texture melts away to reveal a delicate sweetness.\r Eating it will stay full slightly longer for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Reindrix Venison",
+    "qty": 1
+   },
+   {
+    "mat": "Tomato",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Roast Eikthyrdeer": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 22,
+  "desc": "Carefully roasted venison with delicate flavor notes,\r accented by the aromas of the deep forest.\r Elegant taste for an elegant lifestyle.",
+  "craftedFrom": [
+   {
+    "mat": "Eikthyrdeer Venison",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Roast Reindrix": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 42,
+  "desc": "When taken from a flame, Reindrix meat rapidly drops in temperature.\r This allows it to retain freshness for long periods of time,\r making it a perfect emergency ration.",
+  "craftedFrom": [
+   {
+    "mat": "Reindrix Venison",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Roast Rushoar": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 18,
+  "desc": "Boar grilled over a hearty flame.\r Crispy on the outside, juicy on the inside.\r Perfect as an extravagant main dish for a big party.",
+  "craftedFrom": [
+   {
+    "mat": "Rushoar Pork",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Rushoar Bacon 'n' Eggs": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 84,
+  "desc": "The smoky essence of bacon intertwines flawlessly\r with the gentle texture of eggs, creating a sublime harmony of flavors.\r Eating it will increase Attack by +10% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Rushoar Pork",
+    "qty": 2
+   },
+   {
+    "mat": "Egg",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Rushoar Gyoza": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 84,
+  "desc": "A dish made by wrapping a filling of mushrooms and meat in wheat flour and boiling it. The chewy texture is irresistible. \r Eating it improves your Attack by 10% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Rushoar Pork",
+    "qty": 1
+   },
+   {
+    "mat": "Mushroom",
+    "qty": 1
+   },
+   {
+    "mat": "Flour",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Rushoar Hot Dog": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 67,
+  "desc": "Thick sausage wedged between warm buns.\r The crisply seared meat and spicy flavors are to die for.\r Eating it will increase Defense by +20% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Rushoar Pork",
+    "qty": 1
+   },
+   {
+    "mat": "Flour",
+    "qty": 1
+   },
+   {
+    "mat": "Lettuce",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Salt-Grilled Skutlass": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 72,
+  "desc": "Fresh fillets of Skutlass salted and grilled into a simple dish.\r When eaten, it nullifies knockback and flinching for a certain period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Skutlass Sashimi",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Campfire",
+   "Cooking Pot",
+   "Electric Kitchen"
+  ]
+ },
+ "Seafood Pasta": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 181,
+  "desc": "Fresh pasta is tossed with fragrant seafood in this exceptional dish, using Gloopie tentacles to elevate it even further.\r When eaten, it nullifies damage from explosions for a certain period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Gloopie Tentacle",
+    "qty": 3
+   },
+   {
+    "mat": "Flour",
+    "qty": 3
+   },
+   {
+    "mat": "Tomato",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Seafood Salad": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 110,
+  "desc": "A healthy salad made with Gloopie Tentacle and Lettuce.\r Eating it will slightly increase EXP gain for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Gloopie Tentacle",
+    "qty": 3
+   },
+   {
+    "mat": "Lettuce",
+    "qty": 4
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Soralite Ingot": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 720,
+  "desc": "An ancient metal refined from ore that slumbers in Sunreach. \r A rare processed material, forming the foundation of high-grade equipment and structures.\r Can be refined at Ancient Furnace.",
+  "usedIn": [
+   {
+    "product": "Sol Sphere",
+    "qty": 2
+   },
+   {
+    "product": "Beam Scatter Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Plasma Rifle Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Beam Launcher Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Mechanical Bow Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Combat SMG Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Prototype Shotgun Ammo",
+    "qty": 4
+   },
+   {
+    "product": "Heavy Assault Rifle Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Tactical Grenade Launcher Ammo",
+    "qty": 4
+   },
+   {
+    "product": "Enhanced Lily's Spear",
+    "qty": 30
+   },
+   {
+    "product": "Laser Sword",
+    "qty": 50
+   },
+   {
+    "product": "Mechanical Bow",
+    "qty": 40
+   },
+   {
+    "product": "Prototype Shotgun",
+    "qty": 60
+   },
+   {
+    "product": "Beam Scatter",
+    "qty": 50
+   },
+   {
+    "product": "Heavy Assault Rifle",
+    "qty": 100
+   },
+   {
+    "product": "Combat SMG",
+    "qty": 50
+   },
+   {
+    "product": "Tactical Grenade Launcher",
+    "qty": 80
+   },
+   {
+    "product": "Ancient Shield",
+    "qty": 30
+   },
+   {
+    "product": "Ancient Armor",
+    "qty": 30
+   },
+   {
+    "product": "Ancient Helm",
+    "qty": 20
+   },
+   {
+    "product": "AI Core",
+    "qty": 10
+   },
+   {
+    "product": "Sunreach Rapid-Fire Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Sunreach Single-Shot Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Beakon Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Whalaska Ignis Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Dualith Noct Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Dynamoff Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Eidrolon Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Roujay Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Ophydia Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Bastigor's Hammer",
+    "qty": 30
+   },
+   {
+    "product": "Shaolong Saddle",
+    "qty": 32
+   },
+   {
+    "product": "Homing Module",
+    "qty": 50
+   }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Soralite",
+    "qty": 2
+   },
+   {
+    "mat": "Pure Quartz",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Ancient Furnace"
+  ]
+ },
+ "Special Cake": {
+  "rarity": "Legendary",
+  "type": "Ingredient",
+  "sell": 2040,
+  "desc": "Place it in the chest at a Breeding Farm to make Pals lay a particularly healthy egg.\r More likely inherit multiple passive skills from their parents.",
+  "craftedFrom": [
+   {
+    "mat": "Flour",
+    "qty": 20
+   },
+   {
+    "mat": "Caramel Cotton Candy",
+    "qty": 8
+   },
+   {
+    "mat": "Milk",
+    "qty": 15
+   },
+   {
+    "mat": "Egg",
+    "qty": 15
+   },
+   {
+    "mat": "Mammorest Meat",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Ancient Kitchen"
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Spring Rolls": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 126,
+  "desc": "A dish made by wrapping vegetables and mushrooms in a thin skin and deep-frying them. \r The crispy texture is delightful. Eating it will make it harder for your SAN value to decrease and increase your Attack by 10% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Onion",
+    "qty": 2
+   },
+   {
+    "mat": "Mushroom",
+    "qty": 2
+   },
+   {
+    "mat": "Flour",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Stewed Galeclaw": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 36,
+  "desc": "Slow-cooked dish that exudes a burst of rich, wild flavors.\r Eating it will make SAN decrease slightly slower for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Galeclaw Poultry",
+    "qty": 1
+   },
+   {
+    "mat": "Red Berries",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Stir-Fried Vegetables": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 48,
+  "desc": "A dish made by stir-frying Carrot and Onion. \r A simple and delicious way to enjoy vegetables. Eating it will slightly increase your work speed and improve your Defense by 10% for a period of time.",
+  "craftedFrom": [
+   {
+    "mat": "Onion",
+    "qty": 2
+   },
+   {
+    "mat": "Carrot",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Cooking Pot",
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Vegetable Cake": {
+  "rarity": "Rare",
+  "type": "Ingredient",
+  "sell": 720,
+  "desc": "Place it in the chest at a Breeding Farm to make Pals lay a particularly healthy egg.\r Lay eggs twice at once.",
+  "craftedFrom": [
+   {
+    "mat": "Flour",
+    "qty": 8
+   },
+   {
+    "mat": "Tomato",
+    "qty": 8
+   },
+   {
+    "mat": "Lettuce",
+    "qty": 7
+   },
+   {
+    "mat": "Egg",
+    "qty": 8
+   },
+   {
+    "mat": "Honey",
+    "qty": 4
+   }
+  ],
+  "station": [
+   "Electric Kitchen",
+   "Ancient Kitchen"
+  ]
+ },
+ "Wooden Board": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 26,
+  "desc": "Planks made from processed wood for easier use.\r More versatile than raw logs, with a wide variety of uses.\r Can be crafted at Primitive Workbench.",
+  "usedIn": [
+   {
+    "product": "Refined Metal Axe",
+    "qty": 4
+   },
+   {
+    "product": "Refined Metal Pickaxe",
+    "qty": 4
+   },
+   {
+    "product": "Primitive Sword",
+    "qty": 2
+   },
+   {
+    "product": "Sword",
+    "qty": 2
+   },
+   {
+    "product": "Musket",
+    "qty": 3
+   },
+   {
+    "product": "Mega Glider",
+    "qty": 5
+   },
+   {
+    "product": "Pengullet Rocket Launcher",
+    "qty": 3
+   },
+   {
+    "product": "Pengullet Lux's Rocket Launcher",
+    "qty": 3
+   },
+   {
+    "product": "Extra Weapon Holster",
+    "qty": 20
+   },
+   {
+    "product": "Small Pouch",
+    "qty": 10
+   }
+  ],
+  "craftedFrom": [
+   {
+    "mat": "Wood",
+    "qty": 10
+   },
+   {
+    "mat": "Fiber",
+    "qty": 5
+   },
+   {
+    "mat": "Nail",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "High Quality Workbench",
+   "Production Assembly Line",
+   "Production Assembly Line II"
+  ]
+ },
+ "Ancient Pal Manuscript": {
+  "rarity": "Rare",
+  "type": "Material",
+  "sell": 100,
+  "desc": "An ancient manuscript written on Pal hide. It may be found by Pals during expeditions. \r Required for advancing research.",
+  "usedIn": [
+   {
+    "product": "Training Manual (L)",
+    "qty": 100
+   },
+   {
+    "product": "Training Manual (XL)",
+    "qty": 500
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Cavern Mushroom": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 50,
+  "desc": "Mushroom that grows prolifically in caves.\r Can be made into healing medicine.",
+  "usedIn": [
+   {
+    "product": "Alluring Bait",
+    "qty": 1
+   },
+   {
+    "product": "Risky Bait",
+    "qty": 3
+   },
+   {
+    "product": "Pal Recovery Grenade",
+    "qty": 5
+   },
+   {
+    "product": "Mushroom Cake",
+    "qty": 3
+   },
+   {
+    "product": "Low Quality Recovery Meds",
+    "qty": 3
+   },
+   {
+    "product": "Recovery Meds",
+    "qty": 5
+   },
+   {
+    "product": "High Quality Recovery Meds",
+    "qty": 10
+   },
+   {
+    "product": "Advanced Recovery Meds",
+    "qty": 15
+   },
+   {
+    "product": "Nutrient Tonic",
+    "qty": 10
+   },
+   {
+    "product": "Revival Potion",
+    "qty": 30
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Lettuce": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 8,
+  "desc": "A leafy green. When it comes to salad, this is a must.\r It has an exquisitely crunchy texture and refreshing taste.",
+  "usedIn": [
+   {
+    "product": "Vegetable Cake",
+    "qty": 7
+   },
+   {
+    "product": "Dumud Chowder",
+    "qty": 2
+   },
+   {
+    "product": "Mozzarina Hamburger",
+    "qty": 2
+   },
+   {
+    "product": "Grilled Lamball",
+    "qty": 2
+   },
+   {
+    "product": "Rushoar Hot Dog",
+    "qty": 2
+   },
+   {
+    "product": "Seafood Salad",
+    "qty": 4
+   },
+   {
+    "product": "Salad",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Mill"
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Mythical Wood": {
+  "rarity": "Rare",
+  "type": "Material",
+  "sell": 100,
+  "desc": "Rare wood imbued with the power of the World Tree.\r Only skilled craftsmen are able to process it.",
+  "usedIn": [
+   {
+    "product": "Ancient Sphere",
+    "qty": 3
+   },
+   {
+    "product": "Wing Cell",
+    "qty": 10
+   },
+   {
+    "product": "Explosion-Resistant Undershirt",
+    "qty": 50
+   },
+   {
+    "product": "Mythical Wooden Board",
+    "qty": 10
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Onion": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 10,
+  "desc": "A cherished and easy-to-grow vegetable with a rich history. \r Not suitable for eating raw.",
+  "usedIn": [
+   {
+    "product": "Deluxe Bait",
+    "qty": 4
+   },
+   {
+    "product": "Extravagant Vegetable Cake",
+    "qty": 6
+   },
+   {
+    "product": "Mammorest Curry",
+    "qty": 2
+   },
+   {
+    "product": "Broncherry Fried Noodles",
+    "qty": 1
+   },
+   {
+    "product": "Mushroom Quiche",
+    "qty": 2
+   },
+   {
+    "product": "Galeclaw Nikujaga",
+    "qty": 2
+   },
+   {
+    "product": "Minestrone",
+    "qty": 2
+   },
+   {
+    "product": "Spring Rolls",
+    "qty": 2
+   },
+   {
+    "product": "Stir-Fried Vegetables",
+    "qty": 2
+   },
+   {
+    "product": "Nutrient Tonic",
+    "qty": 20
+   }
+  ],
+  "station": [
+   "Mill"
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Paloxite": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 300,
+  "desc": "Energy leaking from the World Tree that has crystallized after many years. \r Those without protection who touch it will instantly rust and decay.\r Only those who can master its delicacy can reach the pinnacle of ancient technology.",
+  "usedIn": [
+   {
+    "product": "Corrosive Mist Mask",
+    "qty": 30
+   },
+   {
+    "product": "Paloxite Ingot",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Potato": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 10,
+  "desc": "A hardy and filling crop that grows in any terrain. \r Not suitable for raw consumption.",
+  "usedIn": [
+   {
+    "product": "Extravagant Vegetable Cake",
+    "qty": 10
+   },
+   {
+    "product": "Mammorest Curry",
+    "qty": 2
+   },
+   {
+    "product": "Galeclaw Nikujaga",
+    "qty": 2
+   },
+   {
+    "product": "Minestrone",
+    "qty": 1
+   },
+   {
+    "product": "Gratin",
+    "qty": 2
+   },
+   {
+    "product": "French Fries",
+    "qty": 2
+   }
+  ],
+  "station": [
+   "Mill"
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Tomato": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 8,
+  "desc": "A fresh ingredient that brightens any dish.\r Filled with lycopene, they’re also very healthy.",
+  "usedIn": [
+   {
+    "product": "High Quality Bait",
+    "qty": 4
+   },
+   {
+    "product": "Lucky Bait",
+    "qty": 5
+   },
+   {
+    "product": "Quick Bait",
+    "qty": 5
+   },
+   {
+    "product": "Vegetable Cake",
+    "qty": 8
+   },
+   {
+    "product": "Mozzarina Cheeseburger",
+    "qty": 2
+   },
+   {
+    "product": "Seafood Pasta",
+    "qty": 2
+   },
+   {
+    "product": "Pizza",
+    "qty": 2
+   },
+   {
+    "product": "Dumud Chowder",
+    "qty": 2
+   },
+   {
+    "product": "Minestrone",
+    "qty": 3
+   },
+   {
+    "product": "Reindrix Stew",
+    "qty": 2
+   },
+   {
+    "product": "Salad",
+    "qty": 2
+   },
+   {
+    "product": "Omelet",
+    "qty": 1
+   }
+  ],
+  "station": [
+   "Mill"
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
   ]
  }
 }
