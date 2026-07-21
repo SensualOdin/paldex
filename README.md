@@ -14,7 +14,7 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - **Mobile friendly**: at phone widths the device compacts (full-width tabs, two-column grid) and the detail panel becomes a slide-up bottom sheet (tap the scrim, ×, or Esc to dismiss).
 - **Caught & Favorites tracker**: ✓/★ toggles on every card and in the detail panel, persisted in localStorage, with a caught-progress pill in the header and Caught / Missing / Favorites filters.
 - **Element matchups**: deals-2×/takes-2× chips on every Pal, plus an **interactive matchup wheel** under Tiers → Elements — the 9 element emblems in a circle with attacker→victim arrows; tap an element to isolate what it beats (solid) and what beats it (dashed). Text chart included as a fold-out.
-- **Ingredient finder** (Items tab): pick any of 102 materials to see **every Pal that drops it** (quantity + drop chance) and which Pals **produce it at the Ranch** (parsed from partner skills — 29 producers). Drop chips in the detail panel link straight into it.
+- **Item lookup** (Items tab): pick any of ~115 materials to see **where to get it** — every Pal that drops it (quantity + drop chance), Ranch producers (29 Pals), and world sources (treasure caches, merchants, fishing, salvage, lab research) — plus **what it's used to craft** with per-recipe quantities and, for craftables, their own recipe. Materials cross-link (Ore → Ingot → Refined Ingot…), and drop chips in the Pal detail panel link straight in.
 - **Team synergy planner** (Team tab): build a party of 5 and the planner parses partner skills + guaranteed passives into effect tags (attack-type imbues, element damage boosts, team Attack buffs, resistances) and surfaces cross-Pal synergies — e.g. an imbuer that turns your attacks Ground paired with a Ground-damage booster — plus offensive type coverage, uncovered elements, and shared weaknesses. Persisted in localStorage.
 - **Pal Compare**: ⚖ button opens A-vs-B — mirrored stat bars, work levels, partner skills, and what the pair breeds into.
 - **Movesets & drops**: per-Pal active skills (level learned, element, power, cooldown) and possible drops with quantities/probabilities, from paldb.cc (1.0).
@@ -52,6 +52,7 @@ The shipped `breeding_1.0.json` was diffed byte-for-byte against upstream palcal
 ```
 python _fetch_partner_skills.py  # paldb.cc per-Pal pages (1.0-current) -> _partner_skills_fill.json
 python _fetch_paldetails.py      # paldb.cc per-Pal pages: drops, movesets, lore, boss titles + palcalc passives -> _paldetails.json
+python _fetch_items.py           # paldb.cc item pages: desc, sell, sources, used-in recipes -> _items.json
 python _gen_pages.py             # 299 static SEO pages (pal/<slug>.html) + sitemap.xml + vercel.json
 python _merge_elements.py        # pals_1.0.json + element fill + partner skills -> pals_1.0.filled.json
 python _fetch_icons.py           # downloads 298 Pal + 9 element icons from palcalc (pinned commit) -> _icons.json
@@ -76,6 +77,8 @@ python _verify_logic.py          # runs the spec §10 verification checklist
 | `_tiers.json` | Curated 1.0 Combat + Base Work tiers with sources; names validated at build. |
 | `_fetch_paldetails.py` | Scrapes per-Pal possible drops + active-skill learnsets from paldb.cc. |
 | `_paldetails.json` | Drops (item/qty/probability) + movesets (level/element/power/CT) for all 298 names. |
+| `_fetch_items.py` | Scrapes per-item pages from paldb.cc: description, sell price, world sources, recipes. |
+| `_items.json` | ~110 materials with sources + used-in/crafted-from recipes. |
 | `_spawns.json` | 259 Pals × day/night spawn cells (96×96 grid) + embedded 1024px world map. |
 | `_icons.json` | 298 Pal + 9 element icons, base64 data-URIs (embedded at build). |
 | `_app_template.html` | HTML/CSS/JS template (data injected at build). |

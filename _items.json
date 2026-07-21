@@ -1,0 +1,8088 @@
+{
+ "Advanced Technical Manual": {
+  "rarity": "Uncommon",
+  "type": "Consumable",
+  "sell": 1,
+  "desc": "A book that contains secrets of amazing technology.\r Use it to obtain a few Technology Points.",
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Ancient Civilization Core": {
+  "rarity": "Legendary",
+  "type": "Material",
+  "sell": 200,
+  "desc": "Core from technology that was lost long ago.\r Nearly impossible to find on the Palpagos Islands, it contains a wealth of forgotten knowledge.",
+  "usedIn": [
+   {
+    "product": "Beam Scatter",
+    "qty": 5
+   },
+   {
+    "product": "Plasma Rifle",
+    "qty": 7
+   },
+   {
+    "product": "Beam Launcher",
+    "qty": 10
+   },
+   {
+    "product": "Drone Launcher",
+    "qty": 5
+   },
+   {
+    "product": "Ultra Shield",
+    "qty": 30
+   },
+   {
+    "product": "Advanced Shield",
+    "qty": 30
+   },
+   {
+    "product": "Ancient Shield",
+    "qty": 30
+   },
+   {
+    "product": "Ability Glasses",
+    "qty": 5
+   },
+   {
+    "product": "Celestial Emperor's Baton",
+    "qty": 5
+   },
+   {
+    "product": "Flame Emperor's Baton",
+    "qty": 5
+   },
+   {
+    "product": "Lord of the Sea's Baton",
+    "qty": 5
+   },
+   {
+    "product": "Lord of Lightning's Baton",
+    "qty": 5
+   },
+   {
+    "product": "Spirit Emperor's Baton",
+    "qty": 5
+   },
+   {
+    "product": "Ice Emperor's Baton",
+    "qty": 5
+   },
+   {
+    "product": "Earth Emperor's Baton",
+    "qty": 5
+   },
+   {
+    "product": "Lord of the Underworld's Baton",
+    "qty": 5
+   },
+   {
+    "product": "Divine Dragon's Baton",
+    "qty": 5
+   },
+   {
+    "product": "Wing Pack",
+    "qty": 10
+   },
+   {
+    "product": "AI Core",
+    "qty": 1
+   },
+   {
+    "product": "Sniper Module II",
+    "qty": 2
+   },
+   {
+    "product": "Homing Module",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Aquatic Pal Fluids": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 30,
+  "desc": "Bodily fluids taken from a Water Pal.\r Their high viscosity makes them a handy material.",
+  "usedIn": [
+   {
+    "product": "Decal Ink",
+    "qty": 1
+   },
+   {
+    "product": "Simple Bait",
+    "qty": 2
+   },
+   {
+    "product": "High Quality Bait",
+    "qty": 3
+   },
+   {
+    "product": "Beginner Bait",
+    "qty": 4
+   },
+   {
+    "product": "Sweet Bait",
+    "qty": 4
+   },
+   {
+    "product": "Lucky Bait",
+    "qty": 6
+   },
+   {
+    "product": "Quick Bait",
+    "qty": 6
+   },
+   {
+    "product": "Beginner Fishing Rod (Chillet)",
+    "qty": 3
+   },
+   {
+    "product": "Beginner Fishing Rod (Gumoss)",
+    "qty": 6
+   },
+   {
+    "product": "Ring of Water Resistance",
+    "qty": 30
+   },
+   {
+    "product": "Water Support Whistle",
+    "qty": 30
+   },
+   {
+    "product": "Lord of the Sea's Baton",
+    "qty": 30
+   },
+   {
+    "product": "Neptilius's Talisman",
+    "qty": 30
+   },
+   {
+    "product": "Faleris Aqua Ring",
+    "qty": 30
+   },
+   {
+    "product": "Jelliette's Jiggly Jelly",
+    "qty": 2
+   },
+   {
+    "product": "Mind Control Meds",
+    "qty": 3
+   },
+   {
+    "product": "Low Quality Recovery Meds",
+    "qty": 2
+   },
+   {
+    "product": "Recovery Meds",
+    "qty": 5
+   },
+   {
+    "product": "Suspicious Juice",
+    "qty": 1
+   },
+   {
+    "product": "Strange Juice",
+    "qty": 2
+   },
+   {
+    "product": "Mysterious Mushroom Juice",
+    "qty": 5
+   },
+   {
+    "product": "Memory Wiping Medicine",
+    "qty": 50
+   },
+   {
+    "product": "Cement",
+    "qty": 1
+   },
+   {
+    "product": "Cryogenic Coolant",
+    "qty": 1
+   },
+   {
+    "product": "Celaray's Gloves",
+    "qty": 3
+   },
+   {
+    "product": "Killamari Primo's Gloves",
+    "qty": 4
+   },
+   {
+    "product": "Surfent Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Azurobe Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Suzaku Aqua Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Faleris Aqua Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Ophydia Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Neptilius Saddle",
+    "qty": 80
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Arrow": {
+  "rarity": "Common",
+  "type": "Ammo",
+  "sell": 1,
+  "desc": "Arrows for use with bows.\r Can be crafted at Primitive Workbench.",
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Beautiful Flower": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "A plant that blooms colorful flowers.\r Can be used to make Suspicious Juice and Strange Juice.",
+  "usedIn": [
+   {
+    "product": "Spirit Emperor's Baton",
+    "qty": 5
+   },
+   {
+    "product": "Lyleen's Talisman",
+    "qty": 5
+   },
+   {
+    "product": "Lyleen Noct's Talisman",
+    "qty": 5
+   },
+   {
+    "product": "Ring of Trust",
+    "qty": 10
+   },
+   {
+    "product": "Suspicious Juice",
+    "qty": 3
+   },
+   {
+    "product": "Strange Juice",
+    "qty": 5
+   },
+   {
+    "product": "Mysterious Mushroom Juice",
+    "qty": 10
+   },
+   {
+    "product": "Memory Wiping Medicine",
+    "qty": 99
+   },
+   {
+    "product": "Wumpo Botan Saddle",
+    "qty": 24
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Berry Seeds": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 1,
+  "desc": "Seeds that produce Red Berries.\r Necessary for starting a farm.\r Can be obtained when picking Red Berries.",
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Bone": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 20,
+  "desc": "Bone collected from Pals.\r A valuable source of premium calcium.",
+  "usedIn": [
+   {
+    "product": "Life Pendant",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Neutral Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Fire Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Water Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Electric Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Grass Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Ice Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Ground Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Dark Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Dragon Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Dogen Emblem",
+    "qty": 30
+   },
+   {
+    "product": "Vanguard Charm",
+    "qty": 30
+   },
+   {
+    "product": "Earth Emperor's Baton",
+    "qty": 30
+   },
+   {
+    "product": "Orserk's Talisman",
+    "qty": 30
+   },
+   {
+    "product": "Lyleen's Talisman",
+    "qty": 30
+   },
+   {
+    "product": "Frostallion's Talisman",
+    "qty": 30
+   },
+   {
+    "product": "Anubis's Talisman",
+    "qty": 30
+   },
+   {
+    "product": "Elphidran Ring",
+    "qty": 20
+   },
+   {
+    "product": "Mega Glider",
+    "qty": 10
+   },
+   {
+    "product": "Medical Supplies",
+    "qty": 1
+   },
+   {
+    "product": "High Grade Medical Supplies",
+    "qty": 2
+   },
+   {
+    "product": "Mind Control Meds",
+    "qty": 5
+   },
+   {
+    "product": "Suspicious Juice",
+    "qty": 1
+   },
+   {
+    "product": "Strange Juice",
+    "qty": 2
+   },
+   {
+    "product": "Mysterious Mushroom Juice",
+    "qty": 5
+   },
+   {
+    "product": "Memory Wiping Medicine",
+    "qty": 50
+   },
+   {
+    "product": "Cement",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Broncherry Meat": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 50,
+  "desc": "Broncherry meat.\r Giant meat full of massive stores of energy.\r Stuffed to the brim with nutrients gathered through photosynthesis.",
+  "usedIn": [
+   {
+    "product": "Broncherry Fried Noodles",
+    "qty": 1
+   },
+   {
+    "product": "Broncherry Rib Roast",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Cake": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 630,
+  "desc": "A dish eaten during celebrations. \r Put it in the chest at a Breeding Farm to make Pals lay a particularly healthy egg.",
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Caprity Meat": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 17,
+  "desc": "Caprity meat.\r Healthy and full of nutrients.\r Hints of berries scenting the meat stimulates the appetite.",
+  "usedIn": [
+   {
+    "product": "Herb Roasted Caprity",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Caramel Cotton Candy": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 50,
+  "desc": "Caramel cotton candy collected from Woolipop Terra.\r Its fluffy sweetness melts away in your mouth.",
+  "usedIn": [
+   {
+    "product": "Special Cake",
+    "qty": 8
+   },
+   {
+    "product": "Nutrient Tonic",
+    "qty": 18
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Carbon Fiber": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 84,
+  "desc": "A lightweight yet sturdy material. \r Used to create armor and other equipment.\r Can be crafted at Production Assembly Line.",
+  "usedIn": [
+   {
+    "product": "Reinforced Arrow",
+    "qty": 2
+   },
+   {
+    "product": "Advanced Arrow",
+    "qty": 5
+   },
+   {
+    "product": "Advanced Bow",
+    "qty": 25
+   },
+   {
+    "product": "Mechanical Bow",
+    "qty": 20
+   },
+   {
+    "product": "Megaboost Gun",
+    "qty": 200
+   },
+   {
+    "product": "Hyper Grappling Gun",
+    "qty": 20
+   },
+   {
+    "product": "Ultra Grappling Gun",
+    "qty": 50
+   },
+   {
+    "product": "Pump-Action Shotgun",
+    "qty": 10
+   },
+   {
+    "product": "Semi-Auto Shotgun",
+    "qty": 10
+   },
+   {
+    "product": "Prototype Shotgun",
+    "qty": 40
+   },
+   {
+    "product": "Assault Rifle",
+    "qty": 10
+   },
+   {
+    "product": "Heavy Assault Rifle",
+    "qty": 50
+   },
+   {
+    "product": "Combat SMG",
+    "qty": 30
+   },
+   {
+    "product": "Rocket Launcher",
+    "qty": 25
+   },
+   {
+    "product": "Scatter Sphere Launcher",
+    "qty": 30
+   },
+   {
+    "product": "Homing Sphere Launcher",
+    "qty": 50
+   },
+   {
+    "product": "Gatling Gun",
+    "qty": 70
+   },
+   {
+    "product": "Grenade Launcher",
+    "qty": 15
+   },
+   {
+    "product": "Guided Missile Launcher",
+    "qty": 25
+   },
+   {
+    "product": "Multi Guided Missile Launcher",
+    "qty": 30
+   },
+   {
+    "product": "Core Eject Shotgun",
+    "qty": 32
+   },
+   {
+    "product": "Advanced Fishing Rod (Pengullet)",
+    "qty": 10
+   },
+   {
+    "product": "Advanced Fishing Rod (Depresso)",
+    "qty": 20
+   },
+   {
+    "product": "Reptyro Charm",
+    "qty": 30
+   },
+   {
+    "product": "Neptilius's Talisman",
+    "qty": 15
+   },
+   {
+    "product": "Giga Glider",
+    "qty": 15
+   },
+   {
+    "product": "Hyper Glider",
+    "qty": 25
+   },
+   {
+    "product": "Bio Battery",
+    "qty": 1
+   },
+   {
+    "product": "Computer",
+    "qty": 2
+   },
+   {
+    "product": "Huge Feed Bag",
+    "qty": 10
+   },
+   {
+    "product": "Giant Feed Bag",
+    "qty": 20
+   },
+   {
+    "product": "Extra Weapon Holster 2",
+    "qty": 20
+   },
+   {
+    "product": "Large Pouch",
+    "qty": 10
+   },
+   {
+    "product": "Giant Pouch",
+    "qty": 20
+   },
+   {
+    "product": "Slider Module",
+    "qty": 15
+   },
+   {
+    "product": "Sniper Module II",
+    "qty": 30
+   }
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Carrot": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 10,
+  "desc": "A vibrant, nutrient-rich root vegetable. \r Not suitable for raw consumption.",
+  "usedIn": [
+   {
+    "product": "Deluxe Bait",
+    "qty": 3
+   },
+   {
+    "product": "Alluring Bait",
+    "qty": 3
+   },
+   {
+    "product": "Risky Bait",
+    "qty": 3
+   },
+   {
+    "product": "Extravagant Vegetable Cake",
+    "qty": 8
+   },
+   {
+    "product": "Mammorest Curry",
+    "qty": 2
+   },
+   {
+    "product": "Broncherry Fried Noodles",
+    "qty": 1
+   },
+   {
+    "product": "Galeclaw Nikujaga",
+    "qty": 2
+   },
+   {
+    "product": "Minestrone",
+    "qty": 2
+   },
+   {
+    "product": "Stir-Fried Vegetables",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Carrot Seeds": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 6,
+  "desc": "Seeds that produce Carrot.\r Necessary for starting a farm.",
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Cement": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 9,
+  "desc": "Cement used for creating structures and more.\r Can be produced in a High Quality Workbench.",
+  "usedIn": [
+   {
+    "product": "Intermediate Fishing Rod (Cattiva)",
+    "qty": 10
+   },
+   {
+    "product": "Intermediate Fishing Rod (Croajiro)",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Neutral Resistance",
+    "qty": 15
+   },
+   {
+    "product": "Neutral Support Whistle",
+    "qty": 15
+   },
+   {
+    "product": "Aquatic Construction Kit",
+    "qty": 200
+   },
+   {
+    "product": "Sniper Module",
+    "qty": 30
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Charcoal": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 3,
+  "desc": "Charcoal made from burning Wood.\r It can be combined with Sulfur to create Gunpowder.",
+  "usedIn": [
+   {
+    "product": "Gunpowder",
+    "qty": 2
+   },
+   {
+    "product": "Carbon Fiber",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Chikipi Poultry": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 10,
+  "desc": "Chikipi meat.\r Light and easy to eat,\r it's a local favorite for residents of Palpagos Island.",
+  "usedIn": [
+   {
+    "product": "Fried Chikipi",
+    "qty": 1
+   },
+   {
+    "product": "Chikipi Sauté",
+    "qty": 1
+   },
+   {
+    "product": "Grilled Chikipi",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Chromite": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 150,
+  "desc": "A type of metal buried underground. \r It can be detected with a Metal Detector on certain islands.",
+  "usedIn": [
+   {
+    "product": "Silvegis Emblem",
+    "qty": 10
+   },
+   {
+    "product": "Mythical Wooden Board",
+    "qty": 5
+   },
+   {
+    "product": "Hexolite",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Cloth": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 48,
+  "desc": "Cloth woven from Wool. \r Required to create armor.\r Can be crafted at Primitive Workbench.",
+  "usedIn": [
+   {
+    "product": "Cloth Outfit",
+    "qty": 2
+   },
+   {
+    "product": "Tropical Outfit",
+    "qty": 3
+   },
+   {
+    "product": "Tundra Outfit",
+    "qty": 3
+   },
+   {
+    "product": "Metal Armor",
+    "qty": 5
+   },
+   {
+    "product": "Heat Resistant Metal Armor",
+    "qty": 8
+   },
+   {
+    "product": "Cold Resistant Metal Armor",
+    "qty": 8
+   },
+   {
+    "product": "Monarch's Crown",
+    "qty": 3
+   },
+   {
+    "product": "Long-Eared Headband",
+    "qty": 12
+   },
+   {
+    "product": "Witch Hat",
+    "qty": 10
+   },
+   {
+    "product": "Soft Hat",
+    "qty": 10
+   },
+   {
+    "product": "Silk Hat",
+    "qty": 15
+   },
+   {
+    "product": "Explorer Cap",
+    "qty": 10
+   },
+   {
+    "product": "Graduation Cap",
+    "qty": 20
+   },
+   {
+    "product": "Bowler Hat",
+    "qty": 15
+   },
+   {
+    "product": "Lyleen Accessory",
+    "qty": 1
+   },
+   {
+    "product": "Sibelyx Hat",
+    "qty": 1
+   },
+   {
+    "product": "Cawgnito Hat",
+    "qty": 1
+   },
+   {
+    "product": "Lamball Helm",
+    "qty": 1
+   },
+   {
+    "product": "Dumud Helm",
+    "qty": 1
+   },
+   {
+    "product": "Cattiva Hat",
+    "qty": 1
+   },
+   {
+    "product": "Zoe Hat",
+    "qty": 1
+   },
+   {
+    "product": "Lily Hat",
+    "qty": 1
+   },
+   {
+    "product": "Axel Hat",
+    "qty": 1
+   },
+   {
+    "product": "Marcus Hat",
+    "qty": 1
+   },
+   {
+    "product": "Victor Hat",
+    "qty": 1
+   },
+   {
+    "product": "Saya Hat",
+    "qty": 1
+   },
+   {
+    "product": "Bjorn Hat",
+    "qty": 1
+   },
+   {
+    "product": "Auri Hat",
+    "qty": 1
+   },
+   {
+    "product": "Zenara Hat",
+    "qty": 1
+   },
+   {
+    "product": "Thermal Undershirt",
+    "qty": 10
+   },
+   {
+    "product": "Normal Parachute",
+    "qty": 2
+   },
+   {
+    "product": "Celaray's Gloves",
+    "qty": 5
+   },
+   {
+    "product": "Celaray Lux's Gloves",
+    "qty": 10
+   },
+   {
+    "product": "Jolthog's Gloves",
+    "qty": 5
+   },
+   {
+    "product": "Jolthog Cryst's Gloves",
+    "qty": 6
+   },
+   {
+    "product": "Killamari's Gloves",
+    "qty": 5
+   },
+   {
+    "product": "Killamari Primo's Gloves",
+    "qty": 6
+   },
+   {
+    "product": "Chillet Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Chillet Ignis Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Nitewing Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Tocotoco's Gloves",
+    "qty": 10
+   },
+   {
+    "product": "Hangyu's Gloves",
+    "qty": 5
+   },
+   {
+    "product": "Hangyu Cryst's Glove",
+    "qty": 6
+   },
+   {
+    "product": "Sweepa Saddle",
+    "qty": 8
+   },
+   {
+    "product": "Galeclaw's Gloves",
+    "qty": 20
+   },
+   {
+    "product": "Azurobe Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Azurobe Cryst Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Helzephyr Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Fenglope Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Beakon Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Beakon Cryst Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Ghangler Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Ragnahawk Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Palumba Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Braloha Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Moldron Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Quivern Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Quivern Botan Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Whalaska Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Whalaska Ignis Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Bulldosu Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Kitsun Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Solmora Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Solmora Lux Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Dynamoff Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Zoe's Halloween Costume",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Coal": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 20,
+  "desc": "Coal often found in caves and other places.\r Required to create high quality metal.",
+  "usedIn": [
+   {
+    "product": "Meowmere",
+    "qty": 22
+   },
+   {
+    "product": "Legendary Meowmere",
+    "qty": 22
+   },
+   {
+    "product": "Blazamut's Talisman",
+    "qty": 15
+   },
+   {
+    "product": "Carbon Fiber",
+    "qty": 2
+   },
+   {
+    "product": "Thermal Core",
+    "qty": 8
+   },
+   {
+    "product": "Refined Ingot",
+    "qty": 2
+   },
+   {
+    "product": "Coralum Ingot",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Copper Key": {
+  "rarity": "Uncommon",
+  "type": "Consumable",
+  "sell": 0,
+  "desc": "A key that can be used to open locked treasure chests.",
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Coralum Ore": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 200,
+  "desc": "A rare ore formed over countless years \r in the deep sea. \r Can be retrieved from the depths with \r a magnet and fishing rod.",
+  "usedIn": [
+   {
+    "product": "Beginner Fishing Rod (Gumoss)",
+    "qty": 3
+   },
+   {
+    "product": "Intermediate Fishing Rod (Croajiro)",
+    "qty": 10
+   },
+   {
+    "product": "Coralum Ingot",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Cotton Candy": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 30,
+  "desc": "Cotton candy collected from Woolipop.\r Its sweetness fluffily melts away in your mouth.",
+  "usedIn": [
+   {
+    "product": "Extravagant Vegetable Cake",
+    "qty": 8
+   },
+   {
+    "product": "Recovery Meds",
+    "qty": 3
+   },
+   {
+    "product": "High Quality Recovery Meds",
+    "qty": 5
+   },
+   {
+    "product": "Advanced Recovery Meds",
+    "qty": 7
+   },
+   {
+    "product": "Revival Potion",
+    "qty": 10
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Crude Oil": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 80,
+  "desc": "A material that can be processed into various products.\r Obtained by installing a Crude Oil Extractor in an oil field.",
+  "usedIn": [
+   {
+    "product": "Flamethrower Fuel",
+    "qty": 2
+   },
+   {
+    "product": "Missile Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Wing Cell",
+    "qty": 20
+   },
+   {
+    "product": "Frag Grenade Mk2",
+    "qty": 3
+   },
+   {
+    "product": "Menasting Terra Ring",
+    "qty": 15
+   },
+   {
+    "product": "Plasteel",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Dark Fragment": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "Dropped by some powerful Dark Pals. \r Used as a material for crafting powerful accessories and other items.",
+  "usedIn": [
+   {
+    "product": "Triple Jump Boots",
+    "qty": 50
+   },
+   {
+    "product": "Double Air Dash Boots",
+    "qty": 30
+   },
+   {
+    "product": "Triple Air Dash Boots",
+    "qty": 50
+   },
+   {
+    "product": "Air Walker Mk I",
+    "qty": 15
+   },
+   {
+    "product": "Air Walker Mk II",
+    "qty": 25
+   },
+   {
+    "product": "Air Walker Mk III",
+    "qty": 35
+   },
+   {
+    "product": "Air Walker EX",
+    "qty": 45
+   },
+   {
+    "product": "Dazzi Noct's Necklace",
+    "qty": 10
+   },
+   {
+    "product": "Dualith Noct Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Nyafia's Shotgun",
+    "qty": 30
+   },
+   {
+    "product": "Starryon Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Starryon Primo Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Smokie's Harness",
+    "qty": 5
+   },
+   {
+    "product": "Xenolord Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Celesdir Noct Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Homing Module",
+    "qty": 50
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Dazzi Cloud": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "Cloud dropped from a Dazzi.\r Soft and fluffy, it is used to make clothing.",
+  "usedIn": [
+   {
+    "product": "Dazzi Hat",
+    "qty": 5
+   },
+   {
+    "product": "Homeward Thundercloud",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Diamond": {
+  "rarity": "Epic",
+  "type": "Material",
+  "sell": 5000,
+  "desc": "A rare gemstone that glows brilliantly.\r Can be sold to a merchant for a high price.",
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Dog Coin": {
+  "rarity": "Epic",
+  "type": "Material",
+  "sell": 1,
+  "desc": "A mysterious coin. Apparently there are people who collect these.\r A Mimog will usually have them, but\r for some reason, they cannot be obtained by butchering it.",
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Egg": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 20,
+  "desc": "Delicious when fried, but can also be used to cook various meals.\r Chikipi produce them.",
+  "usedIn": [
+   {
+    "product": "Cake",
+    "qty": 8
+   },
+   {
+    "product": "Mushroom Cake",
+    "qty": 8
+   },
+   {
+    "product": "Vegetable Cake",
+    "qty": 8
+   },
+   {
+    "product": "Special Cake",
+    "qty": 15
+   },
+   {
+    "product": "Mushroom Quiche",
+    "qty": 2
+   },
+   {
+    "product": "Eikthyrdeer Loco Moco",
+    "qty": 2
+   },
+   {
+    "product": "Rushoar Bacon 'n' Eggs",
+    "qty": 2
+   },
+   {
+    "product": "Carbonara",
+    "qty": 2
+   },
+   {
+    "product": "Fried Chikipi",
+    "qty": 1
+   },
+   {
+    "product": "Fried Kelpsea",
+    "qty": 1
+   },
+   {
+    "product": "Omelet",
+    "qty": 2
+   },
+   {
+    "product": "Fried Egg",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Eikthyrdeer Venison": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 18,
+  "desc": "Eikthyrdeer meat.\r Light and lean, but rich in flavor.",
+  "usedIn": [
+   {
+    "product": "Eikthyrdeer Stew",
+    "qty": 2
+   },
+   {
+    "product": "Eikthyrdeer Loco Moco",
+    "qty": 1
+   },
+   {
+    "product": "Roast Eikthyrdeer",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Electric Organ": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 30,
+  "desc": "Material obtainable from Electric Pals.\r It stores electricity, but requires caution when used.",
+  "usedIn": [
+   {
+    "product": "Boost Gun Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Stun Baton",
+    "qty": 20
+   },
+   {
+    "product": "Vortex Beater",
+    "qty": 5
+   },
+   {
+    "product": "Marksman Revolver",
+    "qty": 30
+   },
+   {
+    "product": "Shock Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Ring of Electric Resistance",
+    "qty": 10
+   },
+   {
+    "product": "Electric Support Whistle",
+    "qty": 10
+   },
+   {
+    "product": "Lord of Lightning's Baton",
+    "qty": 10
+   },
+   {
+    "product": "Orserk's Talisman",
+    "qty": 10
+   },
+   {
+    "product": "Fenglope Lux Ring",
+    "qty": 15
+   },
+   {
+    "product": "Homeward Thundercloud",
+    "qty": 5
+   },
+   {
+    "product": "Bio Battery",
+    "qty": 1
+   },
+   {
+    "product": "Celaray Lux's Gloves",
+    "qty": 5
+   },
+   {
+    "product": "Jolthog's Gloves",
+    "qty": 5
+   },
+   {
+    "product": "Univolt Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Pengullet Lux's Rocket Launcher",
+    "qty": 20
+   },
+   {
+    "product": "Helzephyr Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Helzephyr Lux Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Fenglope Lux Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Beakon Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Rayhound Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Azurmane Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Solmora Lux Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Dynamoff Saddle",
+    "qty": 10
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Elizabee's Staff": {
+  "rarity": "Uncommon",
+  "type": "Weapon",
+  "sell": 37,
+  "desc": "A spear made from Elizabee's staff, altered for human use.\r It is imbued with Elizabee's indomitable spirit."
+ },
+ "Emerald": {
+  "rarity": "Rare",
+  "type": "Material",
+  "sell": 4000,
+  "desc": "A gemstone that glows green.\r Can be sold to a merchant for a high price.",
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Fiber": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 0,
+  "desc": "Fiber collected from trees.\r A material used when creating bows, etc.",
+  "usedIn": [
+   {
+    "product": "Grenade Ammo",
+    "qty": 20
+   },
+   {
+    "product": "Old Bow",
+    "qty": 15
+   },
+   {
+    "product": "Poison Bow",
+    "qty": 20
+   },
+   {
+    "product": "Fire Bow",
+    "qty": 20
+   },
+   {
+    "product": "Three Shot Bow",
+    "qty": 30
+   },
+   {
+    "product": "Compound Bow",
+    "qty": 40
+   },
+   {
+    "product": "Makeshift Handgun",
+    "qty": 30
+   },
+   {
+    "product": "Boost Gun",
+    "qty": 30
+   },
+   {
+    "product": "Grappling Gun",
+    "qty": 30
+   },
+   {
+    "product": "Mega Grappling Gun",
+    "qty": 50
+   },
+   {
+    "product": "Giga Grappling Gun",
+    "qty": 80
+   },
+   {
+    "product": "Makeshift Shotgun",
+    "qty": 50
+   },
+   {
+    "product": "Makeshift Assault Rifle",
+    "qty": 60
+   },
+   {
+    "product": "Makeshift SMG",
+    "qty": 30
+   },
+   {
+    "product": "Beginner Fishing Rod (Chillet)",
+    "qty": 8
+   },
+   {
+    "product": "Beginner Fishing Rod (Gumoss)",
+    "qty": 16
+   },
+   {
+    "product": "Intermediate Fishing Rod (Cattiva)",
+    "qty": 30
+   },
+   {
+    "product": "Intermediate Fishing Rod (Croajiro)",
+    "qty": 60
+   },
+   {
+    "product": "Common Shield",
+    "qty": 10
+   },
+   {
+    "product": "Cloth Outfit",
+    "qty": 7
+   },
+   {
+    "product": "Pelt Armor",
+    "qty": 20
+   },
+   {
+    "product": "Feathered Hair Band",
+    "qty": 10
+   },
+   {
+    "product": "Soft Hat",
+    "qty": 10
+   },
+   {
+    "product": "Graduation Cap",
+    "qty": 10
+   },
+   {
+    "product": "Farming Hat",
+    "qty": 30
+   },
+   {
+    "product": "Heat Resistant Undershirt",
+    "qty": 35
+   },
+   {
+    "product": "Wooden Board",
+    "qty": 5
+   },
+   {
+    "product": "Small Feed Bag",
+    "qty": 10
+   },
+   {
+    "product": "Average Feed Bag",
+    "qty": 30
+   },
+   {
+    "product": "Large Feed Bag",
+    "qty": 50
+   },
+   {
+    "product": "Huge Feed Bag",
+    "qty": 90
+   },
+   {
+    "product": "Giant Feed Bag",
+    "qty": 200
+   },
+   {
+    "product": "Daedream's Necklace",
+    "qty": 10
+   },
+   {
+    "product": "Direhowl's Saddled Harness",
+    "qty": 15
+   },
+   {
+    "product": "Chillet Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Chillet Ignis Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Eikthyrdeer Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Eikthyrdeer Terra Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Arsox Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Nitewing Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Flopie's Necklace",
+    "qty": 20
+   },
+   {
+    "product": "Tocotoco's Gloves",
+    "qty": 15
+   },
+   {
+    "product": "Digtoise's Headband",
+    "qty": 30
+   },
+   {
+    "product": "Hangyu's Gloves",
+    "qty": 10
+   },
+   {
+    "product": "Hangyu Cryst's Glove",
+    "qty": 12
+   },
+   {
+    "product": "Elphidran Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Elphidran Aqua Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Tarantriss Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Vanwyrm Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Vanwyrm Cryst Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Dazzi's Necklace",
+    "qty": 15
+   },
+   {
+    "product": "Dazzi Noct's Necklace",
+    "qty": 30
+   },
+   {
+    "product": "Kingpaca Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Kingpaca Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Galeclaw's Gloves",
+    "qty": 30
+   },
+   {
+    "product": "Azurobe Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Azurobe Cryst Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Dinossom Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Dinossom Lux Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Fenglope Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Fenglope Lux Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Polapup Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Herbil's Harness",
+    "qty": 40
+   },
+   {
+    "product": "Dazemu Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Pyrin Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Pyrin Noct Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Mammorest Saddle",
+    "qty": 70
+   },
+   {
+    "product": "Mammorest Cryst Saddle",
+    "qty": 84
+   },
+   {
+    "product": "Rayhound Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Rayhound Cryst Saddle",
+    "qty": 48
+   },
+   {
+    "product": "Blazehowl Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Blazehowl Noct Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Broncherry Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Broncherry Aqua Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Braloha Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Maraith Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Shroomer Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Shroomer Noct Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Yakumo Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Wumpo Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Wumpo Botan Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Bulldosu Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Polapup Terra Saddle",
+    "qty": 72
+   },
+   {
+    "product": "Smokie's Harness",
+    "qty": 50
+   },
+   {
+    "product": "Jormuntide Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Jormuntide Ignis Saddle",
+    "qty": 72
+   },
+   {
+    "product": "Extra Weapon Holster",
+    "qty": 30
+   },
+   {
+    "product": "Extra Weapon Holster 2",
+    "qty": 100
+   },
+   {
+    "product": "Small Pouch",
+    "qty": 20
+   },
+   {
+    "product": "Medium Pouch",
+    "qty": 50
+   },
+   {
+    "product": "Large Pouch",
+    "qty": 80
+   },
+   {
+    "product": "Giant Pouch",
+    "qty": 120
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Flame Organ": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 30,
+  "desc": "Material obtainable from Fire Pals.\r Can be used to make Fire Arrow and more.",
+  "usedIn": [
+   {
+    "product": "Fire Arrow",
+    "qty": 1
+   },
+   {
+    "product": "Fire Bow",
+    "qty": 2
+   },
+   {
+    "product": "Fire Arrow Crossbow",
+    "qty": 5
+   },
+   {
+    "product": "Flamethrower",
+    "qty": 30
+   },
+   {
+    "product": "Core Eject Shotgun",
+    "qty": 40
+   },
+   {
+    "product": "Incendiary Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Tropical Outfit",
+    "qty": 2
+   },
+   {
+    "product": "Heat Resistant Pelt Armor",
+    "qty": 4
+   },
+   {
+    "product": "Heat Resistant Metal Armor",
+    "qty": 8
+   },
+   {
+    "product": "Heat Resistant Refined Metal Armor",
+    "qty": 12
+   },
+   {
+    "product": "Heat Resistant Pal Metal Armor",
+    "qty": 16
+   },
+   {
+    "product": "Heat Resistant Plasteel Armor",
+    "qty": 20
+   },
+   {
+    "product": "Heat Resistant Undershirt",
+    "qty": 15
+   },
+   {
+    "product": "Multiclimate Undershirt",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Fire Resistance",
+    "qty": 15
+   },
+   {
+    "product": "Fire Support Whistle",
+    "qty": 15
+   },
+   {
+    "product": "Reptyro Charm",
+    "qty": 20
+   },
+   {
+    "product": "Wandering Merchant Charm",
+    "qty": 20
+   },
+   {
+    "product": "Vanguard Charm",
+    "qty": 20
+   },
+   {
+    "product": "Flame Emperor's Baton",
+    "qty": 15
+   },
+   {
+    "product": "Blazamut's Talisman",
+    "qty": 15
+   },
+   {
+    "product": "Blazehowl Ring",
+    "qty": 15
+   },
+   {
+    "product": "Menasting Terra Ring",
+    "qty": 10
+   },
+   {
+    "product": "Faleris Ring",
+    "qty": 15
+   },
+   {
+    "product": "Carbon Fiber",
+    "qty": 1
+   },
+   {
+    "product": "Thermal Core",
+    "qty": 4
+   },
+   {
+    "product": "Hip Lantern",
+    "qty": 10
+   },
+   {
+    "product": "Enhanced Hip Lantern",
+    "qty": 30
+   },
+   {
+    "product": "Foxparks' Harness",
+    "qty": 5
+   },
+   {
+    "product": "Chillet Ignis Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Tanzee Ignis's Assault Rifle",
+    "qty": 10
+   },
+   {
+    "product": "Arsox Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Tocotoco's Gloves",
+    "qty": 10
+   },
+   {
+    "product": "Vanwyrm Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Pyrin Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Pyrin Noct Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Ghangler Ignis Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Blazehowl Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Blazehowl Noct Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Ragnahawk Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Moldron Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Whalaska Ignis Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Reptyro Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Suzaku Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Kitsun Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Kitsun Noct Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Faleris Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Eidrolon Ignis Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Aegidron Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Jormuntide Ignis Saddle",
+    "qty": 28
+   },
+   {
+    "product": "Blazamut Ryu Saddle",
+    "qty": 60
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Flour": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 25,
+  "desc": "Flour made from grinding Wheat.\r It can be used as an ingredient in making Bread.",
+  "usedIn": [
+   {
+    "product": "Simple Bait",
+    "qty": 2
+   },
+   {
+    "product": "High Quality Bait",
+    "qty": 3
+   },
+   {
+    "product": "Deluxe Bait",
+    "qty": 4
+   },
+   {
+    "product": "Beginner Bait",
+    "qty": 1
+   },
+   {
+    "product": "Sweet Bait",
+    "qty": 1
+   },
+   {
+    "product": "Lucky Bait",
+    "qty": 3
+   },
+   {
+    "product": "Quick Bait",
+    "qty": 3
+   },
+   {
+    "product": "Alluring Bait",
+    "qty": 5
+   },
+   {
+    "product": "Risky Bait",
+    "qty": 5
+   },
+   {
+    "product": "Cake",
+    "qty": 5
+   },
+   {
+    "product": "Mushroom Cake",
+    "qty": 5
+   },
+   {
+    "product": "Vegetable Cake",
+    "qty": 8
+   },
+   {
+    "product": "Extravagant Vegetable Cake",
+    "qty": 12
+   },
+   {
+    "product": "Special Cake",
+    "qty": 20
+   },
+   {
+    "product": "Broncherry Fried Noodles",
+    "qty": 1
+   },
+   {
+    "product": "Mozzarina Cheeseburger",
+    "qty": 1
+   },
+   {
+    "product": "Seafood Pasta",
+    "qty": 3
+   },
+   {
+    "product": "Pizza",
+    "qty": 1
+   },
+   {
+    "product": "Mushroom Quiche",
+    "qty": 1
+   },
+   {
+    "product": "Mozzarina Hamburger",
+    "qty": 1
+   },
+   {
+    "product": "Rushoar Hot Dog",
+    "qty": 1
+   },
+   {
+    "product": "Carbonara",
+    "qty": 1
+   },
+   {
+    "product": "Rushoar Gyoza",
+    "qty": 1
+   },
+   {
+    "product": "Spring Rolls",
+    "qty": 1
+   },
+   {
+    "product": "Gratin",
+    "qty": 1
+   },
+   {
+    "product": "Fried Chikipi",
+    "qty": 1
+   },
+   {
+    "product": "Fried Kelpsea",
+    "qty": 1
+   },
+   {
+    "product": "Fried Gloopie Balls",
+    "qty": 3
+   },
+   {
+    "product": "Jam-Filled Bun",
+    "qty": 1
+   },
+   {
+    "product": "Pancake",
+    "qty": 1
+   },
+   {
+    "product": "Bread",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Galeclaw Poultry": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 20,
+  "desc": "Galeclaw meat.\r Full of nutrition, its flavor packs a punch.",
+  "usedIn": [
+   {
+    "product": "Galeclaw Nikujaga",
+    "qty": 1
+   },
+   {
+    "product": "Stewed Galeclaw",
+    "qty": 1
+   },
+   {
+    "product": "Grilled Galeclaw",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Giant Pal Soul": {
+  "rarity": "Legendary",
+  "type": "Material",
+  "sell": 1,
+  "desc": "The soul left behind by a highly trained Pal.\r It can draw out hidden abilities if offered to a Statue of Power.",
+  "usedIn": [
+   {
+    "product": "Large Pal Soul",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Gloopie Tentacle": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 20,
+  "desc": "Gloopie tentacle. \r Known for its springy texture and light, refined flavor.",
+  "usedIn": [
+   {
+    "product": "Seafood Pasta",
+    "qty": 3
+   },
+   {
+    "product": "Seafood Salad",
+    "qty": 3
+   },
+   {
+    "product": "Fried Gloopie Balls",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Gold Coin": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 0,
+  "desc": "Currency traded on Palpagos Island.\r Can be exchanged for items or Pals with merchants.",
+  "usedIn": [
+   {
+    "product": "Marksman Revolver",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Gumoss Leaf": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "Leaf dropped from a Gumoss.\r Fresh and sticky, it is used to make clothing.",
+  "usedIn": [
+   {
+    "product": "Gumoss Cap",
+    "qty": 5
+   },
+   {
+    "product": "Ring of Grass Resistance",
+    "qty": 5
+   },
+   {
+    "product": "Grass Support Whistle",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Gunpowder": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 43,
+  "desc": "Gunpowder used to fire ammunition.\r Required to make bullets.",
+  "usedIn": [
+   {
+    "product": "Coarse Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Handgun Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Rifle Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Shotgun Shell",
+    "qty": 3
+   },
+   {
+    "product": "Assault Rifle Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Grenade Ammo",
+    "qty": 3
+   },
+   {
+    "product": "Gatling Gun Ammo",
+    "qty": 3
+   },
+   {
+    "product": "Combat SMG Ammo",
+    "qty": 6
+   },
+   {
+    "product": "Prototype Shotgun Ammo",
+    "qty": 8
+   },
+   {
+    "product": "Heavy Assault Rifle Ammo",
+    "qty": 10
+   },
+   {
+    "product": "Tactical Grenade Launcher Ammo",
+    "qty": 10
+   },
+   {
+    "product": "Frag Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Shock Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Ice Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Incendiary Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Water Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Grass Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Ground Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Dark Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Dragon Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Frag Grenade Mk2",
+    "qty": 1
+   },
+   {
+    "product": "Pal Recovery Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Sunreach Rapid-Fire Ammo",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Hallowed Bar": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 30,
+  "desc": "[Tides of Terraria] \r A sacred material infused with divine energy. \r Can be used to create a variety of Terraria items.",
+  "usedIn": [
+   {
+    "product": "Excalibur",
+    "qty": 30
+   },
+   {
+    "product": "Terra Blade",
+    "qty": 40
+   },
+   {
+    "product": "Vortex Beater",
+    "qty": 40
+   },
+   {
+    "product": "Nightglow",
+    "qty": 40
+   },
+   {
+    "product": "Terraprisma",
+    "qty": 40
+   },
+   {
+    "product": "Legendary Meowmere",
+    "qty": 22
+   },
+   {
+    "product": "Hallowed Plate Mail",
+    "qty": 20
+   },
+   {
+    "product": "Hallowed Mask",
+    "qty": 20
+   },
+   {
+    "product": "Hallowed Helmet",
+    "qty": 20
+   },
+   {
+    "product": "Hallowed Headgear",
+    "qty": 20
+   },
+   {
+    "product": "Hallowed Hood",
+    "qty": 20
+   },
+   {
+    "product": "Moon Lord Mask",
+    "qty": 1
+   },
+   {
+    "product": "Eye of Cthulhu Mask",
+    "qty": 1
+   },
+   {
+    "product": "Celestial Sigil",
+    "qty": 100
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Hardwood": {
+  "rarity": "Uncommon",
+  "type": "Material",
+  "sell": 10,
+  "desc": "High-quality wood carefully selected from sturdy trees grown in harsh environments such as deserts, volcanic regions, and snowy mountains.",
+  "usedIn": [
+   {
+    "product": "Legendary Sphere",
+    "qty": 3
+   },
+   {
+    "product": "Ultimate Sphere",
+    "qty": 10
+   },
+   {
+    "product": "Exotic Sphere",
+    "qty": 10
+   },
+   {
+    "product": "Sol Sphere",
+    "qty": 10
+   },
+   {
+    "product": "Metal Bat",
+    "qty": 30
+   },
+   {
+    "product": "Double-Barreled Shotgun",
+    "qty": 25
+   },
+   {
+    "product": "Single-Shot Rifle",
+    "qty": 20
+   },
+   {
+    "product": "Grass Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Giga Glider",
+    "qty": 100
+   },
+   {
+    "product": "High Quality Wooden Board",
+    "qty": 10
+   },
+   {
+    "product": "Mythical Wooden Board",
+    "qty": 10
+   },
+   {
+    "product": "Huge Feed Bag",
+    "qty": 30
+   },
+   {
+    "product": "Giant Feed Bag",
+    "qty": 50
+   },
+   {
+    "product": "Medium Pouch",
+    "qty": 50
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Hexolite": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 300,
+  "desc": "An alloy of Chromite and Hexolite Quartz. \r Used for building advanced equipment and structures.\r Can be refined at Gigantic Furnace.",
+  "usedIn": [
+   {
+    "product": "Exotic Sphere",
+    "qty": 1
+   },
+   {
+    "product": "Rocket Ammo",
+    "qty": 3
+   },
+   {
+    "product": "Plasma Cartridge",
+    "qty": 2
+   },
+   {
+    "product": "Overheat Rifle Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Energy Shotgun Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Megaboost Gun",
+    "qty": 120
+   },
+   {
+    "product": "Energy Shotgun",
+    "qty": 130
+   },
+   {
+    "product": "Overheat Rifle",
+    "qty": 135
+   },
+   {
+    "product": "Laser Gatling Gun",
+    "qty": 100
+   },
+   {
+    "product": "Plasma Cannon",
+    "qty": 130
+   },
+   {
+    "product": "Advanced Shield",
+    "qty": 50
+   },
+   {
+    "product": "Hexolite Armor",
+    "qty": 50
+   },
+   {
+    "product": "Heat Resistant Hexolite Armor",
+    "qty": 50
+   },
+   {
+    "product": "Cold Resistant Hexolite Armor",
+    "qty": 50
+   },
+   {
+    "product": "Lightweight Hexolite Armor",
+    "qty": 100
+   },
+   {
+    "product": "Hexolite Helmet",
+    "qty": 40
+   },
+   {
+    "product": "Triple Jump Boots",
+    "qty": 30
+   },
+   {
+    "product": "Air Walker Mk I",
+    "qty": 20
+   },
+   {
+    "product": "Air Walker Mk II",
+    "qty": 30
+   },
+   {
+    "product": "Thermal Core",
+    "qty": 2
+   },
+   {
+    "product": "Powerful Fishing Magnet",
+    "qty": 1
+   },
+   {
+    "product": "Faleris Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Faleris Aqua Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Silvegis Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Jormuntide Ignis Saddle",
+    "qty": 28
+   },
+   {
+    "product": "Paladius Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Necromus Saddle",
+    "qty": 24
+   }
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Hexolite Quartz": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 100,
+  "desc": "A rare crystal found only in Feybreak. \r Over many years, Paladium has condensed and transformed, now shining with a rainbow-like glow.",
+  "usedIn": [
+   {
+    "product": "Hexolite",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "High Quality Cloth": {
+  "rarity": "Uncommon",
+  "type": "Material",
+  "sell": 264,
+  "desc": "High Quality Cloth woven from a large amount of Wool. \r Required to create high quality armor.\r Can be crafted at High Quality Workbench.",
+  "usedIn": [
+   {
+    "product": "Lily's Spear",
+    "qty": 20
+   },
+   {
+    "product": "Enhanced Lily's Spear",
+    "qty": 20
+   },
+   {
+    "product": "Refined Metal Armor",
+    "qty": 1
+   },
+   {
+    "product": "Heat Resistant Refined Metal Armor",
+    "qty": 2
+   },
+   {
+    "product": "Cold Resistant Refined Metal Armor",
+    "qty": 2
+   },
+   {
+    "product": "Pal Metal Armor",
+    "qty": 2
+   },
+   {
+    "product": "Heat Resistant Pal Metal Armor",
+    "qty": 3
+   },
+   {
+    "product": "Cold Resistant Pal Metal Armor",
+    "qty": 3
+   },
+   {
+    "product": "Plasteel Armor",
+    "qty": 5
+   },
+   {
+    "product": "Heat Resistant Plasteel Armor",
+    "qty": 5
+   },
+   {
+    "product": "Cold Resistant Plasteel Armor",
+    "qty": 5
+   },
+   {
+    "product": "Lightweight Plasteel Armor",
+    "qty": 5
+   },
+   {
+    "product": "Hexolite Armor",
+    "qty": 10
+   },
+   {
+    "product": "Heat Resistant Hexolite Armor",
+    "qty": 10
+   },
+   {
+    "product": "Cold Resistant Hexolite Armor",
+    "qty": 10
+   },
+   {
+    "product": "Lightweight Hexolite Armor",
+    "qty": 10
+   },
+   {
+    "product": "Depresso Armor",
+    "qty": 15
+   },
+   {
+    "product": "V2 Armor",
+    "qty": 20
+   },
+   {
+    "product": "Depresso Helmet",
+    "qty": 5
+   },
+   {
+    "product": "Multiclimate Undershirt",
+    "qty": 40
+   },
+   {
+    "product": "Wumpo Charm",
+    "qty": 30
+   },
+   {
+    "product": "Training Manual (XL)",
+    "qty": 4
+   },
+   {
+    "product": "High Quality Wooden Board",
+    "qty": 2
+   },
+   {
+    "product": "Fenglope Lux Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Ghangler Ignis Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Moldron Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Dualith Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Dualith Noct Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Tetroise Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Tetroise Primo Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Gildane Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Starryon Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Starryon Primo Saddle",
+    "qty": 18
+   },
+   {
+    "product": "Kitsun Noct Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Azurmane Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Faleris Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Faleris Aqua Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Eidrolon Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Eidrolon Ignis Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Roujay Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Ophydia Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Shaolong Saddle",
+    "qty": 32
+   },
+   {
+    "product": "Aegidron Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Celesdir Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Celesdir Noct Saddle",
+    "qty": 28
+   },
+   {
+    "product": "Hartalis Saddle",
+    "qty": 48
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "High Quality Pal Oil": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 30,
+  "desc": "High-quality oil that can be extracted from Pal.\r Necessary for making Polymer.",
+  "usedIn": [
+   {
+    "product": "Decal Ink",
+    "qty": 1
+   },
+   {
+    "product": "Deluxe Bait",
+    "qty": 4
+   },
+   {
+    "product": "Alluring Bait",
+    "qty": 10
+   },
+   {
+    "product": "Risky Bait",
+    "qty": 8
+   },
+   {
+    "product": "Makeshift Handgun",
+    "qty": 10
+   },
+   {
+    "product": "Handgun",
+    "qty": 15
+   },
+   {
+    "product": "Old Revolver",
+    "qty": 20
+   },
+   {
+    "product": "Boost Gun",
+    "qty": 10
+   },
+   {
+    "product": "Makeshift Shotgun",
+    "qty": 15
+   },
+   {
+    "product": "Musket",
+    "qty": 5
+   },
+   {
+    "product": "Makeshift Assault Rifle",
+    "qty": 20
+   },
+   {
+    "product": "Makeshift SMG",
+    "qty": 10
+   },
+   {
+    "product": "Marksman Revolver",
+    "qty": 15
+   },
+   {
+    "product": "Intermediate Fishing Rod (Cattiva)",
+    "qty": 5
+   },
+   {
+    "product": "Intermediate Fishing Rod (Croajiro)",
+    "qty": 10
+   },
+   {
+    "product": "Advanced Fishing Rod (Pengullet)",
+    "qty": 15
+   },
+   {
+    "product": "Advanced Fishing Rod (Depresso)",
+    "qty": 20
+   },
+   {
+    "product": "V1 Armor",
+    "qty": 15
+   },
+   {
+    "product": "Jetragon's Talisman",
+    "qty": 30
+   },
+   {
+    "product": "Elphidran Ring",
+    "qty": 20
+   },
+   {
+    "product": "Fried Chikipi",
+    "qty": 1
+   },
+   {
+    "product": "Fried Kelpsea",
+    "qty": 1
+   },
+   {
+    "product": "French Fries",
+    "qty": 1
+   },
+   {
+    "product": "High Quality Recovery Meds",
+    "qty": 5
+   },
+   {
+    "product": "Advanced Recovery Meds",
+    "qty": 10
+   },
+   {
+    "product": "Revival Potion",
+    "qty": 20
+   },
+   {
+    "product": "Polymer",
+    "qty": 2
+   },
+   {
+    "product": "Mammorest Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Mammorest Cryst Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Mossanda's Grenade Launcher",
+    "qty": 20
+   },
+   {
+    "product": "Mossanda Lux's Grenade Launcher",
+    "qty": 24
+   },
+   {
+    "product": "Grizzbolt's Minigun",
+    "qty": 10
+   },
+   {
+    "product": "Starryon Primo Saddle",
+    "qty": 20
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "High Quality Recovery Meds": {
+  "rarity": "Rare",
+  "type": "Consumable",
+  "sell": 1260,
+  "desc": "Medicine that heals wounds over time.\r High quality; restores a lot of Health.",
+  "usedIn": [
+   {
+    "product": "Celesdir Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Celesdir Noct Saddle",
+    "qty": 6
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Honey": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 30,
+  "desc": "Honey harvested from Beegarde.\r It's sweet and tasty.",
+  "usedIn": [
+   {
+    "product": "Elizabee's Staff",
+    "qty": 1
+   },
+   {
+    "product": "Beegarde's Spear",
+    "qty": 1
+   },
+   {
+    "product": "Warsect Terra's Belt",
+    "qty": 20
+   },
+   {
+    "product": "Cake",
+    "qty": 2
+   },
+   {
+    "product": "Mushroom Cake",
+    "qty": 2
+   },
+   {
+    "product": "Vegetable Cake",
+    "qty": 4
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Horn": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 20,
+  "desc": "Horn collected from Pals.\r Used to create medicines and more.",
+  "usedIn": [
+   {
+    "product": "Dragon Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Attack Pendant",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Freight",
+    "qty": 20
+   },
+   {
+    "product": "Neutral Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Fire Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Water Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Electric Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Grass Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Ice Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Ground Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Dark Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Dragon Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Attack Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Defense Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Celestial Emperor's Baton",
+    "qty": 30
+   },
+   {
+    "product": "Flame Emperor's Baton",
+    "qty": 30
+   },
+   {
+    "product": "Lord of the Sea's Baton",
+    "qty": 30
+   },
+   {
+    "product": "Lord of Lightning's Baton",
+    "qty": 30
+   },
+   {
+    "product": "Spirit Emperor's Baton",
+    "qty": 30
+   },
+   {
+    "product": "Ice Emperor's Baton",
+    "qty": 30
+   },
+   {
+    "product": "Earth Emperor's Baton",
+    "qty": 30
+   },
+   {
+    "product": "Lord of the Underworld's Baton",
+    "qty": 30
+   },
+   {
+    "product": "Hartalis's Talisman",
+    "qty": 30
+   },
+   {
+    "product": "Low Grade Medical Supplies",
+    "qty": 2
+   },
+   {
+    "product": "Medical Supplies",
+    "qty": 3
+   },
+   {
+    "product": "High Grade Medical Supplies",
+    "qty": 5
+   },
+   {
+    "product": "Mind Control Meds",
+    "qty": 10
+   },
+   {
+    "product": "Suspicious Juice",
+    "qty": 3
+   },
+   {
+    "product": "Strange Juice",
+    "qty": 5
+   },
+   {
+    "product": "Mysterious Mushroom Juice",
+    "qty": 10
+   },
+   {
+    "product": "Memory Wiping Medicine",
+    "qty": 50
+   },
+   {
+    "product": "Eikthyrdeer Saddle",
+    "qty": 3
+   },
+   {
+    "product": "Eikthyrdeer Terra Saddle",
+    "qty": 3
+   },
+   {
+    "product": "Reindrix Saddle",
+    "qty": 20
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Ice Organ": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 30,
+  "desc": "Material obtainable from Ice Pals.\r Can be used to make Ice Mine and more.",
+  "usedIn": [
+   {
+    "product": "Ice Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Tundra Outfit",
+    "qty": 2
+   },
+   {
+    "product": "Cold Resistant Pelt Armor",
+    "qty": 4
+   },
+   {
+    "product": "Cold Resistant Metal Armor",
+    "qty": 8
+   },
+   {
+    "product": "Thermal Undershirt",
+    "qty": 15
+   },
+   {
+    "product": "Multiclimate Undershirt",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Ice Resistance",
+    "qty": 15
+   },
+   {
+    "product": "Ice Support Whistle",
+    "qty": 15
+   },
+   {
+    "product": "Wumpo Charm",
+    "qty": 20
+   },
+   {
+    "product": "Wandering Merchant Charm",
+    "qty": 20
+   },
+   {
+    "product": "Vanguard Charm",
+    "qty": 20
+   },
+   {
+    "product": "Ice Emperor's Baton",
+    "qty": 15
+   },
+   {
+    "product": "Frostallion's Talisman",
+    "qty": 15
+   },
+   {
+    "product": "Cryolinx Ring",
+    "qty": 15
+   },
+   {
+    "product": "Faleris Ring",
+    "qty": 15
+   },
+   {
+    "product": "Cryogenic Coolant",
+    "qty": 1
+   },
+   {
+    "product": "Foxparks Cryst's Harness",
+    "qty": 10
+   },
+   {
+    "product": "Jolthog Cryst's Gloves",
+    "qty": 6
+   },
+   {
+    "product": "Univolt Cryst Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Vanwyrm Cryst Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Azurobe Cryst Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Polapup Saddle",
+    "qty": 6
+   },
+   {
+    "product": "Beakon Cryst Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Rayhound Cryst Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Reindrix Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Moldron Cryst Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Reptyro Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Wumpo Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Polapup Terra Saddle",
+    "qty": 7
+   },
+   {
+    "product": "Bastigor's Hammer",
+    "qty": 50
+   },
+   {
+    "product": "Frostallion Saddle",
+    "qty": 60
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Ingot": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 24,
+  "desc": "A material required to create metal weapons and armor.\r Refined from Ore using a furnace.",
+  "usedIn": [
+   {
+    "product": "Gold Coin",
+    "qty": 30
+   },
+   {
+    "product": "Mega Sphere",
+    "qty": 1
+   },
+   {
+    "product": "Giga Sphere",
+    "qty": 2
+   },
+   {
+    "product": "Hyper Sphere",
+    "qty": 3
+   },
+   {
+    "product": "Coarse Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Handgun Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Boost Gun Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Metal Axe",
+    "qty": 15
+   },
+   {
+    "product": "Metal Pickaxe",
+    "qty": 15
+   },
+   {
+    "product": "Metal Spear",
+    "qty": 10
+   },
+   {
+    "product": "Primitive Sword",
+    "qty": 15
+   },
+   {
+    "product": "Sword",
+    "qty": 30
+   },
+   {
+    "product": "Meat Cleaver",
+    "qty": 5
+   },
+   {
+    "product": "Stun Baton",
+    "qty": 20
+   },
+   {
+    "product": "Crossbow",
+    "qty": 10
+   },
+   {
+    "product": "Poison Arrow Crossbow",
+    "qty": 15
+   },
+   {
+    "product": "Fire Arrow Crossbow",
+    "qty": 15
+   },
+   {
+    "product": "Makeshift Handgun",
+    "qty": 35
+   },
+   {
+    "product": "Handgun",
+    "qty": 50
+   },
+   {
+    "product": "Decal Gun 1",
+    "qty": 30
+   },
+   {
+    "product": "Decal Gun 2",
+    "qty": 30
+   },
+   {
+    "product": "Decal Gun 3",
+    "qty": 30
+   },
+   {
+    "product": "Decal Gun 4",
+    "qty": 30
+   },
+   {
+    "product": "Decal Gun 5",
+    "qty": 30
+   },
+   {
+    "product": "Old Revolver",
+    "qty": 60
+   },
+   {
+    "product": "Boost Gun",
+    "qty": 45
+   },
+   {
+    "product": "Grappling Gun",
+    "qty": 10
+   },
+   {
+    "product": "Mega Grappling Gun",
+    "qty": 20
+   },
+   {
+    "product": "Giga Grappling Gun",
+    "qty": 30
+   },
+   {
+    "product": "Makeshift Shotgun",
+    "qty": 60
+   },
+   {
+    "product": "Musket",
+    "qty": 25
+   },
+   {
+    "product": "Makeshift Assault Rifle",
+    "qty": 70
+   },
+   {
+    "product": "Makeshift SMG",
+    "qty": 40
+   },
+   {
+    "product": "Single-Shot Sphere Launcher",
+    "qty": 50
+   },
+   {
+    "product": "Meowmere",
+    "qty": 22
+   },
+   {
+    "product": "Marksman Revolver",
+    "qty": 60
+   },
+   {
+    "product": "Beginner Fishing Rod (Chillet)",
+    "qty": 8
+   },
+   {
+    "product": "Beginner Fishing Rod (Gumoss)",
+    "qty": 16
+   },
+   {
+    "product": "Mega Shield",
+    "qty": 10
+   },
+   {
+    "product": "Giga Shield",
+    "qty": 20
+   },
+   {
+    "product": "Hyper Shield",
+    "qty": 30
+   },
+   {
+    "product": "Pelt Armor",
+    "qty": 10
+   },
+   {
+    "product": "Heat Resistant Pelt Armor",
+    "qty": 10
+   },
+   {
+    "product": "Cold Resistant Pelt Armor",
+    "qty": 10
+   },
+   {
+    "product": "Metal Armor",
+    "qty": 30
+   },
+   {
+    "product": "Heat Resistant Metal Armor",
+    "qty": 40
+   },
+   {
+    "product": "Cold Resistant Metal Armor",
+    "qty": 40
+   },
+   {
+    "product": "V1 Armor",
+    "qty": 30
+   },
+   {
+    "product": "Metal Helm",
+    "qty": 20
+   },
+   {
+    "product": "Monarch's Crown",
+    "qty": 20
+   },
+   {
+    "product": "Golden Crown",
+    "qty": 25
+   },
+   {
+    "product": "Long-Eared Headband",
+    "qty": 2
+   },
+   {
+    "product": "Witch Hat",
+    "qty": 3
+   },
+   {
+    "product": "Helmet",
+    "qty": 20
+   },
+   {
+    "product": "Explorer Cap",
+    "qty": 2
+   },
+   {
+    "product": "Witch's Crown",
+    "qty": 1
+   },
+   {
+    "product": "Horns of Supremacy",
+    "qty": 1
+   },
+   {
+    "product": "Xenolord's head",
+    "qty": 1
+   },
+   {
+    "product": "Crown of Salvation",
+    "qty": 1
+   },
+   {
+    "product": "Life Pendant",
+    "qty": 25
+   },
+   {
+    "product": "Attack Pendant",
+    "qty": 25
+   },
+   {
+    "product": "Defense Pendant",
+    "qty": 30
+   },
+   {
+    "product": "Pendant of Diligence",
+    "qty": 25
+   },
+   {
+    "product": "Ring of Neutral Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Fire Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Water Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Electric Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Grass Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Ice Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Ground Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Dark Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Dragon Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Mercy",
+    "qty": 30
+   },
+   {
+    "product": "Ring of Freight",
+    "qty": 25
+   },
+   {
+    "product": "Anti-Gravity Belt",
+    "qty": 30
+   },
+   {
+    "product": "Neutral Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Fire Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Water Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Electric Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Grass Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Ice Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Ground Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Dark Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Dragon Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Attack Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Defense Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Growth Acceleration Bell",
+    "qty": 25
+   },
+   {
+    "product": "Medical Supplies",
+    "qty": 3
+   },
+   {
+    "product": "High Grade Medical Supplies",
+    "qty": 5
+   },
+   {
+    "product": "Nail",
+    "qty": 1
+   },
+   {
+    "product": "Fishing Magnet",
+    "qty": 1
+   },
+   {
+    "product": "Hip Lantern",
+    "qty": 20
+   },
+   {
+    "product": "Enhanced Hip Lantern",
+    "qty": 30
+   },
+   {
+    "product": "Lockpicking Tool v1",
+    "qty": 10
+   },
+   {
+    "product": "Lockpicking Tool v2",
+    "qty": 20
+   },
+   {
+    "product": "Lifmunk's Submachine Gun",
+    "qty": 5
+   },
+   {
+    "product": "Tanzee's Assault Rifle",
+    "qty": 5
+   },
+   {
+    "product": "Tanzee Ignis's Assault Rifle",
+    "qty": 6
+   },
+   {
+    "product": "Eikthyrdeer Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Eikthyrdeer Terra Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Univolt Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Nitewing Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Surfent Terra Saddle",
+    "qty": 6
+   },
+   {
+    "product": "Pengullet Rocket Launcher",
+    "qty": 20
+   },
+   {
+    "product": "Pengullet Lux's Rocket Launcher",
+    "qty": 24
+   },
+   {
+    "product": "Flopie's Necklace",
+    "qty": 5
+   },
+   {
+    "product": "Digtoise's Headband",
+    "qty": 10
+   },
+   {
+    "product": "Hangyu's Gloves",
+    "qty": 3
+   },
+   {
+    "product": "Hangyu Cryst's Glove",
+    "qty": 3
+   },
+   {
+    "product": "Elphidran Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Elphidran Aqua Saddle",
+    "qty": 18
+   },
+   {
+    "product": "Vanwyrm Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Vanwyrm Cryst Saddle",
+    "qty": 18
+   },
+   {
+    "product": "Dazzi's Necklace",
+    "qty": 10
+   },
+   {
+    "product": "Kingpaca Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Kingpaca Cryst Saddle",
+    "qty": 18
+   },
+   {
+    "product": "Dinossom Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Dinossom Lux Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Helzephyr Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Fenglope Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Polapup Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Herbil's Harness",
+    "qty": 20
+   },
+   {
+    "product": "Dazemu Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Pyrin Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Pyrin Noct Saddle",
+    "qty": 18
+   },
+   {
+    "product": "Beakon Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Rayhound Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Rayhound Cryst Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Ghangler Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Mossanda's Grenade Launcher",
+    "qty": 50
+   },
+   {
+    "product": "Mossanda Lux's Grenade Launcher",
+    "qty": 60
+   },
+   {
+    "product": "Reindrix Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Blazehowl Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Blazehowl Noct Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Ragnahawk Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Broncherry Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Palumba Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Astegon Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Relaxaurus' Missile Launcher",
+    "qty": 100
+   },
+   {
+    "product": "Relaxaurus Lux's Missile Launcher",
+    "qty": 120
+   },
+   {
+    "product": "Blazamut Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Heavy Weight Module",
+    "qty": 10
+   },
+   {
+    "product": "Curve Module",
+    "qty": 30
+   },
+   {
+    "product": "Sniper Module",
+    "qty": 50
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Innovative Technical Manual": {
+  "rarity": "Rare",
+  "type": "Consumable",
+  "sell": 1,
+  "desc": "A book that contains secrets of cutting-edge technology.\r Use it to obtain Technology Points.",
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Jelliette Bell Flesh": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 25,
+  "desc": "Jelliette's fleshy bell. \r Packed with ocean flavor and a delightfully chewy bite.",
+  "usedIn": [
+   {
+    "product": "Jelliette's Jiggly Jelly",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Jellroy Bell Flesh": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 25,
+  "desc": "Jellroy's fleshy bell. \r Packed with ocean flavor and a delightfully plump texture.",
+  "usedIn": [
+   {
+    "product": "Jellroy's Jolly Jelly",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Katress Hair": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "Hair dropped from a Katress.\r Soft and supple, it is used to make clothing.",
+  "usedIn": [
+   {
+    "product": "Katress Cap",
+    "qty": 5
+   },
+   {
+    "product": "Katress Ring",
+    "qty": 10
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Killamari Tentacle": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "Tentacle dropped from a Killamari.\r Strange in texture, it is used to make clothing.",
+  "usedIn": [
+   {
+    "product": "Killamari Cap",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Lamball Mutton": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 12,
+  "desc": "Lamball meat.\r Red meat with a unique flavor.\r Delicious, but takes some getting used to.",
+  "usedIn": [
+   {
+    "product": "Grilled Lamball",
+    "qty": 1
+   },
+   {
+    "product": "Herb Roasted Lamball",
+    "qty": 1
+   },
+   {
+    "product": "Lamball Kebab",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Large Pal Soul": {
+  "rarity": "Epic",
+  "type": "Material",
+  "sell": 1,
+  "desc": "A spirit left behind by a large Pal.\r It can draw out hidden abilities if offered to a Statue of Power.",
+  "usedIn": [
+   {
+    "product": "Medium Pal Soul",
+    "qty": 1
+   },
+   {
+    "product": "Giant Pal Soul",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Leather": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 20,
+  "desc": "Leather taken from a Pal, it serves as a defensive material.\r It can be obtained from certain Pals.",
+  "usedIn": [
+   {
+    "product": "Pelt Armor",
+    "qty": 10
+   },
+   {
+    "product": "Heat Resistant Pelt Armor",
+    "qty": 15
+   },
+   {
+    "product": "Cold Resistant Pelt Armor",
+    "qty": 15
+   },
+   {
+    "product": "Metal Armor",
+    "qty": 10
+   },
+   {
+    "product": "Heat Resistant Metal Armor",
+    "qty": 13
+   },
+   {
+    "product": "Cold Resistant Metal Armor",
+    "qty": 13
+   },
+   {
+    "product": "Refined Metal Armor",
+    "qty": 15
+   },
+   {
+    "product": "Heat Resistant Refined Metal Armor",
+    "qty": 20
+   },
+   {
+    "product": "Cold Resistant Refined Metal Armor",
+    "qty": 20
+   },
+   {
+    "product": "Pal Metal Armor",
+    "qty": 20
+   },
+   {
+    "product": "Heat Resistant Pal Metal Armor",
+    "qty": 30
+   },
+   {
+    "product": "Cold Resistant Pal Metal Armor",
+    "qty": 30
+   },
+   {
+    "product": "Feathered Hair Band",
+    "qty": 1
+   },
+   {
+    "product": "Tricorne",
+    "qty": 10
+   },
+   {
+    "product": "Explorer Cap",
+    "qty": 3
+   },
+   {
+    "product": "Pendant of Diligence",
+    "qty": 20
+   },
+   {
+    "product": "Heat Resistant Undershirt",
+    "qty": 25
+   },
+   {
+    "product": "Thermal Undershirt",
+    "qty": 25
+   },
+   {
+    "product": "Ring of Freight",
+    "qty": 20
+   },
+   {
+    "product": "Wandering Merchant Charm",
+    "qty": 30
+   },
+   {
+    "product": "Islander's Tool Belt",
+    "qty": 40
+   },
+   {
+    "product": "Hartalis's Talisman",
+    "qty": 30
+   },
+   {
+    "product": "Jetragon's Talisman",
+    "qty": 30
+   },
+   {
+    "product": "Fenglope Lux Ring",
+    "qty": 40
+   },
+   {
+    "product": "Katress Ring",
+    "qty": 20
+   },
+   {
+    "product": "Training Manual (XL)",
+    "qty": 5
+   },
+   {
+    "product": "High Quality Cloth",
+    "qty": 1
+   },
+   {
+    "product": "Small Feed Bag",
+    "qty": 3
+   },
+   {
+    "product": "Average Feed Bag",
+    "qty": 10
+   },
+   {
+    "product": "Large Feed Bag",
+    "qty": 20
+   },
+   {
+    "product": "Huge Feed Bag",
+    "qty": 35
+   },
+   {
+    "product": "Giant Feed Bag",
+    "qty": 50
+   },
+   {
+    "product": "Rushoar Saddle",
+    "qty": 3
+   },
+   {
+    "product": "Foxparks' Harness",
+    "qty": 3
+   },
+   {
+    "product": "Foxparks Cryst's Harness",
+    "qty": 10
+   },
+   {
+    "product": "Melpaca Saddle",
+    "qty": 3
+   },
+   {
+    "product": "Daedream's Necklace",
+    "qty": 5
+   },
+   {
+    "product": "Direhowl's Saddled Harness",
+    "qty": 10
+   },
+   {
+    "product": "Chillet Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Chillet Ignis Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Eikthyrdeer Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Eikthyrdeer Terra Saddle",
+    "qty": 6
+   },
+   {
+    "product": "Univolt Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Univolt Cryst Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Arsox Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Nitewing Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Surfent Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Surfent Terra Saddle",
+    "qty": 6
+   },
+   {
+    "product": "Flopie's Necklace",
+    "qty": 10
+   },
+   {
+    "product": "Tocotoco's Gloves",
+    "qty": 10
+   },
+   {
+    "product": "Digtoise's Headband",
+    "qty": 20
+   },
+   {
+    "product": "Hangyu's Gloves",
+    "qty": 3
+   },
+   {
+    "product": "Hangyu Cryst's Glove",
+    "qty": 3
+   },
+   {
+    "product": "Grintale Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Elphidran Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Elphidran Aqua Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Tarantriss Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Vanwyrm Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Vanwyrm Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Sweepa Saddle",
+    "qty": 3
+   },
+   {
+    "product": "Dazzi's Necklace",
+    "qty": 15
+   },
+   {
+    "product": "Dazzi Noct's Necklace",
+    "qty": 10
+   },
+   {
+    "product": "Kingpaca Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Kingpaca Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Galeclaw's Gloves",
+    "qty": 20
+   },
+   {
+    "product": "Azurobe Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Azurobe Cryst Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Dinossom Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Dinossom Lux Saddle",
+    "qty": 18
+   },
+   {
+    "product": "Helzephyr Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Helzephyr Lux Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Fenglope Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Fenglope Lux Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Polapup Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Herbil's Harness",
+    "qty": 20
+   },
+   {
+    "product": "Dazemu Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Pyrin Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Pyrin Noct Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Mammorest Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Mammorest Cryst Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Beakon Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Beakon Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Rayhound Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Rayhound Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Ghangler Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Ghangler Ignis Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Reindrix Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Blazehowl Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Blazehowl Noct Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Ragnahawk Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Broncherry Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Broncherry Aqua Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Palumba Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Braloha Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Moldron Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Moldron Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Maraith Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Quivern Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Quivern Botan Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Astegon Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Shroomer Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Shroomer Noct Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Xenogard Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Yakumo Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Whalaska Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Whalaska Ignis Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Reptyro Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Reptyro Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Suzaku Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Suzaku Aqua Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Wumpo Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Wumpo Botan Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Shadowbeak Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Dualith Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Dualith Noct Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Tetroise Saddle",
+    "qty": 32
+   },
+   {
+    "product": "Tetroise Primo Saddle",
+    "qty": 38
+   },
+   {
+    "product": "Selyne Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Bulldosu Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Gildane Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Polapup Terra Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Starryon Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Starryon Primo Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Kitsun Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Kitsun Noct Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Smokie's Harness",
+    "qty": 20
+   },
+   {
+    "product": "Azurmane Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Faleris Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Faleris Aqua Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Silvegis Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Solmora Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Solmora Lux Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Dynamoff Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Xenolord Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Eidrolon Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Eidrolon Ignis Saddle",
+    "qty": 48
+   },
+   {
+    "product": "Roujay Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Ophydia Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Shaolong Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Aegidron Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Jormuntide Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Jormuntide Ignis Saddle",
+    "qty": 43
+   },
+   {
+    "product": "Blazamut Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Blazamut Ryu Saddle",
+    "qty": 43
+   },
+   {
+    "product": "Celesdir Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Celesdir Noct Saddle",
+    "qty": 43
+   },
+   {
+    "product": "Paladius Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Necromus Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Frostallion Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Frostallion Noct Saddle",
+    "qty": 43
+   },
+   {
+    "product": "Neptilius Saddle",
+    "qty": 48
+   },
+   {
+    "product": "Hartalis Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Jetragon's Missile Launcher",
+    "qty": 70
+   },
+   {
+    "product": "Extra Weapon Holster",
+    "qty": 20
+   },
+   {
+    "product": "Extra Weapon Holster 2",
+    "qty": 40
+   },
+   {
+    "product": "Small Pouch",
+    "qty": 10
+   },
+   {
+    "product": "Medium Pouch",
+    "qty": 20
+   },
+   {
+    "product": "Large Pouch",
+    "qty": 30
+   },
+   {
+    "product": "Giant Pouch",
+    "qty": 40
+   },
+   {
+    "product": "Zoe's Halloween Costume",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Leezpunk Crest": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "Crest dropped from a Leezpunk.\r Sharp and pointy, it is used to make clothing.",
+  "usedIn": [
+   {
+    "product": "Leezpunk Hood",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Lettuce Seeds": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 4,
+  "desc": "Seeds that produce Lettuce.\r Necessary for starting a farm.\r Can be purchased from a merchant.",
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Low Grade Medical Supplies": {
+  "rarity": "Common",
+  "type": "Consumable",
+  "sell": 78,
+  "desc": "Low Grade Medical Supplies good for Sick, Sprain, and Overfull.\r They don't heal Health when eaten, however.",
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Mammorest Meat": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 100,
+  "desc": "Mammorest meat.\r With massive size comes massive flavor.\r Its overwhelming portions are sure to satisfy any glutton.",
+  "usedIn": [
+   {
+    "product": "Special Cake",
+    "qty": 2
+   },
+   {
+    "product": "Mammorest Curry",
+    "qty": 1
+   },
+   {
+    "product": "Mammorest Steak",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Medium Pal Soul": {
+  "rarity": "Rare",
+  "type": "Material",
+  "sell": 1,
+  "desc": "A spirit left behind by a Pal.\r It can draw out hidden abilities if offered to a Statue of Power.",
+  "usedIn": [
+   {
+    "product": "Small Pal Soul",
+    "qty": 1
+   },
+   {
+    "product": "Large Pal Soul",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Memory Wiping Medicine": {
+  "rarity": "Rare",
+  "type": "Consumable",
+  "sell": 10140,
+  "desc": "A potion that allows the player to reset their status points when consumed.\r It has no effect if consumed by a Pal.",
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Meteorite Fragment": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 100,
+  "desc": "Fragment of a rock from outer space.\r Contains large amounts of Paldium Fragment,\r which can be extracted by placing it in a Crusher.",
+  "usedIn": [
+   {
+    "product": "Meteorite Ammo",
+    "qty": 3
+   },
+   {
+    "product": "Meteor Launcher",
+    "qty": 100
+   },
+   {
+    "product": "Ring of Ground Resistance",
+    "qty": 10
+   },
+   {
+    "product": "Ground Support Whistle",
+    "qty": 10
+   },
+   {
+    "product": "Anubis's Talisman",
+    "qty": 10
+   },
+   {
+    "product": "Paldium Fragment",
+    "qty": 1
+   },
+   {
+    "product": "Xenogard Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Selyne Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Xenolord Saddle",
+    "qty": 30
+   }
+  ]
+ },
+ "Milk": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 20,
+  "desc": "Drink it as is, or use it in various meals.\r Can be milked from Mozzarina.",
+  "usedIn": [
+   {
+    "product": "Cake",
+    "qty": 7
+   },
+   {
+    "product": "Special Cake",
+    "qty": 15
+   },
+   {
+    "product": "Mozzarina Cheeseburger",
+    "qty": 2
+   },
+   {
+    "product": "Eikthyrdeer Stew",
+    "qty": 2
+   },
+   {
+    "product": "Pizza",
+    "qty": 2
+   },
+   {
+    "product": "Mushroom Quiche",
+    "qty": 2
+   },
+   {
+    "product": "Carbonara",
+    "qty": 2
+   },
+   {
+    "product": "Gratin",
+    "qty": 2
+   },
+   {
+    "product": "Mushroom Soup",
+    "qty": 2
+   },
+   {
+    "product": "Pancake",
+    "qty": 1
+   },
+   {
+    "product": "Hot Milk",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Mozzarina Meat": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 19,
+  "desc": "Mozzarina meat.\r Thick, juicy and marbled.\r Residents of Palpagos Island cherish it above all other meats.",
+  "usedIn": [
+   {
+    "product": "Mozzarina Cheeseburger",
+    "qty": 2
+   },
+   {
+    "product": "Mozzarina Hamburger",
+    "qty": 1
+   },
+   {
+    "product": "Mozzarina Steak",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Munchill Meat": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 25,
+  "desc": "Munchill meat. \r Has a satisfying chew that brings out layers of umami as you eat.",
+  "usedIn": [
+   {
+    "product": "Munchill Steak",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Mushroom": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 30,
+  "desc": "A mushroom that can be eaten raw.\r They can be found anywhere on the island.",
+  "usedIn": [
+   {
+    "product": "Mushroom Cake",
+    "qty": 5
+   },
+   {
+    "product": "Eikthyrdeer Stew",
+    "qty": 1
+   },
+   {
+    "product": "Mushroom Quiche",
+    "qty": 2
+   },
+   {
+    "product": "Rushoar Gyoza",
+    "qty": 1
+   },
+   {
+    "product": "Spring Rolls",
+    "qty": 2
+   },
+   {
+    "product": "Marinated Mushrooms",
+    "qty": 1
+   },
+   {
+    "product": "Mushroom Soup",
+    "qty": 1
+   },
+   {
+    "product": "Baked Mushroom",
+    "qty": 1
+   },
+   {
+    "product": "Shroomer Saddle",
+    "qty": 20
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Mysterious Mushroom": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 80,
+  "desc": "Mushrooms that are not suitable for eating raw.\r Eating makes one more prone to feeling hungry.",
+  "usedIn": [
+   {
+    "product": "Growth Acceleration Bell",
+    "qty": 10
+   },
+   {
+    "product": "Mysterious Mushroom Juice",
+    "qty": 20
+   },
+   {
+    "product": "Shroomer Noct Saddle",
+    "qty": 20
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Nightstar Sand": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 100,
+  "desc": "Sand that can be found in the desert at night. \r Used as a material for crafting certain accessories and other items.",
+  "usedIn": [
+   {
+    "product": "Beam Sword",
+    "qty": 20
+   },
+   {
+    "product": "Metal Detector",
+    "qty": 20
+   },
+   {
+    "product": "Advanced Bow",
+    "qty": 20
+   },
+   {
+    "product": "Anti-Gravity Belt",
+    "qty": 10
+   },
+   {
+    "product": "Double Jump Boots",
+    "qty": 20
+   },
+   {
+    "product": "Triple Jump Boots",
+    "qty": 50
+   },
+   {
+    "product": "Air Dash Boots",
+    "qty": 20
+   },
+   {
+    "product": "Double Air Dash Boots",
+    "qty": 30
+   },
+   {
+    "product": "Triple Air Dash Boots",
+    "qty": 40
+   },
+   {
+    "product": "Air Walker Mk I",
+    "qty": 30
+   },
+   {
+    "product": "Air Walker Mk II",
+    "qty": 40
+   },
+   {
+    "product": "Air Walker Mk III",
+    "qty": 50
+   },
+   {
+    "product": "Air Walker EX",
+    "qty": 60
+   }
+  ]
+ },
+ "Onion Seeds": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 7,
+  "desc": "Seeds that produce Onion.\r Necessary for starting a farm.",
+  "usedIn": [
+   {
+    "product": "Vaelet Ring",
+    "qty": 10
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Ore": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 10,
+  "desc": "Becomes an ingot when refined using a furnace.\r Can be found in caves and other places.",
+  "usedIn": [
+   {
+    "product": "Ground Grenade",
+    "qty": 1
+   },
+   {
+    "product": "Defense Pendant",
+    "qty": 20
+   },
+   {
+    "product": "Paldium Fragment",
+    "qty": 2
+   },
+   {
+    "product": "Ingot",
+    "qty": 2
+   },
+   {
+    "product": "Refined Ingot",
+    "qty": 2
+   },
+   {
+    "product": "Pal Metal Ingot",
+    "qty": 4
+   },
+   {
+    "product": "Plasteel",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Pal Metal Ingot": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 125,
+  "desc": "A material required to create Pal Metal weapons and armor. \r Strengthened by creating an alloy incorporating Paldium.",
+  "usedIn": [
+   {
+    "product": "Legendary Sphere",
+    "qty": 3
+   },
+   {
+    "product": "Ultimate Sphere",
+    "qty": 5
+   },
+   {
+    "product": "Missile Ammo",
+    "qty": 3
+   },
+   {
+    "product": "Grenade Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Gatling Gun Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Energy Cartridge",
+    "qty": 2
+   },
+   {
+    "product": "Pal Metal Axe",
+    "qty": 10
+   },
+   {
+    "product": "Pal Metal Pickaxe",
+    "qty": 10
+   },
+   {
+    "product": "Plasma Multicutter",
+    "qty": 50
+   },
+   {
+    "product": "Katana",
+    "qty": 20
+   },
+   {
+    "product": "Homing Sphere Launcher",
+    "qty": 100
+   },
+   {
+    "product": "Laser Rifle",
+    "qty": 50
+   },
+   {
+    "product": "Flamethrower",
+    "qty": 40
+   },
+   {
+    "product": "Gatling Gun",
+    "qty": 150
+   },
+   {
+    "product": "Grenade Launcher",
+    "qty": 75
+   },
+   {
+    "product": "Guided Missile Launcher",
+    "qty": 100
+   },
+   {
+    "product": "Multi Guided Missile Launcher",
+    "qty": 150
+   },
+   {
+    "product": "Terra Blade",
+    "qty": 20
+   },
+   {
+    "product": "Vortex Beater",
+    "qty": 20
+   },
+   {
+    "product": "Nightglow",
+    "qty": 20
+   },
+   {
+    "product": "Terraprisma",
+    "qty": 20
+   },
+   {
+    "product": "Core Eject Shotgun",
+    "qty": 80
+   },
+   {
+    "product": "Advanced Fishing Rod (Pengullet)",
+    "qty": 15
+   },
+   {
+    "product": "Advanced Fishing Rod (Depresso)",
+    "qty": 30
+   },
+   {
+    "product": "Frag Grenade Mk2",
+    "qty": 3
+   },
+   {
+    "product": "Pal Metal Armor",
+    "qty": 20
+   },
+   {
+    "product": "Heat Resistant Pal Metal Armor",
+    "qty": 30
+   },
+   {
+    "product": "Cold Resistant Pal Metal Armor",
+    "qty": 30
+   },
+   {
+    "product": "Plasteel Armor",
+    "qty": 30
+   },
+   {
+    "product": "Heat Resistant Plasteel Armor",
+    "qty": 30
+   },
+   {
+    "product": "Cold Resistant Plasteel Armor",
+    "qty": 30
+   },
+   {
+    "product": "Lightweight Plasteel Armor",
+    "qty": 30
+   },
+   {
+    "product": "V2 Armor",
+    "qty": 40
+   },
+   {
+    "product": "Pal Metal Helm",
+    "qty": 20
+   },
+   {
+    "product": "Plasteel Helmet",
+    "qty": 25
+   },
+   {
+    "product": "Celestial Emperor's Baton",
+    "qty": 10
+   },
+   {
+    "product": "Phantom Ring",
+    "qty": 15
+   },
+   {
+    "product": "Hyper Glider",
+    "qty": 40
+   },
+   {
+    "product": "Lockpicking Tool v3",
+    "qty": 30
+   },
+   {
+    "product": "Paladius Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Necromus Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Sniper Module II",
+    "qty": 30
+   }
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Paldium Fragment": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 7,
+  "desc": "Crystallized energy from the World Tree.\r Capable of creating supernatural items and structures.",
+  "usedIn": [
+   {
+    "product": "Pal Sphere",
+    "qty": 1
+   },
+   {
+    "product": "Mega Sphere",
+    "qty": 1
+   },
+   {
+    "product": "Giga Sphere",
+    "qty": 2
+   },
+   {
+    "product": "Hyper Sphere",
+    "qty": 3
+   },
+   {
+    "product": "Ultra Sphere",
+    "qty": 5
+   },
+   {
+    "product": "Legendary Sphere",
+    "qty": 5
+   },
+   {
+    "product": "Ultimate Sphere",
+    "qty": 10
+   },
+   {
+    "product": "Exotic Sphere",
+    "qty": 15
+   },
+   {
+    "product": "Sol Sphere",
+    "qty": 30
+   },
+   {
+    "product": "Ancient Sphere",
+    "qty": 30
+   },
+   {
+    "product": "Lily's Spear",
+    "qty": 20
+   },
+   {
+    "product": "Enhanced Lily's Spear",
+    "qty": 20
+   },
+   {
+    "product": "Beam Sword",
+    "qty": 100
+   },
+   {
+    "product": "Laser Sword",
+    "qty": 250
+   },
+   {
+    "product": "Metal Detector",
+    "qty": 100
+   },
+   {
+    "product": "Mechanical Bow",
+    "qty": 200
+   },
+   {
+    "product": "Decal Gun 1",
+    "qty": 15
+   },
+   {
+    "product": "Decal Gun 2",
+    "qty": 15
+   },
+   {
+    "product": "Decal Gun 3",
+    "qty": 15
+   },
+   {
+    "product": "Decal Gun 4",
+    "qty": 15
+   },
+   {
+    "product": "Decal Gun 5",
+    "qty": 15
+   },
+   {
+    "product": "Grappling Gun",
+    "qty": 10
+   },
+   {
+    "product": "Mega Grappling Gun",
+    "qty": 20
+   },
+   {
+    "product": "Giga Grappling Gun",
+    "qty": 30
+   },
+   {
+    "product": "Hyper Grappling Gun",
+    "qty": 40
+   },
+   {
+    "product": "Ultra Grappling Gun",
+    "qty": 100
+   },
+   {
+    "product": "Meteor Launcher",
+    "qty": 20
+   },
+   {
+    "product": "Single-Shot Sphere Launcher",
+    "qty": 50
+   },
+   {
+    "product": "Scatter Sphere Launcher",
+    "qty": 50
+   },
+   {
+    "product": "Homing Sphere Launcher",
+    "qty": 200
+   },
+   {
+    "product": "Meowmere",
+    "qty": 22
+   },
+   {
+    "product": "Legendary Meowmere",
+    "qty": 22
+   },
+   {
+    "product": "Beginner Fishing Rod (Chillet)",
+    "qty": 10
+   },
+   {
+    "product": "Beginner Fishing Rod (Gumoss)",
+    "qty": 20
+   },
+   {
+    "product": "Intermediate Fishing Rod (Cattiva)",
+    "qty": 30
+   },
+   {
+    "product": "Intermediate Fishing Rod (Croajiro)",
+    "qty": 60
+   },
+   {
+    "product": "Advanced Fishing Rod (Pengullet)",
+    "qty": 70
+   },
+   {
+    "product": "Advanced Fishing Rod (Depresso)",
+    "qty": 140
+   },
+   {
+    "product": "Common Shield",
+    "qty": 10
+   },
+   {
+    "product": "Mega Shield",
+    "qty": 30
+   },
+   {
+    "product": "Giga Shield",
+    "qty": 50
+   },
+   {
+    "product": "Hyper Shield",
+    "qty": 100
+   },
+   {
+    "product": "Ultra Shield",
+    "qty": 150
+   },
+   {
+    "product": "Advanced Shield",
+    "qty": 200
+   },
+   {
+    "product": "Ancient Shield",
+    "qty": 250
+   },
+   {
+    "product": "Metal Helm",
+    "qty": 10
+   },
+   {
+    "product": "Refined Metal Helm",
+    "qty": 15
+   },
+   {
+    "product": "Pal Metal Helm",
+    "qty": 20
+   },
+   {
+    "product": "Life Pendant",
+    "qty": 25
+   },
+   {
+    "product": "Attack Pendant",
+    "qty": 25
+   },
+   {
+    "product": "Defense Pendant",
+    "qty": 25
+   },
+   {
+    "product": "Pendant of Diligence",
+    "qty": 25
+   },
+   {
+    "product": "Ring of Neutral Resistance",
+    "qty": 30
+   },
+   {
+    "product": "Ring of Fire Resistance",
+    "qty": 30
+   },
+   {
+    "product": "Ring of Water Resistance",
+    "qty": 30
+   },
+   {
+    "product": "Ring of Electric Resistance",
+    "qty": 30
+   },
+   {
+    "product": "Ring of Grass Resistance",
+    "qty": 30
+   },
+   {
+    "product": "Ring of Ice Resistance",
+    "qty": 30
+   },
+   {
+    "product": "Ring of Ground Resistance",
+    "qty": 30
+   },
+   {
+    "product": "Ring of Dark Resistance",
+    "qty": 30
+   },
+   {
+    "product": "Ring of Dragon Resistance",
+    "qty": 30
+   },
+   {
+    "product": "Ring of Mercy",
+    "qty": 20
+   },
+   {
+    "product": "Ability Glasses",
+    "qty": 20
+   },
+   {
+    "product": "Anti-Gravity Belt",
+    "qty": 30
+   },
+   {
+    "product": "Double Jump Boots",
+    "qty": 50
+   },
+   {
+    "product": "Triple Jump Boots",
+    "qty": 150
+   },
+   {
+    "product": "Air Dash Boots",
+    "qty": 50
+   },
+   {
+    "product": "Double Air Dash Boots",
+    "qty": 100
+   },
+   {
+    "product": "Triple Air Dash Boots",
+    "qty": 150
+   },
+   {
+    "product": "Growth Acceleration Bell",
+    "qty": 30
+   },
+   {
+    "product": "Dogen Emblem",
+    "qty": 35
+   },
+   {
+    "product": "Silvegis Emblem",
+    "qty": 35
+   },
+   {
+    "product": "Reptyro Charm",
+    "qty": 30
+   },
+   {
+    "product": "Wumpo Charm",
+    "qty": 30
+   },
+   {
+    "product": "Warsect Terra's Belt",
+    "qty": 35
+   },
+   {
+    "product": "Islander's Tool Belt",
+    "qty": 35
+   },
+   {
+    "product": "Pal Tamer's Glasses",
+    "qty": 30
+   },
+   {
+    "product": "Air Walker Mk I",
+    "qty": 30
+   },
+   {
+    "product": "Air Walker Mk II",
+    "qty": 40
+   },
+   {
+    "product": "Air Walker Mk III",
+    "qty": 50
+   },
+   {
+    "product": "Air Walker EX",
+    "qty": 60
+   },
+   {
+    "product": "Blazehowl Ring",
+    "qty": 30
+   },
+   {
+    "product": "Faleris Aqua Ring",
+    "qty": 30
+   },
+   {
+    "product": "Ring of Trust",
+    "qty": 30
+   },
+   {
+    "product": "Wing Pack",
+    "qty": 30
+   },
+   {
+    "product": "Pal Metal Ingot",
+    "qty": 2
+   },
+   {
+    "product": "Lockpicking Tool v1",
+    "qty": 10
+   },
+   {
+    "product": "Lockpicking Tool v2",
+    "qty": 20
+   },
+   {
+    "product": "Lockpicking Tool v3",
+    "qty": 30
+   },
+   {
+    "product": "Rushoar Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Foxparks' Harness",
+    "qty": 5
+   },
+   {
+    "product": "Foxparks Cryst's Harness",
+    "qty": 20
+   },
+   {
+    "product": "Melpaca Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Celaray's Gloves",
+    "qty": 5
+   },
+   {
+    "product": "Celaray Lux's Gloves",
+    "qty": 6
+   },
+   {
+    "product": "Jolthog's Gloves",
+    "qty": 5
+   },
+   {
+    "product": "Jolthog Cryst's Gloves",
+    "qty": 6
+   },
+   {
+    "product": "Daedream's Necklace",
+    "qty": 10
+   },
+   {
+    "product": "Direhowl's Saddled Harness",
+    "qty": 10
+   },
+   {
+    "product": "Killamari's Gloves",
+    "qty": 10
+   },
+   {
+    "product": "Killamari Primo's Gloves",
+    "qty": 12
+   },
+   {
+    "product": "Chillet Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Chillet Ignis Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Lifmunk's Submachine Gun",
+    "qty": 10
+   },
+   {
+    "product": "Tanzee's Assault Rifle",
+    "qty": 10
+   },
+   {
+    "product": "Tanzee Ignis's Assault Rifle",
+    "qty": 20
+   },
+   {
+    "product": "Eikthyrdeer Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Eikthyrdeer Terra Saddle",
+    "qty": 18
+   },
+   {
+    "product": "Univolt Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Univolt Cryst Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Arsox Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Nitewing Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Surfent Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Surfent Terra Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Pengullet Rocket Launcher",
+    "qty": 20
+   },
+   {
+    "product": "Pengullet Lux's Rocket Launcher",
+    "qty": 24
+   },
+   {
+    "product": "Flopie's Necklace",
+    "qty": 15
+   },
+   {
+    "product": "Tocotoco's Gloves",
+    "qty": 15
+   },
+   {
+    "product": "Digtoise's Headband",
+    "qty": 20
+   },
+   {
+    "product": "Hangyu's Gloves",
+    "qty": 10
+   },
+   {
+    "product": "Hangyu Cryst's Glove",
+    "qty": 12
+   },
+   {
+    "product": "Grintale Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Elphidran Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Elphidran Aqua Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Tarantriss Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Vanwyrm Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Vanwyrm Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Sweepa Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Dazzi's Necklace",
+    "qty": 20
+   },
+   {
+    "product": "Dazzi Noct's Necklace",
+    "qty": 40
+   },
+   {
+    "product": "Kingpaca Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Kingpaca Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Galeclaw's Gloves",
+    "qty": 30
+   },
+   {
+    "product": "Azurobe Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Azurobe Cryst Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Dinossom Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Dinossom Lux Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Helzephyr Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Helzephyr Lux Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Fenglope Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Fenglope Lux Saddle",
+    "qty": 45
+   },
+   {
+    "product": "Polapup Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Herbil's Harness",
+    "qty": 25
+   },
+   {
+    "product": "Dazemu Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Pyrin Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Pyrin Noct Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Mammorest Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Mammorest Cryst Saddle",
+    "qty": 72
+   },
+   {
+    "product": "Beakon Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Beakon Cryst Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Rayhound Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Rayhound Cryst Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Ghangler Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Ghangler Ignis Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Mossanda's Grenade Launcher",
+    "qty": 40
+   },
+   {
+    "product": "Mossanda Lux's Grenade Launcher",
+    "qty": 48
+   },
+   {
+    "product": "Reindrix Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Blazehowl Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Blazehowl Noct Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Ragnahawk Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Broncherry Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Broncherry Aqua Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Palumba Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Braloha Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Moldron Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Moldron Cryst Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Maraith Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Quivern Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Quivern Botan Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Astegon Saddle",
+    "qty": 55
+   },
+   {
+    "product": "Shroomer Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Shroomer Noct Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Grizzbolt's Minigun",
+    "qty": 75
+   },
+   {
+    "product": "Xenogard Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Yakumo Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Whalaska Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Whalaska Ignis Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Reptyro Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Reptyro Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Suzaku Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Suzaku Aqua Saddle",
+    "qty": 48
+   },
+   {
+    "product": "Relaxaurus' Missile Launcher",
+    "qty": 85
+   },
+   {
+    "product": "Relaxaurus Lux's Missile Launcher",
+    "qty": 102
+   },
+   {
+    "product": "Wumpo Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Wumpo Botan Saddle",
+    "qty": 48
+   },
+   {
+    "product": "Shadowbeak Saddle",
+    "qty": 45
+   },
+   {
+    "product": "Dualith Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Dualith Noct Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Tetroise Saddle",
+    "qty": 45
+   },
+   {
+    "product": "Tetroise Primo Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Nyafia's Shotgun",
+    "qty": 85
+   },
+   {
+    "product": "Selyne Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Bulldosu Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Gildane Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Polapup Terra Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Starryon Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Starryon Primo Saddle",
+    "qty": 65
+   },
+   {
+    "product": "Kitsun Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Kitsun Noct Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Smokie's Harness",
+    "qty": 40
+   },
+   {
+    "product": "Azurmane Saddle",
+    "qty": 60
+   },
+   {
+    "product": "Faleris Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Faleris Aqua Saddle",
+    "qty": 75
+   },
+   {
+    "product": "Silvegis Saddle",
+    "qty": 75
+   },
+   {
+    "product": "Solmora Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Solmora Lux Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Dynamoff Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Xenolord Saddle",
+    "qty": 200
+   },
+   {
+    "product": "Eidrolon Saddle",
+    "qty": 45
+   },
+   {
+    "product": "Eidrolon Ignis Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Roujay Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Ophydia Saddle",
+    "qty": 75
+   },
+   {
+    "product": "Bastigor's Hammer",
+    "qty": 140
+   },
+   {
+    "product": "Shaolong Saddle",
+    "qty": 83
+   },
+   {
+    "product": "Aegidron Saddle",
+    "qty": 46
+   },
+   {
+    "product": "Jormuntide Saddle",
+    "qty": 48
+   },
+   {
+    "product": "Jormuntide Ignis Saddle",
+    "qty": 57
+   },
+   {
+    "product": "Blazamut Saddle",
+    "qty": 48
+   },
+   {
+    "product": "Blazamut Ryu Saddle",
+    "qty": 57
+   },
+   {
+    "product": "Celesdir Saddle",
+    "qty": 80
+   },
+   {
+    "product": "Celesdir Noct Saddle",
+    "qty": 96
+   },
+   {
+    "product": "Paladius Saddle",
+    "qty": 102
+   },
+   {
+    "product": "Necromus Saddle",
+    "qty": 102
+   },
+   {
+    "product": "Frostallion Saddle",
+    "qty": 80
+   },
+   {
+    "product": "Frostallion Noct Saddle",
+    "qty": 96
+   },
+   {
+    "product": "Neptilius Saddle",
+    "qty": 200
+   },
+   {
+    "product": "Hartalis Saddle",
+    "qty": 200
+   },
+   {
+    "product": "Jetragon's Missile Launcher",
+    "qty": 210
+   },
+   {
+    "product": "Heavy Weight Module",
+    "qty": 10
+   },
+   {
+    "product": "Curve Module",
+    "qty": 30
+   },
+   {
+    "product": "Sniper Module",
+    "qty": 50
+   },
+   {
+    "product": "Slider Module",
+    "qty": 100
+   },
+   {
+    "product": "Sniper Module II",
+    "qty": 200
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Penking Plume": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "Plume dropped from a Penking.\r Bright and colorful, it is used to make clothing.",
+  "usedIn": [
+   {
+    "product": "Penking Cap",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Plasteel": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 252,
+  "desc": "Plasteel created by processing Crude Oil and metal.\r Can be produced in a Electric Furnace.",
+  "usedIn": [
+   {
+    "product": "Ultimate Sphere",
+    "qty": 1
+   },
+   {
+    "product": "Exotic Sphere",
+    "qty": 1
+   },
+   {
+    "product": "Advanced Arrow",
+    "qty": 2
+   },
+   {
+    "product": "Laser Gatling Cartridge",
+    "qty": 1
+   },
+   {
+    "product": "Plasma Multicutter",
+    "qty": 50
+   },
+   {
+    "product": "Beam Sword",
+    "qty": 30
+   },
+   {
+    "product": "Metal Detector",
+    "qty": 30
+   },
+   {
+    "product": "Advanced Bow",
+    "qty": 40
+   },
+   {
+    "product": "Laser Rifle",
+    "qty": 40
+   },
+   {
+    "product": "Flamethrower",
+    "qty": 30
+   },
+   {
+    "product": "Gatling Gun",
+    "qty": 70
+   },
+   {
+    "product": "Laser Gatling Gun",
+    "qty": 110
+   },
+   {
+    "product": "Grenade Launcher",
+    "qty": 60
+   },
+   {
+    "product": "Guided Missile Launcher",
+    "qty": 50
+   },
+   {
+    "product": "Multi Guided Missile Launcher",
+    "qty": 80
+   },
+   {
+    "product": "Plasma Cannon",
+    "qty": 150
+   },
+   {
+    "product": "Core Eject Shotgun",
+    "qty": 65
+   },
+   {
+    "product": "Ultra Shield",
+    "qty": 50
+   },
+   {
+    "product": "Plasteel Armor",
+    "qty": 30
+   },
+   {
+    "product": "Heat Resistant Plasteel Armor",
+    "qty": 30
+   },
+   {
+    "product": "Cold Resistant Plasteel Armor",
+    "qty": 30
+   },
+   {
+    "product": "Lightweight Plasteel Armor",
+    "qty": 30
+   },
+   {
+    "product": "Hexolite Armor",
+    "qty": 20
+   },
+   {
+    "product": "Heat Resistant Hexolite Armor",
+    "qty": 20
+   },
+   {
+    "product": "Cold Resistant Hexolite Armor",
+    "qty": 20
+   },
+   {
+    "product": "Lightweight Hexolite Armor",
+    "qty": 20
+   },
+   {
+    "product": "V2 Armor",
+    "qty": 40
+   },
+   {
+    "product": "Plasteel Helmet",
+    "qty": 20
+   },
+   {
+    "product": "Hexolite Helmet",
+    "qty": 15
+   },
+   {
+    "product": "Double Air Dash Boots",
+    "qty": 30
+   },
+   {
+    "product": "Phantom Ring",
+    "qty": 10
+   },
+   {
+    "product": "Computer",
+    "qty": 3
+   },
+   {
+    "product": "Selyne Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Bulldosu Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Polapup Terra Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Blazamut Ryu Saddle",
+    "qty": 43
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Polymer": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 108,
+  "desc": "Polymer made from refined oil. \r Required for producing various advanced items such as firearms.\r Can be crafted at Production Assembly Line.",
+  "usedIn": [
+   {
+    "product": "Decal Gun 1",
+    "qty": 10
+   },
+   {
+    "product": "Decal Gun 2",
+    "qty": 10
+   },
+   {
+    "product": "Decal Gun 3",
+    "qty": 10
+   },
+   {
+    "product": "Decal Gun 4",
+    "qty": 10
+   },
+   {
+    "product": "Decal Gun 5",
+    "qty": 10
+   },
+   {
+    "product": "Hyper Grappling Gun",
+    "qty": 20
+   },
+   {
+    "product": "Ultra Grappling Gun",
+    "qty": 50
+   },
+   {
+    "product": "Double-Barreled Shotgun",
+    "qty": 7
+   },
+   {
+    "product": "Pump-Action Shotgun",
+    "qty": 20
+   },
+   {
+    "product": "Semi-Auto Shotgun",
+    "qty": 20
+   },
+   {
+    "product": "Single-Shot Rifle",
+    "qty": 5
+   },
+   {
+    "product": "Semi-Auto Rifle",
+    "qty": 10
+   },
+   {
+    "product": "Assault Rifle",
+    "qty": 10
+   },
+   {
+    "product": "SMG",
+    "qty": 6
+   },
+   {
+    "product": "Rocket Launcher",
+    "qty": 30
+   },
+   {
+    "product": "Scatter Sphere Launcher",
+    "qty": 15
+   },
+   {
+    "product": "Homing Sphere Launcher",
+    "qty": 50
+   },
+   {
+    "product": "Multiclimate Undershirt",
+    "qty": 20
+   },
+   {
+    "product": "Defense Support Whistle",
+    "qty": 15
+   },
+   {
+    "product": "Wandering Merchant Charm",
+    "qty": 30
+   },
+   {
+    "product": "Vanguard Charm",
+    "qty": 30
+   },
+   {
+    "product": "Divine Dragon's Baton",
+    "qty": 20
+   },
+   {
+    "product": "Circuit Board",
+    "qty": 1
+   },
+   {
+    "product": "Grizzbolt's Minigun",
+    "qty": 20
+   },
+   {
+    "product": "Relaxaurus' Missile Launcher",
+    "qty": 35
+   },
+   {
+    "product": "Relaxaurus Lux's Missile Launcher",
+    "qty": 42
+   },
+   {
+    "product": "Nyafia's Shotgun",
+    "qty": 30
+   }
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Potato Seeds": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 5,
+  "desc": "Seeds that produce Potato.\r Necessary for starting a farm.",
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Pure Quartz": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "Pure Quartz often found in snowy fields and similar places.\r Required to create Circuit Board.",
+  "usedIn": [
+   {
+    "product": "Ring of Dragon Resistance",
+    "qty": 20
+   },
+   {
+    "product": "Dragon Support Whistle",
+    "qty": 20
+   },
+   {
+    "product": "Lord of the Underworld's Baton",
+    "qty": 15
+   },
+   {
+    "product": "Divine Dragon's Baton",
+    "qty": 20
+   },
+   {
+    "product": "Cryolinx Ring",
+    "qty": 20
+   },
+   {
+    "product": "Circuit Board",
+    "qty": 2
+   },
+   {
+    "product": "Pal Metal Ingot",
+    "qty": 1
+   },
+   {
+    "product": "Soralite Ingot",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Raw Dumud": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 22,
+  "desc": "Dumud meat.\r Fatty with a rich taste.\r Has a mouthwatering plump texture.",
+  "usedIn": [
+   {
+    "product": "Dumud Chowder",
+    "qty": 1
+   },
+   {
+    "product": "Broiled Dumud",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Raw Kelpsea": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 14,
+  "desc": "Kelpsea meat.\r Tender and slightly sweet.\r Fish meat tends to spoil quickly.",
+  "usedIn": [
+   {
+    "product": "Fried Kelpsea",
+    "qty": 1
+   },
+   {
+    "product": "Grilled Kelpsea",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Red Berries": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 5,
+  "desc": "A versatile ingredient that is delicious raw or cooked.\r They can be found anywhere on the island.",
+  "usedIn": [
+   {
+    "product": "Simple Bait",
+    "qty": 4
+   },
+   {
+    "product": "Beginner Bait",
+    "qty": 2
+   },
+   {
+    "product": "Sweet Bait",
+    "qty": 2
+   },
+   {
+    "product": "Cake",
+    "qty": 8
+   },
+   {
+    "product": "Mammorest Curry",
+    "qty": 2
+   },
+   {
+    "product": "Pizza",
+    "qty": 2
+   },
+   {
+    "product": "Eikthyrdeer Loco Moco",
+    "qty": 2
+   },
+   {
+    "product": "Herb Roasted Lamball",
+    "qty": 2
+   },
+   {
+    "product": "Chikipi Sauté",
+    "qty": 2
+   },
+   {
+    "product": "Stewed Galeclaw",
+    "qty": 2
+   },
+   {
+    "product": "Marinated Mushrooms",
+    "qty": 2
+   },
+   {
+    "product": "Jellroy's Jolly Jelly",
+    "qty": 2
+   },
+   {
+    "product": "Jam-Filled Bun",
+    "qty": 2
+   },
+   {
+    "product": "Baked Berries",
+    "qty": 1
+   },
+   {
+    "product": "Low Grade Medical Supplies",
+    "qty": 5
+   },
+   {
+    "product": "Low Quality Recovery Meds",
+    "qty": 5
+   },
+   {
+    "product": "Recovery Meds",
+    "qty": 5
+   },
+   {
+    "product": "High Quality Recovery Meds",
+    "qty": 20
+   },
+   {
+    "product": "Advanced Recovery Meds",
+    "qty": 30
+   },
+   {
+    "product": "Revival Potion",
+    "qty": 50
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Refined Ingot": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 72,
+  "desc": "A material required to create high quality metal weapons and armor.\r Refined from Ore and Coal using a furnace.",
+  "usedIn": [
+   {
+    "product": "Ultra Sphere",
+    "qty": 3
+   },
+   {
+    "product": "Reinforced Arrow",
+    "qty": 2
+   },
+   {
+    "product": "Rifle Ammo",
+    "qty": 2
+   },
+   {
+    "product": "Shotgun Shell",
+    "qty": 2
+   },
+   {
+    "product": "Assault Rifle Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Flamethrower Fuel",
+    "qty": 1
+   },
+   {
+    "product": "Metal Bat",
+    "qty": 20
+   },
+   {
+    "product": "Refined Metal Axe",
+    "qty": 10
+   },
+   {
+    "product": "Refined Metal Pickaxe",
+    "qty": 10
+   },
+   {
+    "product": "Refined Metal Spear",
+    "qty": 10
+   },
+   {
+    "product": "Lily's Spear",
+    "qty": 30
+   },
+   {
+    "product": "Compound Bow",
+    "qty": 50
+   },
+   {
+    "product": "Hyper Grappling Gun",
+    "qty": 30
+   },
+   {
+    "product": "Double-Barreled Shotgun",
+    "qty": 30
+   },
+   {
+    "product": "Pump-Action Shotgun",
+    "qty": 30
+   },
+   {
+    "product": "Semi-Auto Shotgun",
+    "qty": 50
+   },
+   {
+    "product": "Single-Shot Rifle",
+    "qty": 20
+   },
+   {
+    "product": "Semi-Auto Rifle",
+    "qty": 35
+   },
+   {
+    "product": "Assault Rifle",
+    "qty": 40
+   },
+   {
+    "product": "SMG",
+    "qty": 25
+   },
+   {
+    "product": "Meteor Launcher",
+    "qty": 30
+   },
+   {
+    "product": "Scatter Sphere Launcher",
+    "qty": 50
+   },
+   {
+    "product": "Refined Metal Armor",
+    "qty": 30
+   },
+   {
+    "product": "Heat Resistant Refined Metal Armor",
+    "qty": 40
+   },
+   {
+    "product": "Cold Resistant Refined Metal Armor",
+    "qty": 40
+   },
+   {
+    "product": "Refined Metal Helm",
+    "qty": 20
+   },
+   {
+    "product": "Ability Glasses",
+    "qty": 30
+   },
+   {
+    "product": "Double Jump Boots",
+    "qty": 30
+   },
+   {
+    "product": "Air Dash Boots",
+    "qty": 30
+   },
+   {
+    "product": "Dogen Emblem",
+    "qty": 20
+   },
+   {
+    "product": "Silvegis Emblem",
+    "qty": 20
+   },
+   {
+    "product": "Reptyro Charm",
+    "qty": 20
+   },
+   {
+    "product": "Wumpo Charm",
+    "qty": 20
+   },
+   {
+    "product": "Warsect Terra's Belt",
+    "qty": 40
+   },
+   {
+    "product": "Islander's Tool Belt",
+    "qty": 20
+   },
+   {
+    "product": "Celestial Emperor's Baton",
+    "qty": 20
+   },
+   {
+    "product": "Flame Emperor's Baton",
+    "qty": 20
+   },
+   {
+    "product": "Lord of the Sea's Baton",
+    "qty": 20
+   },
+   {
+    "product": "Lord of Lightning's Baton",
+    "qty": 20
+   },
+   {
+    "product": "Spirit Emperor's Baton",
+    "qty": 20
+   },
+   {
+    "product": "Ice Emperor's Baton",
+    "qty": 20
+   },
+   {
+    "product": "Earth Emperor's Baton",
+    "qty": 20
+   },
+   {
+    "product": "Lord of the Underworld's Baton",
+    "qty": 20
+   },
+   {
+    "product": "Divine Dragon's Baton",
+    "qty": 20
+   },
+   {
+    "product": "Pal Tamer's Glasses",
+    "qty": 20
+   },
+   {
+    "product": "Hartalis's Talisman",
+    "qty": 20
+   },
+   {
+    "product": "Blazamut's Talisman",
+    "qty": 20
+   },
+   {
+    "product": "Neptilius's Talisman",
+    "qty": 20
+   },
+   {
+    "product": "Orserk's Talisman",
+    "qty": 20
+   },
+   {
+    "product": "Lyleen's Talisman",
+    "qty": 20
+   },
+   {
+    "product": "Frostallion's Talisman",
+    "qty": 20
+   },
+   {
+    "product": "Anubis's Talisman",
+    "qty": 20
+   },
+   {
+    "product": "Lyleen Noct's Talisman",
+    "qty": 20
+   },
+   {
+    "product": "Jetragon's Talisman",
+    "qty": 20
+   },
+   {
+    "product": "Blazehowl Ring",
+    "qty": 20
+   },
+   {
+    "product": "Faleris Aqua Ring",
+    "qty": 20
+   },
+   {
+    "product": "Fenglope Lux Ring",
+    "qty": 20
+   },
+   {
+    "product": "Menasting Terra Ring",
+    "qty": 20
+   },
+   {
+    "product": "Vaelet Ring",
+    "qty": 20
+   },
+   {
+    "product": "Katress Ring",
+    "qty": 20
+   },
+   {
+    "product": "Elphidran Ring",
+    "qty": 20
+   },
+   {
+    "product": "Cryolinx Ring",
+    "qty": 20
+   },
+   {
+    "product": "Faleris Ring",
+    "qty": 20
+   },
+   {
+    "product": "Ring of Trust",
+    "qty": 25
+   },
+   {
+    "product": "Phantom Ring",
+    "qty": 30
+   },
+   {
+    "product": "Giga Glider",
+    "qty": 20
+   },
+   {
+    "product": "Mind Control Meds",
+    "qty": 10
+   },
+   {
+    "product": "Bio Battery",
+    "qty": 1
+   },
+   {
+    "product": "Helzephyr Lux Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Ghangler Ignis Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Broncherry Aqua Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Braloha Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Moldron Saddle",
+    "qty": 15
+   },
+   {
+    "product": "Maraith Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Quivern Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Quivern Botan Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Astegon Saddle",
+    "qty": 50
+   },
+   {
+    "product": "Shroomer Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Shroomer Noct Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Grizzbolt's Minigun",
+    "qty": 50
+   },
+   {
+    "product": "Yakumo Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Whalaska Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Reptyro Saddle",
+    "qty": 20
+   },
+   {
+    "product": "Reptyro Cryst Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Suzaku Saddle",
+    "qty": 25
+   },
+   {
+    "product": "Suzaku Aqua Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Relaxaurus' Missile Launcher",
+    "qty": 100
+   },
+   {
+    "product": "Relaxaurus Lux's Missile Launcher",
+    "qty": 120
+   },
+   {
+    "product": "Wumpo Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Wumpo Botan Saddle",
+    "qty": 12
+   },
+   {
+    "product": "Shadowbeak Saddle",
+    "qty": 40
+   },
+   {
+    "product": "Dualith Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Tetroise Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Nyafia's Shotgun",
+    "qty": 50
+   },
+   {
+    "product": "Jormuntide Saddle",
+    "qty": 24
+   },
+   {
+    "product": "Blazamut Saddle",
+    "qty": 36
+   },
+   {
+    "product": "Slider Module",
+    "qty": 30
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Reindrix Venison": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 35,
+  "desc": "Reindrix meat.\r Strange venison capable of remaining at low temperatures.\r Takes a very long time to spoil.",
+  "usedIn": [
+   {
+    "product": "Roast Reindrix",
+    "qty": 1
+   },
+   {
+    "product": "Reindrix Stew",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Ribbuny Ribbon": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "Ribbon dropped from a Ribbuny.\r Cute in color and design, it is used to make clothing.",
+  "usedIn": [
+   {
+    "product": "Ribbuny Headband",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Ruby": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 2000,
+  "desc": "A gemstone that glows red.\r Can be sold to a merchant for a high price.",
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Rushoar Pork": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 15,
+  "desc": "Rushoar meat.\r Full of the delicious flavors of wild game.\r Juicy and nutritious.",
+  "usedIn": [
+   {
+    "product": "Rushoar Bacon 'n' Eggs",
+    "qty": 2
+   },
+   {
+    "product": "Rushoar Hot Dog",
+    "qty": 1
+   },
+   {
+    "product": "Rushoar Gyoza",
+    "qty": 1
+   },
+   {
+    "product": "Roast Rushoar",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Sapphire": {
+  "rarity": "Uncommon",
+  "type": "Material",
+  "sell": 3000,
+  "desc": "A gemstone that glows blue.\r Can be sold to a merchant for a high price.",
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Silver Key": {
+  "rarity": "Rare",
+  "type": "Consumable",
+  "sell": 0,
+  "desc": "A key that can be used to open locked treasure chests.",
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Skutlass Sashimi": {
+  "rarity": "Uncommon",
+  "type": "Ingredient",
+  "sell": 60,
+  "desc": "Raw slices of Skutlass. \r Characterized by its supple, plump flesh.\r Caution is required when preparing it due to its sword-like spine.",
+  "usedIn": [
+   {
+    "product": "Salt-Grilled Skutlass",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Small Pal Soul": {
+  "rarity": "Uncommon",
+  "type": "Material",
+  "sell": 1,
+  "desc": "A spirit left behind by a small Pal.\r It can draw out hidden abilities if offered to a Statue of Power.",
+  "usedIn": [
+   {
+    "product": "Medium Pal Soul",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Soralite": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 250,
+  "desc": "A rare ore produced only in Sunreach.\r Within its host rock of overwhelming density resides a mysterious pattern and radiance.",
+  "usedIn": [
+   {
+    "product": "Soralite Ingot",
+    "qty": 2
+   },
+   {
+    "product": "Paloxite Ingot",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Stone": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 1,
+  "desc": "Material for structures and items.\r Can be obtained by mining rocks.",
+  "usedIn": [
+   {
+    "product": "Mega Sphere",
+    "qty": 3
+   },
+   {
+    "product": "Giga Sphere",
+    "qty": 5
+   },
+   {
+    "product": "Hyper Sphere",
+    "qty": 8
+   },
+   {
+    "product": "Ultra Sphere",
+    "qty": 10
+   },
+   {
+    "product": "Legendary Sphere",
+    "qty": 20
+   },
+   {
+    "product": "Arrow",
+    "qty": 2
+   },
+   {
+    "product": "Poison Arrow",
+    "qty": 2
+   },
+   {
+    "product": "Fire Arrow",
+    "qty": 2
+   },
+   {
+    "product": "Hand-Held Torch",
+    "qty": 2
+   },
+   {
+    "product": "Bat",
+    "qty": 10
+   },
+   {
+    "product": "Stone Axe",
+    "qty": 5
+   },
+   {
+    "product": "Metal Axe",
+    "qty": 15
+   },
+   {
+    "product": "Refined Metal Axe",
+    "qty": 30
+   },
+   {
+    "product": "Pal Metal Axe",
+    "qty": 100
+   },
+   {
+    "product": "Stone Pickaxe",
+    "qty": 5
+   },
+   {
+    "product": "Metal Pickaxe",
+    "qty": 15
+   },
+   {
+    "product": "Refined Metal Pickaxe",
+    "qty": 30
+   },
+   {
+    "product": "Pal Metal Pickaxe",
+    "qty": 100
+   },
+   {
+    "product": "Stone Spear",
+    "qty": 6
+   },
+   {
+    "product": "Metal Spear",
+    "qty": 12
+   },
+   {
+    "product": "Refined Metal Spear",
+    "qty": 18
+   },
+   {
+    "product": "Primitive Sword",
+    "qty": 15
+   },
+   {
+    "product": "Sword",
+    "qty": 20
+   },
+   {
+    "product": "Meat Cleaver",
+    "qty": 5
+   },
+   {
+    "product": "Old Bow",
+    "qty": 5
+   },
+   {
+    "product": "Poison Bow",
+    "qty": 8
+   },
+   {
+    "product": "Fire Bow",
+    "qty": 8
+   },
+   {
+    "product": "Three Shot Bow",
+    "qty": 12
+   },
+   {
+    "product": "Crossbow",
+    "qty": 40
+   },
+   {
+    "product": "Poison Arrow Crossbow",
+    "qty": 50
+   },
+   {
+    "product": "Fire Arrow Crossbow",
+    "qty": 50
+   },
+   {
+    "product": "Single-Shot Sphere Launcher",
+    "qty": 100
+   },
+   {
+    "product": "Frag Grenade",
+    "qty": 10
+   },
+   {
+    "product": "Shock Grenade",
+    "qty": 10
+   },
+   {
+    "product": "Ice Grenade",
+    "qty": 10
+   },
+   {
+    "product": "Incendiary Grenade",
+    "qty": 10
+   },
+   {
+    "product": "Ground Grenade",
+    "qty": 10
+   },
+   {
+    "product": "Dragon Grenade",
+    "qty": 10
+   },
+   {
+    "product": "Pal Recovery Grenade",
+    "qty": 10
+   },
+   {
+    "product": "Paldium Fragment",
+    "qty": 5
+   },
+   {
+    "product": "Cement",
+    "qty": 20
+   },
+   {
+    "product": "Rushoar Saddle",
+    "qty": 10
+   },
+   {
+    "product": "Lifmunk's Submachine Gun",
+    "qty": 10
+   },
+   {
+    "product": "Tanzee's Assault Rifle",
+    "qty": 15
+   },
+   {
+    "product": "Tanzee Ignis's Assault Rifle",
+    "qty": 18
+   },
+   {
+    "product": "Pengullet Rocket Launcher",
+    "qty": 20
+   },
+   {
+    "product": "Pengullet Lux's Rocket Launcher",
+    "qty": 24
+   },
+   {
+    "product": "Digtoise's Headband",
+    "qty": 50
+   },
+   {
+    "product": "Heavy Weight Module",
+    "qty": 20
+   },
+   {
+    "product": "Curve Module",
+    "qty": 50
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Strange Juice": {
+  "rarity": "Common",
+  "type": "Consumable",
+  "sell": 540,
+  "desc": "Juice that greatly improves mood when consumed.\r Drinking it significantly increases work speed for a period of time,\r but significantly lowers SAN.",
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Sulfur": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 30,
+  "desc": "Sulfur that can be found in volcanoes and such.\r Necessary for making Gunpowder.",
+  "usedIn": [
+   {
+    "product": "Attack Support Whistle",
+    "qty": 25
+   },
+   {
+    "product": "High Quality Recovery Meds",
+    "qty": 5
+   },
+   {
+    "product": "Advanced Recovery Meds",
+    "qty": 10
+   },
+   {
+    "product": "Revival Potion",
+    "qty": 20
+   },
+   {
+    "product": "Gunpowder",
+    "qty": 1
+   },
+   {
+    "product": "Polymer",
+    "qty": 1
+   },
+   {
+    "product": "Corrosive Solvent",
+    "qty": 1
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🔬 lab research"
+  ]
+ },
+ "Suspicious Juice": {
+  "rarity": "Common",
+  "type": "Consumable",
+  "sell": 312,
+  "desc": "Juice that improves mood when consumed.\r Drinking it increases work speed for a period of time,\r but lowers SAN.",
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Swee Hair": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "Hair dropped from a Swee.\r Fluffy and soft, it is used to make clothing.",
+  "usedIn": [
+   {
+    "product": "Swee Cap",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Thermal Core": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 1229,
+  "desc": "A high-temperature reaction core containing vast thermal energy.\r Used as a power component in advanced devices.\r Can be crafted at Production Assembly Line II.",
+  "usedIn": [
+   {
+    "product": "Rocket Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Plasma Cartridge",
+    "qty": 1
+   },
+   {
+    "product": "Charge Rifle Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Overheat Rifle Ammo",
+    "qty": 1
+   },
+   {
+    "product": "Energy Shotgun",
+    "qty": 5
+   },
+   {
+    "product": "Prototype Shotgun",
+    "qty": 5
+   },
+   {
+    "product": "Charge Rifle",
+    "qty": 5
+   },
+   {
+    "product": "Overheat Rifle",
+    "qty": 5
+   },
+   {
+    "product": "Laser Gatling Gun",
+    "qty": 3
+   },
+   {
+    "product": "Tactical Grenade Launcher",
+    "qty": 5
+   },
+   {
+    "product": "Plasma Cannon",
+    "qty": 4
+   },
+   {
+    "product": "Advanced Shield",
+    "qty": 5
+   },
+   {
+    "product": "Heat Resistant Hexolite Armor",
+    "qty": 2
+   },
+   {
+    "product": "Heat-Resistant Ancient Armor",
+    "qty": 6
+   },
+   {
+    "product": "Wing Pack",
+    "qty": 20
+   },
+   {
+    "product": "AI Core",
+    "qty": 2
+   }
+  ],
+  "sources": [
+   "🔬 lab research"
+  ]
+ },
+ "Tocotoco Feather": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 50,
+  "desc": "Feathers dropped from a Tocotoco.\r Used to make clothing, as the beautifully vivid colors are quite popular.",
+  "usedIn": [
+   {
+    "product": "Tocotoco Cap",
+    "qty": 5
+   },
+   {
+    "product": "Grinning Tocotoco Cap",
+    "qty": 5
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant"
+  ]
+ },
+ "Tomato Seeds": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 3,
+  "desc": "Seeds that produce Tomato.\r Necessary for starting a farm.\r Can be purchased from a merchant.",
+  "usedIn": [
+   {
+    "product": "Vaelet Ring",
+    "qty": 10
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Training Manual (XL)": {
+  "rarity": "Epic",
+  "type": "Consumable",
+  "sell": 300,
+  "desc": "Training manual that grants a substantial amount\r of EXP when read by a Pal.",
+  "sources": [
+   "🎁 treasure boxes & caches"
+  ]
+ },
+ "Venom Gland": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 30,
+  "desc": "Material obtainable from poisonous Pals.\r Can be used to make Poison Arrow and more.",
+  "usedIn": [
+   {
+    "product": "Poison Arrow",
+    "qty": 1
+   },
+   {
+    "product": "Poison Bow",
+    "qty": 2
+   },
+   {
+    "product": "Poison Arrow Crossbow",
+    "qty": 5
+   },
+   {
+    "product": "Depresso Armor",
+    "qty": 75
+   },
+   {
+    "product": "Depresso Helmet",
+    "qty": 25
+   },
+   {
+    "product": "Ring of Dark Resistance",
+    "qty": 10
+   },
+   {
+    "product": "Dark Support Whistle",
+    "qty": 10
+   },
+   {
+    "product": "Lyleen Noct's Talisman",
+    "qty": 10
+   },
+   {
+    "product": "Corrosive Solvent",
+    "qty": 1
+   },
+   {
+    "product": "Killamari's Gloves",
+    "qty": 5
+   },
+   {
+    "product": "Tarantriss Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Frostallion Noct Saddle",
+    "qty": 72
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Wheat": {
+  "rarity": "Common",
+  "type": "Ingredient",
+  "sell": 7,
+  "desc": "An ingredient that forms the base of various dishes.\r Wheat is a common crop in many parts of the world.",
+  "usedIn": [
+   {
+    "product": "Flour",
+    "qty": 3
+   }
+  ],
+  "sources": [
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Wheat Seeds": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 2,
+  "desc": "Seeds that produce Wheat.\r Necessary for starting a farm.\r Can be purchased from a merchant.",
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ },
+ "Wood": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 1,
+  "desc": "Material for structures and items.\r Can be obtained by cutting trees.",
+  "usedIn": [
+   {
+    "product": "Mega Sphere",
+    "qty": 3
+   },
+   {
+    "product": "Giga Sphere",
+    "qty": 5
+   },
+   {
+    "product": "Hyper Sphere",
+    "qty": 8
+   },
+   {
+    "product": "Ultra Sphere",
+    "qty": 10
+   },
+   {
+    "product": "Arrow",
+    "qty": 2
+   },
+   {
+    "product": "Poison Arrow",
+    "qty": 2
+   },
+   {
+    "product": "Fire Arrow",
+    "qty": 2
+   },
+   {
+    "product": "Wooden Club",
+    "qty": 5
+   },
+   {
+    "product": "Hand-Held Torch",
+    "qty": 2
+   },
+   {
+    "product": "Bat",
+    "qty": 30
+   },
+   {
+    "product": "Stone Axe",
+    "qty": 5
+   },
+   {
+    "product": "Metal Axe",
+    "qty": 20
+   },
+   {
+    "product": "Stone Pickaxe",
+    "qty": 5
+   },
+   {
+    "product": "Metal Pickaxe",
+    "qty": 20
+   },
+   {
+    "product": "Stone Spear",
+    "qty": 18
+   },
+   {
+    "product": "Metal Spear",
+    "qty": 27
+   },
+   {
+    "product": "Refined Metal Spear",
+    "qty": 36
+   },
+   {
+    "product": "Elizabee's Staff",
+    "qty": 1
+   },
+   {
+    "product": "Beegarde's Spear",
+    "qty": 1
+   },
+   {
+    "product": "Meat Cleaver",
+    "qty": 20
+   },
+   {
+    "product": "Old Bow",
+    "qty": 30
+   },
+   {
+    "product": "Poison Bow",
+    "qty": 40
+   },
+   {
+    "product": "Fire Bow",
+    "qty": 40
+   },
+   {
+    "product": "Three Shot Bow",
+    "qty": 50
+   },
+   {
+    "product": "Crossbow",
+    "qty": 50
+   },
+   {
+    "product": "Poison Arrow Crossbow",
+    "qty": 50
+   },
+   {
+    "product": "Fire Arrow Crossbow",
+    "qty": 50
+   },
+   {
+    "product": "Common Shield",
+    "qty": 20
+   },
+   {
+    "product": "Farming Hat",
+    "qty": 10
+   },
+   {
+    "product": "Normal Parachute",
+    "qty": 10
+   },
+   {
+    "product": "Fiber",
+    "qty": 1
+   },
+   {
+    "product": "Wooden Board",
+    "qty": 10
+   },
+   {
+    "product": "High Quality Wooden Board",
+    "qty": 10
+   },
+   {
+    "product": "Charcoal",
+    "qty": 2
+   },
+   {
+    "product": "Hip Lantern",
+    "qty": 10
+   },
+   {
+    "product": "Enhanced Hip Lantern",
+    "qty": 30
+   },
+   {
+    "product": "Small Feed Bag",
+    "qty": 5
+   },
+   {
+    "product": "Average Feed Bag",
+    "qty": 10
+   },
+   {
+    "product": "Large Feed Bag",
+    "qty": 20
+   },
+   {
+    "product": "Lifmunk's Submachine Gun",
+    "qty": 20
+   },
+   {
+    "product": "Tanzee's Assault Rifle",
+    "qty": 15
+   },
+   {
+    "product": "Tanzee Ignis's Assault Rifle",
+    "qty": 18
+   },
+   {
+    "product": "Mammorest Saddle",
+    "qty": 100
+   },
+   {
+    "product": "Mammorest Cryst Saddle",
+    "qty": 120
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant",
+   "🔬 lab research"
+  ]
+ },
+ "Wool": {
+  "rarity": "Common",
+  "type": "Material",
+  "sell": 20,
+  "desc": "Material sheared from sheep Pals.\r A necessity for creating bedding, Cloth and more.",
+  "usedIn": [
+   {
+    "product": "Helmet",
+    "qty": 5
+   },
+   {
+    "product": "Heat Resistant Undershirt",
+    "qty": 20
+   },
+   {
+    "product": "Thermal Undershirt",
+    "qty": 20
+   },
+   {
+    "product": "Cloth",
+    "qty": 2
+   },
+   {
+    "product": "High Quality Cloth",
+    "qty": 10
+   },
+   {
+    "product": "Melpaca Saddle",
+    "qty": 5
+   },
+   {
+    "product": "Kingpaca Saddle",
+    "qty": 30
+   },
+   {
+    "product": "Kingpaca Cryst Saddle",
+    "qty": 36
+   }
+  ],
+  "sources": [
+   "🎁 treasure boxes & caches",
+   "🛒 wandering merchant"
+  ]
+ }
+}

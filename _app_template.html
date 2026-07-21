@@ -546,6 +546,9 @@ footer b{color:#fff}
   display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .itempanel h3 .close{margin-left:auto;color:var(--muted);font-size:20px;line-height:1;padding:4px 10px;border-radius:999px;font-weight:900}
 .itempanel h3 .close:hover{color:#fff;background:var(--accent2)}
+.itempanel .imeta{font-family:var(--body,inherit);font-size:11px;font-weight:800;color:var(--muted2);letter-spacing:.3px}
+.itempanel .idesc{font-size:12px;font-style:italic;font-weight:600;color:var(--muted);line-height:1.55;margin:2px 0 8px;
+  border-left:3px solid var(--warn);padding-left:10px}
 .itempanel .isub{font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:12px}
 .itempanel h4{margin:14px 0 8px;font-size:12px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;
   color:var(--muted);display:flex;align-items:center;gap:7px}
@@ -992,7 +995,7 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
         </div>
         <span class="habcount" id="itemCount"></span>
       </div>
-      <div class="tiernote">Pick any material to see <b>every Pal that drops it</b> (with quantity &amp; drop rate) and which Pals <b>produce it at the Ranch</b> — parsed from the embedded 1.0 drop tables and partner skills.</div>
+      <div class="tiernote">Pick any material to see <b>where to get it</b> — Pal drops (with quantity &amp; drop rate), Ranch producers, and world sources like treasure caches and merchants — plus <b>what it's used to craft</b>, with quantities. From the embedded 1.0 drop tables, partner skills and paldb.cc item pages.</div>
       <div id="itemResult"></div>
       <div class="itemcloud" id="itemCloud"></div>
     </div>
@@ -1068,11 +1071,13 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
 <script>/*__SPAWNS__*/</script>
 <script>/*__TIERS__*/</script>
 <script>/*__DETAILS__*/</script>
+<script>/*__ITEMS__*/</script>
 <script>
 if (typeof ICONS === 'undefined') { window.ICONS = { pals: {}, elements: {} }; }
 if (typeof SPAWNS === 'undefined') { window.SPAWNS = { grid: 96, map: null, pals: {} }; }
 if (typeof TIERS === 'undefined') { window.TIERS = { sources: [], combat: {}, workers: {} }; }
 if (typeof DETAILS === 'undefined') { window.DETAILS = {}; }
+if (typeof ITEMDB === 'undefined') { window.ITEMDB = {}; }
 </script>
 <script>
 /* ============================================================= *
@@ -2253,6 +2258,9 @@ const RANCH_ALIAS={"Pal Fluids":"Aquatic Pal Fluids"}; // partner-skill wording 
       entry(item).ranch.push(p.internalIndex);
     }
   }
+  // fold in every ITEMDB material (Wood, Stone, Ore, …) so core gatherables
+  // and craft products are selectable even when no Pal drops them
+  for(const n of Object.keys(ITEMDB)) entry(n);
 })();
 const ITEM_EMOJI={Wool:"🧶",Egg:"🥚",Milk:"🥛",Honey:"🍯",Leather:"🟤",Bone:"🦴",Horn:"🦌",Fiber:"🧵",
   Cloth:"🧵","High Quality Cloth":"🧵","Red Berries":"🍒",Mushroom:"🍄","Mysterious Mushroom":"🍄",
@@ -2260,7 +2268,10 @@ const ITEM_EMOJI={Wool:"🧶",Egg:"🥚",Milk:"🥛",Honey:"🍯",Leather:"🟤"
   "High Quality Pal Oil":"🛢️","Crude Oil":"🛢️","Gold Coin":"🪙",Diamond:"💎",Ruby:"💎",Sapphire:"💎",
   Ore:"⛏️","Coralum Ore":"⛏️",Coal:"⚫",Ingot:"🔩",Plasteel:"🔩",Hardwood:"🪵",Hexolite:"💠",
   "Cotton Candy":"🍬","Caramel Cotton Candy":"🍬","Dark Fragment":"🌑","Meteorite Fragment":"☄️",
-  "Beautiful Flower":"🌸","Hallowed Bar":"✨","Thermal Core":"🌡️","Assorted items":"🎁"};
+  "Beautiful Flower":"🌸","Hallowed Bar":"✨","Thermal Core":"🌡️","Assorted items":"🎁",
+  Wood:"🪵",Stone:"🪨","Paldium Fragment":"🔷","Pure Quartz":"🔮",Sulfur:"🟡",Cement:"🧱",
+  Polymer:"🧪","Refined Ingot":"🔩","Pal Metal Ingot":"🔩",Cake:"🍰",Flour:"🌾",Wheat:"🌾",
+  Charcoal:"⚫",Gunpowder:"💥",Soralite:"🌌"};
 function itemEmoji(n){
   if(ITEM_EMOJI[n]) return ITEM_EMOJI[n];
   if(/seeds$/i.test(n)) return "🌱";
@@ -2282,12 +2293,22 @@ function renderItemPanel(){
     return `<button class="tierpal" onclick="gotoPaldex(${d.i})">${avatarHtml(p,"mini-av3")}${p.name} <span class="tlvl">×${d.qty} · ${d.p}</span></button>`; };
   const rchip=i=>{ const p=byIndex.get(i);
     return `<button class="tierpal" onclick="gotoPaldex(${i})">${avatarHtml(p,"mini-av3")}${p.name}</button>`; };
+  const db=ITEMDB[ITEMSEL]||{};
+  const meta=[db.type,db.rarity,db.sell!=null?`sell 🪙${db.sell}`:null].filter(Boolean).join(" · ");
+  const craftChip=(name,qty,pre)=>{
+    const known=ITEM_INDEX.has(name);
+    return `<${known?'button':'span'} class="itemchip"${known?` data-item="${escA(name)}" onclick="gotoItem(this.dataset.item,true)"`:' style="cursor:default"'}>${itemEmoji(name)} ${pre?qty+"× ":""}${name}${!pre&&qty?` <span class="icnt">×${qty}</span>`:""}</${known?'button':'span'}>`;
+  };
   box.innerHTML=`<div class="itempanel">
-    <h3>${itemEmoji(ITEMSEL)} ${ITEMSEL}<button class="close" onclick="gotoItem(null,true)" aria-label="Clear selected item">×</button></h3>
-    <div class="isub">${drops.length?`Dropped by <b>${drops.length}</b> Pal${drops.length===1?"":"s"}`:"Not a battle drop"}${e.ranch.length?` · Ranch-produced by <b>${e.ranch.length}</b>`:""}. Tap a Pal to open its dex entry.</div>
+    <h3>${itemEmoji(ITEMSEL)} ${ITEMSEL}${meta?`<span class="imeta">${meta}</span>`:""}<button class="close" onclick="gotoItem(null,true)" aria-label="Clear selected item">×</button></h3>
+    ${db.desc?`<div class="idesc">${db.desc}</div>`:""}
+    <div class="isub">${drops.length?`Dropped by <b>${drops.length}</b> Pal${drops.length===1?"":"s"}`:"Not a Pal drop"}${e.ranch.length?` · Ranch-produced by <b>${e.ranch.length}</b>`:""}${db.usedIn?` · used in <b>${db.usedIn.length}</b> recipe${db.usedIn.length===1?"":"s"}`:""}. Tap a Pal to open its dex entry.</div>
     ${drops.length?`<h4>⚔ Dropped by (qty · chance)</h4><div class="tierpals">${drops.map(chip).join("")}</div>`:""}
     ${e.ranch.length?`<h4>🏡 Ranch production</h4><div class="tierpals">${e.ranch.map(rchip).join("")}</div>
       <div class="ranchnote">Assign these Pals to a Ranch at your base — their partner skill makes them produce ${escA(ITEMSEL)} on their own.</div>`:""}
+    ${db.sources&&db.sources.length?`<h4>🗺 Also found via</h4><div class="tierpals">${db.sources.map(s=>`<span class="itemchip" style="cursor:default">${s}</span>`).join("")}</div>`:""}
+    ${db.craftedFrom?`<h4>🧪 Crafted from</h4><div class="tierpals">${db.craftedFrom.map(m=>craftChip(m.mat,m.qty,true)).join("")}</div>`:""}
+    ${db.usedIn&&db.usedIn.length?`<h4>🔨 Used to craft <span style="font-weight:600;text-transform:none;letter-spacing:0">(needs ×N of this)</span></h4><div class="tierpals">${db.usedIn.map(u=>craftChip(u.product,u.qty,false)).join("")}</div>`:""}
   </div>`;
 }
 function renderItems(){
