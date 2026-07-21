@@ -29,7 +29,7 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 **Breeding calculator**
 - **Forward** — pick two parents → child, with a *special-combo* badge when the fixed recipe overrides the averaging formula, a *gender-locked* badge for Katress×Wixen, and a plain-language formula explainer.
 - **Reverse** — pick a target → every parent pair that produces it, each clickable to pivot.
-- **Chain** — pick Pals you own + a target → shortest breeding path (BFS), drawn as a **family tree**: target at the top, each bred Pal branching to its parents, your owned Pals as ✓ leaves, with step-order badges so you know what to breed first.
+- **Chain** — just pick the Pal you want and its breeding **family tree** appears instantly: target on top, each bred Pal branching to its parents, bottoming out at Pals you can **catch in the wild** (🌿 leaves link to habitat maps), with step-order badges. If it also spawns wild, a banner links straight to its habitat. Advanced fold-out restricts the tree to Pals you own (✓ leaves) and sets max depth.
 
 ## Data &amp; correctness
 

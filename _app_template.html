@@ -942,27 +942,27 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
 
       <!-- CHAIN -->
       <div class="bmode" id="bmode-chain" style="display:none">
-        <div class="parents" style="grid-template-columns:1fr 1fr">
-          <div class="slot">
-            <div class="slbl">Add a Pal you own</div>
-            <div class="picker" data-role="own"></div>
-          </div>
-          <div class="slot">
-            <div class="slbl">Target Pal</div>
-            <div class="picker" data-role="tgt"></div>
-          </div>
-        </div>
-        <div class="owned-wrap" id="ownedWrap"></div>
-        <div class="advrow">
-          <label>Max depth <input type="number" id="maxDepth" value="6" min="1" max="10"></label>
-          <button class="mini" id="runChain">Find shortest chain</button>
+        <div class="slot">
+          <div class="slbl">Which Pal do you want? The family tree appears instantly.</div>
+          <div class="picker" data-role="tgt"></div>
         </div>
         <div class="result" id="chainResult"></div>
+        <details class="tcfold" id="chainAdv">
+          <summary>⚙ Advanced: only use Pals I own · max depth</summary>
+          <div class="slot" style="margin-top:8px">
+            <div class="slbl">Add the Pals you own — the tree will only build from these</div>
+            <div class="picker" data-role="own"></div>
+          </div>
+          <div class="owned-wrap" id="ownedWrap"></div>
+          <div class="advrow">
+            <label>Max depth <input type="number" id="maxDepth" value="6" min="1" max="10"></label>
+          </div>
+        </details>
         <div class="helpbox">
-          The chain finder does a breadth-first search over every species you can reach by breeding pairs from what you own,
-          then reconstructs the shortest path to the target. Pathing is gender-agnostic (you can always obtain the needed gender);
-          the Katress/Wixen gender rule is only surfaced on the final step if relevant. Self-only Pals (legendaries, tower bosses,
-          uniques, collab Pals) are only reachable if you already own one.
+          By default the tree bottoms out at Pals you can <b>catch in the wild</b> (from the game's spawn table, commonest
+          first). Open Advanced to restrict it to Pals you own instead. Pathing is gender-agnostic (you can always obtain the
+          needed gender); the Katress/Wixen gender rule is surfaced on the affected step. Self-only Pals (tower bosses,
+          uniques, collab Pals) can't be bred from other species — the tree will say so.
         </div>
       </div>
     </div>
@@ -1840,8 +1840,8 @@ function initBreeding(){
   makePicker($('.picker[data-role=rev]'),p=>renderReverse(p),{placeholder:"Target child…"});
   // chain
   makePicker($('.picker[data-role=own]'),p=>{addOwned(p);},{placeholder:"Add owned Pal…"});
-  makePicker($('.picker[data-role=tgt]'),p=>{chain.target=p;},{placeholder:"Target Pal…"});
-  $("#runChain").onclick=runChainFinder;
+  makePicker($('.picker[data-role=tgt]'),p=>{chain.target=p;runChainFinder();blink("g");},{placeholder:"e.g. Anubis…"});
+  $("#maxDepth").addEventListener("change",runChainFinder);
 
   // breeding submode tabs (scoped: the Tiers view has its own .bsub)
   $$('#view-breeding .bsub .t').forEach(t=>{
@@ -1976,10 +1976,10 @@ window.revPivot=revPivot;
 let chain={owned:[],target:null};
 function addOwned(p){
   if(chain.owned.some(o=>o.internalIndex===p.internalIndex))return;
-  chain.owned.push(p); renderOwned();
+  chain.owned.push(p); renderOwned(); runChainFinder();
   const inp=$('.picker[data-role=own] input'); if(inp)inp.value="";
 }
-function removeOwned(idx){ chain.owned=chain.owned.filter(o=>o.internalIndex!==idx); renderOwned(); }
+function removeOwned(idx){ chain.owned=chain.owned.filter(o=>o.internalIndex!==idx); renderOwned(); runChainFinder(); }
 window.removeOwned=removeOwned;
 function renderOwned(){
   const w=$("#ownedWrap");
@@ -1988,17 +1988,25 @@ function renderOwned(){
     ${avatarHtml(p,"mini-av3")}
     ${p.name}<button onclick="removeOwned(${p.internalIndex})" aria-label="Remove ${p.name}">×</button></span>`).join("");
 }
+/* Base pool when no owned Pals are given: everything catchable in the wild
+   (has spawn data), commonest first so the BFS reaches for cheap parents. */
+function wildBase(){
+  return PALS.filter(p=>SPAWNS.pals[p.internalName])
+    .sort((a,b)=>a.rarity-b.rarity||a.dex-b.dex).map(p=>p.internalIndex);
+}
 function runChainFinder(){
   const box=$("#chainResult");
-  if(!chain.owned.length){ box.innerHTML='<div class="msg err">Add at least one Pal you own.</div>'; return; }
-  if(!chain.target){ box.innerHTML='<div class="msg err">Pick a target Pal.</div>'; return; }
+  if(!chain.target){ box.innerHTML=""; return; }
   const md=Math.max(1,Math.min(10,+$("#maxDepth").value||6));
-  const owned=chain.owned.map(o=>o.internalIndex);
+  const usingOwned=chain.owned.length>0;
   const t=chain.target.internalIndex;
+  const owned=usingOwned?chain.owned.map(o=>o.internalIndex):wildBase().filter(i=>i!==t);
+  const wildNote=!usingOwned&&SPAWNS.pals[chain.target.internalName]
+    ?`<div class="msg" style="margin-bottom:8px">🌿 <b>${chain.target.name}</b> also spawns in the wild — <button class="mini" onclick="gotoPaldex(${t})">view its habitat map</button>${(BRD.combos[t]||[]).length?" — or breed it:":"."}</div>`:"";
   const steps=shortestChain(owned,t,md);
   if(steps===null){
-    box.innerHTML=`<div class="msg err">No breeding chain to <b>${chain.target.name}</b> within depth ${md} from those Pals.
-      ${chain.target.selfOnly?'It\'s a self-only Pal — you must already own one (or its same-species pair).':'Try adding more owned Pals or raising max depth.'}</div>`;
+    box.innerHTML=wildNote||`<div class="msg err">No breeding chain to <b>${chain.target.name}</b> within depth ${md}${usingOwned?" from those Pals":""}.
+      ${chain.target.selfOnly?'It\'s a self-only Pal — it can\'t be bred from other species; catch it in the wild or pair two of the same species.':usingOwned?'Try adding more owned Pals or raising max depth.':'Raise max depth.'}</div>`;
     return;
   }
   if(steps.length===0){ box.innerHTML=`<div class="msg">You already own <b>${chain.target.name}</b>.</div>`; return; }
@@ -2009,7 +2017,7 @@ function runChainFinder(){
   const chip=(idx,isTarget)=>{
     const p=byIndex.get(idx), bred=childMap.get(idx);
     const tag=isTarget?'<span class="fttag">🎯 target</span>'
-      :ownedSet.has(idx)?'<span class="fttag">✓ owned</span>'
+      :ownedSet.has(idx)?(usingOwned?'<span class="fttag">✓ owned</span>':'<span class="fttag">🌿 catch wild</span>')
       :'<span class="fttag" style="color:var(--muted2)">bred</span>';
     const g=bred&&isGenderLockedPair(bred.a,bred.b)?'<span class="ftgender">check gender</span>':'';
     return `<div class="ftchip${isTarget?' target':''}${ownedSet.has(idx)&&!isTarget?' owned':''}" onclick="gotoPaldex(${idx})" role="button" tabindex="0">
@@ -2022,7 +2030,7 @@ function runChainFinder(){
     return `${chip(idx,isTarget)}<div class="ftdown"></div>
       <ul><li>${node(bred.a)}</li><li>${node(bred.b)}</li></ul>`;
   };
-  box.innerHTML=`<div style="margin:6px 0 10px;color:var(--muted);font-size:12.5px">Shortest chain: <b style="color:var(--text)">${steps.length}</b> breeding step${steps.length===1?'':'s'} to <b style="color:var(--accent)">${chain.target.name}</b>. Read the tree bottom-up — breed the numbered pairs in order (step 1 first); ✓ leaves are Pals you already own.</div>
+  box.innerHTML=`${wildNote}<div style="margin:6px 0 10px;color:var(--muted);font-size:12.5px">Shortest chain: <b style="color:var(--text)">${steps.length}</b> breeding step${steps.length===1?'':'s'} to <b style="color:var(--accent)">${chain.target.name}</b>. Read the tree bottom-up — breed the numbered pairs in order (step 1 first); the leaves are Pals you ${usingOwned?"already own (✓)":"can catch in the wild (🌿 — tap one for its habitat map)"}.</div>
     <div class="ftwrap"><div class="ft"><div style="display:flex;flex-direction:column;align-items:center">${node(t,true)}</div></div></div>`;
 }
 
