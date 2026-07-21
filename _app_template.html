@@ -538,8 +538,12 @@ footer b{color:#fff}
 .icatchips{display:flex;flex-wrap:wrap;gap:7px}
 .iico{width:22px;height:22px;object-fit:contain;border-radius:5px;flex-shrink:0}
 .iico.big{width:34px;height:34px;border-radius:7px}
-.iemo{font-size:14px;line-height:1;flex-shrink:0}
-.iemo.big{font-size:24px}
+.iph{width:22px;height:22px;border-radius:5px;background:var(--panel3);border:1.5px solid var(--line2);
+  color:var(--muted2);font-size:11px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.iph.big{width:34px;height:34px;border-radius:7px;font-size:16px}
+.rmk{font-size:8.5px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:var(--accent-dk);
+  background:var(--panel3);border-radius:999px;padding:1px 6px;margin-left:2px}
+.itemchip.sel .rmk{background:rgba(255,255,255,.25);color:#fff}
 .itemchip{background:var(--card);border:2px solid var(--screen-edge);border-radius:999px;
   padding:6px 13px;font-size:12px;font-weight:800;color:var(--ink);cursor:pointer;transition:.12s;
   display:inline-flex;align-items:center;gap:6px}
@@ -564,7 +568,7 @@ footer b{color:#fff}
 .ranchnote{font-size:11px;font-weight:600;color:var(--muted2);margin-top:6px}
 .droprow{cursor:pointer;transition:.12s;font-family:inherit;text-align:left;display:inline-flex;align-items:center;gap:5px}
 .droprow .iico{width:18px;height:18px}
-.droprow .iemo{font-size:12px}
+.droprow .iph{width:18px;height:18px;font-size:9px}
 .droprow:hover{border-color:var(--accent);color:var(--ink);transform:translateY(-1px)}
 
 /* ---- team synergy planner ---- */
@@ -2272,53 +2276,37 @@ const RANCH_ALIAS={"Pal Fluids":"Aquatic Pal Fluids"}; // partner-skill wording 
   // and craft products are selectable even when no Pal drops them
   for(const n of Object.keys(ITEMDB)) entry(n);
 })();
-const ITEM_EMOJI={Wool:"🧶",Egg:"🥚",Milk:"🥛",Honey:"🍯",Leather:"🟤",Bone:"🦴",Horn:"🦌",Fiber:"🧵",
-  Cloth:"🧵","High Quality Cloth":"🧵","Red Berries":"🍒",Mushroom:"🍄","Mysterious Mushroom":"🍄",
-  "Flame Organ":"🔥","Ice Organ":"❄️","Electric Organ":"⚡","Venom Gland":"☠️","Aquatic Pal Fluids":"💧",
-  "High Quality Pal Oil":"🛢️","Crude Oil":"🛢️","Gold Coin":"🪙",Diamond:"💎",Ruby:"💎",Sapphire:"💎",
-  Ore:"⛏️","Coralum Ore":"⛏️",Coal:"⚫",Ingot:"🔩",Plasteel:"🔩",Hardwood:"🪵",Hexolite:"💠",
-  "Cotton Candy":"🍬","Caramel Cotton Candy":"🍬","Dark Fragment":"🌑","Meteorite Fragment":"☄️",
-  "Beautiful Flower":"🌸","Hallowed Bar":"✨","Thermal Core":"🌡️","Assorted items":"🎁",
-  Wood:"🪵",Stone:"🪨","Paldium Fragment":"🔷","Pure Quartz":"🔮",Sulfur:"🟡",Cement:"🧱",
-  Polymer:"🧪","Refined Ingot":"🔩","Pal Metal Ingot":"🔩",Cake:"🍰",Flour:"🌾",Wheat:"🌾",
-  Charcoal:"⚫",Gunpowder:"💥",Soralite:"🌌"};
-function itemEmoji(n){
-  if(ITEM_EMOJI[n]) return ITEM_EMOJI[n];
-  if(/ingot$/i.test(n)) return "🔩";
-  if(/board|plank|lumber/i.test(n)) return "🪵";
-  if(/cloth$/i.test(n)) return "🧵";
-  if(/seeds$/i.test(n)) return "🌱";
-  if(/soul$/i.test(n)) return "👻";
-  if(/manual$/i.test(n)) return "📘";
-  if(/meds|medical/i.test(n)) return "💊";
-  if(/meat|venison|^raw /i.test(n)) return "🍖";
-  if(/tentacle|squid|fish/i.test(n)) return "🐟";
-  if(/ancient/i.test(n)) return "🏺";
-  return "📦";
-}
-/* real inventory icon when we have it, emoji fallback otherwise */
+/* pseudo-items parsed from partner-skill prose — borrow a real icon */
+const PSEUDO_ICON={"Assorted items":"Gold Coin","various seeds":"Berry Seeds","Mushroom or Cavern Mushroom":"Mushroom"};
+/* real inventory icon when we have it; letter placeholder otherwise (no emoji) */
 function itemIcon(n,cls){
   const db=ITEMDB[n];
-  if(db&&db.icon) return `<img class="iico${cls?" "+cls:""}" src="${db.icon}" alt="" loading="lazy">`;
-  return `<span class="iemo${cls?" "+cls:""}">${itemEmoji(n)}</span>`;
+  let src=db&&db.icon;
+  if(!src&&PSEUDO_ICON[n]&&ITEMDB[PSEUDO_ICON[n]]) src=ITEMDB[PSEUDO_ICON[n]].icon;
+  if(src) return `<img class="iico${cls?" "+cls:""}" src="${src}" alt="" loading="lazy">`;
+  return `<span class="iph${cls?" "+cls:""}">${(n[0]||"?").toUpperCase()}</span>`;
 }
-/* display categories for the materials cloud (checked in order) */
+function deEmoji(s){ return s.replace(/[\p{Extended_Pictographic}️‍]/gu,"").trim(); }
+/* display categories for the materials cloud (checked in order); each header
+   is illustrated by a representative item's real icon */
 const ITEM_CATS=[
-  ["⛏️ Ores, Stone & Metals", n=>/ore\b|ingot|^coal$|^stone$|paldium|quartz|hexolite|soralite|paloxite|chromite|plasteel|sulfur|^cement$|charcoal|gunpowder|crude oil|meteorite/i.test(n)],
-  ["💎 Gems & Treasure", n=>/diamond|ruby|sapphire|emerald|coin$|key$|treasure|hallowed/i.test(n)],
-  ["💊 Medicine & Potions", n=>/meds|medical|supplies|antidote|suppressant|potion|holy water|coolant|solvent/i.test(n)],
-  ["👻 Souls & Fragments", n=>/soul$|fragment|catalyst/i.test(n)],
-  ["🏭 Components & Tech", n=>/circuit|computer|battery|core$|module|polymer|carbon fiber|manual$|manuscript|scanner|device|bio battery/i.test(n)],
-  ["🍳 Food & Cooking", n=>{const t=(ITEMDB[n]||{}).type; return t==="Ingredient"||/cake$|bread|fried|grilled|baked|roast|stew|soup|salad|noodle|pizza|omelet|milk$|^egg$|honey|flour|wheat|meat$|venison|poultry|fries|carbonara|gratin|moco|jelly$|chowder|saut|candy$|berries$|mushroom$|carrot$|onion$|potato$|tomato$|lettuce$/i.test(n);}],
-  ["🌱 Seeds & Farming", n=>/seeds$|sapling/i.test(n)],
-  ["🧵 Cloth & Fibers", n=>/cloth$|fiber$|wool$|thread|fur(s)?$/i.test(n)],
-  ["🪵 Wood & Plants", n=>/wood$|board$|plank|leaf$|flower$|petal/i.test(n)],
-  ["🐾 Pal Parts & Drops", n=>/organ$|gland$|horn$|bone$|leather|fluids?$|tentacle|hair$|cloud$|flesh$|oil$|slime|fang|plume|dumud|kelpsea/i.test(n)],
+  ["Ores, Stone & Metals","Ingot", n=>/ore\b|ingot|^coal$|^stone$|paldium|quartz|hexolite|soralite|paloxite|chromite|plasteel|sulfur|^cement$|charcoal|gunpowder|crude oil|meteorite/i.test(n)],
+  ["Gems & Treasure","Diamond", n=>/diamond|ruby|sapphire|emerald|coin$|key$|treasure|hallowed/i.test(n)],
+  ["Medicine & Potions","High Quality Recovery Meds", n=>/meds|medical|supplies|antidote|suppressant|potion|holy water|coolant|solvent/i.test(n)],
+  ["Souls & Fragments","Large Pal Soul", n=>/soul$|fragment|catalyst/i.test(n)],
+  ["Components & Tech","Circuit Board", n=>/circuit|computer|battery|core$|module|polymer|carbon fiber|manual$|manuscript|scanner|device|bio battery/i.test(n)],
+  ["Food & Cooking","Cake", n=>{const t=(ITEMDB[n]||{}).type; return t==="Ingredient"||/cake$|bread|fried|grilled|baked|roast|stew|soup|salad|noodle|pizza|omelet|milk$|^egg$|honey|flour|wheat|meat$|venison|poultry|fries|carbonara|gratin|moco|jelly$|chowder|saut|candy$|berries$|mushroom$|carrot$|onion$|potato$|tomato$|lettuce$/i.test(n);}],
+  ["Seeds & Farming","Berry Seeds", n=>/seeds$|sapling/i.test(n)],
+  ["Cloth & Fibers","Cloth", n=>/cloth$|fiber$|wool$|thread|fur(s)?$/i.test(n)],
+  ["Wood & Plants","Wood", n=>/wood$|board$|plank|leaf$|flower$|petal/i.test(n)],
+  ["Pal Parts & Drops","Flame Organ", n=>/organ$|gland$|horn$|bone$|leather|fluids?$|tentacle|hair$|cloud$|flesh$|oil$|slime|fang|plume|dumud|kelpsea/i.test(n)],
 ];
+const ITEM_CAT_OTHER=["Everything else","Arrow"];
 function itemCat(n){
-  for(const [cat,test] of ITEM_CATS) if(test(n)) return cat;
-  return "📦 Everything else";
+  for(const [cat,,test] of ITEM_CATS) if(test(n)) return cat;
+  return ITEM_CAT_OTHER[0];
 }
+const ITEM_CAT_ICON=Object.fromEntries(ITEM_CATS.map(([c,i])=>[c,i]).concat([[ITEM_CAT_OTHER[0],ITEM_CAT_OTHER[1]]]));
 let ITEMSEL=null;
 function renderItemPanel(){
   const box=$("#itemResult");
@@ -2330,7 +2318,7 @@ function renderItemPanel(){
   const rchip=i=>{ const p=byIndex.get(i);
     return `<button class="tierpal" onclick="gotoPaldex(${i})">${avatarHtml(p,"mini-av3")}${p.name}</button>`; };
   const db=ITEMDB[ITEMSEL]||{};
-  const meta=[db.type,db.rarity,db.sell!=null?`sell 🪙${db.sell}`:null].filter(Boolean).join(" · ");
+  const meta=[db.type,db.rarity,db.sell!=null?`sells for ${db.sell} gold`:null].filter(Boolean).join(" · ");
   const craftChip=(name,qty,pre)=>{
     const known=ITEM_INDEX.has(name);
     return `<${known?'button':'span'} class="itemchip"${known?` data-item="${escA(name)}" onclick="gotoItem(this.dataset.item,true)"`:' style="cursor:default"'}>${itemIcon(name)} ${pre?qty+"× ":""}${name}${!pre&&qty?` <span class="icnt">×${qty}</span>`:""}</${known?'button':'span'}>`;
@@ -2339,12 +2327,12 @@ function renderItemPanel(){
     <h3>${itemIcon(ITEMSEL,"big")} ${ITEMSEL}${meta?`<span class="imeta">${meta}</span>`:""}<button class="close" onclick="gotoItem(null,true)" aria-label="Clear selected item">×</button></h3>
     ${db.desc?`<div class="idesc">${db.desc}</div>`:""}
     <div class="isub">${drops.length?`Dropped by <b>${drops.length}</b> Pal${drops.length===1?"":"s"}`:"Not a Pal drop"}${e.ranch.length?` · Ranch-produced by <b>${e.ranch.length}</b>`:""}${db.usedIn?` · used in <b>${db.usedIn.length}</b> recipe${db.usedIn.length===1?"":"s"}`:""}. Tap a Pal to open its dex entry.</div>
-    ${drops.length?`<h4>⚔ Dropped by (qty · chance)</h4><div class="tierpals">${drops.map(chip).join("")}</div>`:""}
-    ${e.ranch.length?`<h4>🏡 Ranch production</h4><div class="tierpals">${e.ranch.map(rchip).join("")}</div>
+    ${drops.length?`<h4>Dropped by (qty · chance)</h4><div class="tierpals">${drops.map(chip).join("")}</div>`:""}
+    ${e.ranch.length?`<h4>Ranch production</h4><div class="tierpals">${e.ranch.map(rchip).join("")}</div>
       <div class="ranchnote">Assign these Pals to a Ranch at your base — their partner skill makes them produce ${escA(ITEMSEL)} on their own.</div>`:""}
-    ${db.sources&&db.sources.length?`<h4>🗺 Also found via</h4><div class="tierpals">${db.sources.map(s=>`<span class="itemchip" style="cursor:default">${s}</span>`).join("")}</div>`:""}
-    ${db.craftedFrom?`<h4>🧪 Crafted from${db.station?` <span style="font-weight:600;text-transform:none;letter-spacing:0">— at ${db.station.join(" / ")}</span>`:""}</h4><div class="tierpals">${db.craftedFrom.map(m=>craftChip(m.mat,m.qty,true)).join("")}</div>`:""}
-    ${db.usedIn&&db.usedIn.length?`<h4>🔨 Used to craft <span style="font-weight:600;text-transform:none;letter-spacing:0">(needs ×N of this)</span></h4><div class="tierpals">${db.usedIn.map(u=>craftChip(u.product,u.qty,false)).join("")}</div>`:""}
+    ${db.sources&&db.sources.length?`<h4>Also found via</h4><div class="tierpals">${db.sources.map(s=>`<span class="itemchip" style="cursor:default">${deEmoji(s)}</span>`).join("")}</div>`:""}
+    ${db.craftedFrom?`<h4>Crafted from${db.station?` <span style="font-weight:600;text-transform:none;letter-spacing:0">— at ${db.station.join(" / ")}</span>`:""}</h4><div class="tierpals">${db.craftedFrom.map(m=>craftChip(m.mat,m.qty,true)).join("")}</div>`:""}
+    ${db.usedIn&&db.usedIn.length?`<h4>Used to craft <span style="font-weight:600;text-transform:none;letter-spacing:0">(needs ×N of this)</span></h4><div class="tierpals">${db.usedIn.map(u=>craftChip(u.product,u.qty,false)).join("")}</div>`:""}
   </div>`;
 }
 function renderItems(){
@@ -2355,13 +2343,13 @@ function renderItems(){
   // group into categories, in the declared order
   const groups=new Map();
   for(const n of vis){ const c=itemCat(n); if(!groups.has(c)) groups.set(c,[]); groups.get(c).push(n); }
-  const order=ITEM_CATS.map(c=>c[0]).concat(["📦 Everything else"]);
+  const order=ITEM_CATS.map(c=>c[0]).concat([ITEM_CAT_OTHER[0]]);
   const chip=n=>{
     const e=ITEM_INDEX.get(n);
-    return `<button class="itemchip${ITEMSEL===n?' sel':''}" data-item="${escA(n)}" onclick="gotoItem(this.dataset.item,true)">${itemIcon(n)} ${n}${e.ranch.length?" 🏡":""}</button>`;
+    return `<button class="itemchip${ITEMSEL===n?' sel':''}" data-item="${escA(n)}" onclick="gotoItem(this.dataset.item,true)">${itemIcon(n)} ${n}${e.ranch.length?'<span class="rmk">ranch</span>':""}</button>`;
   };
   $("#itemCloud").innerHTML=order.filter(c=>groups.has(c)).map(c=>
-    `<div class="icat"><h4>${c} <span>${groups.get(c).length}</span></h4><div class="icatchips">${groups.get(c).map(chip).join("")}</div></div>`
+    `<div class="icat"><h4>${itemIcon(ITEM_CAT_ICON[c])} ${c} <span>${groups.get(c).length}</span></h4><div class="icatchips">${groups.get(c).map(chip).join("")}</div></div>`
   ).join("")||`<span style="color:var(--muted2);font-weight:700;font-size:12.5px">No materials match that search.</span>`;
   renderItemPanel();
 }
