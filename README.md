@@ -21,6 +21,7 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - **Lore & boss titles**: Paldeck flavor text and alpha titles ("Guardian of the Dark Sun") on every Pal, plus **guaranteed passives** (46 Pals) from the palcalc game-file data.
 - **Mounts tier boards**: Flying / Ground / Water, detected from partner skills and ranked by Ride Sprint speed.
 - **Per-Pal URLs**: `#pal=<slug>` deep links in the app, plus 299 static `/pal/<slug>` pages (real content + interlinks) for search engines.
+- **Interactive world map** (Map tab): canvas pan/zoom over the game's own map tiles with **13,800+ markers** from the game's tables — fast travel, Alpha Pals (with level), dungeons, towers, effigies, eggs, chests, every ore/coal/quartz/sulfur/soralite node, fishing spots, merchants — across **two maps** (Palpagos Islands + The World Tree). Category filters with presets (Essentials / Farming run / Collector), marker search + coordinate jump ("337,360"), in-game coordinate readout, **unlimited free found-tracking** with per-type progress and hide-found, **custom pins with notes** (double-click), progress **export/import** (no account needed), any Pal's **spawn heat map overlaid on the world map** with day/night toggle, and popups that deep-link into the dex (Alpha Pals) and item pages (resource nodes). All offline, zero ads.
 
 **Tier lists**
 - **Combat** and **Base Work** boards curated from the most recent 1.0 community tier lists (NextTier Jul 17 2026, cross-checked vs PalMods, Game8, oslink, GameRant, mein-mmo, creator boards from DPJ, Moxsy, KhrazeGaming and The Pal Professor, plus palworld.gg's stat-formula ranking as an objective cross-check — sources linked in-app), with an **Early / Mid / End game-stage selector** so new players get day-one value. Every name is validated against the dex at build time.
@@ -53,6 +54,7 @@ The shipped `breeding_1.0.json` was diffed byte-for-byte against upstream palcal
 python _fetch_partner_skills.py  # paldb.cc per-Pal pages (1.0-current) -> _partner_skills_fill.json
 python _fetch_paldetails.py      # paldb.cc per-Pal pages: drops, movesets, lore, boss titles + palcalc passives -> _paldetails.json
 python _fetch_items.py           # paldb.cc item pages: desc, sell, sources, used-in recipes -> _items.json
+python _fetch_map.py             # paldb.cc map tables: 13.8k markers, 2 stitched maps, icons -> _map.json
 python _gen_pages.py             # 299 static SEO pages (pal/<slug>.html) + sitemap.xml + vercel.json
 python _merge_elements.py        # pals_1.0.json + element fill + partner skills -> pals_1.0.filled.json
 python _fetch_icons.py           # downloads 298 Pal + 9 element icons from palcalc (pinned commit) -> _icons.json
@@ -79,6 +81,8 @@ python _verify_logic.py          # runs the spec §10 verification checklist
 | `_paldetails.json` | Drops (item/qty/probability) + movesets (level/element/power/CT) for all 298 names. |
 | `_fetch_items.py` | Scrapes per-item pages from paldb.cc: description, sell price, world sources, recipes. |
 | `_items.json` | ~190 materials (raw + crafted intermediates) with sources, recipes and crafting stations. |
+| `_fetch_map.py` | Builds the interactive-map dataset: markers, regions, type icons, stitched map images, world→in-game coordinate fit. |
+| `_map.json` | 13.8k+ markers across Palpagos + World Tree, with embedded map images and icons. |
 | `_spawns.json` | 259 Pals × day/night spawn cells (96×96 grid) + embedded 1024px world map. |
 | `_icons.json` | 298 Pal + 9 element icons, base64 data-URIs (embedded at build). |
 | `_app_template.html` | HTML/CSS/JS template (data injected at build). |

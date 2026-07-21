@@ -604,6 +604,47 @@ footer b{color:#fff}
 .covrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:7px}
 .covrow .clbl{min-width:120px}
 
+/* ---- interactive world map ---- */
+.maptop{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.mapsearch{flex:1;min-width:230px;position:relative}
+.mapqmenu{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--panel3);border:2px solid var(--line2);
+  border-radius:10px;z-index:40;max-height:260px;overflow:auto;display:none;box-shadow:0 10px 26px rgba(0,0,0,.3)}
+.mapqmenu.open{display:block}
+.mapqmenu button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:7px 11px;
+  font-size:12px;font-weight:700;color:var(--ink)}
+.mapqmenu button:hover{background:var(--card)}
+.mapqmenu .sub{color:var(--muted2);font-size:10px;margin-left:auto}
+.mapwrap{position:relative;border:3px solid var(--bezel);border-radius:14px;overflow:hidden;background:#0c1420}
+#mapCanvas{display:block;width:100%;height:min(62vh,560px);cursor:grab;touch-action:none}
+#mapCanvas.dragging{cursor:grabbing}
+.maphint{position:absolute;bottom:8px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);
+  font-size:10px;font-weight:700;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.8)}
+.mappop{position:absolute;z-index:30;background:var(--screen3);border:2.5px solid var(--bezel);border-radius:12px;
+  padding:10px 12px;min-width:200px;max-width:270px;box-shadow:0 12px 30px rgba(0,0,0,.45);font-size:12px}
+.mappop h5{margin:0 0 3px;font-size:13.5px;font-weight:900;color:var(--ink);display:flex;align-items:center;gap:7px}
+.mappop h5 img{width:22px;height:22px;object-fit:contain}
+.mappop .sub{color:var(--muted);font-weight:700;font-size:11px;margin-bottom:7px}
+.mappop .row{display:flex;gap:6px;flex-wrap:wrap}
+.mappop textarea{width:100%;border:1.5px solid var(--line2);border-radius:8px;background:var(--card);
+  color:var(--ink);font:inherit;font-size:11.5px;padding:5px 7px;margin-top:6px;resize:vertical;min-height:34px}
+.mappop .close{position:absolute;top:4px;right:7px;color:var(--muted);font-weight:900;font-size:16px;padding:2px 6px}
+.mapbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 8px}
+.mapopt{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;color:var(--muted);cursor:pointer}
+.mapfilters{display:flex;flex-direction:column;gap:9px}
+.mfcat h4{margin:0 0 6px;font-size:11px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);
+  border-bottom:1.5px solid var(--line);padding-bottom:4px}
+.mfchips{display:flex;flex-wrap:wrap;gap:6px}
+.mfchip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 11px;font-size:11px;font-weight:800;
+  background:var(--card);border:2px solid var(--screen-edge);color:var(--muted);cursor:pointer;transition:.1s}
+.mfchip img{width:16px;height:16px;object-fit:contain}
+.mfchip .cnt{font-size:9.5px;color:var(--muted2);font-weight:800}
+.mfchip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.mfchip.on .cnt{color:rgba(255,255,255,.8)}
+@media(max-width:760px){
+  #mapCanvas{height:56vh}
+  .maptop .habcount{display:none}
+}
+
 /* ---- caught & favorites ---- */
 .cardtools{position:absolute;bottom:9px;right:9px;display:flex;gap:5px;z-index:2}
 .ct-btn{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -859,6 +900,7 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
       <button class="tab" data-view="tiers" role="tab" aria-selected="false">Tiers</button>
       <button class="tab" data-view="items" role="tab" aria-selected="false">Items</button>
       <button class="tab" data-view="team" role="tab" aria-selected="false">Team</button>
+      <button class="tab" data-view="map" role="tab" aria-selected="false">Map</button>
     </div>
     <div class="counts" id="counts"></div>
   </header>
@@ -1028,6 +1070,41 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
     </div>
   </section>
 
+  <!-- ================= MAP (interactive world map) ================= -->
+  <section class="view" id="view-map">
+    <div class="screen bpanel">
+      <div class="maptop">
+        <div class="gseg" id="mapSwitch">
+          <button data-map="main" class="on">Palpagos Islands</button>
+          <button data-map="tree">The World Tree</button>
+        </div>
+        <div class="search mapsearch">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="mapQ" type="text" placeholder="Search markers, a Pal for its heat map, or coords like 337,360" autocomplete="off">
+          <div class="mapqmenu" id="mapQMenu"></div>
+        </div>
+        <span class="habcount" id="mapCoords"></span>
+      </div>
+      <div class="mapwrap">
+        <canvas id="mapCanvas"></canvas>
+        <div class="mappop" id="mapPop" hidden></div>
+        <div class="maphint">drag to pan · scroll/pinch to zoom · click a marker · double-click to add a pin</div>
+      </div>
+      <div class="mapbar">
+        <span class="stagelbl">Presets</span>
+        <button class="mini" data-preset="essentials">Essentials</button>
+        <button class="mini" data-preset="farming">Farming run</button>
+        <button class="mini" data-preset="collector">Collector</button>
+        <button class="mini" data-preset="none">Clear</button>
+        <label class="mapopt"><input type="checkbox" id="mapHideFound"> hide found</label>
+        <button class="mini" id="mapExport">Export progress</button>
+        <button class="mini" id="mapImport">Import</button>
+      </div>
+      <div class="mapfilters" id="mapFilters"></div>
+      <div class="tiernote">Marker data from the game's own tables (via paldb.cc, 1.0). Found-marks, pins and notes are <b>unlimited and free</b>, stored on your device — use Export to move them between devices. Tap an Alpha Pal to open its dex entry; tap a resource node to open the item page.</div>
+    </div>
+  </section>
+
   <div class="dev-foot">
     <div class="dpad" role="group" aria-label="Move Paldex selection">
       <button class="darm up" data-dir="up" aria-label="Selection up" title="Selection up"></button>
@@ -1086,12 +1163,14 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
 <script>/*__TIERS__*/</script>
 <script>/*__DETAILS__*/</script>
 <script>/*__ITEMS__*/</script>
+<script>/*__MAP__*/</script>
 <script>
 if (typeof ICONS === 'undefined') { window.ICONS = { pals: {}, elements: {} }; }
 if (typeof SPAWNS === 'undefined') { window.SPAWNS = { grid: 96, map: null, pals: {} }; }
 if (typeof TIERS === 'undefined') { window.TIERS = { sources: [], combat: {}, workers: {} }; }
 if (typeof DETAILS === 'undefined') { window.DETAILS = {}; }
 if (typeof ITEMDB === 'undefined') { window.ITEMDB = {}; }
+if (typeof MAPDATA === 'undefined') { window.MAPDATA = null; }
 </script>
 <script>
 /* ============================================================= *
@@ -2506,6 +2585,375 @@ function initTeam(){
 }
 
 /* ============================================================= *
+ *  MAP — interactive world map (Palpagos + World Tree)
+ * ============================================================= */
+const MV={map:"main",scale:.35,tx:0,ty:0,sel:null,heatPal:null,heatTime:"d",hideFound:false,
+  on:new Set(),inited:false,imgs:{},icons:{},dirty:false};
+function mvLoad(k,d){ try{ return JSON.parse(localStorage.getItem(k))??d; }catch(e){ return d; } }
+let MFOUND=new Set(mvLoad("paldex-map-found",[]));
+let MPINS=mvLoad("paldex-map-pins",[]);
+function mvSave(){ try{
+  localStorage.setItem("paldex-map-found",JSON.stringify([...MFOUND]));
+  localStorage.setItem("paldex-map-pins",JSON.stringify(MPINS));
+}catch(e){} }
+const mkId=m=>MV.map+":"+m[0]+":"+m[1]+":"+m[2];
+/* world <-> image px (paldb tiles are a pure linear map of the config bounds) */
+function w2img(wx,wy){ const b=MAPDATA.maps[MV.map].bounds;
+  return [ (wy-b.minY)/(b.maxY-b.minY)*2048, (1-(wx-b.minX)/(b.maxX-b.minX))*2048 ]; }
+function img2w(px,py){ const b=MAPDATA.maps[MV.map].bounds;
+  return [ b.minX+(1-py/2048)*(b.maxX-b.minX), b.minY+px/2048*(b.maxY-b.minY) ]; }
+function w2game(wx,wy){ const g=MAPDATA.igc;
+  return [Math.round(g.ax*wy+g.bx), Math.round(g.ay*wx+g.by)]; }
+function game2w(gx,gy){ const g=MAPDATA.igc;
+  return [(gy-g.by)/g.ay,(gx-g.bx)/g.ax]; }
+const M_DENSE=new Set(["Ore","Coal","Pure Quartz","Sulfur","Chromite","Hexolite Quartz","Soralite",
+  "Nightstar Sand","Crude Oil","Salvage Rank1","Salvage Rank2","Junk","Treasure","Supply","Fishing Spot","Paloxite"]);
+const M_CATCOL={Enemies:"#e05a4e",Resource:"#4a90d0",Mine:"#c9a227",Locations:"#59b56b",Eggs:"#b06cc9",
+  Fishing:"#3fb3c9",NPCs:"#e08c3a",Collectibles:"#e5c94e",Oilrig:"#8a6ad0",Other:"#9aa4b0"};
+function mapPresets(name){
+  const has=t=>MAPDATA.tlist.includes(t);
+  const sets={
+    essentials:["Fast Travel","Alpha Pal","Tower","Awakened","Dungeon"],
+    farming:[...M_DENSE].filter(t=>!/Salvage|Junk|Treasure|Supply|Fishing/.test(t)),
+    collector:MAPDATA.tlist.filter(t=>/Effigy|Egg|Treasure|Journal|Fruit|Note|Relic|Supply/i.test(t)),
+    none:[]
+  };
+  MV.on=new Set((sets[name]||[]).filter(has));
+  renderMapFilters(); mapDraw();
+}
+function mapMarkers(){ return MAPDATA.markers[MV.map]; }
+function mapDraw(){
+  if(MV.dirty) return; MV.dirty=true;
+  requestAnimationFrame(()=>{ MV.dirty=false; mapPaint(); });
+}
+function mapPaint(){
+  const cv=$("#mapCanvas"); if(!cv||!MV.inited) return;
+  const dpr=window.devicePixelRatio||1, W=cv.clientWidth, H=cv.clientHeight;
+  if(cv.width!==Math.round(W*dpr)){ cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); }
+  const ctx=cv.getContext("2d");
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle="#0c1420"; ctx.fillRect(0,0,W,H);
+  const img=MV.imgs[MV.map]; if(!img) return;
+  ctx.save(); ctx.translate(MV.tx,MV.ty); ctx.scale(MV.scale,MV.scale);
+  ctx.imageSmoothingEnabled=true;
+  ctx.drawImage(img,0,0,2048,2048);
+  /* heat overlay (main map only) */
+  if(MV.heatPal&&MV.map==="main"){
+    const sp=SPAWNS.pals[MV.heatPal.internalName];
+    const cells=(sp&&sp[MV.heatTime])||[], G=SPAWNS.grid;
+    ctx.globalCompositeOperation="lighter";
+    const SXc=.995,SYc=.96,OXc=.07,OYc=.03;
+    const b=MAPDATA.maps.main.bounds;
+    for(const c of cells){
+      const gx=c%G, gy=(c-gx)/G;
+      const ny=((gx+.5)/G-OYc)/SYc, nx=1-((gy+.5)/G-OXc)/SXc; // invert wiki calibration
+      const px=ny*2048, py=(1-nx)*2048, r=2048/G*1.6;
+      const g=ctx.createRadialGradient(px,py,0,px,py,r);
+      g.addColorStop(0,"rgba(255,216,70,.75)"); g.addColorStop(.5,"rgba(255,178,36,.3)"); g.addColorStop(1,"rgba(255,150,20,0)");
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(px,py,r,0,7); ctx.fill();
+    }
+    ctx.globalCompositeOperation="source-over";
+  }
+  /* region labels at mid zoom (hidden when fully out or deep in) */
+  if(MV.scale>=0.5&&MV.scale<1.8){
+    ctx.font=`800 ${11/MV.scale}px system-ui,sans-serif`;
+    ctx.textAlign="center"; ctx.fillStyle="rgba(255,255,255,.55)";
+    ctx.shadowColor="rgba(0,0,0,.8)"; ctx.shadowBlur=3/MV.scale;
+    for(const r of MAPDATA.regions[MV.map]){
+      const [wx,wy]=game2w(r.gx,r.gy), [px,py]=w2img(wx,wy);
+      ctx.fillText(r.n,px,py);
+    }
+    ctx.shadowBlur=0;
+  }
+  /* markers */
+  const vx0=-MV.tx/MV.scale, vy0=-MV.ty/MV.scale, vx1=vx0+W/MV.scale, vy1=vy0+H/MV.scale;
+  const iconPx=10+9*Math.min(1.4,MV.scale);          // markers shrink when zoomed out
+  const sz=iconPx/MV.scale, dot=(2.6+1.3*Math.min(1.5,MV.scale))/MV.scale;
+  const dense=MV.scale<0.9;
+  for(const m of mapMarkers()){
+    const t=MAPDATA.tlist[m[0]];
+    if(!MV.on.has(t)) continue;
+    if(MV.hideFound&&MFOUND.has(mkId(m))) continue;
+    const [px,py]=w2img(m[1],m[2]);
+    if(px<vx0-30||px>vx1+30||py<vy0-30||py>vy1+30) continue;
+    const ty=MAPDATA.types[t]||{};
+    const found=MFOUND.has(mkId(m));
+    if(dense&&M_DENSE.has(t)){
+      ctx.fillStyle=found?"rgba(150,160,150,.5)":(M_CATCOL[ty.cat]||"#9aa4b0");
+      ctx.beginPath(); ctx.arc(px,py,dot,0,7); ctx.fill();
+      continue;
+    }
+    let ic=null;
+    if(t==="Alpha Pal"&&m[3]&&ICONS.pals[m[3]]) ic=mapIcon("pal:"+m[3],ICONS.pals[m[3]]);
+    else if(ty.icon) ic=mapIcon(t,ty.icon);
+    ctx.globalAlpha=found?0.38:1;
+    if(ic&&ic.complete) ctx.drawImage(ic,px-sz/2,py-sz/2,sz,sz);
+    else{ ctx.fillStyle=M_CATCOL[ty.cat]||"#9aa4b0"; ctx.beginPath(); ctx.arc(px,py,dot*1.4,0,7); ctx.fill(); }
+    if(found){ ctx.strokeStyle="#3fa15c"; ctx.lineWidth=2/MV.scale;
+      ctx.beginPath(); ctx.arc(px,py,sz*.62,0,7); ctx.stroke(); }
+    ctx.globalAlpha=1;
+  }
+  /* custom pins */
+  for(const p of MPINS){
+    if(p.map!==MV.map) continue;
+    const [px,py]=w2img(p.x,p.y);
+    ctx.fillStyle="#ff8c3a"; ctx.strokeStyle="#fff"; ctx.lineWidth=2/MV.scale;
+    ctx.beginPath(); ctx.arc(px,py,6/MV.scale,0,7); ctx.fill(); ctx.stroke();
+  }
+  /* selection ring */
+  if(MV.sel){
+    const [px,py]=MV.sel.pin?w2img(MV.sel.pin.x,MV.sel.pin.y):w2img(MV.sel.m[1],MV.sel.m[2]);
+    ctx.strokeStyle="#ffd76a"; ctx.lineWidth=3/MV.scale;
+    ctx.beginPath(); ctx.arc(px,py,sz*.75,0,7); ctx.stroke();
+  }
+  ctx.restore();
+}
+function mapIcon(key,src){
+  let im=MV.icons[key];
+  if(!im){ im=new Image(); im.src=src; im.onload=mapDraw; MV.icons[key]=im; }
+  return im;
+}
+function mapScreen2img(sx,sy){ return [(sx-MV.tx)/MV.scale,(sy-MV.ty)/MV.scale]; }
+function mapClampView(){
+  const cv=$("#mapCanvas"), W=cv.clientWidth, H=cv.clientHeight;
+  MV.scale=Math.max(Math.min(W,H)/2048*.85,Math.min(8,MV.scale));
+  MV.tx=Math.min(W*.7,Math.max(W*.3-2048*MV.scale,MV.tx));
+  MV.ty=Math.min(H*.7,Math.max(H*.3-2048*MV.scale,MV.ty));
+}
+function mapFly(wx,wy,scale){
+  const cv=$("#mapCanvas");
+  MV.scale=scale||Math.max(MV.scale,1.6);
+  const [px,py]=w2img(wx,wy);
+  MV.tx=cv.clientWidth/2-px*MV.scale; MV.ty=cv.clientHeight/2-py*MV.scale;
+  mapClampView(); mapDraw();
+}
+function mapPopup(sx,sy,html){
+  const pop=$("#mapPop"), wrap=$(".mapwrap");
+  pop.innerHTML=html+`<button class="close" onclick="mapClosePop()" aria-label="Close">×</button>`;
+  pop.hidden=false;
+  const W=wrap.clientWidth, pw=Math.min(270,W-20);
+  pop.style.left=Math.min(W-pw-10,Math.max(8,sx+14))+"px";
+  pop.style.top=Math.max(8,Math.min(wrap.clientHeight-160,sy-10))+"px";
+}
+function mapClosePop(){ $("#mapPop").hidden=true; MV.sel=null; mapDraw(); }
+window.mapClosePop=mapClosePop;
+function mapToggleFound(id){
+  MFOUND.has(id)?MFOUND.delete(id):MFOUND.add(id);
+  mvSave(); renderMapFilters(); mapDraw();
+  const b=$("#mapPop .foundbtn"); if(b) b.textContent=MFOUND.has(id)?"Found ✓ (tap to unmark)":"Mark as found";
+}
+window.mapToggleFound=mapToggleFound;
+function mapDelPin(i){ MPINS.splice(i,1); mvSave(); mapClosePop(); mapDraw(); }
+window.mapDelPin=mapDelPin;
+function mapPinNote(i,v){ if(MPINS[i]){ MPINS[i].note=v; mvSave(); } }
+window.mapPinNote=mapPinNote;
+function mapSelectMarker(m,sx,sy){
+  MV.sel={m}; mapDraw();
+  const t=MAPDATA.tlist[m[0]], ty=MAPDATA.types[t]||{}, id=mkId(m);
+  const name=m[3]||t, [gx,gy]=w2game(m[1],m[2]);
+  const palMatch=byName.get((m[3]||"").toLowerCase());
+  const itemMatch=ITEM_INDEX.has(m[3])?m[3]:(ITEM_INDEX.has(t)?t:null);
+  let icon=t==="Alpha Pal"&&m[3]&&ICONS.pals[m[3]]?ICONS.pals[m[3]]:(ty.icon||null);
+  mapPopup(sx,sy,`<h5>${icon?`<img src="${icon}" alt="">`:""}${name}</h5>
+    <div class="sub">${t}${m[4]?` · Lv ${m[4]}`:""} · in-game (${gx}, ${gy})</div>
+    <div class="row">
+      ${palMatch?`<button class="mini" onclick="gotoPaldex(${palMatch.internalIndex})">Open in Paldex</button>`:""}
+      ${itemMatch?`<button class="mini" data-item="${escA(itemMatch)}" onclick="gotoItem(this.dataset.item)">View item</button>`:""}
+      <button class="mini foundbtn" onclick="mapToggleFound('${id}')">${MFOUND.has(id)?"Found ✓ (tap to unmark)":"Mark as found"}</button>
+    </div>`);
+}
+function renderMapFilters(){
+  const box=$("#mapFilters"); if(!box||!MAPDATA) return;
+  const counts={}, foundCts={};
+  for(const m of mapMarkers()){
+    const t=MAPDATA.tlist[m[0]];
+    counts[t]=(counts[t]||0)+1;
+    if(m[5]&&MFOUND.has(mkId(m))) foundCts[t]=(foundCts[t]||0)+1;
+  }
+  const cats={};
+  for(const t in counts){
+    const c=(MAPDATA.types[t]||{}).cat||"Other";
+    (cats[c]=cats[c]||[]).push(t);
+  }
+  box.innerHTML=Object.keys(cats).sort().map(c=>`<div class="mfcat"><h4>${c}</h4><div class="mfchips">${
+    cats[c].sort().map(t=>{
+      const ty=MAPDATA.types[t]||{}, coll=mapMarkers().some(m=>MAPDATA.tlist[m[0]]===t&&m[5]);
+      const prog=coll?` <span class="cnt">${foundCts[t]||0}/${counts[t]}</span>`:` <span class="cnt">${counts[t]}</span>`;
+      return `<button class="mfchip${MV.on.has(t)?" on":""}" data-t="${escA(t)}">${ty.icon?`<img src="${ty.icon}" alt="">`:""}${t}${prog}</button>`;
+    }).join("")}</div></div>`).join("");
+  box.querySelectorAll(".mfchip").forEach(b=>b.onclick=()=>{
+    const t=b.dataset.t;
+    MV.on.has(t)?MV.on.delete(t):MV.on.add(t);
+    b.classList.toggle("on"); mapDraw();
+  });
+}
+function mapSearchRender(){
+  const q=($("#mapQ").value||"").trim(), menu=$("#mapQMenu");
+  if(!q){ menu.classList.remove("open"); return; }
+  const out=[];
+  const cm=q.match(/^(-?\d+)\s*,\s*(-?\d+)$/);
+  if(cm) out.push(`<button data-act="coord" data-x="${cm[1]}" data-y="${cm[2]}">Jump to in-game (${cm[1]}, ${cm[2]})</button>`);
+  const ql=q.toLowerCase();
+  PALS.filter(p=>p.name.toLowerCase().includes(ql)&&SPAWNS.pals[p.internalName]).slice(0,3).forEach(p=>
+    out.push(`<button data-act="heat" data-i="${p.internalIndex}">${avatarHtml(p,"mini-av3")}Heat map: ${p.name}<span class="sub">spawns</span></button>`));
+  const seen=new Set();
+  for(const m of mapMarkers()){
+    const t=MAPDATA.tlist[m[0]], nm=m[3]||t;
+    if(!nm.toLowerCase().includes(ql)) continue;
+    const key=nm+"|"+t; if(seen.has(key)) continue; seen.add(key);
+    out.push(`<button data-act="fly" data-x="${m[1]}" data-y="${m[2]}" data-mi="${mapMarkers().indexOf(m)}">${nm}<span class="sub">${t}</span></button>`);
+    if(seen.size>=9) break;
+  }
+  menu.innerHTML=out.join("")||`<button disabled style="color:var(--muted2)">No matches on this map</button>`;
+  menu.classList.add("open");
+  menu.querySelectorAll("button[data-act]").forEach(b=>b.onclick=()=>{
+    menu.classList.remove("open"); $("#mapQ").value="";
+    if(b.dataset.act==="coord"){ const [wx,wy]=game2w(+b.dataset.x,+b.dataset.y); mapFly(wx,wy); }
+    else if(b.dataset.act==="heat"){
+      MV.heatPal=byIndex.get(+b.dataset.i); MV.heatTime="d"; renderHeatBar(); mapDraw();
+    }else{
+      const m=mapMarkers()[+b.dataset.mi];
+      const t=MAPDATA.tlist[m[0]]; MV.on.add(t); renderMapFilters();
+      mapFly(m[1],m[2],2.2);
+      setTimeout(()=>{ const cv=$("#mapCanvas"); mapSelectMarker(m,cv.clientWidth/2,cv.clientHeight/2); },60);
+    }
+  });
+}
+function renderHeatBar(){
+  let bar=$("#mapHeatBar");
+  if(!MV.heatPal){ if(bar) bar.remove(); return; }
+  if(!bar){
+    bar=el("div","mapbar"); bar.id="mapHeatBar";
+    $(".mapbar").after(bar);
+  }
+  bar.innerHTML=`<span class="stagelbl">Heat map</span>
+    <span style="font-weight:900;font-size:12.5px;color:var(--ink)">${MV.heatPal.name}</span>
+    <button class="mini${MV.heatTime==="d"?" on":""}" data-ht="d">Day</button>
+    <button class="mini${MV.heatTime==="n"?" on":""}" data-ht="n">Night</button>
+    <button class="mini" data-ht="off">Off</button>
+    ${MV.map==="tree"?'<span style="font-size:11px;color:var(--muted2);font-weight:700">(spawn data covers Palpagos only)</span>':""}`;
+  bar.querySelectorAll("[data-ht]").forEach(b=>b.onclick=()=>{
+    if(b.dataset.ht==="off"){ MV.heatPal=null; renderHeatBar(); }
+    else{ MV.heatTime=b.dataset.ht; renderHeatBar(); }
+    mapDraw();
+  });
+}
+function mapExportProgress(){
+  const blob=JSON.stringify({found:[...MFOUND],pins:MPINS});
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(blob).then(()=>alert("Progress copied to clipboard — paste it into Import on another device."),
+      ()=>prompt("Copy this progress blob:",blob));
+  } else prompt("Copy this progress blob:",blob);
+}
+function mapImportProgress(){
+  const v=prompt("Paste a progress blob from Export:");
+  if(!v) return;
+  try{
+    const d=JSON.parse(v);
+    if(Array.isArray(d.found)) d.found.forEach(x=>MFOUND.add(x));
+    if(Array.isArray(d.pins)) MPINS.push(...d.pins.filter(p=>p&&p.map&&isFinite(p.x)));
+    mvSave(); renderMapFilters(); mapDraw(); blink("g");
+  }catch(e){ alert("That didn't parse — make sure you pasted the full blob."); }
+}
+function initMapTab(){
+  if(!MAPDATA){ $("#view-map .bpanel").innerHTML='<div class="msg err">Map data not built — run _fetch_map.py.</div>'; return; }
+  const cv=$("#mapCanvas");
+  for(const k in MAPDATA.maps){
+    const im=new Image(); im.src=MAPDATA.maps[k].img; im.onload=mapDraw; MV.imgs[k]=im;
+  }
+  mapPresets("essentials");
+  /* center on first show */
+  const center=()=>{ if(MV.inited) return; MV.inited=true;
+    const W=cv.clientWidth,H=cv.clientHeight;
+    MV.scale=Math.min(W,H)/2048; MV.tx=(W-2048*MV.scale)/2; MV.ty=(H-2048*MV.scale)/2; mapDraw(); };
+  $$('.tab').forEach(t=>{ if(t.dataset.view==="map") t.addEventListener("click",()=>setTimeout(center,30)); });
+  window.addEventListener("resize",mapDraw);
+  /* map switcher */
+  $("#mapSwitch").querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    $("#mapSwitch").querySelectorAll("button").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on"); MV.map=b.dataset.map; MV.sel=null; $("#mapPop").hidden=true;
+    MV.inited=false; setTimeout(()=>{MV.inited=false; const W=cv.clientWidth,H=cv.clientHeight;
+      MV.scale=Math.min(W,H)/2048; MV.tx=(W-2048*MV.scale)/2; MV.ty=(H-2048*MV.scale)/2; MV.inited=true;
+      renderMapFilters(); renderHeatBar(); mapDraw();},20);
+  });
+  /* pointer pan/zoom/pinch */
+  const ptrs=new Map(); let dragging=false,moved=false,pinchD=0;
+  cv.addEventListener("pointerdown",e=>{ cv.setPointerCapture(e.pointerId);
+    ptrs.set(e.pointerId,{x:e.offsetX,y:e.offsetY}); dragging=true; moved=false;
+    if(ptrs.size===2){ const a=[...ptrs.values()]; pinchD=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y); }
+  });
+  cv.addEventListener("pointermove",e=>{
+    const rect=cv.getBoundingClientRect(), sx=e.clientX-rect.left, sy=e.clientY-rect.top;
+    const [ix,iy]=mapScreen2img(sx,sy); const [wx,wy]=img2w(ix,iy); const [gx,gy]=w2game(wx,wy);
+    $("#mapCoords").textContent=`in-game ${gx}, ${gy}`;
+    if(!dragging||!ptrs.has(e.pointerId)) return;
+    const p=ptrs.get(e.pointerId);
+    if(ptrs.size===2){
+      ptrs.set(e.pointerId,{x:sx,y:sy});
+      const a=[...ptrs.values()]; const d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);
+      if(pinchD>0){ const f=d/pinchD, cxp=(a[0].x+a[1].x)/2, cyp=(a[0].y+a[1].y)/2;
+        MV.tx=cxp-(cxp-MV.tx)*f; MV.ty=cyp-(cyp-MV.ty)*f; MV.scale*=f; mapClampView(); mapDraw(); }
+      pinchD=d; moved=true; return;
+    }
+    const dx=sx-p.x, dy=sy-p.y;
+    if(Math.abs(dx)+Math.abs(dy)>2) moved=true;
+    MV.tx+=dx; MV.ty+=dy; ptrs.set(e.pointerId,{x:sx,y:sy});
+    cv.classList.add("dragging"); mapClampView(); mapDraw();
+  });
+  const up=e=>{ ptrs.delete(e.pointerId); if(!ptrs.size){ dragging=false; cv.classList.remove("dragging"); } };
+  cv.addEventListener("pointerup",e=>{
+    const rect=cv.getBoundingClientRect(), sx=e.clientX-rect.left, sy=e.clientY-rect.top;
+    if(!moved&&ptrs.size===1){
+      /* click: hit-test markers then pins */
+      const [ix,iy]=mapScreen2img(sx,sy);
+      let best=null,bd=18/MV.scale;
+      for(const m of mapMarkers()){
+        const t=MAPDATA.tlist[m[0]]; if(!MV.on.has(t)) continue;
+        if(MV.hideFound&&MFOUND.has(mkId(m))) continue;
+        const [px,py]=w2img(m[1],m[2]);
+        const d=Math.hypot(px-ix,py-iy);
+        if(d<bd){ bd=d; best={m}; }
+      }
+      MPINS.forEach((p,i)=>{ if(p.map!==MV.map) return;
+        const [px,py]=w2img(p.x,p.y); const d=Math.hypot(px-ix,py-iy);
+        if(d<bd){ bd=d; best={pin:p,pi:i}; } });
+      if(best&&best.m) mapSelectMarker(best.m,sx,sy);
+      else if(best&&best.pin){
+        MV.sel=best; mapDraw();
+        const [gx,gy]=w2game(best.pin.x,best.pin.y);
+        mapPopup(sx,sy,`<h5>Custom pin</h5><div class="sub">in-game (${gx}, ${gy})</div>
+          <textarea placeholder="Notes…" oninput="mapPinNote(${best.pi},this.value)">${best.pin.note||""}</textarea>
+          <div class="row" style="margin-top:6px"><button class="mini" onclick="mapDelPin(${best.pi})">Delete pin</button></div>`);
+      }
+      else mapClosePop();
+    }
+    up(e);
+  });
+  cv.addEventListener("pointercancel",up);
+  cv.addEventListener("dblclick",e=>{
+    const rect=cv.getBoundingClientRect();
+    const [ix,iy]=mapScreen2img(e.clientX-rect.left,e.clientY-rect.top);
+    const [wx,wy]=img2w(ix,iy);
+    MPINS.push({map:MV.map,x:Math.round(wx),y:Math.round(wy),note:""});
+    mvSave(); mapDraw(); blink("g");
+  });
+  cv.addEventListener("wheel",e=>{ e.preventDefault();
+    const rect=cv.getBoundingClientRect(), sx=e.clientX-rect.left, sy=e.clientY-rect.top;
+    const f=Math.exp(-e.deltaY*0.0016);
+    MV.tx=sx-(sx-MV.tx)*f; MV.ty=sy-(sy-MV.ty)*f; MV.scale*=f;
+    mapClampView(); mapDraw();
+  },{passive:false});
+  /* toolbar */
+  $$(".mapbar [data-preset]").forEach(b=>b.onclick=()=>{ mapPresets(b.dataset.preset); blink("y"); });
+  $("#mapHideFound").onchange=e=>{ MV.hideFound=e.target.checked; mapDraw(); };
+  $("#mapExport").onclick=mapExportProgress;
+  $("#mapImport").onclick=mapImportProgress;
+  $("#mapQ").addEventListener("input",mapSearchRender);
+  document.addEventListener("click",e=>{ if(!$(".mapsearch").contains(e.target)) $("#mapQMenu").classList.remove("open"); });
+  renderMapFilters();
+}
+
+/* ============================================================= *
  *  WIRING
  * ============================================================= */
 function initTabs(){
@@ -2575,7 +3023,7 @@ function initControls(){
   };
 }
 function boot(){
-  buildFilters(); initControls(); initTabs(); initBreeding(); initDevice(); initHabModal(); initTiers(); initCompare(); initItems(); initTeam();
+  buildFilters(); initControls(); initTabs(); initBreeding(); initDevice(); initHabModal(); initTiers(); initCompare(); initItems(); initTeam(); initMapTab();
   renderOwned();
   render();
   renderForward();
