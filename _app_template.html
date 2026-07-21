@@ -531,7 +531,15 @@ footer b{color:#fff}
 /* ---- items / ingredient finder ---- */
 .itemhead{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
 .itemhead .search{flex:1;min-width:220px}
-.itemcloud{display:flex;flex-wrap:wrap;gap:7px}
+.itemcloud{display:flex;flex-direction:column;gap:14px}
+.icat h4{margin:0 0 8px;font-size:11.5px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--muted);border-bottom:1.5px solid var(--line);padding-bottom:5px;display:flex;align-items:center;gap:7px}
+.icat h4 span{font-size:10px;font-weight:800;color:var(--muted2);background:var(--panel3);border-radius:999px;padding:1px 8px}
+.icatchips{display:flex;flex-wrap:wrap;gap:7px}
+.iico{width:22px;height:22px;object-fit:contain;border-radius:5px;flex-shrink:0}
+.iico.big{width:34px;height:34px;border-radius:7px}
+.iemo{font-size:14px;line-height:1;flex-shrink:0}
+.iemo.big{font-size:24px}
 .itemchip{background:var(--card);border:2px solid var(--screen-edge);border-radius:999px;
   padding:6px 13px;font-size:12px;font-weight:800;color:var(--ink);cursor:pointer;transition:.12s;
   display:inline-flex;align-items:center;gap:6px}
@@ -554,7 +562,9 @@ footer b{color:#fff}
   color:var(--muted);display:flex;align-items:center;gap:7px}
 .itempanel .tierpals{display:flex;flex-wrap:wrap;gap:6px}
 .ranchnote{font-size:11px;font-weight:600;color:var(--muted2);margin-top:6px}
-.droprow{cursor:pointer;transition:.12s;font-family:inherit;text-align:left}
+.droprow{cursor:pointer;transition:.12s;font-family:inherit;text-align:left;display:inline-flex;align-items:center;gap:5px}
+.droprow .iico{width:18px;height:18px}
+.droprow .iemo{font-size:12px}
 .droprow:hover{border-color:var(--accent);color:var(--ink);transform:translateY(-1px)}
 
 /* ---- team synergy planner ---- */
@@ -1566,7 +1576,7 @@ function renderDetail(p){
       ${(DETAILS[p.name]&&DETAILS[p.name].drops&&DETAILS[p.name].drops.length)?`<div class="dsection">
         <h3>Possible drops <span style="font-weight:600;color:var(--muted2);font-size:10px">(tap to see all sources)</span></h3>
         <div class="droplist">${DETAILS[p.name].drops.map(d=>`
-          <button class="droprow" data-item="${escA(d.item)}" onclick="gotoItem(this.dataset.item)" title="Every Pal that gives ${escA(d.item)}"><b>${d.item}</b> ×${d.qty} <span class="dp">${d.p}</span></button>`).join("")}</div>
+          <button class="droprow" data-item="${escA(d.item)}" onclick="gotoItem(this.dataset.item)" title="Every Pal that gives ${escA(d.item)}">${itemIcon(d.item)}<b>${d.item}</b> ×${d.qty} <span class="dp">${d.p}</span></button>`).join("")}</div>
       </div>`:''}
       <div class="dsection">
         <h3>Bred from (${bredFrom.length} pair${bredFrom.length===1?'':'s'})</h3>
@@ -2286,6 +2296,29 @@ function itemEmoji(n){
   if(/ancient/i.test(n)) return "🏺";
   return "📦";
 }
+/* real inventory icon when we have it, emoji fallback otherwise */
+function itemIcon(n,cls){
+  const db=ITEMDB[n];
+  if(db&&db.icon) return `<img class="iico${cls?" "+cls:""}" src="${db.icon}" alt="" loading="lazy">`;
+  return `<span class="iemo${cls?" "+cls:""}">${itemEmoji(n)}</span>`;
+}
+/* display categories for the materials cloud (checked in order) */
+const ITEM_CATS=[
+  ["⛏️ Ores, Stone & Metals", n=>/ore\b|ingot|^coal$|^stone$|paldium|quartz|hexolite|soralite|paloxite|chromite|plasteel|sulfur|^cement$|charcoal|gunpowder|crude oil|meteorite/i.test(n)],
+  ["💎 Gems & Treasure", n=>/diamond|ruby|sapphire|emerald|coin$|key$|treasure|hallowed/i.test(n)],
+  ["💊 Medicine & Potions", n=>/meds|medical|supplies|antidote|suppressant|potion|holy water|coolant|solvent/i.test(n)],
+  ["👻 Souls & Fragments", n=>/soul$|fragment|catalyst/i.test(n)],
+  ["🏭 Components & Tech", n=>/circuit|computer|battery|core$|module|polymer|carbon fiber|manual$|manuscript|scanner|device|bio battery/i.test(n)],
+  ["🍳 Food & Cooking", n=>{const t=(ITEMDB[n]||{}).type; return t==="Ingredient"||/cake$|bread|fried|grilled|baked|roast|stew|soup|salad|noodle|pizza|omelet|milk$|^egg$|honey|flour|wheat|meat$|venison|poultry|fries|carbonara|gratin|moco|jelly$|chowder|saut|candy$|berries$|mushroom$|carrot$|onion$|potato$|tomato$|lettuce$/i.test(n);}],
+  ["🌱 Seeds & Farming", n=>/seeds$|sapling/i.test(n)],
+  ["🧵 Cloth & Fibers", n=>/cloth$|fiber$|wool$|thread|fur(s)?$/i.test(n)],
+  ["🪵 Wood & Plants", n=>/wood$|board$|plank|leaf$|flower$|petal/i.test(n)],
+  ["🐾 Pal Parts & Drops", n=>/organ$|gland$|horn$|bone$|leather|fluids?$|tentacle|hair$|cloud$|flesh$|oil$|slime|fang|plume|dumud|kelpsea/i.test(n)],
+];
+function itemCat(n){
+  for(const [cat,test] of ITEM_CATS) if(test(n)) return cat;
+  return "📦 Everything else";
+}
 let ITEMSEL=null;
 function renderItemPanel(){
   const box=$("#itemResult");
@@ -2300,10 +2333,10 @@ function renderItemPanel(){
   const meta=[db.type,db.rarity,db.sell!=null?`sell 🪙${db.sell}`:null].filter(Boolean).join(" · ");
   const craftChip=(name,qty,pre)=>{
     const known=ITEM_INDEX.has(name);
-    return `<${known?'button':'span'} class="itemchip"${known?` data-item="${escA(name)}" onclick="gotoItem(this.dataset.item,true)"`:' style="cursor:default"'}>${itemEmoji(name)} ${pre?qty+"× ":""}${name}${!pre&&qty?` <span class="icnt">×${qty}</span>`:""}</${known?'button':'span'}>`;
+    return `<${known?'button':'span'} class="itemchip"${known?` data-item="${escA(name)}" onclick="gotoItem(this.dataset.item,true)"`:' style="cursor:default"'}>${itemIcon(name)} ${pre?qty+"× ":""}${name}${!pre&&qty?` <span class="icnt">×${qty}</span>`:""}</${known?'button':'span'}>`;
   };
   box.innerHTML=`<div class="itempanel">
-    <h3>${itemEmoji(ITEMSEL)} ${ITEMSEL}${meta?`<span class="imeta">${meta}</span>`:""}<button class="close" onclick="gotoItem(null,true)" aria-label="Clear selected item">×</button></h3>
+    <h3>${itemIcon(ITEMSEL,"big")} ${ITEMSEL}${meta?`<span class="imeta">${meta}</span>`:""}<button class="close" onclick="gotoItem(null,true)" aria-label="Clear selected item">×</button></h3>
     ${db.desc?`<div class="idesc">${db.desc}</div>`:""}
     <div class="isub">${drops.length?`Dropped by <b>${drops.length}</b> Pal${drops.length===1?"":"s"}`:"Not a Pal drop"}${e.ranch.length?` · Ranch-produced by <b>${e.ranch.length}</b>`:""}${db.usedIn?` · used in <b>${db.usedIn.length}</b> recipe${db.usedIn.length===1?"":"s"}`:""}. Tap a Pal to open its dex entry.</div>
     ${drops.length?`<h4>⚔ Dropped by (qty · chance)</h4><div class="tierpals">${drops.map(chip).join("")}</div>`:""}
@@ -2319,10 +2352,17 @@ function renderItems(){
   const names=[...ITEM_INDEX.keys()].sort((a,b)=>a.localeCompare(b));
   const vis=q?names.filter(n=>n.toLowerCase().includes(q)):names;
   $("#itemCount").textContent=`${vis.length} / ${names.length} materials`;
-  $("#itemCloud").innerHTML=vis.map(n=>{
+  // group into categories, in the declared order
+  const groups=new Map();
+  for(const n of vis){ const c=itemCat(n); if(!groups.has(c)) groups.set(c,[]); groups.get(c).push(n); }
+  const order=ITEM_CATS.map(c=>c[0]).concat(["📦 Everything else"]);
+  const chip=n=>{
     const e=ITEM_INDEX.get(n);
-    return `<button class="itemchip${ITEMSEL===n?' sel':''}" data-item="${escA(n)}" onclick="gotoItem(this.dataset.item,true)">${itemEmoji(n)} ${n}${e.ranch.length?" 🏡":""}<span class="icnt">${e.drops.length+e.ranch.length}</span></button>`;
-  }).join("")||`<span style="color:var(--muted2);font-weight:700;font-size:12.5px">No materials match that search.</span>`;
+    return `<button class="itemchip${ITEMSEL===n?' sel':''}" data-item="${escA(n)}" onclick="gotoItem(this.dataset.item,true)">${itemIcon(n)} ${n}${e.ranch.length?" 🏡":""}</button>`;
+  };
+  $("#itemCloud").innerHTML=order.filter(c=>groups.has(c)).map(c=>
+    `<div class="icat"><h4>${c} <span>${groups.get(c).length}</span></h4><div class="icatchips">${groups.get(c).map(chip).join("")}</div></div>`
+  ).join("")||`<span style="color:var(--muted2);font-weight:700;font-size:12.5px">No materials match that search.</span>`;
   renderItemPanel();
 }
 function gotoItem(item,stay){

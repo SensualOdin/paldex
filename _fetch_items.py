@@ -123,6 +123,9 @@ def parse_meta(page):
         desc = htmllib.unescape(m.group(1)).replace("\n", " ").strip()
         if desc and "Database Wiki" not in desc:
             meta["desc"] = desc
+    m = re.search(r'<meta property="og:image" content="([^"]+)"', page)
+    if m and "itemicon" in m.group(1).lower():
+        meta["iconUrl"] = m.group(1)
     return meta
 
 
@@ -216,6 +219,22 @@ def main():
                 seen_nonmat.add(n)
             time.sleep(1.2)
         print(f"  -> kept materials, total now {len(out)} (skipped gear: {len(seen_nonmat)})")
+
+    # embed the inventory icons as data-URIs (offline app, like the Pal art)
+    import base64
+    for n, e in out.items():
+        url = e.pop("iconUrl", None)
+        if not url or e.get("icon"):
+            continue
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = r.read()
+            ext = "png" if url.endswith(".png") else "webp"
+            e["icon"] = f"data:image/{ext};base64," + base64.b64encode(data).decode()
+            time.sleep(0.4)
+        except Exception as ex:
+            print(f"  icon ERR {n}: {ex}", file=sys.stderr)
 
     json.dump(out, open("_items.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     print(f"OK: {len(out)} items -> _items.json")
