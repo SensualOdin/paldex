@@ -44,10 +44,13 @@ def fetch(url):
 
 
 def map_pos(p):
-    """World coords -> normalized map-image (x right, y down), calibrated."""
+    """World coords -> PURE normalized map space (x east, y south), no
+    calibration. Cells therefore align exactly with any map image that is a
+    linear render of the landscape bounds (the paldb tile maps). Renderers
+    drawing over the wiki image apply the SX/SY/OX/OY correction forward."""
     nx = (p["X"] - MINX) / RX   # world +X = map north
     ny = (p["Y"] - MINY) / RY   # world +Y = map east
-    return (ny * SY + OY), ((1 - nx) * SX + OX)
+    return ny, (1 - nx)
 
 
 def cells(points):
@@ -89,7 +92,8 @@ def main():
     map_uri = "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
     print(f"map image: {len(buf.getvalue()) // 1024}KB")
 
-    out = {"grid": GRID, "map": map_uri, "pals": spawn_map,
+    out = {"grid": GRID, "map": map_uri, "pals": spawn_map, "pure": True,
+           "cal": {"sx": SX, "sy": SY, "ox": OX, "oy": OY},
            "source": "DT_PaldexDistributionData via paldb.cc; map via palworld.wiki.gg"}
     with open("_spawns.json", "w") as f:
         json.dump(out, f, separators=(",", ":"))

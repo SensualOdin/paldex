@@ -644,9 +644,28 @@ footer b{color:#fff}
 .mappop .close{position:absolute;top:4px;right:7px;color:var(--muted);font-weight:900;font-size:16px;padding:2px 6px}
 .mapbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 8px}
 .mapopt{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;color:var(--muted);cursor:pointer}
-.mapfilters{display:flex;flex-direction:column;gap:9px}
-.mfcat h4{margin:0 0 6px;font-size:11px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);
-  border-bottom:1.5px solid var(--line);padding-bottom:4px}
+.mapfilters{display:flex;flex-direction:column;gap:8px}
+.mfsec{background:var(--card);border:2px solid var(--screen-edge);border-radius:12px;padding:0}
+.mfsec summary{display:flex;align-items:center;gap:8px;padding:9px 12px;cursor:pointer;user-select:none;
+  font-size:11px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;color:var(--ink);list-style:none}
+.mfsec summary::-webkit-details-marker{display:none}
+.mfarrow{width:0;height:0;border-left:5px solid var(--muted2);border-top:4px solid transparent;
+  border-bottom:4px solid transparent;transition:.12s;flex-shrink:0}
+.mfsec[open] .mfarrow{transform:rotate(90deg)}
+.mfsub{margin-left:auto;font-size:10px;font-weight:800;letter-spacing:.3px;color:var(--muted2);text-transform:none}
+.mfsec summary .mfab{font-size:9.5px;font-weight:900;color:var(--muted);background:var(--panel3);
+  border:1.5px solid var(--line2);border-radius:999px;padding:2px 9px;letter-spacing:.4px}
+.mfsec summary .mfab:hover{color:var(--ink);border-color:var(--muted)}
+.mfbody{padding:4px 10px 10px}
+.mfgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mftype{display:flex;align-items:center;gap:6px;border:2px solid var(--line2);border-radius:10px;
+  padding:6px 9px;font-size:11px;font-weight:800;color:var(--muted2);background:var(--panel3);
+  text-align:left;transition:.1s;min-width:0}
+.mftype span.nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mftype img{width:16px;height:16px;object-fit:contain;flex-shrink:0}
+.mftype .cnt{margin-left:auto;font-size:9.5px;font-weight:900;color:var(--muted2);flex-shrink:0}
+.mftype.on{border-color:var(--warn);background:var(--card);color:var(--ink)}
+.mftype.on .cnt{color:var(--accent-dk)}
 .mfchips{display:flex;flex-wrap:wrap;gap:6px}
 .mfchip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 11px;font-size:11px;font-weight:800;
   background:var(--card);border:2px solid var(--screen-edge);color:var(--muted);cursor:pointer;transition:.1s}
@@ -1123,11 +1142,13 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
             <button class="mini" id="mapExport">Export progress</button>
             <button class="mini" id="mapImport">Import</button>
           </div>
-          <div class="mfcat">
-            <h4>Pal spawn layers</h4>
-            <div class="picker" data-role="mapheat"></div>
-            <div id="mapHeatChips" class="mfchips" style="margin-top:7px"></div>
-          </div>
+          <details class="mfsec" open>
+            <summary><span class="mfarrow"></span>Pal spawn layers<span class="mfsub">up to 3</span></summary>
+            <div class="mfbody">
+              <div class="picker" data-role="mapheat"></div>
+              <div id="mapHeatChips" class="mfchips" style="margin-top:7px"></div>
+            </div>
+          </details>
           <div class="mapfilters" id="mapFilters"></div>
         </div>
       </div>
@@ -1741,10 +1762,11 @@ function drawHabitat(p,time){
     ? cells.length+" zone"+(cells.length===1?"":"s")
     : "no "+(time==="d"?"daytime":"nighttime")+" spawns";
   ctx.globalCompositeOperation="lighter";
-  const cs=W/G, r=cs*1.7;
+  const cs=W/G, r=cs*1.7, cal=SPAWNS.cal||{sx:1,sy:1,ox:0,oy:0};
   for(const c of cells){
     const gx=c%G, gy=(c-gx)/G;
-    const x=(gx+.5)*cs, y=(gy+.5)*cs;
+    /* pure world grid -> wiki-image space via the empirical calibration */
+    const x=(((gx+.5)/G)*cal.sy+cal.oy)*W, y=(((gy+.5)/G)*cal.sx+cal.ox)*H;
     const g=ctx.createRadialGradient(x,y,0,x,y,r);
     g.addColorStop(0,"rgba(255,216,70,.9)");
     g.addColorStop(.45,"rgba(255,178,36,.38)");
@@ -1781,8 +1803,10 @@ function hmGlowLayer(){
   const off=document.createElement("canvas"); off.width=S; off.height=S;
   const ctx=off.getContext("2d");
   const sp=SPAWNS.pals[HM.pal.internalName]||{};
+  const cal=SPAWNS.cal||{sx:1,sy:1,ox:0,oy:0};
   for(const c of (sp[HM.time]||[])){
-    const gx=c%G, gy=(c-gx)/G, x=(gx+.5)*cs, y=(gy+.5)*cs;
+    const gx=c%G, gy=(c-gx)/G;
+    const x=(((gx+.5)/G)*cal.sy+cal.oy)*S, y=(((gy+.5)/G)*cal.sx+cal.ox)*S;
     const g=ctx.createRadialGradient(x,y,0,x,y,r);
     g.addColorStop(0,"rgba(255,216,70,.9)");
     g.addColorStop(.45,"rgba(255,178,36,.38)");
@@ -2663,7 +2687,7 @@ function mapPresets(name){
     none:[]
   };
   MV.on=new Set((sets[name]||[]).filter(has));
-  renderMapFilters(); mapDraw();
+  mvSaveFilters(); renderMapFilters(); mapDraw();
 }
 function mapMarkers(){ return MAPDATA.markers[MV.map]; }
 function mapDraw(){
@@ -2793,16 +2817,15 @@ function mapPaint(){
   }
   ctx.restore();
 }
-/* spawn-grid cells live in calibrated wiki-image space; convert to map px */
-const HCAL={SX:.995,SY:.96,OX:.07,OY:.03};
+/* spawn-grid cells are a pure linear grid over the landscape bounds — the
+   same space as the paldb tile maps, so conversion is direct */
 function heatCellPx(c){
   const G=SPAWNS.grid, gx=c%G, gy=(c-gx)/G;
-  const ny=((gx+.5)/G-HCAL.OY)/HCAL.SY, nx=1-((gy+.5)/G-HCAL.OX)/HCAL.SX;
-  return [ny*2048,(1-nx)*2048];
+  return [(gx+.5)/G*2048,(gy+.5)/G*2048];
 }
 function heatCellAt(px,py){
-  const G=SPAWNS.grid, ny=px/2048, nx=1-py/2048;
-  const gx=Math.round((ny*HCAL.SY+HCAL.OY)*G-.5), gy=Math.round(((1-nx)*HCAL.SX+HCAL.OX)*G-.5);
+  const G=SPAWNS.grid;
+  const gx=Math.floor(px/2048*G), gy=Math.floor(py/2048*G);
   return (gx<0||gy<0||gx>=G||gy>=G)?null:gy*G+gx;
 }
 /* reverse spawn index: cell -> pal internalIndexes (built lazily) */
@@ -2912,6 +2935,22 @@ function mapSelectMarker(m,sx,sy){
       <button class="mini sharebtn" onclick="mapShareLink(${gx},${gy})">Share link</button>
     </div>`);
 }
+/* display groups, in a fixed friendly order (first match wins) */
+const MF_GROUPS=[
+  ["Locations",(t,c)=>c==="Locations"||/Fast Travel|Tower|Dungeon|Base Spot/.test(t)],
+  ["Pals & Bosses",(t,c)=>c==="Enemies"],
+  ["Collectibles",(t,c)=>c==="Collectibles"&&!/Treasure|Supply/.test(t)],
+  ["Chests & Supply",(t,c)=>/Treasure|Supply|Junk|Salvage/.test(t)],
+  ["Resources",(t,c)=>c==="Mine"||c==="Resource"],
+  ["Eggs",(t,c)=>c==="Eggs"||/Egg$/.test(t)],
+  ["Fishing",(t,c)=>c==="Fishing"],
+  ["NPCs & Camps",(t,c)=>c==="NPCs"||/Camp/.test(t)],
+  ["Other",()=>true]];
+function mvSaveFilters(){ try{
+  localStorage.setItem("paldex-map-on",JSON.stringify([...MV.on]));
+}catch(e){} }
+const MF_OPEN=new Set(mvLoad("paldex-map-secopen",["Locations","Pals & Bosses"]));
+function mvSaveOpen(){ try{ localStorage.setItem("paldex-map-secopen",JSON.stringify([...MF_OPEN])); }catch(e){} }
 function renderMapFilters(){
   const box=$("#mapFilters"); if(!box||!MAPDATA) return;
   const counts={}, foundCts={};
@@ -2920,22 +2959,36 @@ function renderMapFilters(){
     counts[t]=(counts[t]||0)+1;
     if(m[5]&&MFOUND.has(mkId(m))) foundCts[t]=(foundCts[t]||0)+1;
   }
-  const cats={};
-  for(const t in counts){
+  const groups=MF_GROUPS.map(([g])=>[g,[]]);
+  for(const t of Object.keys(counts).sort()){
     const c=(MAPDATA.types[t]||{}).cat||"Other";
-    (cats[c]=cats[c]||[]).push(t);
+    for(let i=0;i<MF_GROUPS.length;i++){ if(MF_GROUPS[i][1](t,c)){ groups[i][1].push(t); break; } }
   }
-  box.innerHTML=Object.keys(cats).sort().map(c=>`<div class="mfcat"><h4>${c}</h4><div class="mfchips">${
-    cats[c].sort().map(t=>{
+  box.innerHTML=groups.filter(([,ts])=>ts.length).map(([g,ts])=>{
+    const onN=ts.filter(t=>MV.on.has(t)).length;
+    const cards=ts.map(t=>{
       const ty=MAPDATA.types[t]||{}, coll=mapMarkers().some(m=>MAPDATA.tlist[m[0]]===t&&m[5]);
-      const prog=coll?` <span class="cnt">${foundCts[t]||0}/${counts[t]}</span>`:` <span class="cnt">${counts[t]}</span>`;
-      return `<button class="mfchip${MV.on.has(t)?" on":""}" data-t="${escA(t)}">${ty.icon?`<img src="${ty.icon}" alt="">`:""}${t}${prog}</button>`;
-    }).join("")}</div></div>`).join("");
-  box.querySelectorAll(".mfchip").forEach(b=>b.onclick=()=>{
+      const cnt=coll?`${foundCts[t]||0}/${counts[t]}`:counts[t];
+      return `<button class="mftype${MV.on.has(t)?" on":""}" data-t="${escA(t)}">${ty.icon?`<img src="${ty.icon}" alt="">`:""}<span class="nm">${t}</span><span class="cnt">${cnt}</span></button>`;
+    }).join("");
+    return `<details class="mfsec" data-g="${escA(g)}"${MF_OPEN.has(g)?" open":""}>
+      <summary><span class="mfarrow"></span>${g}<span class="mfsub">${onN}/${ts.length}</span>
+        <button class="mfab" data-all="${escA(g)}">All</button><button class="mfab" data-none="${escA(g)}">None</button></summary>
+      <div class="mfbody"><div class="mfgrid">${cards}</div></div></details>`;
+  }).join("");
+  const grpTypes=g=>groups.find(x=>x[0]===g)[1];
+  box.querySelectorAll(".mftype").forEach(b=>b.onclick=()=>{
     const t=b.dataset.t;
     MV.on.has(t)?MV.on.delete(t):MV.on.add(t);
-    b.classList.toggle("on"); mapDraw();
+    mvSaveFilters(); renderMapFilters(); mapDraw();
   });
+  box.querySelectorAll("[data-all]").forEach(b=>b.onclick=e=>{ e.preventDefault(); e.stopPropagation();
+    grpTypes(b.dataset.all).forEach(t=>MV.on.add(t)); mvSaveFilters(); renderMapFilters(); mapDraw(); });
+  box.querySelectorAll("[data-none]").forEach(b=>b.onclick=e=>{ e.preventDefault(); e.stopPropagation();
+    grpTypes(b.dataset.none).forEach(t=>MV.on.delete(t)); mvSaveFilters(); renderMapFilters(); mapDraw(); });
+  box.querySelectorAll("details.mfsec").forEach(d=>d.addEventListener("toggle",()=>{
+    d.open?MF_OPEN.add(d.dataset.g):MF_OPEN.delete(d.dataset.g); mvSaveOpen();
+  }));
 }
 function mapSearchRender(){
   const q=($("#mapQ").value||"").trim(), menu=$("#mapQMenu");
@@ -3018,7 +3071,9 @@ function initMapTab(){
   for(const k in MAPDATA.maps){
     const im=new Image(); im.src=MAPDATA.maps[k].img; im.onload=mapDraw; MV.imgs[k]=im;
   }
-  mapPresets("essentials");
+  const savedOn=mvLoad("paldex-map-on",null);
+  if(savedOn&&savedOn.length){ MV.on=new Set(savedOn.filter(t=>MAPDATA.tlist.includes(t))); renderMapFilters(); }
+  else mapPresets("essentials");
   /* center on first show */
   const center=()=>{ if(MV.inited) return; MV.inited=true;
     const W=cv.clientWidth,H=cv.clientHeight;
