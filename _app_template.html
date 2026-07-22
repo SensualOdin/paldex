@@ -605,6 +605,20 @@ footer b{color:#fff}
 .covrow .clbl{min-width:120px}
 
 /* ---- interactive world map ---- */
+.maplayout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}
+.mapside{display:flex;flex-direction:column;gap:8px;max-height:min(62vh,560px);overflow-y:auto;
+  padding-right:4px;position:sticky;top:10px}
+.mapzoom{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px;z-index:20}
+.mapzoom button{width:34px;height:34px;border-radius:9px;background:rgba(20,28,40,.82);color:#fff;
+  border:1.5px solid rgba(255,255,255,.35);font-size:17px;font-weight:900;line-height:1}
+.mapzoom button:hover{background:rgba(50,64,86,.9)}
+.maptip{position:absolute;z-index:25;pointer-events:none;background:rgba(14,20,30,.92);color:#fff;
+  border:1px solid rgba(255,255,255,.3);border-radius:7px;padding:3px 9px;font-size:11px;font-weight:800;
+  white-space:nowrap;transform:translate(-50%,-135%)}
+@media(max-width:900px){
+  .maplayout{grid-template-columns:1fr}
+  .mapside{max-height:none;position:static;overflow:visible}
+}
 .maptop{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .mapsearch{flex:1;min-width:230px;position:relative}
 .mapqmenu{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--panel3);border:2px solid var(--line2);
@@ -1085,22 +1099,33 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
         </div>
         <span class="habcount" id="mapCoords"></span>
       </div>
-      <div class="mapwrap">
-        <canvas id="mapCanvas"></canvas>
-        <div class="mappop" id="mapPop" hidden></div>
-        <div class="maphint">drag to pan · scroll/pinch to zoom · click a marker · double-click to add a pin</div>
+      <div class="maplayout">
+        <div class="mapwrap">
+          <canvas id="mapCanvas"></canvas>
+          <div class="mappop" id="mapPop" hidden></div>
+          <div class="maptip" id="mapTip" hidden></div>
+          <div class="mapzoom">
+            <button id="mzIn" aria-label="Zoom in">+</button>
+            <button id="mzOut" aria-label="Zoom out">−</button>
+            <button id="mzReset" aria-label="Reset view">⤢</button>
+          </div>
+          <div class="maphint">drag to pan · scroll/pinch to zoom · click a marker · double-click to add a pin</div>
+        </div>
+        <div class="mapside">
+          <div class="mapbar">
+            <button class="mini" data-preset="essentials">Essentials</button>
+            <button class="mini" data-preset="farming">Farming run</button>
+            <button class="mini" data-preset="collector">Collector</button>
+            <button class="mini" data-preset="none">Clear</button>
+          </div>
+          <div class="mapbar">
+            <label class="mapopt"><input type="checkbox" id="mapHideFound"> hide found</label>
+            <button class="mini" id="mapExport">Export progress</button>
+            <button class="mini" id="mapImport">Import</button>
+          </div>
+          <div class="mapfilters" id="mapFilters"></div>
+        </div>
       </div>
-      <div class="mapbar">
-        <span class="stagelbl">Presets</span>
-        <button class="mini" data-preset="essentials">Essentials</button>
-        <button class="mini" data-preset="farming">Farming run</button>
-        <button class="mini" data-preset="collector">Collector</button>
-        <button class="mini" data-preset="none">Clear</button>
-        <label class="mapopt"><input type="checkbox" id="mapHideFound"> hide found</label>
-        <button class="mini" id="mapExport">Export progress</button>
-        <button class="mini" id="mapImport">Import</button>
-      </div>
-      <div class="mapfilters" id="mapFilters"></div>
       <div class="tiernote">Marker data from the game's own tables (via paldb.cc, 1.0). Found-marks, pins and notes are <b>unlimited and free</b>, stored on your device — use Export to move them between devices. Tap an Alpha Pal to open its dex entry; tap a resource node to open the item page.</div>
     </div>
   </section>
@@ -1531,6 +1556,17 @@ const SLUG2IDX=new Map(PALS.map(p=>[palSlug(p),p.internalIndex]));
 function openFromHash(){
   const m=location.hash.match(/^#pal=([a-z0-9-]+)/);
   if(m&&SLUG2IDX.has(m[1])) gotoPaldex(SLUG2IDX.get(m[1]));
+  const mm=location.hash.match(/^#map=(main|tree)\/(-?\d+)\/(-?\d+)(?:\/([\d.]+))?/);
+  if(mm&&window.MAPDATA){
+    const tab=$('.tab[data-view=map]'); if(tab) tab.click();
+    setTimeout(()=>{
+      if(mm[1]!==MV.map){ const b=$(`#mapSwitch button[data-map=${mm[1]}]`); if(b) b.click(); }
+      setTimeout(()=>{
+        const [wx,wy]=game2w(+mm[2],+mm[3]);
+        mapFly(wx,wy,+(mm[4]||2.2));
+      },80);
+    },120);
+  }
 }
 function selectPal(idx){
   state.selected=idx;
@@ -2597,7 +2633,9 @@ function mvSave(){ try{
   localStorage.setItem("paldex-map-pins",JSON.stringify(MPINS));
 }catch(e){} }
 const mkId=m=>MV.map+":"+m[0]+":"+m[1]+":"+m[2];
-/* world <-> image px (paldb tiles are a pure linear map of the config bounds) */
+/* world <-> a virtual 2048px map space (paldb tiles are a pure linear map of
+   the config bounds). The source bitmap may be higher-res (4096) — it's drawn
+   into the same 2048 rect, so zooming samples the full resolution. */
 function w2img(wx,wy){ const b=MAPDATA.maps[MV.map].bounds;
   return [ (wy-b.minY)/(b.maxY-b.minY)*2048, (1-(wx-b.minX)/(b.maxX-b.minX))*2048 ]; }
 function img2w(px,py){ const b=MAPDATA.maps[MV.map].bounds;
@@ -2665,33 +2703,75 @@ function mapPaint(){
     }
     ctx.shadowBlur=0;
   }
-  /* markers */
+  /* markers — clustered at low zoom, pin-style icons when closer */
   const vx0=-MV.tx/MV.scale, vy0=-MV.ty/MV.scale, vx1=vx0+W/MV.scale, vy1=vy0+H/MV.scale;
-  const iconPx=10+9*Math.min(1.4,MV.scale);          // markers shrink when zoomed out
+  const iconPx=11+9*Math.min(1.4,MV.scale);
   const sz=iconPx/MV.scale, dot=(2.6+1.3*Math.min(1.5,MV.scale))/MV.scale;
-  const dense=MV.scale<0.9;
+  const dense=MV.scale<0.9, clusterZ=MV.scale<0.62;
+  const visible=[];
   for(const m of mapMarkers()){
     const t=MAPDATA.tlist[m[0]];
     if(!MV.on.has(t)) continue;
     if(MV.hideFound&&MFOUND.has(mkId(m))) continue;
     const [px,py]=w2img(m[1],m[2]);
     if(px<vx0-30||px>vx1+30||py<vy0-30||py>vy1+30) continue;
+    visible.push([m,t,px,py]);
+  }
+  MV.visible=visible;
+  const drawOne=(m,t,px,py)=>{
     const ty=MAPDATA.types[t]||{};
     const found=MFOUND.has(mkId(m));
     if(dense&&M_DENSE.has(t)){
       ctx.fillStyle=found?"rgba(150,160,150,.5)":(M_CATCOL[ty.cat]||"#9aa4b0");
-      ctx.beginPath(); ctx.arc(px,py,dot,0,7); ctx.fill();
-      continue;
+      ctx.strokeStyle="rgba(255,255,255,.75)"; ctx.lineWidth=0.9/MV.scale;
+      ctx.beginPath(); ctx.arc(px,py,dot,0,7); ctx.fill(); ctx.stroke();
+      return;
     }
     let ic=null;
     if(t==="Alpha Pal"&&m[3]&&ICONS.pals[m[3]]) ic=mapIcon("pal:"+m[3],ICONS.pals[m[3]]);
     else if(ty.icon) ic=mapIcon(t,ty.icon);
-    ctx.globalAlpha=found?0.38:1;
-    if(ic&&ic.complete) ctx.drawImage(ic,px-sz/2,py-sz/2,sz,sz);
-    else{ ctx.fillStyle=M_CATCOL[ty.cat]||"#9aa4b0"; ctx.beginPath(); ctx.arc(px,py,dot*1.4,0,7); ctx.fill(); }
-    if(found){ ctx.strokeStyle="#3fa15c"; ctx.lineWidth=2/MV.scale;
-      ctx.beginPath(); ctx.arc(px,py,sz*.62,0,7); ctx.stroke(); }
+    ctx.globalAlpha=found?0.4:1;
+    /* pin backdrop */
+    ctx.fillStyle="rgba(16,22,32,.78)";
+    ctx.strokeStyle=found?"#3fa15c":"rgba(255,255,255,.85)"; ctx.lineWidth=1.4/MV.scale;
+    ctx.beginPath(); ctx.arc(px,py,sz*.62,0,7); ctx.fill(); ctx.stroke();
+    if(ic&&ic.complete) ctx.drawImage(ic,px-sz*.42,py-sz*.42,sz*.84,sz*.84);
+    else{ ctx.fillStyle=M_CATCOL[ty.cat]||"#9aa4b0"; ctx.beginPath(); ctx.arc(px,py,sz*.3,0,7); ctx.fill(); }
+    /* name labels for sparse types when zoomed close */
+    if(MV.scale>1.9&&!M_DENSE.has(t)&&(m[3]||t)){
+      ctx.font=`800 ${9.5/MV.scale}px system-ui,sans-serif`; ctx.textAlign="center";
+      ctx.fillStyle="rgba(255,255,255,.92)"; ctx.shadowColor="rgba(0,0,0,.9)"; ctx.shadowBlur=2.5/MV.scale;
+      ctx.fillText(m[3]||t,px,py+sz*1.06); ctx.shadowBlur=0;
+    }
     ctx.globalAlpha=1;
+  };
+  if(clusterZ&&visible.length>60){
+    /* grid clustering: bubbles with counts, click zooms in */
+    const cell=40/MV.scale, buckets=new Map();
+    for(const v of visible){
+      const k=Math.floor(v[2]/cell)+"_"+Math.floor(v[3]/cell);
+      (buckets.get(k)||buckets.set(k,[]).get(k)).push(v);
+    }
+    MV.clusters=[];
+    for(const arr of buckets.values()){
+      if(arr.length<=2){ arr.forEach(v=>drawOne(...v)); continue; }
+      let cx2=0,cy2=0,catCount={};
+      for(const v of arr){ cx2+=v[2]; cy2+=v[3];
+        const c=(MAPDATA.types[v[1]]||{}).cat||"Other"; catCount[c]=(catCount[c]||0)+1; }
+      cx2/=arr.length; cy2/=arr.length;
+      const domCat=Object.keys(catCount).sort((a,b)=>catCount[b]-catCount[a])[0];
+      const r=(13+4*Math.min(3,Math.log10(arr.length)))/MV.scale;
+      ctx.fillStyle=(M_CATCOL[domCat]||"#9aa4b0")+"E6";
+      ctx.strokeStyle="rgba(255,255,255,.9)"; ctx.lineWidth=1.6/MV.scale;
+      ctx.beginPath(); ctx.arc(cx2,cy2,r,0,7); ctx.fill(); ctx.stroke();
+      ctx.fillStyle="#fff"; ctx.font=`900 ${11/MV.scale}px system-ui,sans-serif`;
+      ctx.textAlign="center"; ctx.textBaseline="middle";
+      ctx.fillText(arr.length,cx2,cy2); ctx.textBaseline="alphabetic";
+      MV.clusters.push([cx2,cy2,r]);
+    }
+  } else {
+    MV.clusters=null;
+    for(const v of visible) drawOne(...v);
   }
   /* custom pins */
   for(const p of MPINS){
@@ -2747,6 +2827,26 @@ function mapDelPin(i){ MPINS.splice(i,1); mvSave(); mapClosePop(); mapDraw(); }
 window.mapDelPin=mapDelPin;
 function mapPinNote(i,v){ if(MPINS[i]){ MPINS[i].note=v; mvSave(); } }
 window.mapPinNote=mapPinNote;
+function nearestFT(wx,wy){
+  let best=null,bd=Infinity;
+  for(const m of mapMarkers()){
+    if(MAPDATA.tlist[m[0]]!=="Fast Travel") continue;
+    const d=Math.hypot(m[1]-wx,m[2]-wy);
+    if(d<bd){ bd=d; best=m; }
+  }
+  if(!best) return "";
+  const dx=best[2]-wy, dyN=best[1]-wx; // east, north deltas
+  const dirs=["E","NE","N","NW","W","SW","S","SE"];
+  const dir=dirs[Math.round(((Math.atan2(dyN,dx)/Math.PI*180+360)%360)/45)%8];
+  return `<div class="sub">Nearest fast travel: <b>${best[3]||"statue"}</b> ~${Math.round(bd/100)}m ${dir}</div>`;
+}
+function mapShareLink(gx,gy){
+  const url=location.origin+location.pathname+`#map=${MV.map}/${gx}/${gy}/2.2`;
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(url);
+  else prompt("Copy link:",url);
+  const b=$("#mapPop .sharebtn"); if(b) b.textContent="Link copied!";
+}
+window.mapShareLink=mapShareLink;
 function mapSelectMarker(m,sx,sy){
   MV.sel={m}; mapDraw();
   const t=MAPDATA.tlist[m[0]], ty=MAPDATA.types[t]||{}, id=mkId(m);
@@ -2754,12 +2854,21 @@ function mapSelectMarker(m,sx,sy){
   const palMatch=byName.get((m[3]||"").toLowerCase());
   const itemMatch=ITEM_INDEX.has(m[3])?m[3]:(ITEM_INDEX.has(t)?t:null);
   let icon=t==="Alpha Pal"&&m[3]&&ICONS.pals[m[3]]?ICONS.pals[m[3]]:(ty.icon||null);
+  /* Alpha Pals get a mini stat card inline */
+  let extra="";
+  if(palMatch&&t==="Alpha Pal"){
+    const s=palMatch.stats;
+    extra=`<div class="sub" style="margin-top:-3px">${(palMatch.elements||[]).map(e=>elChipsSmall([e])).join("")}
+      <span style="margin-left:4px">HP ${s.hp} · ATK ${s.attack} · DEF ${s.defense}</span></div>`;
+  }
   mapPopup(sx,sy,`<h5>${icon?`<img src="${icon}" alt="">`:""}${name}</h5>
     <div class="sub">${t}${m[4]?` · Lv ${m[4]}`:""} · in-game (${gx}, ${gy})</div>
+    ${extra}${nearestFT(m[1],m[2])}
     <div class="row">
       ${palMatch?`<button class="mini" onclick="gotoPaldex(${palMatch.internalIndex})">Open in Paldex</button>`:""}
       ${itemMatch?`<button class="mini" data-item="${escA(itemMatch)}" onclick="gotoItem(this.dataset.item)">View item</button>`:""}
       <button class="mini foundbtn" onclick="mapToggleFound('${id}')">${MFOUND.has(id)?"Found ✓ (tap to unmark)":"Mark as found"}</button>
+      <button class="mini sharebtn" onclick="mapShareLink(${gx},${gy})">Share link</button>
     </div>`);
 }
 function renderMapFilters(){
@@ -2886,6 +2995,16 @@ function initMapTab(){
     const rect=cv.getBoundingClientRect(), sx=e.clientX-rect.left, sy=e.clientY-rect.top;
     const [ix,iy]=mapScreen2img(sx,sy); const [wx,wy]=img2w(ix,iy); const [gx,gy]=w2game(wx,wy);
     $("#mapCoords").textContent=`in-game ${gx}, ${gy}`;
+    /* hover tooltip + cursor (desktop, when not dragging) */
+    if(!dragging&&e.pointerType!=="touch"){
+      let hov=null,hd=16/MV.scale;
+      if(!MV.clusters&&MV.visible) for(const [m,t,px,py] of MV.visible){
+        const d=Math.hypot(px-ix,py-iy); if(d<hd){ hd=d; hov=m[3]||t; }
+      }
+      const tip=$("#mapTip");
+      if(hov){ tip.textContent=hov; tip.style.left=sx+"px"; tip.style.top=sy+"px"; tip.hidden=false; cv.style.cursor="pointer"; }
+      else{ tip.hidden=true; cv.style.cursor=""; }
+    }
     if(!dragging||!ptrs.has(e.pointerId)) return;
     const p=ptrs.get(e.pointerId);
     if(ptrs.size===2){
@@ -2904,8 +3023,15 @@ function initMapTab(){
   cv.addEventListener("pointerup",e=>{
     const rect=cv.getBoundingClientRect(), sx=e.clientX-rect.left, sy=e.clientY-rect.top;
     if(!moved&&ptrs.size===1){
-      /* click: hit-test markers then pins */
+      /* click: clusters zoom in; else hit-test markers then pins */
       const [ix,iy]=mapScreen2img(sx,sy);
+      if(MV.clusters){
+        for(const [cx2,cy2,r] of MV.clusters){
+          if(Math.hypot(cx2-ix,cy2-iy)<r*1.2){
+            const [wx,wy]=img2w(cx2,cy2); mapFly(wx,wy,Math.max(MV.scale*2.2,0.9)); up(e); return;
+          }
+        }
+      }
       let best=null,bd=18/MV.scale;
       for(const m of mapMarkers()){
         const t=MAPDATA.tlist[m[0]]; if(!MV.on.has(t)) continue;
@@ -2943,6 +3069,13 @@ function initMapTab(){
     MV.tx=sx-(sx-MV.tx)*f; MV.ty=sy-(sy-MV.ty)*f; MV.scale*=f;
     mapClampView(); mapDraw();
   },{passive:false});
+  /* zoom buttons */
+  const zoomBy=f=>{ const W=cv.clientWidth,H=cv.clientHeight;
+    MV.tx=W/2-(W/2-MV.tx)*f; MV.ty=H/2-(H/2-MV.ty)*f; MV.scale*=f; mapClampView(); mapDraw(); };
+  $("#mzIn").onclick=()=>zoomBy(1.5);
+  $("#mzOut").onclick=()=>zoomBy(1/1.5);
+  $("#mzReset").onclick=()=>{ const W=cv.clientWidth,H=cv.clientHeight;
+    MV.scale=Math.min(W,H)/2048; MV.tx=(W-2048*MV.scale)/2; MV.ty=(H-2048*MV.scale)/2; mapDraw(); };
   /* toolbar */
   $$(".mapbar [data-preset]").forEach(b=>b.onclick=()=>{ mapPresets(b.dataset.preset); blink("y"); });
   $("#mapHideFound").onchange=e=>{ MV.hideFound=e.target.checked; mapDraw(); };
