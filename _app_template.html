@@ -1123,6 +1123,11 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
             <button class="mini" id="mapExport">Export progress</button>
             <button class="mini" id="mapImport">Import</button>
           </div>
+          <div class="mfcat">
+            <h4>Pal spawn layers</h4>
+            <div class="picker" data-role="mapheat"></div>
+            <div id="mapHeatChips" class="mfchips" style="margin-top:7px"></div>
+          </div>
           <div class="mapfilters" id="mapFilters"></div>
         </div>
       </div>
@@ -2623,8 +2628,9 @@ function initTeam(){
 /* ============================================================= *
  *  MAP — interactive world map (Palpagos + World Tree)
  * ============================================================= */
-const MV={map:"main",scale:.35,tx:0,ty:0,sel:null,heatPal:null,heatTime:"d",hideFound:false,
+const MV={map:"main",scale:.35,tx:0,ty:0,sel:null,heat:[],heatTime:"d",hideFound:false,
   on:new Set(),inited:false,imgs:{},icons:{},dirty:false};
+const HEAT_COLORS=[["255,216,70","255,150,20"],["80,215,255","20,140,255"],["255,120,225","230,40,180"]];
 function mvLoad(k,d){ try{ return JSON.parse(localStorage.getItem(k))??d; }catch(e){ return d; } }
 let MFOUND=new Set(mvLoad("paldex-map-found",[]));
 let MPINS=mvLoad("paldex-map-pins",[]);
@@ -2675,21 +2681,20 @@ function mapPaint(){
   ctx.save(); ctx.translate(MV.tx,MV.ty); ctx.scale(MV.scale,MV.scale);
   ctx.imageSmoothingEnabled=true;
   ctx.drawImage(img,0,0,2048,2048);
-  /* heat overlay (main map only) */
-  if(MV.heatPal&&MV.map==="main"){
-    const sp=SPAWNS.pals[MV.heatPal.internalName];
-    const cells=(sp&&sp[MV.heatTime])||[], G=SPAWNS.grid;
+  /* heat overlays (main map only) — up to 3 color-coded Pal layers */
+  if(MV.heat.length&&MV.map==="main"){
     ctx.globalCompositeOperation="lighter";
-    const SXc=.995,SYc=.96,OXc=.07,OYc=.03;
-    const b=MAPDATA.maps.main.bounds;
-    for(const c of cells){
-      const gx=c%G, gy=(c-gx)/G;
-      const ny=((gx+.5)/G-OYc)/SYc, nx=1-((gy+.5)/G-OXc)/SXc; // invert wiki calibration
-      const px=ny*2048, py=(1-nx)*2048, r=2048/G*1.6;
-      const g=ctx.createRadialGradient(px,py,0,px,py,r);
-      g.addColorStop(0,"rgba(255,216,70,.75)"); g.addColorStop(.5,"rgba(255,178,36,.3)"); g.addColorStop(1,"rgba(255,150,20,0)");
-      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(px,py,r,0,7); ctx.fill();
-    }
+    MV.heat.forEach((p,li)=>{
+      const sp=SPAWNS.pals[p.internalName];
+      const cells=(sp&&sp[MV.heatTime])||[];
+      const [c1,c2]=HEAT_COLORS[li%HEAT_COLORS.length];
+      for(const c of cells){
+        const [px,py]=heatCellPx(c), r=2048/SPAWNS.grid*1.6;
+        const g=ctx.createRadialGradient(px,py,0,px,py,r);
+        g.addColorStop(0,`rgba(${c1},.72)`); g.addColorStop(.5,`rgba(${c2},.28)`); g.addColorStop(1,`rgba(${c2},0)`);
+        ctx.fillStyle=g; ctx.beginPath(); ctx.arc(px,py,r,0,7); ctx.fill();
+      }
+    });
     ctx.globalCompositeOperation="source-over";
   }
   /* region labels at mid zoom (hidden when fully out or deep in) */
@@ -2787,6 +2792,42 @@ function mapPaint(){
     ctx.beginPath(); ctx.arc(px,py,sz*.75,0,7); ctx.stroke();
   }
   ctx.restore();
+}
+/* spawn-grid cells live in calibrated wiki-image space; convert to map px */
+const HCAL={SX:.995,SY:.96,OX:.07,OY:.03};
+function heatCellPx(c){
+  const G=SPAWNS.grid, gx=c%G, gy=(c-gx)/G;
+  const ny=((gx+.5)/G-HCAL.OY)/HCAL.SY, nx=1-((gy+.5)/G-HCAL.OX)/HCAL.SX;
+  return [ny*2048,(1-nx)*2048];
+}
+function heatCellAt(px,py){
+  const G=SPAWNS.grid, ny=px/2048, nx=1-py/2048;
+  const gx=Math.round((ny*HCAL.SY+HCAL.OY)*G-.5), gy=Math.round(((1-nx)*HCAL.SX+HCAL.OX)*G-.5);
+  return (gx<0||gy<0||gx>=G||gy>=G)?null:gy*G+gx;
+}
+/* reverse spawn index: cell -> pal internalIndexes (built lazily) */
+let SPAWN_AT=null;
+function buildSpawnAt(){
+  SPAWN_AT={d:new Map(),n:new Map()};
+  const byInternal=new Map(PALS.map(p=>[p.internalName,p]));
+  for(const [iname,sp] of Object.entries(SPAWNS.pals)){
+    const p=byInternal.get(iname); if(!p) continue;
+    for(const time of ["d","n"]) for(const c of (sp[time]||[])){
+      let a=SPAWN_AT[time].get(c); if(!a){ a=[]; SPAWN_AT[time].set(c,a); }
+      if(!a.includes(p.internalIndex)) a.push(p.internalIndex);
+    }
+  }
+}
+function spawnsNear(px,py){
+  if(!SPAWN_AT) buildSpawnAt();
+  const G=SPAWNS.grid, out={d:new Set(),n:new Set()};
+  const c0=heatCellAt(px,py); if(c0==null) return out;
+  const gx=c0%G, gy=(c0-gx)/G;
+  for(let dx=-1;dx<=1;dx++) for(let dy=-1;dy<=1;dy++){
+    const x=gx+dx,y=gy+dy; if(x<0||y<0||x>=G||y>=G) continue;
+    for(const t of ["d","n"]) (SPAWN_AT[t].get(y*G+x)||[]).forEach(i=>out[t].add(i));
+  }
+  return out;
 }
 function mapIcon(key,src){
   let im=MV.icons[key];
@@ -2919,7 +2960,7 @@ function mapSearchRender(){
     menu.classList.remove("open"); $("#mapQ").value="";
     if(b.dataset.act==="coord"){ const [wx,wy]=game2w(+b.dataset.x,+b.dataset.y); mapFly(wx,wy); }
     else if(b.dataset.act==="heat"){
-      MV.heatPal=byIndex.get(+b.dataset.i); MV.heatTime="d"; renderHeatBar(); mapDraw();
+      mapHeatAdd(byIndex.get(+b.dataset.i));
     }else{
       const m=mapMarkers()[+b.dataset.mi];
       const t=MAPDATA.tlist[m[0]]; MV.on.add(t); renderMapFilters();
@@ -2928,24 +2969,31 @@ function mapSearchRender(){
     }
   });
 }
-function renderHeatBar(){
-  let bar=$("#mapHeatBar");
-  if(!MV.heatPal){ if(bar) bar.remove(); return; }
-  if(!bar){
-    bar=el("div","mapbar"); bar.id="mapHeatBar";
-    $(".mapbar").after(bar);
-  }
-  bar.innerHTML=`<span class="stagelbl">Heat map</span>
-    <span style="font-weight:900;font-size:12.5px;color:var(--ink)">${MV.heatPal.name}</span>
-    <button class="mini${MV.heatTime==="d"?" on":""}" data-ht="d">Day</button>
-    <button class="mini${MV.heatTime==="n"?" on":""}" data-ht="n">Night</button>
-    <button class="mini" data-ht="off">Off</button>
-    ${MV.map==="tree"?'<span style="font-size:11px;color:var(--muted2);font-weight:700">(spawn data covers Palpagos only)</span>':""}`;
-  bar.querySelectorAll("[data-ht]").forEach(b=>b.onclick=()=>{
-    if(b.dataset.ht==="off"){ MV.heatPal=null; renderHeatBar(); }
-    else{ MV.heatTime=b.dataset.ht; renderHeatBar(); }
-    mapDraw();
-  });
+function mapHeatAdd(p){
+  if(!SPAWNS.pals[p.internalName]) return;
+  if(MV.heat.some(x=>x.internalIndex===p.internalIndex)) return;
+  if(MV.heat.length>=3) MV.heat.shift();
+  MV.heat.push(p); renderHeatSide(); mapDraw(); blink("g");
+}
+function mapHeatRemove(i){ MV.heat=MV.heat.filter(p=>p.internalIndex!==i); renderHeatSide(); mapDraw(); }
+window.mapHeatRemove=mapHeatRemove;
+function renderHeatSide(){
+  const box=$("#mapHeatChips"); if(!box) return;
+  const chips=MV.heat.map((p,li)=>{
+    const [c1]=HEAT_COLORS[li%HEAT_COLORS.length];
+    return `<span class="mfchip on" style="background:rgb(${c1});border-color:rgb(${c1});color:#1a1408">
+      ${avatarHtml(p,"mini-av3")}${p.name}
+      <button style="font-weight:900;padding:0 2px" onclick="mapHeatRemove(${p.internalIndex})" aria-label="Remove ${p.name} layer">×</button></span>`;
+  }).join("");
+  const toggles=MV.heat.length?`
+    <button class="mfchip${MV.heatTime==="d"?" on":""}" id="mhDay">Day</button>
+    <button class="mfchip${MV.heatTime==="n"?" on":""}" id="mhNight">Night</button>
+    ${MV.map==="tree"?'<span style="font-size:10px;color:var(--muted2);font-weight:700">(Palpagos data only)</span>':""}`:
+    `<span style="font-size:11px;color:var(--muted2);font-weight:700">Add up to 3 Pals to paint their habitats on the map.</span>`;
+  box.innerHTML=chips+toggles;
+  const d=$("#mhDay"),n=$("#mhNight");
+  if(d) d.onclick=()=>{ MV.heatTime="d"; renderHeatSide(); mapDraw(); };
+  if(n) n.onclick=()=>{ MV.heatTime="n"; renderHeatSide(); mapDraw(); };
 }
 function mapExportProgress(){
   const blob=JSON.stringify({found:[...MFOUND],pins:MPINS});
@@ -2983,7 +3031,7 @@ function initMapTab(){
     b.classList.add("on"); MV.map=b.dataset.map; MV.sel=null; $("#mapPop").hidden=true;
     MV.inited=false; setTimeout(()=>{MV.inited=false; const W=cv.clientWidth,H=cv.clientHeight;
       MV.scale=Math.min(W,H)/2048; MV.tx=(W-2048*MV.scale)/2; MV.ty=(H-2048*MV.scale)/2; MV.inited=true;
-      renderMapFilters(); renderHeatBar(); mapDraw();},20);
+      renderMapFilters(); renderHeatSide(); mapDraw();},20);
   });
   /* pointer pan/zoom/pinch */
   const ptrs=new Map(); let dragging=false,moved=false,pinchD=0;
@@ -3051,6 +3099,23 @@ function initMapTab(){
           <textarea placeholder="Notes…" oninput="mapPinNote(${best.pi},this.value)">${best.pin.note||""}</textarea>
           <div class="row" style="margin-top:6px"><button class="mini" onclick="mapDelPin(${best.pi})">Delete pin</button></div>`);
       }
+      else if(MV.map==="main"&&MV.scale>=0.55){
+        /* empty terrain: what spawns here? */
+        const sp=spawnsNear(ix,iy);
+        if(sp.d.size||sp.n.size){
+          const row=(set,label)=>{
+            if(!set.size) return "";
+            const arr=[...set].map(i=>byIndex.get(i)).sort((a,b)=>a.rarity-b.rarity);
+            const shown=arr.slice(0,7), more=arr.length-shown.length;
+            return `<div class="sub" style="margin-top:5px"><b>${label}</b></div><div class="row">${
+              shown.map(p=>`<button class="mini" style="display:inline-flex;align-items:center;gap:4px;padding:3px 9px 3px 4px" onclick="gotoPaldex(${p.internalIndex})">${avatarHtml(p,"mini-av3")}${p.name}</button>`).join("")
+            }${more>0?`<span class="sub" style="align-self:center">+${more} more</span>`:""}</div>`;
+          };
+          const [gx,gy]=w2game(...img2w(ix,iy));
+          mapPopup(sx,sy,`<h5>Spawns here</h5><div class="sub">in-game (${gx}, ${gy}) — tap a Pal for stats &amp; full habitat</div>
+            ${row(sp.d,"Day")}${row(sp.n,"Night")}`);
+        } else mapClosePop();
+      }
       else mapClosePop();
     }
     up(e);
@@ -3083,6 +3148,9 @@ function initMapTab(){
   $("#mapImport").onclick=mapImportProgress;
   $("#mapQ").addEventListener("input",mapSearchRender);
   document.addEventListener("click",e=>{ if(!$(".mapsearch").contains(e.target)) $("#mapQMenu").classList.remove("open"); });
+  makePicker($('.picker[data-role=mapheat]'),p=>{ mapHeatAdd(p);
+    const inp=$('.picker[data-role=mapheat] input'); if(inp) inp.value=""; },{placeholder:"Add a Pal's habitat…"});
+  renderHeatSide();
   renderMapFilters();
 }
 
