@@ -1471,7 +1471,15 @@ function buildFilters(){
   const wc=$("#workFilters");
   WORK_KEYS.forEach(w=>{
     const c=el("button","chip",WORK_SHORT[w]);
-    c.onclick=()=>{ toggleSet(state.works,w,c); render(); };
+    c.onclick=()=>{ toggleSet(state.works,w,c);
+      /* selecting a job also ranks by it (top level first) — that's what you
+         mean when you click "Medic"; deselecting falls back sensibly */
+      if(state.works.has(w)){ setSort("work:"+w); setSortDir("def"); }
+      else if(state.sort==="work:"+w){
+        const left=[...state.works];
+        setSort(left.length?"work:"+left[left.length-1]:"dex");
+      }
+      render(); };
     wc.appendChild(c);
   });
   const tc=$("#typeFilters");
@@ -3284,6 +3292,14 @@ function initDevice(){
   // random Pal (blue button)
   $("#randBtn").onclick=()=>{ const p=PALS[Math.floor(Math.random()*PALS.length)]; gotoPaldex(p.internalIndex); };
 }
+function setSort(v){ state.sort=v; const s=$("#sort"); if(s) s.value=v; }
+function setSortDir(d){
+  state.sortDir=d;
+  const b=$("#sortDir"); if(!b) return;
+  b.setAttribute("aria-pressed",d==="rev"?"true":"false");
+  b.classList.toggle("on",d==="rev");
+  b.textContent=d==="rev"?"↑":"⇅";
+}
 function initControls(){
   $("#q").addEventListener("input",e=>{state.q=e.target.value.trim().toLowerCase();render();});
   /* work-level sorts: one option per job (Sort: Handiwork Lv, …) */
@@ -3295,15 +3311,10 @@ function initControls(){
   }
   $("#sort").appendChild(og);
   $("#sort").addEventListener("change",e=>{state.sort=e.target.value;render();});
-  const dirBtn=$("#sortDir");
-  const setDir=d=>{ state.sortDir=d;
-    dirBtn.setAttribute("aria-pressed",d==="rev"?"true":"false");
-    dirBtn.classList.toggle("on",d==="rev");
-    dirBtn.textContent=d==="rev"?"↑":"⇅"; };
-  dirBtn.onclick=()=>{ setDir(state.sortDir==="rev"?"def":"rev"); render(); blink("y"); };
+  $("#sortDir").onclick=()=>{ setSortDir(state.sortDir==="rev"?"def":"rev"); render(); blink("y"); };
   $("#reset").onclick=()=>{
-    state.q="";state.els.clear();state.works.clear();state.types.clear();state.sort="dex";setDir("def");
-    $("#q").value="";$("#sort").value="dex";
+    state.q="";state.els.clear();state.works.clear();state.types.clear();setSort("dex");setSortDir("def");
+    $("#q").value="";
     $$(".chip").forEach(c=>{c.classList.remove("on");c.style.background="";c.style.color="";});
     render();
   };
