@@ -20,7 +20,7 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - **Movesets & drops**: per-Pal active skills (level learned, element, power, cooldown) and possible drops with quantities/probabilities, from paldb.cc (1.0).
 - **Lore & boss titles**: Paldeck flavor text and alpha titles ("Guardian of the Dark Sun") on every Pal, plus **guaranteed passives** (46 Pals) from the palcalc game-file data.
 - **Mounts tier boards**: Flying / Ground / Water, detected from partner skills and ranked by Ride Sprint speed.
-- **Per-Pal URLs**: `#pal=<slug>` deep links in the app, plus 299 static `/pal/<slug>` pages (real content + interlinks) for search engines.
+- **Per-Pal URLs & SEO layer**: `#pal=<slug>`, `#item=<slug>` and `#tab=<view>` deep links in the app, plus a 492-URL static site for search engines: 299 `/pal/<slug>` pages, 189 `/item/<slug>` pages (sources + recipes, interlinked with pal pages), and three landing pages (`/breeding-calculator`, `/tier-list`, `/interactive-map`) generated from the live data. Every page has a unique title/description, canonical URL, breadcrumb JSON-LD and a per-page og:image; Pal and item icons are exported as real files under `/icon/` so they're crawlable and cacheable.
 - **Interactive world map** (Map tab): canvas pan/zoom over the game's own map tiles with **13,800+ markers** from the game's tables — fast travel, Alpha Pals (with level), dungeons, towers, effigies, eggs, chests, every ore/coal/quartz/sulfur/soralite node, fishing spots, merchants — across **two maps** (Palpagos Islands at 4096px + The World Tree). Markers cluster into category-colored count bubbles at low zoom, get pin badges + name labels up close, and popups show Alpha Pal mini-stats, the **nearest fast travel statue with distance/direction**, and a **shareable location link** (`#map=main/x/y`). Category filters with presets (Essentials / Farming run / Collector), marker search + coordinate jump ("337,360"), in-game coordinate readout, **unlimited free found-tracking** with per-type progress and hide-found, **custom pins with notes** (double-click), progress **export/import** (no account needed), up to **three color-coded Pal spawn layers** overlaid at once with a day/night toggle, plus **click any empty spot to see every Pal that spawns there** (day and night, straight from the game's distribution table), and popups that deep-link into the dex (Alpha Pals) and item pages (resource nodes). All offline, zero ads.
 
 **Tier lists**
@@ -55,7 +55,7 @@ python _fetch_partner_skills.py  # paldb.cc per-Pal pages (1.0-current) -> _part
 python _fetch_paldetails.py      # paldb.cc per-Pal pages: drops, movesets, lore, boss titles + palcalc passives -> _paldetails.json
 python _fetch_items.py           # paldb.cc item pages: desc, sell, sources, used-in recipes -> _items.json
 python _fetch_map.py             # paldb.cc map tables: 13.8k markers, 2 stitched maps, icons -> _map.json
-python _gen_pages.py             # 299 static SEO pages (pal/<slug>.html) + sitemap.xml + vercel.json
+python _gen_pages.py             # 492-URL static SEO layer: pal/, item/, landing pages, icon/ files, sitemap.xml
 python _merge_elements.py        # pals_1.0.json + element fill + partner skills -> pals_1.0.filled.json
 python _fetch_icons.py           # downloads 298 Pal + 9 element icons from palcalc (pinned commit) -> _icons.json
 python _fetch_spawns.py          # game spawn-distribution table (via paldb.cc) + world map (wiki.gg) -> _spawns.json

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Palydex — Palworld 1.0 Paldex, Breeding Calculator &amp; Tier Lists</title>
-<meta name="description" content="Free Palworld 1.0 Paldex: all 299 Pals with stats, partner skills, movesets, drops and habitat heat maps, a breeding calculator with 44,849 verified pairs, tier lists for combat and base work, and a caught tracker. No ads, works offline.">
+<title>Palydex — Palworld 1.0 Paldex, Breeding Calculator, Tier Lists &amp; Interactive Map</title>
+<meta name="description" content="Free Palworld 1.0 Paldex: all 299 Pals with stats, partner skills, movesets, drops and habitat heat maps, a breeding calculator with 44,849 verified pairs and instant family trees, an interactive world map with 14,000+ markers and unlimited free tracking, an item database, tier lists and a team synergy planner. No ads, works offline.">
 <link rel="canonical" href="https://www.palydex.com/">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#e0362c">
@@ -13,8 +13,8 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Palydex">
-<meta property="og:title" content="Palydex — Palworld 1.0 Paldex, Breeding Calculator &amp; Tier Lists">
-<meta property="og:description" content="All 299 Pals: stats, movesets, drops, habitat heat maps, a verified breeding calculator, and 1.0 tier lists. Free, no ads, works offline.">
+<meta property="og:title" content="Palydex — Palworld 1.0 Paldex, Breeding Calculator, Tier Lists &amp; Interactive Map">
+<meta property="og:description" content="All 299 Pals: stats, movesets, drops, habitat heat maps, a verified breeding calculator with family trees, an interactive world map with 14,000+ markers, an item database, 1.0 tier lists and a team planner. Free, no ads, works offline.">
 <meta property="og:url" content="https://www.palydex.com/">
 <meta property="og:image" content="https://www.palydex.com/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -22,8 +22,8 @@
 <meta property="og:image:alt" content="Palydex — a Pokédex-style device showing Palworld Pals, with the world map and six Pal portraits">
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Palydex — Palworld 1.0 Paldex, Breeding Calculator &amp; Tier Lists">
-<meta name="twitter:description" content="All 299 Pals: stats, movesets, drops, habitat heat maps, a verified breeding calculator, and 1.0 tier lists. Free, no ads, works offline.">
+<meta name="twitter:title" content="Palydex — Palworld 1.0 Paldex, Breeding Calculator, Tier Lists &amp; Interactive Map">
+<meta name="twitter:description" content="All 299 Pals: stats, movesets, drops, habitat heat maps, a verified breeding calculator with family trees, an interactive world map with 14,000+ markers, an item database, 1.0 tier lists and a team planner. Free, no ads, works offline.">
 <meta name="twitter:image" content="https://www.palydex.com/og-image.png">
 <script type="application/ld+json">
 {
@@ -31,11 +31,19 @@
   "@type": "WebApplication",
   "name": "Palydex",
   "url": "https://www.palydex.com/",
-  "description": "Palworld 1.0 Paldex, breeding calculator, tier lists, habitat maps, movesets and drops for all 299 Pals.",
+  "description": "Palworld 1.0 Paldex, breeding calculator with family trees, interactive world map, item database, tier lists, team planner, habitat maps, movesets and drops for all 299 Pals.",
   "applicationCategory": "GameApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "featureList": [
+    "Paldex with stats, partner skills, movesets, drops and habitat heat maps for all 299 Pals",
+    "Breeding calculator with 44,849 verified parent pairs and instant breeding family trees",
+    "Interactive world map: 14,000+ markers, Pal spawn layers, custom pins, unlimited free tracking",
+    "Item database: ~190 materials with drop sources, ranch producers and crafting recipes",
+    "Combat and base-work tier lists with an Early/Mid/End game-stage selector",
+    "Team synergy planner for partner-skill and passive combos"
+  ],
   "about": {"@type": "VideoGame", "name": "Palworld"}
 }
 </script>
@@ -1606,6 +1614,11 @@ const SLUG2IDX=new Map(PALS.map(p=>[palSlug(p),p.internalIndex]));
 function openFromHash(){
   const m=location.hash.match(/^#pal=([a-z0-9-]+)/);
   if(m&&SLUG2IDX.has(m[1])) gotoPaldex(SLUG2IDX.get(m[1]));
+  const mt=location.hash.match(/^#tab=(paldex|breeding|tiers|items|team|map)/);
+  if(mt){ const tb=$(`.tab[data-view=${mt[1]}]`); if(tb) tb.click(); }
+  const mi=location.hash.match(/^#item=([a-z0-9-]+)/);
+  if(mi) for(const n of ITEM_INDEX.keys())
+    if(n.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")===mi[1]){ gotoItem(n); break; }
   const mm=location.hash.match(/^#map=(main|tree)\/(-?\d+)\/(-?\d+)(?:\/([\d.]+))?/);
   if(mm&&window.MAPDATA){
     const tab=$('.tab[data-view=map]'); if(tab) tab.click();
