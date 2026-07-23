@@ -264,6 +264,8 @@ select:hover,.mini:hover{border-color:var(--muted2)}
 .pill.selfonly{color:var(--warn);border-color:var(--warn)}
 .workrow{display:flex;gap:4px;flex-wrap:wrap}
 .wk{font-size:10px;color:var(--muted);background:var(--panel3);border-radius:6px;padding:2px 7px;font-weight:800}
+.wk.hot{background:var(--warn);color:#3d2c00}
+#sortDir.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 .bp{font-size:11px;color:var(--muted);margin-top:8px;font-weight:600}
 .bp b{color:var(--accent-dk)}
 .empty{color:var(--muted);padding:40px;text-align:center;font-weight:600}
@@ -955,6 +957,7 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
           <option value="attack">Sort: Attack</option>
           <option value="defense">Sort: Defense</option>
         </select>
+        <button class="reset" id="sortDir" title="Flip sort direction (high↔low)" aria-pressed="false">⇅</button>
         <button class="reset" id="reset">Reset</button>
       </div>
       <div class="filters">
@@ -1454,7 +1457,7 @@ window.toggleCaught=toggleCaught; window.toggleFav=toggleFav;
 /* ============================================================= *
  *  PALDEX
  * ============================================================= */
-const state = { q:"", els:new Set(), works:new Set(), types:new Set(), sort:"dex", selected:null };
+const state = { q:"", els:new Set(), works:new Set(), types:new Set(), sort:"dex", sortDir:"def", selected:null };
 
 function buildFilters(){
   const elc=$("#elFilters");
@@ -1509,7 +1512,17 @@ function passesFilters(p){
   return true;
 }
 function sortPals(list){
-  const s=state.sort;
+  const s=state.sort, rev=state.sortDir==="rev";
+  if(s.startsWith("work:")){
+    /* sort by one job's suitability level; Pals without the job always sink
+       to the end so "ascending" means lowest level among actual workers */
+    const w=s.slice(5), lv=p=>(p.work&&p.work[w])||0;
+    return list.slice().sort((a,b)=>{
+      const la=lv(a), lb=lv(b);
+      if((la>0)!==(lb>0)) return la>0?-1:1;
+      return (rev? la-lb : lb-la) || a.dex-b.dex;
+    });
+  }
   const cmp={
     dex:(a,b)=> a.dex-b.dex || a.internalIndex-b.internalIndex,
     name:(a,b)=> a.name.localeCompare(b.name),
@@ -1519,7 +1532,7 @@ function sortPals(list){
     attack:(a,b)=> b.stats.attack-a.stats.attack,
     defense:(a,b)=> b.stats.defense-a.stats.defense,
   }[s];
-  return list.slice().sort(cmp);
+  return list.slice().sort(rev?(a,b)=>-cmp(a,b):cmp);
 }
 function render(){
   const list=sortPals(PALS.filter(passesFilters));
@@ -1535,8 +1548,11 @@ function render(){
     const ec2 = p.elements&&p.elements.length>1 ? EL_COLOR[p.elements[1]] : ec;
     card.style.setProperty("--ring",ec);
     card.style.setProperty("--edge",`linear-gradient(90deg,${ec},${ec2})`);
-    const works=Object.entries(p.work||{}).filter(([,v])=>v>0).slice(0,4)
-      .map(([k,v])=>`<span class="wk">${WORK_SHORT[k]} ${v}</span>`).join("");
+    const sw=state.sort.startsWith("work:")?state.sort.slice(5):null;
+    let wentries=Object.entries(p.work||{}).filter(([,v])=>v>0);
+    if(sw) wentries.sort(([a],[b])=>(b===sw)-(a===sw));
+    const works=wentries.slice(0,4)
+      .map(([k,v])=>`<span class="wk${k===sw?' hot':''}">${WORK_SHORT[k]} ${v}</span>`).join("");
     card.innerHTML=`
       <span class="eledge" aria-hidden="true"></span><span class="shine" aria-hidden="true"></span>
       <span class="dex">#${p.dex}</span>
@@ -3270,9 +3286,23 @@ function initDevice(){
 }
 function initControls(){
   $("#q").addEventListener("input",e=>{state.q=e.target.value.trim().toLowerCase();render();});
+  /* work-level sorts: one option per job (Sort: Handiwork Lv, …) */
+  const og=document.createElement("optgroup"); og.label="Work level";
+  for(const w of WORK_KEYS){
+    const o=document.createElement("option");
+    o.value="work:"+w; o.textContent="Sort: "+(WORK_FULL[w]||w)+" Lv";
+    og.appendChild(o);
+  }
+  $("#sort").appendChild(og);
   $("#sort").addEventListener("change",e=>{state.sort=e.target.value;render();});
+  const dirBtn=$("#sortDir");
+  const setDir=d=>{ state.sortDir=d;
+    dirBtn.setAttribute("aria-pressed",d==="rev"?"true":"false");
+    dirBtn.classList.toggle("on",d==="rev");
+    dirBtn.textContent=d==="rev"?"↑":"⇅"; };
+  dirBtn.onclick=()=>{ setDir(state.sortDir==="rev"?"def":"rev"); render(); blink("y"); };
   $("#reset").onclick=()=>{
-    state.q="";state.els.clear();state.works.clear();state.types.clear();state.sort="dex";
+    state.q="";state.els.clear();state.works.clear();state.types.clear();state.sort="dex";setDir("def");
     $("#q").value="";$("#sort").value="dex";
     $$(".chip").forEach(c=>{c.classList.remove("on");c.style.background="";c.style.color="";});
     render();

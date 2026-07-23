@@ -8,7 +8,7 @@ A single, self-contained `index.html` — a Paldex browser plus a breeding calcu
 - Grid of all 299 Pal records (287 headline Paldeck + variant/collab forms) with **real in-game Pal art** (embedded, offline), element-tinted cards, rarity tiers (blue/purple/gold), work-suitability icons, and breeding power.
 - Instant client-side search by name; keyboard navigation (arrow keys or the on-device **D-pad**).
 - Filters: element (9, with real element icons), work suitability (12), base/variant, breedable-as-result, nocturnal.
-- Sort by dex, name, breeding power, rarity, or any stat.
+- Sort by dex, name, breeding power, rarity, any stat, or **any of the 12 work suitabilities** (Sort: Handiwork Lv …) with an **ascending/descending flip** — Pals without the job always sink to the end, and the sorted job is highlighted on each card.
 - Detail panel: element-tinted hero, **partner skill** (name + effect, all 299), a **habitat heat map** (day/night toggle, rendered from the game's own spawn-distribution table — 259 Pals with wild habitats; the rest honestly say so), **animated stat bars** (normalized to the dex max), work-level pips, a breeding-power rarity gauge, and cross-links — **Bred from** (every parent pair) and **Breeds into** (every child), all with art. The panel is sticky — it follows as you scroll the grid.
 - **Night LCD mode** (amber button, bottom-right): the screens switch to a backlit palette; persists across sessions. The blue button jumps to a random Pal.
 - **Mobile friendly**: at phone widths the device compacts (full-width tabs, two-column grid) and the detail panel becomes a slide-up bottom sheet (tap the scrim, ×, or Esc to dismiss).
