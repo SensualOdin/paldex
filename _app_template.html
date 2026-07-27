@@ -608,7 +608,72 @@ footer b{color:#fff}
 .synrow{display:flex;align-items:flex-start;gap:9px;padding:7px 10px;border:1.5px solid var(--line);
   border-radius:10px;margin-bottom:6px;font-size:12px;line-height:1.5;color:var(--muted);font-weight:600;flex-wrap:wrap}
 .synrow.hot{border-color:var(--warn);border-width:2px}
-.synrow .sico{font-size:15px;line-height:1.3}
+.synrow .sico{flex:0 0 auto;font-size:8.5px;font-weight:900;letter-spacing:.6px;color:var(--screen3);
+  background:var(--muted);border-radius:5px;padding:2.5px 6px;margin-top:1px}
+.synrow.hot .sico{background:var(--warn)}
+/* ---- passive search / surgery planner / element builds ---- */
+.passfind{margin-bottom:14px}
+.passfind .search{max-width:520px}
+.psgroup{background:var(--card);border:2px solid var(--screen-edge);border-radius:14px;padding:12px 14px;margin-top:10px}
+.psgroup h5{margin:0 0 8px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.psrow{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:12px;font-weight:700;color:var(--ink);
+  border:1.5px solid var(--line);border-radius:10px;padding:5px 9px;margin-bottom:5px}
+.prank{flex:0 0 auto;font-size:10px;font-weight:900;background:var(--bezel);color:var(--lcd);
+  border-radius:5px;padding:1px 5px}
+.pfx{color:var(--muted);font-weight:700;font-size:11.5px}
+.psur{font-size:10px;font-weight:800;color:var(--accent-dk);background:var(--screen2);
+  border-radius:999px;padding:2px 8px}
+.pshold{font-size:11px;color:var(--muted2);font-weight:700;display:inline-flex;gap:4px;align-items:center;flex-wrap:wrap}
+.addteam{align-self:center;margin:0 8px 6px -4px}
+.ebpanel{background:var(--card);border:2px solid var(--screen-edge);border-radius:14px;padding:13px 15px;margin-bottom:14px}
+.ebpanel h4{margin:0 0 9px;font-size:12px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+.ebsub{font-weight:700;text-transform:none;letter-spacing:0;font-size:11px;color:var(--muted2)}
+.ebelems{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.ebelems button{background:var(--screen3);border:2px solid var(--line);border-radius:999px;padding:3px 7px;cursor:pointer}
+.ebelems button.on{border-color:var(--accent-dk);background:var(--screen2)}
+.ebmode{margin-bottom:10px}
+.ebrows{margin-bottom:8px}
+.ebrow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:5px}
+.ebwhy{font-size:12px;font-weight:700;color:var(--muted)}
+.ebproj{font-size:12px;font-weight:700;color:var(--muted);border:1.5px dashed var(--line);border-radius:10px;
+  padding:7px 10px;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:5px;align-items:center;line-height:1.6}
+.ebproj b{color:var(--ink)}
+.ebload{margin-top:2px}
+.slotsurg{border-top:1.5px dashed var(--line);margin-top:8px;padding-top:7px}
+.slotsurg h5{margin:0 0 6px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.slotsurg h5 span{font-weight:700;text-transform:none;letter-spacing:0;color:var(--muted2)}
+.passchips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:7px}
+.passchip{display:inline-flex;align-items:center;gap:4px;background:var(--screen3);border:1.5px solid var(--line);
+  border-radius:999px;padding:2px 8px;font-size:10.5px;font-weight:800;color:var(--ink);cursor:pointer;font-family:inherit}
+.passchip.guar{border-color:var(--warn)}
+.passchip.add{border-style:dashed;color:var(--accent-dk)}
+.passchip .prank{font-size:8.5px;padding:0 4px}
+.projbox{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:11px;font-weight:700;color:var(--muted);line-height:1.6}
+.projbox b{color:var(--ink)}
+.projbox i{font-style:normal;color:var(--accent-dk)}
+.projel.offel{color:var(--muted2)}
+.projtier{display:inline-flex;align-items:center;gap:4px}
+.tbadge{display:inline-block;min-width:17px;text-align:center;border-radius:5px;padding:1px 5px;
+  font-size:10.5px;font-weight:900;color:#fff;background:var(--muted2)}
+.tbadge.tS{background:#c7351f}.tbadge.tA{background:#d97b00}.tbadge.tB{background:#3f8f2f}
+.tbadge.tC{background:#2b7a9e}.tbadge.tD{background:#6b7280}
+.projnote{grid-column:1/-1;font-size:11px;color:var(--muted2);font-weight:600;line-height:1.6;
+  border:1.5px dashed var(--line);border-radius:10px;padding:7px 10px}
+.passmodal{position:fixed;inset:0;background:rgba(20,24,18,.55);z-index:60;display:flex;
+  align-items:center;justify-content:center;padding:16px}
+.passmodal[hidden]{display:none}
+.pmbox{background:var(--screen);border:3px solid var(--bezel);border-radius:14px;width:min(560px,100%);
+  max-height:min(78vh,640px);display:flex;flex-direction:column;padding:12px 14px;box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.pmhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-size:14px;color:var(--ink)}
+.pmhead .close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);line-height:1}
+.pmbox .search{margin-bottom:8px}
+.pmbox .search input{width:100%}
+.pmlist{overflow:auto;min-height:120px}
+.pmrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;width:100%;text-align:left;cursor:pointer;
+  background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:6px 9px;margin-bottom:5px;
+  font-size:12px;font-weight:700;color:var(--ink);font-family:inherit}
+.pmrow:hover{border-color:var(--accent-dk)}
+.pmempty{font-size:12px;font-weight:700;color:var(--muted2);padding:6px 2px}
 .synrow b{color:var(--ink)}
 .synrow .elbadge{font-size:10px}
 .covrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:7px}
@@ -1108,9 +1173,27 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
         <div class="picker" data-role="team"></div>
         <button class="reset" id="teamClear">Clear team</button>
       </div>
-      <div class="tiernote">Build a party of up to <b>5 Pals</b> and the planner reads their <b>partner skills</b> and <b>guaranteed passives</b> (from the embedded 1.0 data) to surface synergies — attack-type imbues, element damage boosts, team Attack buffs, resistances — plus your offensive coverage and defensive gaps.</div>
+      <div class="tiernote">Build a party of up to <b>5 Pals</b> and the planner reads their <b>partner skills</b> and <b>passives</b> (from the embedded 1.0 data) to surface synergies — attack-type imbues, element damage boosts, team Attack buffs, resistances — plus your offensive coverage and defensive gaps. Each slot has a <b>Pal Surgery planner</b>: pick up to 4 passives and see the projected Attack and stat tier.</div>
+      <div class="passfind">
+        <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="passQ" type="text" placeholder="Search passives &amp; effects — try poison, fire, attack, lifesteal, vanguard…" autocomplete="off"></div>
+        <div id="passResults"></div>
+      </div>
+      <div class="ebpanel">
+        <h4>Best combo per element <span class="ebsub">auto-computed from partner skills, passives and base Attack</span></h4>
+        <div class="ebelems" id="ebElems"></div>
+        <div class="gseg ebmode" id="ebMode"><button data-m="player" class="on">Player damage build</button><button data-m="pal">Pal damage build</button></div>
+        <div id="ebOut"></div>
+      </div>
       <div class="teamgrid" id="teamSlots"></div>
       <div id="teamSyn"></div>
+      <div class="passmodal" id="passModal" hidden>
+        <div class="pmbox">
+          <div class="pmhead"><b id="pmTitle">Choose a passive</b><button class="close" onclick="closePassModal()" aria-label="Close">×</button></div>
+          <div class="search"><input id="pmQ" type="text" placeholder="Filter passives…" autocomplete="off"></div>
+          <div class="pmlist" id="pmList"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1226,7 +1309,9 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
 <script>/*__DETAILS__*/</script>
 <script>/*__ITEMS__*/</script>
 <script>/*__MAP__*/</script>
+<script>/*__PASSIVES__*/</script>
 <script>
+if (typeof PASSIVEDB === 'undefined') { window.PASSIVEDB = { passives: [], elmap: {} }; }
 if (typeof ICONS === 'undefined') { window.ICONS = { pals: {}, elements: {} }; }
 if (typeof SPAWNS === 'undefined') { window.SPAWNS = { grid: 96, map: null, pals: {} }; }
 if (typeof TIERS === 'undefined') { window.TIERS = { sources: [], combat: {}, workers: {} }; }
@@ -2587,81 +2672,169 @@ function palFx(p){
   }
   return fx;
 }
-let TEAM=(function(){ try{ return (JSON.parse(localStorage.getItem("paldex-team")||"[]")||[])
-  .filter(i=>byIndex.has(i)).slice(0,5); }catch(e){ return []; } })();
-function saveTeam(){ try{ localStorage.setItem("paldex-team",JSON.stringify(TEAM)); }catch(e){} }
-function teamAdd(p){
-  if(TEAM.length>=5||TEAM.includes(p.internalIndex)) return;
-  TEAM.push(p.internalIndex); saveTeam(); renderTeam(); blink("g");
+/* ---- passive-skill database (full standard table, game-file data) ---- */
+const PASSIVES=(PASSIVEDB.passives||[]).slice().sort((a,b)=>b.rank-a.rank||a.name.localeCompare(b.name));
+const PASS_BY_NAME=new Map(PASSIVES.map(x=>[x.name,x]));
+const PASS_EL=PASSIVEDB.elmap||{};
+function passElOf(t){ return t.startsWith("ElementBoost_")?PASS_EL[t.slice(13)]:null; }
+function passFxSum(names){
+  const s={atk:0,def:0,hp:0,cdr:0,patk:0,pdef:0,el:{}};
+  for(const n of names||[]){
+    const x=PASS_BY_NAME.get(n); if(!x) continue;
+    for(const f of x.fx){
+      const el=passElOf(f.t);
+      if(el&&f.who==="pal"){ s.el[el]=(s.el[el]||0)+f.v; continue; }
+      if(f.t==="ShotAttack"){ if(f.who==="player") s.patk+=f.v; else s.atk+=f.v; }
+      else if(f.t==="Defense"){ if(f.who==="player") s.pdef+=f.v; else s.def+=f.v; }
+      else if(f.t==="MaxHP"&&f.who==="pal") s.hp+=f.v;
+      else if(f.t==="ActiveSkillCoolTime_Decrease"&&f.who==="pal") s.cdr+=f.v;
+    }
+  }
+  return s;
 }
-function teamRemove(i){ TEAM=TEAM.filter(x=>x!==i); saveTeam(); renderTeam(); blink("r"); }
+function passLabel(x){
+  const bits=[];
+  for(const f of x.fx){
+    const el=passElOf(f.t), who=f.who==="player"?"player ":"";
+    const sg=v=>`${v>0?"+":""}${v}%`;
+    if(el) bits.push(`${who}${el} dmg ${sg(f.v)}`);
+    else if(f.t==="ShotAttack") bits.push(`${who}ATK ${sg(f.v)}`);
+    else if(f.t==="Defense") bits.push(`${who}DEF ${sg(f.v)}`);
+    else if(f.t==="MaxHP") bits.push(`HP ${sg(f.v)}`);
+    else if(f.t==="ActiveSkillCoolTime_Decrease") bits.push(`cooldowns ${f.v>0?"−":"+"}${Math.abs(f.v)}%`);
+    else if(f.t==="CraftSpeed") bits.push(`${who}work speed ${sg(f.v)}`);
+    else if(f.t==="MoveSpeed") bits.push(`move speed ${sg(f.v)}`);
+    else if(f.t==="LifeSteal") bits.push(`lifesteal ${f.v}%`);
+    else if(f.t==="PalSP_Increase") bits.push(`stamina ${sg(f.v)}`);
+    else if(f.t==="AutoHPRegeneRate") bits.push(`${who}HP regen ${sg(f.v)}`);
+    else if(f.t.startsWith("ResistAdditionalEffect_")) bits.push(`${f.t.slice(23).toLowerCase()} resist ${f.v}%`);
+    else if(f.t.startsWith("ElementResist_")) bits.push(`${PASS_EL[f.t.slice(14)]||"?"} res ${sg(f.v)}`);
+  }
+  return bits.join(", ")||(x.desc||"").split("\n")[0]||"utility";
+}
+/* stat model: score = ATK × √(HP × DEF), tier = percentile vs every base Pal */
+const BASE_SCORE=p=>p.stats.attack*Math.sqrt(p.stats.hp*p.stats.defense);
+const BASE_SCORES=PALS.map(BASE_SCORE).sort((a,b)=>a-b);
+function tierOf(s){
+  let lo=0,hi=BASE_SCORES.length;
+  while(lo<hi){ const m=(lo+hi)>>1; if(BASE_SCORES[m]<s) lo=m+1; else hi=m; }
+  const q=lo/BASE_SCORES.length*100;
+  return q>=95?"S":q>=85?"A":q>=65?"B":q>=40?"C":"D";
+}
+function projStats(p,names){
+  const s=passFxSum(names);
+  const atk=p.stats.attack*(1+s.atk/100), def=Math.max(1,p.stats.defense*(1+s.def/100)),
+        hp=Math.max(1,p.stats.hp*(1+s.hp/100));
+  return {...s,eatk:Math.round(atk),score:atk*Math.sqrt(hp*def)};
+}
+function defaultPassives(p){
+  const dd=DETAILS[p.name];
+  return ((dd&&dd.passives)||[]).map(x=>x.name).filter(n=>PASS_BY_NAME.has(n)).slice(0,4);
+}
+let TEAM=(function(){ try{
+  const raw=JSON.parse(localStorage.getItem("paldex-team")||"[]")||[];
+  return raw.map(x=>typeof x==="number"?{i:x,ps:null}:x)
+    .filter(x=>x&&byIndex.has(x.i)).slice(0,5)
+    .map(x=>({i:x.i,ps:Array.isArray(x.ps)?x.ps.filter(n=>PASS_BY_NAME.has(n)).slice(0,4)
+                                          :defaultPassives(byIndex.get(x.i))}));
+}catch(e){ return []; } })();
+function saveTeam(){ try{ localStorage.setItem("paldex-team",JSON.stringify(TEAM)); }catch(e){} }
+function teamAdd(p,ps){
+  if(TEAM.length>=5||TEAM.some(x=>x.i===p.internalIndex)) return;
+  TEAM.push({i:p.internalIndex,ps:ps?ps.filter(n=>PASS_BY_NAME.has(n)).slice(0,4):defaultPassives(p)});
+  saveTeam(); renderTeam(); blink("g");
+}
+function teamRemove(i){ TEAM=TEAM.filter(x=>x.i!==i); saveTeam(); renderTeam(); blink("r"); }
 window.teamRemove=teamRemove;
+window.teamAddByIdx=i=>{ const p=byIndex.get(i); if(p) teamAdd(p); };
 function fxTags(fx){
   const t=[];
-  fx.conv.forEach(e=>t.push(`<span class="syntag">🗡 imbue ${e}</span>`));
-  fx.boost.forEach(e=>t.push(`<span class="syntag">📣 ${e} pals atk↑</span>`));
-  fx.enhance.forEach(x=>t.push(`<span class="syntag">💥 ${x.el} dmg↑</span>`));
-  fx.resist.forEach(x=>t.push(`<span class="syntag">🛡 ${x.el} res</span>`));
-  fx.pass.forEach(x=>t.push(`<span class="syntag">⭐ ${x.el} +${x.pct}%</span>`));
-  fx.inflict.forEach(s=>t.push(`<span class="syntag">☣ inflicts ${s}</span>`));
-  fx.payoff.forEach(s=>t.push(`<span class="syntag">🎯 punishes ${s}</span>`));
+  fx.conv.forEach(e=>t.push(`<span class="syntag">imbue ${e}</span>`));
+  fx.boost.forEach(e=>t.push(`<span class="syntag">${e} pals atk↑</span>`));
+  fx.enhance.forEach(x=>t.push(`<span class="syntag">${x.el} dmg↑</span>`));
+  fx.resist.forEach(x=>t.push(`<span class="syntag">${x.el} res</span>`));
+  fx.pass.forEach(x=>t.push(`<span class="syntag">${x.el} +${x.pct}%</span>`));
+  fx.inflict.forEach(s=>t.push(`<span class="syntag">inflicts ${s}</span>`));
+  fx.payoff.forEach(s=>t.push(`<span class="syntag">punishes ${s}</span>`));
   return t.length?`<div class="syntags">${t.join("")}</div>`:"";
 }
+function tierBadge(t){ return `<span class="tbadge t${t}">${t}</span>`; }
 function renderTeamSlots(){
   const box=$("#teamSlots"); let html="";
   for(let s=0;s<5;s++){
-    const idx=TEAM[s];
-    if(idx==null){ html+=`<div class="slotcard empty">${EGG_SVG}<div>Slot ${s+1} — add a Pal above</div></div>`; continue; }
-    const p=byIndex.get(idx), fx=palFx(p), dd=DETAILS[p.name]||{};
+    const t=TEAM[s];
+    if(t==null){ html+=`<div class="slotcard empty">${EGG_SVG}<div>Slot ${s+1} — add a Pal above</div></div>`; continue; }
+    const p=byIndex.get(t.i), fx=palFx(p);
+    const guaranteed=new Set(defaultPassives(p));
+    const proj=projStats(p,t.ps), baseTier=tierOf(BASE_SCORE(p)), projTier=tierOf(proj.score);
+    const ownEls=(p.elements||[]);
+    const elLines=Object.entries(proj.el).map(([el,v])=>
+      `<span class="projel${ownEls.includes(el)?"":" offel"}">${el} dmg +${v}%${ownEls.includes(el)?"":" (not its element)"}</span>`).join("");
+    const chips=t.ps.map(n=>{ const x=PASS_BY_NAME.get(n)||{rank:0};
+      return `<button class="passchip${guaranteed.has(n)?" guar":""}" title="${escA(passLabel(x))}${guaranteed.has(n)?" — guaranteed on this Pal":""}"
+        data-s="${s}" data-n="${escA(n)}" onclick="teamPassRemove(+this.dataset.s,this.dataset.n)">
+        <span class="prank">${x.rank>0?"+"+x.rank:x.rank}</span>${n} ×</button>`; }).join("");
     html+=`<div class="slotcard">
       <div class="slothead">${avatarHtml(p,"mini-av2")}
-        <span class="nm" onclick="gotoPaldex(${idx})">${p.name}<br>${elBadges(p)}</span>
-        <button class="rm" onclick="teamRemove(${idx})" aria-label="Remove ${p.name}">×</button></div>
+        <span class="nm" onclick="gotoPaldex(${t.i})">${p.name}<br>${elBadges(p)}</span>
+        <button class="rm" onclick="teamRemove(${t.i})" aria-label="Remove ${p.name}">×</button></div>
       ${p.partnerSkill?`<div class="slotps"><b>${p.partnerSkill.name||"Partner skill"}</b>${p.partnerSkill.desc||""}</div>`:""}
-      ${(dd.passives&&dd.passives.length)?`<div class="slotpass">⭐ ${dd.passives.map(x=>x.name).join(" · ")}</div>`:""}
-      ${fxTags(fx)}</div>`;
+      ${fxTags(fx)}
+      <div class="slotsurg">
+        <h5>Surgery planner <span>(${t.ps.length}/4 passives)</span></h5>
+        <div class="passchips">${chips}${t.ps.length<4?`<button class="passchip add" data-s="${s}" onclick="openPassModal(+this.dataset.s)">+ passive</button>`:""}</div>
+        <div class="projbox">
+          <span>ATK <b>${p.stats.attack}</b>${proj.atk?` → <b>${proj.eatk}</b> <i>(${proj.atk>0?"+":""}${proj.atk}%)</i>`:""}</span>
+          ${proj.cdr?`<span>cooldowns <b>−${proj.cdr}%</b></span>`:""}
+          ${proj.patk?`<span>player ATK <b>+${proj.patk}%</b></span>`:""}
+          ${elLines}
+          <span class="projtier">stat tier ${tierBadge(baseTier)}${projTier!==baseTier?` → ${tierBadge(projTier)}`:""}</span>
+        </div>
+      </div></div>`;
   }
   box.innerHTML=html;
+  if(TEAM.length) box.insertAdjacentHTML("beforeend",
+    `<div class="projnote">Projections are a stat estimate — Attack × √(HP × Defense), ranked against every Pal's base stats (same formula as palworld.gg's objective board). Real damage also depends on skills, level and condensation. Passive costs: surgery at the Pal Surgery Table, or inherit via breeding.</div>`);
 }
 function elChip(e){ return elChipsSmall([e]); }
 function renderTeamSyn(){
   const box=$("#teamSyn");
   if(!TEAM.length){ box.innerHTML=""; return; }
-  const members=TEAM.map(i=>({p:byIndex.get(i),fx:palFx(byIndex.get(i))}));
+  const members=TEAM.map(x=>({p:byIndex.get(x.i),fx:palFx(byIndex.get(x.i)),ps:x.ps}));
   const rows=[];
   /* imbue × damage-boost combos (the "player does mud damage + mud damage up" case) */
   for(const a of members) for(const e of a.fx.conv){
     for(const b of members) if(b!==a) for(const x of b.fx.enhance) if(x.el===e)
-      rows.push({hot:true,ico:"🔥",html:`<b>${a.p.name}</b> turns your attacks ${elChip(e)} and <b>${b.p.name}</b> boosts ${elChip(e)} damage${x.amt?` by <b>${x.amt}%</b>`:""} — stack them.`});
+      rows.push({hot:true,ico:"COMBO",html:`<b>${a.p.name}</b> turns your attacks ${elChip(e)} and <b>${b.p.name}</b> boosts ${elChip(e)} damage${x.amt?` by <b>${x.amt}%</b>`:""} — stack them.`});
   }
   /* status infliction + payoff combos (inflict Electrify + punish Electrify) */
   for(const a of members) for(const s of a.fx.inflict){
     for(const b of members) if(b!==a&&b.fx.payoff.includes(s))
-      rows.push({hot:true,ico:"☣",html:`<b>${a.p.name}</b> makes your attacks inflict <b>${s}</b> and <b>${b.p.name}</b> triggers bonus damage on ${s}-afflicted enemies — a status combo.`});
+      rows.push({hot:true,ico:"STATUS",html:`<b>${a.p.name}</b> makes your attacks inflict <b>${s}</b> and <b>${b.p.name}</b> triggers bonus damage on ${s}-afflicted enemies — a status combo.`});
   }
   /* self imbue+enhance on one pal (Frostallion pattern) */
   for(const a of members) for(const e of a.fx.conv)
     if(a.fx.enhance.some(x=>x.el===e))
-      rows.push({hot:true,ico:"🔥",html:`<b>${a.p.name}</b> both imbues your attacks ${elChip(e)} <i>and</i> boosts ${elChip(e)} damage — a self-contained combo.`});
+      rows.push({hot:true,ico:"COMBO",html:`<b>${a.p.name}</b> both imbues your attacks ${elChip(e)} <i>and</i> boosts ${elChip(e)} damage — a self-contained combo.`});
   /* team attack buffs hitting actual members */
   for(const a of members) for(const e of a.fx.boost){
     const hits=members.filter(b=>b!==a&&b.p.elements&&b.p.elements.includes(e));
-    if(hits.length) rows.push({ico:"📣",html:`<b>${a.p.name}</b> raises Attack of ${elChip(e)} Pals — buffs <b>${hits.map(h=>h.p.name).join(", ")}</b>.`});
+    if(hits.length) rows.push({ico:"BUFF",html:`<b>${a.p.name}</b> raises Attack of ${elChip(e)} Pals — buffs <b>${hits.map(h=>h.p.name).join(", ")}</b>.`});
   }
   /* guaranteed passives that boost the pal's own element */
   for(const a of members) for(const x of a.fx.pass)
     if(a.p.elements&&a.p.elements.includes(x.el))
-      rows.push({ico:"⭐",html:`<b>${a.p.name}</b>'s guaranteed passive <b>${x.name}</b> gives +${x.pct}% ${elChip(x.el)} damage to its own skills.`});
+      rows.push({ico:"PASSIVE",html:`<b>${a.p.name}</b>'s guaranteed passive <b>${x.name}</b> gives +${x.pct}% ${elChip(x.el)} damage to its own skills.`});
   /* multiple imbuers: only one applies */
   const convAll=members.flatMap(a=>a.fx.conv.map(e=>({n:a.p.name,e})));
   if(convAll.length>1)
-    rows.push({ico:"⚠️",html:`You have <b>${convAll.length} attack-type imbuers</b> (${convAll.map(c=>c.n).join(", ")}) — only the one currently active (or mounted) applies to the player.`});
+    rows.push({ico:"NOTE",html:`You have <b>${convAll.length} attack-type imbuers</b> (${convAll.map(c=>c.n).join(", ")}) — only the one currently active (or mounted) applies to the player.`});
   /* duplicate resistances don't stack */
   const resBy={};
   for(const a of members) for(const x of a.fx.resist) (resBy[x.el]=resBy[x.el]||[]).push(a.p.name);
   for(const e in resBy){
-    if(resBy[e].length>1) rows.push({ico:"⚠️",html:`${elChip(e)} resistance from <b>${resBy[e].join(" and ")}</b> — these auras <b>do not stack</b>; one is redundant.`});
-    else rows.push({ico:"🛡",html:`<b>${resBy[e][0]}</b> reduces ${elChip(e)} damage for the whole party.`});
+    if(resBy[e].length>1) rows.push({ico:"NOTE",html:`${elChip(e)} resistance from <b>${resBy[e].join(" and ")}</b> — these auras <b>do not stack</b>; one is redundant.`});
+    else rows.push({ico:"AURA",html:`<b>${resBy[e][0]}</b> reduces ${elChip(e)} damage for the whole party.`});
   }
   /* coverage from team elements + player imbues */
   const els=[...new Set(members.flatMap(a=>a.p.elements||[]).concat(convAll.map(c=>c.e)))];
@@ -2671,8 +2844,8 @@ function renderTeamSyn(){
   for(const a of members) for(const w of (a.p.elements||[]).flatMap(e=>weakTo(e))) threats[w]=(threats[w]||0)+1;
   const bigThreats=Object.keys(threats).filter(e=>threats[e]>=2);
   box.innerHTML=`
-    ${rows.length?`<div class="synpanel"><h4>⚡ Detected synergies</h4>${rows.map(r=>`<div class="synrow${r.hot?' hot':''}"><span class="sico">${r.ico}</span><span>${r.html}</span></div>`).join("")}</div>`:""}
-    <div class="synpanel"><h4>🎯 Type coverage</h4>
+    ${rows.length?`<div class="synpanel"><h4>Detected synergies</h4>${rows.map(r=>`<div class="synrow${r.hot?' hot':''}"><span class="sico">${r.ico}</span><span>${r.html}</span></div>`).join("")}</div>`:""}
+    <div class="synpanel"><h4>Type coverage</h4>
       <div class="covrow"><span class="clbl">Team elements</span>${els.length?elChipsSmall(els):"—"}</div>
       <div class="covrow"><span class="clbl">Hits 2× against</span>${covered.length?elChipsSmall(covered):"—"}</div>
       <div class="covrow"><span class="clbl">No 2× answer for</span>${gaps.length?elChipsSmall(gaps):'<b style="color:var(--accent-dk)">nothing — full coverage!</b>'}</div>
@@ -2680,9 +2853,165 @@ function renderTeamSyn(){
     </div>`;
 }
 function renderTeam(){ renderTeamSlots(); renderTeamSyn(); }
+
+/* ---- Pal Surgery passive picker (per team slot) ---- */
+let PM_SLOT=null;
+function openPassModal(s){ PM_SLOT=s; $("#passModal").hidden=false; $("#pmQ").value="";
+  const p=byIndex.get(TEAM[s].i); $("#pmTitle").textContent=`Add a passive to ${p.name}`;
+  renderPassModal(); $("#pmQ").focus(); }
+function closePassModal(){ $("#passModal").hidden=true; PM_SLOT=null; }
+window.openPassModal=openPassModal; window.closePassModal=closePassModal;
+function passAvail(x){ return x.surg?`surgery ${x.surg/1000}k gold`:(x.nat?"inherit / wild only":"special source"); }
+function renderPassModal(){
+  const t=TEAM[PM_SLOT]; if(!t) return;
+  const q=$("#pmQ").value.trim().toLowerCase();
+  const list=PASSIVES.filter(x=>!t.ps.includes(x.name))
+    .filter(x=>q?(x.name.toLowerCase().includes(q)||passLabel(x).toLowerCase().includes(q)||(x.desc||"").toLowerCase().includes(q)):x.rank>0);
+  $("#pmList").innerHTML=list.map(x=>`<button class="pmrow" data-n="${escA(x.name)}" onclick="pickPass(this.dataset.n)">
+      <span class="prank">${x.rank>0?"+"+x.rank:x.rank}</span><b>${x.name}</b>
+      <span class="pfx">${passLabel(x)}</span><span class="psur">${passAvail(x)}</span></button>`).join("")
+    ||`<div class="pmempty">No matching passives${q?"":" (negative-rank ones appear when you search)"}.</div>`;
+}
+function pickPass(n){
+  const t=TEAM[PM_SLOT]; if(!t||t.ps.length>=4||t.ps.includes(n)) return;
+  t.ps.push(n); saveTeam(); renderTeam();
+  if(t.ps.length>=4) closePassModal(); else renderPassModal();
+  blink("g");
+}
+function teamPassRemove(s,n){ const t=TEAM[s]; if(!t) return;
+  t.ps=t.ps.filter(x=>x!==n); saveTeam(); renderTeam(); blink("r"); }
+window.pickPass=pickPass; window.teamPassRemove=teamPassRemove;
+
+/* ---- passive & effect search ---- */
+const PASS_HOLDERS=(function(){ // guaranteed-passive name -> [pal indexes]
+  const m=new Map(), seen=new Set();
+  for(const p of PALS){
+    if(seen.has(p.name)) continue; seen.add(p.name);
+    const dd=DETAILS[p.name];
+    if(dd&&dd.passives) for(const x of dd.passives)
+      (m.get(x.name)||m.set(x.name,[]).get(x.name)).push(p.internalIndex);
+  }
+  return m;
+})();
+function renderPassSearch(){
+  const q=$("#passQ").value.trim().toLowerCase(), box=$("#passResults");
+  if(q.length<2){ box.innerHTML=""; return; }
+  const pHits=PASSIVES.filter(x=>x.name.toLowerCase().includes(q)
+    ||passLabel(x).toLowerCase().includes(q)||(x.desc||"").toLowerCase().includes(q));
+  const seen=new Set(), palHits=[];
+  for(const p of PALS){
+    if(seen.has(p.name)) continue; seen.add(p.name);
+    const ps=p.partnerSkill||{}, dd=DETAILS[p.name]||{};
+    const hay=((ps.name||"")+" "+(ps.desc||"")+" "
+      +((dd.passives||[]).map(x=>x.name+" "+(x.desc||"")).join(" "))).toLowerCase();
+    if(hay.includes(q)) palHits.push(p);
+  }
+  palHits.sort((a,b)=>b.stats.attack-a.stats.attack);
+  const passRow=x=>{
+    const holders=(PASS_HOLDERS.get(x.name)||[]).map(i=>byIndex.get(i));
+    return `<div class="psrow"><span class="prank">${x.rank>0?"+"+x.rank:x.rank}</span>
+      <b>${x.name}</b> <span class="pfx">${passLabel(x)}</span> <span class="psur">${passAvail(x)}</span>
+      ${holders.length?`<span class="pshold">guaranteed on: ${holders.map(p=>`<button class="mini" onclick="gotoPaldex(${p.internalIndex})">${p.name}</button>`).join(" ")}</span>`
+                      :`<span class="pshold">any Pal can carry it (${x.surg?"surgery":"breeding"})</span>`}</div>`; };
+  const palRow=p=>`<button class="tierpal" onclick="gotoPaldex(${p.internalIndex})">${avatarHtml(p,"mini-av3")}${p.name}</button>
+      <button class="mini addteam" data-i="${p.internalIndex}" onclick="teamAddByIdx(+this.dataset.i)">+ team</button>`;
+  box.innerHTML=`
+    ${pHits.length?`<div class="psgroup"><h5>Passives matching “${$("#passQ").value.trim()}” (${pHits.length})</h5>${pHits.map(passRow).join("")}</div>`:""}
+    ${palHits.length?`<div class="psgroup"><h5>Pals whose partner skill or guaranteed passives match (${palHits.length})</h5>
+      <div class="tierpals">${palHits.slice(0,24).map(palRow).join("")}</div>
+      ${palHits.length>24?`<div class="pmempty">…and ${palHits.length-24} more — refine the search.</div>`:""}</div>`:""}
+    ${(!pHits.length&&!palHits.length)?`<div class="pmempty">Nothing matches “${$("#passQ").value.trim()}”.</div>`:""}`;
+}
+
+/* ---- best combo per element ---- */
+const EB={el:"fire",mode:"player"};
+const FX_CACHE=new Map();
+function fxOf(p){ let f=FX_CACHE.get(p.name); if(!f){ f=palFx(p); FX_CACHE.set(p.name,f); } return f; }
+function uniquePals(){ const m=new Map(); for(const p of PALS) if(!m.has(p.name)) m.set(p.name,p); return [...m.values()]; }
+function elPassives(el){
+  return PASSIVES.filter(x=>x.rank>0&&x.fx.some(f=>f.who==="pal"&&passElOf(f.t)===el))
+    .sort((a,b)=>{const v=x=>x.fx.reduce((s,f)=>s+(passElOf(f.t)===el?f.v:0),0); return v(b)-v(a);});
+}
+function ebKit(el){
+  const kit=[(elPassives(el)[0]||{}).name,"Demon God","Musclehead","Ferocious"];
+  return kit.filter(n=>n&&PASS_BY_NAME.has(n)).slice(0,4);
+}
+function ebData(el){
+  const all=uniquePals().map(p=>({p,fx:fxOf(p)}));
+  const atk=(a,b)=>b.p.stats.attack-a.p.stats.attack;
+  return {
+    imbuers:all.filter(x=>x.fx.conv.includes(el)).sort(atk),
+    enhancers:all.filter(x=>x.fx.enhance.some(e=>e.el===el))
+      .map(x=>({...x,amt:(x.fx.enhance.find(e=>e.el===el)||{}).amt}))
+      .sort((a,b)=>(parseFloat(b.amt)||0)-(parseFloat(a.amt)||0)),
+    boosters:all.filter(x=>x.fx.boost.includes(el)).sort(atk),
+    attackers:uniquePals().filter(p=>(p.elements||[]).includes(el)).sort((a,b)=>b.stats.attack-a.stats.attack),
+  };
+}
+function ebTeam(el,mode){
+  const d=ebData(el), picks=[];
+  const push=(p,why)=>{ if(p&&!picks.some(x=>x.p.name===p.name)&&picks.length<5) picks.push({p,why}); };
+  if(mode==="player"){
+    if(d.imbuers[0]) push(d.imbuers[0].p,`imbues your attacks ${el}`);
+    d.enhancers.slice(0,2).forEach(x=>push(x.p,`boosts ${el} damage${x.amt?` +${x.amt}%`:""} for player & Pals`));
+    if(d.boosters[0]) push(d.boosters[0].p,`raises Attack of ${el} Pals`);
+    d.attackers.slice(0,3).forEach(p=>push(p,`top ${el} attacker (ATK ${p.stats.attack})`));
+  }else{
+    d.attackers.slice(0,2).forEach(p=>push(p,`top ${el} attacker (ATK ${p.stats.attack})`));
+    d.boosters.slice(0,2).forEach(x=>push(x.p,`raises Attack of ${el} Pals in the party`));
+    d.enhancers.slice(0,2).forEach(x=>push(x.p,`boosts ${el} damage${x.amt?` +${x.amt}%`:""}`));
+    d.attackers.slice(2,5).forEach(p=>push(p,`${el} attacker (ATK ${p.stats.attack})`));
+  }
+  return {picks,d};
+}
+function renderEB(){
+  const el=EB.el, mode=EB.mode, {picks,d}=ebTeam(el,mode), out=$("#ebOut");
+  $$("#ebElems button").forEach(b=>b.classList.toggle("on",b.dataset.el===el));
+  $$("#ebMode button").forEach(b=>b.classList.toggle("on",b.dataset.m===mode));
+  if(!picks.length){ out.innerHTML=`<div class="pmempty">No ${el} build available.</div>`; return; }
+  const kit=ebKit(el);
+  const star=mode==="pal"?picks[0].p:d.attackers[0];
+  let proj="";
+  if(star){
+    const st=projStats(star,kit), bt=tierOf(BASE_SCORE(star)), pt=tierOf(st.score);
+    proj=`<div class="ebproj"><b>Suggested surgery kit for ${star.name}:</b>
+      ${kit.map(n=>`<span class="passchip">${n}</span>`).join("")}
+      <span>→ ATK ${star.stats.attack} → <b>${st.eatk}</b>${st.el[el]?`, ${el} dmg +${st.el[el]}%`:""},
+      stat tier ${tierBadge(bt)}${pt!==bt?` → ${tierBadge(pt)}`:""}</span></div>`;
+  }
+  const missing=[];
+  if(mode==="player"&&!d.imbuers.length) missing.push(`no partner skill imbues the player's attacks with ${el}`);
+  if(!d.enhancers.length&&!d.boosters.length) missing.push(`no partner skill boosts ${el} damage`);
+  out.innerHTML=`
+    <div class="ebrows">${picks.map(x=>`<div class="ebrow">
+      <button class="tierpal" onclick="gotoPaldex(${x.p.internalIndex})">${avatarHtml(x.p,"mini-av3")}${x.p.name}</button>
+      <span class="ebwhy">${x.why}</span></div>`).join("")}</div>
+    ${mode==="player"?`<div class="ebproj"><b>Player side:</b> add <span class="passchip">Vanguard</span> (+10% player ATK, surgery 50k) to your fielded Pals; the imbuer converts your gun/melee damage to ${el}, the boosters multiply it.</div>`:""}
+    ${proj}
+    ${missing.length?`<div class="pmempty">Honest gap: ${missing.join("; ")}.</div>`:""}
+    <button class="reset ebload" onclick="ebLoad()">Load this team (replaces current)</button>`;
+}
+function ebLoad(){
+  const {picks}=ebTeam(EB.el,EB.mode);
+  TEAM=picks.slice(0,5).map(x=>({i:x.p.internalIndex,ps:defaultPassives(x.p)}));
+  const starIdx=EB.mode==="pal"?0:TEAM.findIndex(t=>{const p=byIndex.get(t.i);return (p.elements||[]).includes(EB.el);});
+  if(TEAM[starIdx>=0?starIdx:0]) TEAM[starIdx>=0?starIdx:0].ps=ebKit(EB.el);
+  saveTeam(); renderTeam(); blink("g");
+  $("#teamSlots").scrollIntoView({behavior:"smooth",block:"start"});
+}
+window.ebLoad=ebLoad;
+
 function initTeam(){
   makePicker($('.picker[data-role=team]'),p=>{ teamAdd(p); },{placeholder:"Add a Pal to your team…"});
   $("#teamClear").onclick=()=>{ TEAM=[]; saveTeam(); renderTeam(); blink("r"); };
+  $("#passQ").addEventListener("input",renderPassSearch);
+  $("#pmQ").addEventListener("input",renderPassModal);
+  $("#passModal").addEventListener("click",e=>{ if(e.target.id==="passModal") closePassModal(); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!$("#passModal").hidden) closePassModal(); });
+  $("#ebElems").innerHTML=ELEMENTS.map(e=>`<button data-el="${e}" class="${e===EB.el?"on":""}">${elChipsSmall([e])}</button>`).join("");
+  $("#ebElems").addEventListener("click",e=>{ const b=e.target.closest("button[data-el]"); if(b){ EB.el=b.dataset.el; renderEB(); } });
+  $("#ebMode").addEventListener("click",e=>{ const b=e.target.closest("button[data-m]"); if(b){ EB.mode=b.dataset.m; renderEB(); } });
+  renderEB();
   renderTeam();
 }
 
