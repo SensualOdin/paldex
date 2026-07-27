@@ -674,6 +674,10 @@ footer b{color:#fff}
   font-size:12px;font-weight:700;color:var(--ink);font-family:inherit}
 .pmrow:hover{border-color:var(--accent-dk)}
 .pmempty{font-size:12px;font-weight:700;color:var(--muted2);padding:6px 2px}
+.routeinfo{font-size:11.5px;font-weight:600;color:var(--muted);line-height:1.6;margin-top:7px;
+  border:1.5px dashed var(--line);border-radius:10px;padding:7px 9px}
+.routeinfo.muted{color:var(--muted2)}
+.routeinfo b{color:var(--ink)}
 .synrow b{color:var(--ink)}
 .synrow .elbadge{font-size:10px}
 .covrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:7px}
@@ -1236,6 +1240,13 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
             <button class="mini" id="mapExport">Export progress</button>
             <button class="mini" id="mapImport">Import</button>
           </div>
+          <details class="mfsec" open>
+            <summary><span class="mfarrow"></span>Farming routes<span class="mfsub">optimized loops</span></summary>
+            <div class="mfbody">
+              <div class="mfchips" id="routeChips"></div>
+              <div id="routeInfo"></div>
+            </div>
+          </details>
           <details class="mfsec" open>
             <summary><span class="mfarrow"></span>Pal spawn layers<span class="mfsub">up to 3</span></summary>
             <div class="mfbody">
@@ -3175,6 +3186,36 @@ function mapPaint(){
     ctx.fillStyle="#ff8c3a"; ctx.strokeStyle="#fff"; ctx.lineWidth=2/MV.scale;
     ctx.beginPath(); ctx.arc(px,py,6/MV.scale,0,7); ctx.fill(); ctx.stroke();
   }
+  /* farming-route overlay: closed loop + direction arrows + numbered stops */
+  if(MV.route&&MV.route.map===MV.map&&MV.route.pts.length>1){
+    const o=MV.route.rev?[...MV.route.order].reverse():MV.route.order;
+    const P=o.map(i=>{ const p=MV.route.pts[i]; return w2img(p.x,p.y); });
+    ctx.save();
+    ctx.strokeStyle="rgba(255,140,58,.9)"; ctx.lineWidth=2.6/MV.scale;
+    ctx.setLineDash([8/MV.scale,5/MV.scale]);
+    ctx.beginPath(); P.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));
+    ctx.closePath(); ctx.stroke();
+    ctx.setLineDash([]);
+    for(let i=0;i<P.length;i++){
+      const a=P[i], b=P[(i+1)%P.length];
+      const mx=(a[0]+b[0])/2, my=(a[1]+b[1])/2, ang=Math.atan2(b[1]-a[1],b[0]-a[0]), s=6.5/MV.scale;
+      ctx.fillStyle="rgba(255,140,58,.95)";
+      ctx.beginPath();
+      ctx.moveTo(mx+Math.cos(ang)*s,my+Math.sin(ang)*s);
+      ctx.lineTo(mx+Math.cos(ang+2.6)*s,my+Math.sin(ang+2.6)*s);
+      ctx.lineTo(mx+Math.cos(ang-2.6)*s,my+Math.sin(ang-2.6)*s);
+      ctx.closePath(); ctx.fill();
+    }
+    const nr=8/MV.scale, oy2=14/MV.scale;
+    ctx.font=`700 ${10/MV.scale}px Inter,system-ui,sans-serif`;
+    ctx.textAlign="center"; ctx.textBaseline="middle";
+    P.forEach(([x,y],i)=>{
+      ctx.fillStyle=i===0?"#2b8a7e":"#1f2937"; ctx.strokeStyle="#fff"; ctx.lineWidth=1.4/MV.scale;
+      ctx.beginPath(); ctx.arc(x,y-oy2,nr,0,7); ctx.fill(); ctx.stroke();
+      ctx.fillStyle="#fff"; ctx.fillText(String(i+1),x,y-oy2);
+    });
+    ctx.restore();
+  }
   /* selection ring */
   if(MV.sel){
     const [px,py]=MV.sel.pin?w2img(MV.sel.pin.x,MV.sel.pin.y):w2img(MV.sel.m[1],MV.sel.m[2]);
@@ -3249,12 +3290,103 @@ function mapClosePop(){ $("#mapPop").hidden=true; MV.sel=null; mapDraw(); }
 window.mapClosePop=mapClosePop;
 function mapToggleFound(id){
   MFOUND.has(id)?MFOUND.delete(id):MFOUND.add(id);
-  mvSave(); renderMapFilters(); mapDraw();
+  mvSave(); renderMapFilters();
+  if(MV.route) routeRecompute();
+  mapDraw();
   const b=$("#mapPop .foundbtn"); if(b) b.textContent=MFOUND.has(id)?"Found ✓ (tap to unmark)":"Mark as found";
 }
 window.mapToggleFound=mapToggleFound;
 function mapDelPin(i){ MPINS.splice(i,1); mvSave(); mapClosePop(); mapDraw(); }
 window.mapDelPin=mapDelPin;
+
+/* ---- farming routes: optimized round-trips over marker sets ---- */
+const ROUTES=[
+  {key:"bounty",label:"Bounties",map:"main",types:["Bounty"],
+   blurb:"Every wanted bounty on the Palpagos Islands, in one loop."},
+  {key:"holywater",label:"Holy Water & Relics",map:"tree",types:["Awakened","Alpha Pal"],
+   blurb:"Every Awakened + Alpha spawn on the World Tree (Lv 74–79). High-level World Tree Pals drop World Tree Holy Water roughly half the time, and Awakened Pals are the Ancient Relic source."},
+  {key:"treeegg",label:"World Tree Eggs",map:"tree",types:["World Tree Egg"],
+   blurb:"All World Tree Egg spots in one sweep."},
+  {key:"treeeff",label:"Tree Effigies",map:"tree",types:["Cattiva Effigy","Lifmunk Effigy","Yakumo Effigy"],
+   blurb:"Every effigy on the World Tree."},
+  {key:"alphas",label:"Palpagos Alphas",map:"main",types:["Alpha Pal"],
+   blurb:"All overworld Alpha Pals — the full trophy lap."},
+];
+const mkIdFor=(map,m)=>map+":"+m[0]+":"+m[1]+":"+m[2];
+function routeSolve(pts,map){
+  const n=pts.length;
+  if(n<2) return pts.map((_,i)=>i);
+  const d=(a,b)=>Math.hypot(pts[a].x-pts[b].x,pts[a].y-pts[b].y);
+  /* start at the waypoint closest to a fast travel statue */
+  let start=0, best=Infinity;
+  const fts=MAPDATA.markers[map].filter(m=>MAPDATA.tlist[m[0]]==="Fast Travel");
+  for(let i=0;i<n;i++) for(const f of fts){
+    const dd=Math.hypot(pts[i].x-f[1],pts[i].y-f[2]);
+    if(dd<best){ best=dd; start=i; }
+  }
+  const left=new Set(pts.map((_,i)=>i)); left.delete(start);
+  const order=[start]; let cur=start;
+  while(left.size){
+    let bi=-1,bd=Infinity;
+    for(const i of left){ const dd=d(cur,i); if(dd<bd){ bd=dd; bi=i; } }
+    order.push(bi); left.delete(bi); cur=bi;
+  }
+  /* 2-opt until no improvement */
+  let improved=true, guard=0;
+  while(improved&&guard++<80){
+    improved=false;
+    for(let i=0;i<n-1;i++) for(let k=i+2;k<n;k++){
+      const a=order[i],b=order[i+1],c=order[k],e=order[(k+1)%n];
+      if(a===e) continue;
+      if(d(a,b)+d(c,e)>d(a,c)+d(b,e)+1e-9){
+        for(let x=i+1,y=k;x<y;x++,y--){ const t=order[x]; order[x]=order[y]; order[y]=t; }
+        improved=true;
+      }
+    }
+  }
+  return order;
+}
+function computeRoute(r){
+  const pts=MAPDATA.markers[r.map]
+    .filter(m=>r.types.includes(MAPDATA.tlist[m[0]])&&!MFOUND.has(mkIdFor(r.map,m)))
+    .map(m=>({x:m[1],y:m[2],name:m[3]||MAPDATA.tlist[m[0]],lv:m[4]}));
+  const order=routeSolve(pts,r.map);
+  let len=0;
+  for(let i=0;i<order.length;i++){
+    const a=pts[order[i]], b=pts[order[(i+1)%order.length]];
+    len+=Math.hypot(a.x-b.x,a.y-b.y);
+  }
+  MV.route={key:r.key,map:r.map,pts,order,len,rev:MV.route&&MV.route.key===r.key?MV.route.rev:false};
+}
+function routeRecompute(){ const r=ROUTES.find(x=>x.key===MV.route.key); if(r){ computeRoute(r); renderRoutes(); } }
+function setRoute(key){
+  if(!key||(MV.route&&MV.route.key===key)){ MV.route=null; renderRoutes(); mapDraw(); return; }
+  const r=ROUTES.find(x=>x.key===key); if(!r) return;
+  if(MV.map!==r.map){ const b=$(`#mapSwitch button[data-map=${r.map}]`); if(b) b.click(); }
+  computeRoute(r);
+  r.types.forEach(t=>MV.on.add(t)); MV.on.add("Fast Travel");
+  mvSaveFilters(); renderMapFilters(); renderRoutes(); mapDraw();
+  const p0=MV.route.pts[MV.route.order[0]];
+  if(p0) mapFly(p0.x,p0.y,Math.max(0.55,MV.scale));
+  blink("g");
+}
+window.setRoute=setRoute;
+function renderRoutes(){
+  const box=$("#routeChips"); if(!box) return;
+  box.innerHTML=ROUTES.map(r=>`<button class="mftype${MV.route&&MV.route.key===r.key?" on":""}" data-r="${r.key}">
+    <span class="nm">${r.label}</span><span class="cnt">${r.map==="main"?"Palpagos":"World Tree"}</span></button>`).join("");
+  box.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>setRoute(b.dataset.r));
+  const info=$("#routeInfo"), rt=MV.route;
+  if(!rt){ info.innerHTML=`<div class="routeinfo muted">Pick a route and the map draws the shortest round trip — numbered stops, arrows for direction, back to the start. Stop 1 is next to a fast travel statue.</div>`; return; }
+  const r=ROUTES.find(x=>x.key===rt.key);
+  info.innerHTML=`<div class="routeinfo"><b>${r.label}</b> — <b>${rt.pts.length}</b> stops · ~<b>${(rt.len/100000).toFixed(1)} km</b> loop${rt.rev?" (reversed)":""}.<br>${r.blurb}<br>
+    Mark a stop as <b>found</b> and the loop re-optimizes without it.
+    <div class="mapbar" style="margin-top:6px">
+      <button class="mini" id="routeRev">Reverse direction</button>
+      <button class="mini" id="routeClear">Clear route</button></div></div>`;
+  $("#routeRev").onclick=()=>{ MV.route.rev=!MV.route.rev; renderRoutes(); mapDraw(); };
+  $("#routeClear").onclick=()=>setRoute(null);
+}
 function mapPinNote(i,v){ if(MPINS[i]){ MPINS[i].note=v; mvSave(); } }
 window.mapPinNote=mapPinNote;
 function nearestFT(wx,wy){
@@ -3440,6 +3572,7 @@ function initMapTab(){
   const savedOn=mvLoad("paldex-map-on",null);
   if(savedOn&&savedOn.length){ MV.on=new Set(savedOn.filter(t=>MAPDATA.tlist.includes(t))); renderMapFilters(); }
   else mapPresets("essentials");
+  renderRoutes();
   /* center on first show */
   const center=()=>{ if(MV.inited) return; MV.inited=true;
     const W=cv.clientWidth,H=cv.clientHeight;
