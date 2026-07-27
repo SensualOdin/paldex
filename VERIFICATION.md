@@ -118,3 +118,42 @@ text (Mounts tier boards, Ranch producers in the Items tab, Team-planner
 synergy tags) was rebuilt and re-validated: 29 flying / 11 water mounts,
 29 ranch producers, 24 attack-type imbuers, 7 status-inflicting and 4
 status-payoff partner skills all parse cleanly from the new wording.
+
+
+## Addendum (2026-07-27): full breeding-table audit vs paldb.cc
+
+Prompted by a "some breeding chains look wrong" report, the entire
+parent→child table was re-verified against an **independent implementation**:
+paldb.cc's breeding calculator API (`pal_breed_2a`), queried once per Pal
+(299 requests), yielding their full computed table. Diff results:
+
+- **44,254 shared unordered pairs: zero disagreements on the child.**
+  paldb has no pair we lack (`only in theirs: 0`).
+- **Gender-locked pair** (the one flagged "mismatch"): paldb's genderless
+  endpoint returns only one child for Katress×Wixen. Their gendered display
+  shows Katress ♂ + Wixen ♀ = Wixen Noct — exactly our row; we also ship the
+  mirror (Katress ♀ + Wixen ♂ = Katress Ignis). Ours is a superset, confirmed.
+- **Gumoss (Special)** — 299 pairs only in ours: paldb's calculator simply
+  omits the variant. Verified internally: its partner→child results are
+  identical to regular Gumoss on all 299 partners (same breeding power 2950),
+  matching the game files.
+- **Panthalus (KingWhale)** — 297 cross-species parent pairs only in ours:
+  paldb (and palworld.gg) let Panthalus breed only with itself. Checked the
+  actual 1.0 game tables (`DT_PalMonsterParameter`,
+  `DT_PalCombiUnique`, via a 1.0 datamine): KingWhale's breeding fields are
+  identical in kind to Jetragon's (`IgnoreCombi=True`, CombiRank 20,
+  CombiDuplicatePriority 2000) and **no field or unique-combo row restricts
+  it as a parent** — the same flags under which every other legendary
+  (Jetragon, Frostallion, Neptilius, …) is agreed to cross-breed normally.
+  Both sites' exclusion has no visible basis in game data; our table follows
+  the game files (palcalc). Self-only as a *child* (Panthalus + Panthalus)
+  is agreed by all sources. Caveat noted: if Pocketpair special-cased
+  KingWhale in code rather than data, the 297 cross pairs would be
+  unobtainable in-game — worth one in-game test before relying on them.
+
+App-side logic re-checked in the same pass: the forward map keys unordered
+pairs correctly, gender-locked rows are consulted before the table, the
+reverse tab lists `combos[child]` verbatim, and the family tree's
+`childMap` traces child→parents (not the inverse). Net result: **no data or
+code changes required** — the shipped table agrees with paldb on 100.000%
+of comparable pairs and is strictly more complete.
