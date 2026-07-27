@@ -3347,8 +3347,10 @@ function routeSolve(pts,map){
   return order;
 }
 function computeRoute(r){
+  const seen=new Set(); // guard: never route the same spot twice
   const pts=MAPDATA.markers[r.map]
     .filter(m=>r.types.includes(MAPDATA.tlist[m[0]])&&!MFOUND.has(mkIdFor(r.map,m)))
+    .filter(m=>{ const k=m[1]+","+m[2]; if(seen.has(k)) return false; seen.add(k); return true; })
     .map(m=>({x:m[1],y:m[2],name:m[3]||MAPDATA.tlist[m[0]],lv:m[4]}));
   const order=routeSolve(pts,r.map);
   let len=0;

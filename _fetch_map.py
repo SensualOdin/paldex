@@ -127,6 +127,7 @@ def slim(data, igc, tlist, tset):
                      pos={"X": inv_x(e["ipos"]["Y"]), "Y": inv_y(e["ipos"]["X"])},
                      item=e.get("comment") or "Community base spot")
         rows.append(e)
+    seen = set()  # paldb lists some markers twice (e.g. every Bounty); drop exact repeats
     for x in rows:
         t = x.get("type")
         if not t or "pos" not in x:
@@ -138,6 +139,10 @@ def slim(data, igc, tlist, tset):
         if name == t:
             name = ""
         lv = x.get("lv") or 0
+        key = (t, round(x["pos"]["X"]), round(x["pos"]["Y"]), name, lv)
+        if key in seen:
+            continue
+        seen.add(key)
         cc = 0
         if t in COLLECTIBLES:
             cc = cid; cid += 1
