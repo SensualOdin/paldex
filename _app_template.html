@@ -678,6 +678,22 @@ footer b{color:#fff}
   border:1.5px dashed var(--line);border-radius:10px;padding:7px 9px}
 .routeinfo.muted{color:var(--muted2)}
 .routeinfo b{color:var(--ink)}
+/* ---- welcome / quick guide ---- */
+.guide{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:2px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.14);color:#fff;font-weight:900;font-size:15px;cursor:pointer;
+  align-self:center;transition:background .15s,transform .1s}
+.guide:hover{background:rgba(255,255,255,.3);transform:scale(1.08)}
+.wbox{width:min(520px,100%)}
+.wsub{font-size:12.5px;font-weight:600;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.wrows{display:flex;flex-direction:column;gap:6px;overflow:auto}
+.wrow{display:flex;flex-direction:column;gap:2px;text-align:left;cursor:pointer;font-family:inherit;
+  background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:8px 12px}
+.wrow:hover{border-color:var(--accent-dk)}
+.wrow b{font-size:13px;color:var(--ink)}
+.wrow span{font-size:11.5px;font-weight:600;color:var(--muted);line-height:1.5}
+.wfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;
+  font-size:11px;font-weight:600;color:var(--muted2);flex-wrap:wrap}
+.wgo{background:var(--accent-dk);color:#fff;border-color:var(--accent-dk)}
 .synrow b{color:var(--ink)}
 .synrow .elbadge{font-size:10px}
 .covrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:7px}
@@ -755,6 +771,15 @@ footer b{color:#fff}
 @media(max-width:760px){
   #mapCanvas{height:56vh}
   .maptop .habcount{display:none}
+  /* comfortable touch + no iOS focus-zoom (needs ≥16px inputs) */
+  .search input,select,#maxDepth,.pmbox input{font-size:16px}
+  .chip{padding:8px 13px;font-size:12.5px}
+  .mini,.reset{padding:9px 13px;min-height:38px}
+  .itemchip{padding:7px 12px;font-size:12px}
+  .passchip{padding:5px 11px;font-size:11px}
+  .mftype{min-height:40px}
+  .ct-btn{width:32px;height:32px;font-size:15px}
+  .guide{width:34px;height:34px}
 }
 
 /* ---- caught & favorites ---- */
@@ -814,8 +839,13 @@ footer b{color:#fff}
 .tierpal:hover{border-color:var(--accent);background:var(--card);transform:translateY(-1px)}
 .tierpal .mini-av3{width:26px;height:26px}
 .tierpal .tlvl{color:var(--accent);font-weight:900;font-size:11px}
-.tiernote{color:var(--muted);font-size:12px;font-weight:600;line-height:1.55;background:var(--screen3);
-  border:2px solid var(--screen-edge);border-radius:8px;padding:9px 12px;margin-bottom:14px}
+.tiernote{color:var(--muted);font-size:12px;font-weight:500;line-height:1.6;background:var(--screen3);
+  border:1.5px solid var(--line);border-left:4px solid var(--accent-dk);border-radius:8px;
+  padding:8px 12px;margin-bottom:14px}
+.ttool{margin-bottom:10px}
+.ttool .mfbody{padding:10px 12px}
+.ttool .ebpanel{border:none;padding:0;margin:0;background:none}
+.ttool .passfind{margin:0}
 .stagebar{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .stagelbl{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted2);font-weight:800}
 .stageseg button{padding:8px 18px;font-size:13px}
@@ -1015,6 +1045,7 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
       <button class="tab" data-view="map" role="tab" aria-selected="false">Map</button>
     </div>
     <div class="counts" id="counts"></div>
+    <button class="guide" id="guideBtn" title="New here? Open the quick guide" aria-label="Open the quick guide">?</button>
   </header>
 
   <!-- ================= PALDEX ================= -->
@@ -1120,7 +1151,7 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
         </div>
         <div class="result" id="chainResult"></div>
         <details class="tcfold" id="chainAdv">
-          <summary>⚙ Advanced: only use Pals I own · max depth</summary>
+          <summary>Advanced: only use Pals I own · max depth</summary>
           <div class="slot" style="margin-top:8px">
             <div class="slbl">Add the Pals you own — the tree will only build from these</div>
             <div class="picker" data-role="own"></div>
@@ -1177,20 +1208,30 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
         <div class="picker" data-role="team"></div>
         <button class="reset" id="teamClear">Clear team</button>
       </div>
-      <div class="tiernote">Build a party of up to <b>5 Pals</b> and the planner reads their <b>partner skills</b> and <b>passives</b> (from the embedded 1.0 data) to surface synergies — attack-type imbues, element damage boosts, team Attack buffs, resistances — plus your offensive coverage and defensive gaps. Each slot has a <b>Pal Surgery planner</b>: pick up to 4 passives and see the projected Attack and stat tier.</div>
-      <div class="passfind">
-        <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-          <input id="passQ" type="text" placeholder="Search passives &amp; effects — try poison, fire, attack, lifesteal, vanguard…" autocomplete="off"></div>
-        <div id="passResults"></div>
-      </div>
-      <div class="ebpanel">
-        <h4>Best combo per element <span class="ebsub">auto-computed from partner skills, passives and base Attack</span></h4>
-        <div class="ebelems" id="ebElems"></div>
-        <div class="gseg ebmode" id="ebMode"><button data-m="player" class="on">Player damage build</button><button data-m="pal">Pal damage build</button></div>
-        <div id="ebOut"></div>
-      </div>
+      <div class="tiernote">Add up to <b>5 Pals</b> above. The planner flags partner-skill synergies, type coverage and shared weaknesses — and each slot has a <b>Pal Surgery planner</b> with projected damage and stat tier. Need ideas? Open the tools below the team.</div>
       <div class="teamgrid" id="teamSlots"></div>
       <div id="teamSyn"></div>
+      <details class="mfsec ttool">
+        <summary><span class="mfarrow"></span>Find Pals by passive or effect<span class="mfsub">try “poison”, “lifesteal”, “fire”</span></summary>
+        <div class="mfbody">
+          <div class="passfind">
+            <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+              <input id="passQ" type="text" placeholder="Search passives &amp; effects — try poison, fire, attack, lifesteal, vanguard…" autocomplete="off"></div>
+            <div id="passResults"></div>
+          </div>
+        </div>
+      </details>
+      <details class="mfsec ttool">
+        <summary><span class="mfarrow"></span>Best combo per element<span class="mfsub">ready-made builds, one-click load</span></summary>
+        <div class="mfbody">
+          <div class="ebpanel">
+            <div class="ebsub" style="margin-bottom:8px">Pick an element and a build style — computed live from partner skills, passives and base Attack.</div>
+            <div class="ebelems" id="ebElems"></div>
+            <div class="gseg ebmode" id="ebMode"><button data-m="player" class="on">Player damage build</button><button data-m="pal">Pal damage build</button></div>
+            <div id="ebOut"></div>
+          </div>
+        </div>
+      </details>
       <div class="passmodal" id="passModal" hidden>
         <div class="pmbox">
           <div class="pmhead"><b id="pmTitle">Choose a passive</b><button class="close" onclick="closePassModal()" aria-label="Close">×</button></div>
@@ -1312,6 +1353,24 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
   <div class="hm-hint">scroll or pinch to zoom · drag to pan · double-click to zoom in · Esc to close</div>
 </div>
 
+<div class="passmodal" id="welcome" hidden>
+  <div class="pmbox wbox">
+    <div class="pmhead"><b>Welcome to Palydex</b><button class="close" onclick="closeWelcome()" aria-label="Close">×</button></div>
+    <div class="wsub">A free Palworld 1.0 companion. Everything runs on your device — works offline, no ads, no account. Tap a row to jump in:</div>
+    <div class="wrows">
+      <button class="wrow" data-tab="paldex"><b>Paldex</b><span>All 299 Pals — stats, partner skills, drops and habitat maps. Tap any card.</span></button>
+      <button class="wrow" data-tab="breeding"><b>Breeding</b><span>Pick the Pal you want and the full breeding family tree appears instantly.</span></button>
+      <button class="wrow" data-tab="tiers"><b>Tiers</b><span>Best Pals for combat, base work and mounts — with an Early / Mid / End game switch.</span></button>
+      <button class="wrow" data-tab="items"><b>Items</b><span>Any material: where to get it, and everything it crafts into.</span></button>
+      <button class="wrow" data-tab="team"><b>Team</b><span>Build a party of 5, spot synergies, and plan surgery passives with projected damage.</span></button>
+      <button class="wrow" data-tab="map"><b>Map</b><span>Every marker in the game, unlimited free tracking, and one-tap farming routes.</span></button>
+    </div>
+    <div class="wfoot">
+      <span>Reopen this anytime with the <b>?</b> button up top.</span>
+      <button class="mini wgo" onclick="closeWelcome()">Start exploring</button>
+    </div>
+  </div>
+</div>
 <script>/*__PALS__*/</script>
 <script>/*__BRD__*/</script>
 <script>/*__ICONS__*/</script>
@@ -1668,7 +1727,7 @@ function render(){
     card.innerHTML=`
       <span class="eledge" aria-hidden="true"></span><span class="shine" aria-hidden="true"></span>
       <span class="dex">#${p.dex}</span>
-      ${p.nocturnal?'<span class="moon" title="Nocturnal">🌙</span>':''}
+      ${p.nocturnal?'<span class="moon" title="Nocturnal — spawns at night"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-label="nocturnal"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></span>':''}
       ${avatarHtml(p,"avatar")}
       <div class="nm">${p.name}</div>
       <div class="sub">${p.internalName} · ${p.size}</div>
@@ -1692,10 +1751,10 @@ function render(){
 }
 function updateCounts(shown){
   $("#counts").innerHTML =
-    `<span><b>${shown}</b>/${PALS.length} Pals</span>`+
-    `<span>✓ <b>${CAUGHT.size}</b>/${PALS.length} caught</span>`+
-    `<span><b>${totalPairs.toLocaleString()}</b> breeding pairs</span>`+
-    `<span><b>${PALS.filter(p=>p.selfOnly).length}</b> self-only</span>`;
+    `<span title="Pals matching your current search & filters"><b>${shown}</b>/${PALS.length} Pals</span>`+
+    `<span title="Your caught tracker — tap the ✓ on any Pal card"><b>✓ ${CAUGHT.size}</b>/${PALS.length} caught</span>`+
+    `<span title="Verified parent pairs in the 1.0 breeding table"><b>${totalPairs.toLocaleString()}</b> breeding pairs</span>`+
+    `<span title="Pals only obtainable by breeding two of the same species"><b>${PALS.filter(p=>p.selfOnly).length}</b> self-only</span>`;
 }
 const MOBILE_MQ=window.matchMedia("(max-width:760px)");
 const isMobile=()=>MOBILE_MQ.matches;
@@ -2403,7 +2462,7 @@ function tierRow(tier,items){
   return `<div class="tierrow tier-${tier}"><div class="tierlabel">${tier}</div><div class="tierpals">${items.join("")}</div></div>`;
 }
 const TSTATE={stage:"end"};
-const STAGES=[["early","🌱 Early"],["mid","⚒ Mid"],["end","👑 End"]];
+const STAGES=[["early","Early"],["mid","Mid"],["end","End"]];
 function stageBar(){
   return `<div class="stagebar"><span class="stagelbl">Game stage</span><div class="gseg stageseg">`+
     STAGES.map(([k,label])=>`<button data-stage="${k}"${TSTATE.stage===k?' class="on"':''}>${label}</button>`).join("")+
@@ -2417,7 +2476,7 @@ function stagePals(){ return TSTATE.stage==="end" ? PALS : PALS.filter(p=>p.rari
 function stageNote(){
   if(TSTATE.stage==="end") return "";
   const cut=STAGE_MAXRAR[TSTATE.stage];
-  return `<div class="stageblurb">${TSTATE.stage==="early"?"🌱 Early game":"⚒ Mid game"} — showing only Pals of <b>rarity ≤ ${cut}</b> (★ badge on each card), a good proxy for what you can realistically catch by then. Switch to 👑 End for the full boards.</div>`;
+  return `<div class="stageblurb">${TSTATE.stage==="early"?"Early game":"Mid game"} — showing only Pals of <b>rarity ≤ ${cut}</b> (★ badge on each card), a good proxy for what you can realistically catch by then. Switch to <b>End</b> for the full boards.</div>`;
 }
 function curatedBoard(key){
   const board=TIERS[key]; if(!board||!board.stages) return "";
@@ -3769,6 +3828,25 @@ function initDevice(){
   // random Pal (blue button)
   $("#randBtn").onclick=()=>{ const p=PALS[Math.floor(Math.random()*PALS.length)]; gotoPaldex(p.internalIndex); };
 }
+/* ---- first-visit welcome / quick guide ---- */
+function openWelcome(){ const w=$("#welcome"); if(w){ w.hidden=false; } }
+function closeWelcome(){
+  const w=$("#welcome"); if(w) w.hidden=true;
+  try{ localStorage.setItem("paldex-welcomed","1"); }catch(e){}
+}
+window.closeWelcome=closeWelcome;
+function initWelcome(){
+  const w=$("#welcome"); if(!w) return;
+  $("#guideBtn").onclick=openWelcome;
+  w.addEventListener("click",e=>{ if(e.target.id==="welcome") closeWelcome(); });
+  w.querySelectorAll(".wrow").forEach(b=>b.onclick=()=>{
+    closeWelcome();
+    const t=$(`.tab[data-view=${b.dataset.tab}]`); if(t) t.click();
+  });
+  let seen=null; try{ seen=localStorage.getItem("paldex-welcomed"); }catch(e){}
+  /* deep-linked visitors already know where they're going — don't interrupt */
+  if(!seen&&!location.hash) w.hidden=false;
+}
 function setSort(v){ state.sort=v; const s=$("#sort"); if(s) s.value=v; }
 function setSortDir(d){
   state.sortDir=d;
@@ -3776,6 +3854,8 @@ function setSortDir(d){
   b.setAttribute("aria-pressed",d==="rev"?"true":"false");
   b.classList.toggle("on",d==="rev");
   b.textContent=d==="rev"?"↑":"⇅";
+  b.title=d==="rev"?"Sort order is flipped — click to restore":"Flip sort order (high ↔ low)";
+  b.setAttribute("aria-label",b.title);
 }
 function initControls(){
   $("#q").addEventListener("input",e=>{state.q=e.target.value.trim().toLowerCase();render();});
@@ -3803,6 +3883,7 @@ function boot(){
   renderForward();
   openFromHash();
   window.addEventListener("hashchange",openFromHash);
+  initWelcome();
   // sanity log for the §10 checklist
   console.log("[Paldex] records:",PALS.length,"| combo pairs:",totalPairs,"| genderLocked:",BRD.genderLocked.length,
     "| self-only:",PALS.filter(p=>p.selfOnly).length,"| missing elements:",PALS.filter(p=>!p.elements||!p.elements.length).length);
