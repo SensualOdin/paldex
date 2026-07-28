@@ -694,6 +694,22 @@ footer b{color:#fff}
 .wfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;
   font-size:11px;font-weight:600;color:var(--muted2);flex-wrap:wrap}
 .wgo{background:var(--accent-dk);color:#fff;border-color:var(--accent-dk)}
+/* ---- global search ---- */
+.gsmodal{align-items:flex-start;padding-top:9vh}
+.gsbox{width:min(560px,100%)}
+.gsrow .gsub{font-size:10.5px;font-weight:700;color:var(--muted2);margin-left:auto;text-align:right}
+.gsrow.sel{border-color:var(--accent-dk);background:var(--screen2)}
+.gsrow .iico{width:20px;height:20px}
+.gsrow .mini-av3{width:24px;height:24px}
+.gshint{font-size:10.5px;font-weight:700;color:var(--muted2);margin-top:8px;text-align:center}
+/* ---- first-paint skeleton ---- */
+.skelnote{grid-column:1/-1;font-size:12px;font-weight:700;color:var(--muted2);text-align:center;padding:6px 0}
+.skel{height:212px;border-radius:14px;border:2px solid var(--screen-edge);
+  background:linear-gradient(100deg,var(--card) 40%,var(--screen3) 50%,var(--card) 60%);background-size:200% 100%}
+@media (prefers-reduced-motion: no-preference){
+  .skel{animation:skm 1.2s linear infinite}
+  @keyframes skm{to{background-position:-200% 0}}
+}
 .synrow b{color:var(--ink)}
 .synrow .elbadge{font-size:10px}
 .covrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:7px}
@@ -1045,6 +1061,9 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
       <button class="tab" data-view="map" role="tab" aria-selected="false">Map</button>
     </div>
     <div class="counts" id="counts"></div>
+    <button class="guide" id="gsBtn" title="Search everything — press /" aria-label="Search Pals, items, markers and passives">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
     <button class="guide" id="guideBtn" title="New here? Open the quick guide" aria-label="Open the quick guide">?</button>
   </header>
 
@@ -1085,7 +1104,11 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
     </div>
     <div class="grid-2">
       <div class="screen">
-        <div class="palgrid" id="palgrid"></div>
+        <div class="palgrid" id="palgrid">
+          <div class="skelnote">Loading the full 1.0 dex — the first visit is the heaviest; after that it's instant and works offline.</div>
+          <div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div>
+          <div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div>
+        </div>
         <div class="empty" id="gridEmpty" style="display:none">No Pals match your filters.</div>
       </div>
       <div id="sheetScrim" aria-hidden="true"></div>
@@ -1353,6 +1376,14 @@ body.night .cer-child{background:rgba(255,255,255,.03)}
   <div class="hm-hint">scroll or pinch to zoom · drag to pan · double-click to zoom in · Esc to close</div>
 </div>
 
+<div class="passmodal gsmodal" id="gsearch" hidden>
+  <div class="pmbox gsbox">
+    <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="gsQ" type="text" placeholder="Search Pals, items, map markers, passives…" autocomplete="off"></div>
+    <div class="pmlist" id="gsList"></div>
+    <div class="gshint">↑↓ to pick · Enter to open · press <b>/</b> or <b>Ctrl/⌘ K</b> anywhere to search</div>
+  </div>
+</div>
 <div class="passmodal" id="welcome" hidden>
   <div class="pmbox wbox">
     <div class="pmhead"><b>Welcome to Palydex</b><button class="close" onclick="closeWelcome()" aria-label="Close">×</button></div>
@@ -3847,6 +3878,96 @@ function initWelcome(){
   /* deep-linked visitors already know where they're going — don't interrupt */
   if(!seen&&!location.hash) w.hidden=false;
 }
+/* ---- global search: Pals, items, passives, map markers (press / or Ctrl/Cmd-K) ---- */
+let GS_MARKERS=null, GS_SEL=0, GS_RES=[];
+function gsMarkers(){
+  if(GS_MARKERS) return GS_MARKERS;
+  GS_MARKERS=[];
+  if(typeof MAPDATA!=="undefined"&&MAPDATA) for(const mp of ["main","tree"]){
+    const seen=new Set();
+    for(const m of MAPDATA.markers[mp]){
+      const nm=m[3]; if(!nm) continue;
+      const t=MAPDATA.tlist[m[0]], k=nm+"|"+t;
+      if(seen.has(k)) continue; seen.add(k);
+      GS_MARKERS.push({nm,t,mp,x:m[1],y:m[2]});
+    }
+    for(const r of MAPDATA.regions[mp]||[]){
+      if(!r.n) continue;
+      const [wx,wy]=game2w(r.gx,r.gy);
+      GS_MARKERS.push({nm:r.n.replace(/^Lv\.[\d–\-]+\s*/,""),t:"Region",mp,x:wx,y:wy,z:1.2});
+    }
+  }
+  return GS_MARKERS;
+}
+function gsOpen(){ $("#gsearch").hidden=false; $("#gsQ").value=""; gsRender(); $("#gsQ").focus(); }
+function gsClose(){ $("#gsearch").hidden=true; }
+function gsRender(){
+  const q=$("#gsQ").value.trim().toLowerCase(); GS_SEL=0; GS_RES=[];
+  const L=$("#gsList");
+  if(q.length<2){ L.innerHTML=`<div class="pmempty">Type at least 2 letters — searches all 299 Pals, every item, passive and named map marker at once.</div>`; return; }
+  const score=s=>{ s=s.toLowerCase(); return s===q?0:s.startsWith(q)?1:s.includes(q)?2:-1; };
+  const add=(sc,html,act)=>GS_RES.push({sc,html,act});
+  const seenPal=new Set();
+  for(const p of PALS){
+    if(seenPal.has(p.name)) continue; seenPal.add(p.name);
+    const sc=score(p.name); if(sc<0) continue;
+    add(sc,`${avatarHtml(p,"mini-av3")}<b>${p.name}</b><span class="gsub">Pal · #${p.dex}</span>`,
+      ()=>gotoPaldex(p.internalIndex));
+  }
+  for(const n of ITEM_INDEX.keys()){
+    const sc=score(n); if(sc<0) continue;
+    add(sc+.1,`${itemIcon(n)}<b>${n}</b><span class="gsub">Item</span>`,()=>gotoItem(n));
+  }
+  for(const x of PASSIVES){
+    const sc=score(x.name); if(sc<0) continue;
+    add(sc+.2,`<span class="prank">${x.rank>0?"+"+x.rank:x.rank}</span><b>${x.name}</b><span class="gsub">Passive · ${passLabel(x)}</span>`,
+      ()=>gsPassive(x.name));
+  }
+  for(const m of gsMarkers()){
+    const sc=score(m.nm); if(sc<0) continue;
+    add(sc+.3,`<b>${m.nm}</b><span class="gsub">Map · ${m.t} · ${m.mp==="main"?"Palpagos":"World Tree"}</span>`,
+      ()=>gsFly(m));
+  }
+  GS_RES.sort((a,b)=>a.sc-b.sc);
+  GS_RES=GS_RES.slice(0,14);
+  L.innerHTML=GS_RES.length
+    ?GS_RES.map((r,i)=>`<button class="pmrow gsrow${i===0?" sel":""}" data-i="${i}">${r.html}</button>`).join("")
+    :`<div class="pmempty">No Pal, item, passive or marker matches that.</div>`;
+  L.querySelectorAll(".gsrow").forEach(b=>b.onclick=()=>gsGo(+b.dataset.i));
+}
+function gsGo(i){ const r=GS_RES[i]; if(!r) return; gsClose(); r.act(); blink("g"); }
+function gsPassive(n){
+  const t=$(`.tab[data-view=team]`); if(t) t.click();
+  const det=$$("#view-team details.ttool")[0]; if(det) det.open=true;
+  $("#passQ").value=n; renderPassSearch();
+  setTimeout(()=>$("#passQ").scrollIntoView({behavior:"smooth",block:"center"}),80);
+}
+function gsFly(m){
+  const t=$(`.tab[data-view=map]`); if(t) t.click();
+  setTimeout(()=>{
+    if(MV.map!==m.mp){ const b=$(`#mapSwitch button[data-map=${m.mp}]`); if(b) b.click(); }
+    setTimeout(()=>mapFly(m.x,m.y,m.z||2.2),140);
+  },140);
+}
+function initGSearch(){
+  $("#gsBtn").onclick=gsOpen;
+  $("#gsearch").addEventListener("click",e=>{ if(e.target.id==="gsearch") gsClose(); });
+  $("#gsQ").addEventListener("input",gsRender);
+  $("#gsQ").addEventListener("keydown",e=>{
+    if(e.key==="Enter") gsGo(GS_SEL);
+    else if(e.key==="ArrowDown"||e.key==="ArrowUp"){
+      e.preventDefault();
+      GS_SEL=Math.max(0,Math.min(GS_RES.length-1,GS_SEL+(e.key==="ArrowDown"?1:-1)));
+      $$("#gsList .gsrow").forEach((b,i)=>b.classList.toggle("sel",i===GS_SEL));
+      const el=$$("#gsList .gsrow")[GS_SEL]; if(el) el.scrollIntoView({block:"nearest"});
+    }
+  });
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"&&!$("#gsearch").hidden){ gsClose(); return; }
+    if(/input|textarea|select/i.test(e.target.tagName||"")) return;
+    if(e.key==="/"||((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k")){ e.preventDefault(); gsOpen(); }
+  });
+}
 function setSort(v){ state.sort=v; const s=$("#sort"); if(s) s.value=v; }
 function setSortDir(d){
   state.sortDir=d;
@@ -3884,6 +4005,7 @@ function boot(){
   openFromHash();
   window.addEventListener("hashchange",openFromHash);
   initWelcome();
+  initGSearch();
   // sanity log for the §10 checklist
   console.log("[Paldex] records:",PALS.length,"| combo pairs:",totalPairs,"| genderLocked:",BRD.genderLocked.length,
     "| self-only:",PALS.filter(p=>p.selfOnly).length,"| missing elements:",PALS.filter(p=>!p.elements||!p.elements.length).length);
