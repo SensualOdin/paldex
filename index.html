@@ -1141,15 +1141,20 @@ body.nofx::before,body.nofx::after{display:none}
 }
 
 /* ---- panels: notched pixel plates ---- */
+/* notched plate drawn on a backdrop layer so popups/dropdowns can overflow */
 .screen,.bpanel{
+  position:relative;isolation:isolate;
+  background:none;border:none;border-radius:0;box-shadow:none;clip-path:none;
+}
+.screen::before,.bpanel::before{
+  content:"";position:absolute;inset:0;z-index:-1;display:block;
   background:var(--screen);
-  border:2px solid var(--line2);border-radius:0;
+  border:2px solid var(--line2);
   box-shadow:inset 0 0 0 2px rgba(5,7,13,.8), inset 0 0 44px rgba(30,108,255,.05);
   clip-path:polygon(0 10px,10px 10px,10px 0,calc(100% - 10px) 0,calc(100% - 10px) 10px,100% 10px,
     100% calc(100% - 10px),calc(100% - 10px) calc(100% - 10px),calc(100% - 10px) 100%,
     10px 100%,10px calc(100% - 10px),0 calc(100% - 10px));
 }
-.screen::before{display:none}
 .detail{
   background:var(--screen);border:2px solid var(--line2);border-radius:0;
   box-shadow:inset 0 0 0 2px rgba(5,7,13,.8);
@@ -1332,6 +1337,51 @@ body.night .brand h1{color:var(--gold);text-shadow:3px 3px 0 #1f9d4c,0 0 14px rg
 .pxi{display:inline-block;vertical-align:-2px}
 .ver{white-space:normal;overflow-wrap:anywhere}
 
+/* ---- bells & whistles ---- */
+#bootfx{position:fixed;inset:0;z-index:3000;background:#000;pointer-events:none;display:flex;align-items:center}
+#bootfx .beam{width:100%;height:2px;background:#eafff7;box-shadow:0 0 24px 6px rgba(180,255,240,.8)}
+@media (prefers-reduced-motion: no-preference){
+  #bootfx{animation:bootfade .14s linear .5s forwards}
+  #bootfx .beam{animation:bootbeam .5s steps(8,jump-none) forwards;transform-origin:center}
+  @keyframes bootbeam{0%{transform:scaleX(0)}40%{transform:scaleX(1);height:2px}100%{transform:scaleX(1);height:100vh;opacity:0}}
+  @keyframes bootfade{to{opacity:0;visibility:hidden}}
+}
+@media (prefers-reduced-motion: reduce){ #bootfx{display:none} }
+.coinblink{color:var(--gold)}
+@media (prefers-reduced-motion: no-preference){
+  .coinblink{animation:coinb 2.4s steps(2,jump-none) infinite}
+  @keyframes coinb{0%,55%{opacity:1}75%{opacity:.15}}
+  .brand h1{animation:marqueeglow 7s steps(3,jump-none) infinite}
+  @keyframes marqueeglow{0%,88%{text-shadow:3px 3px 0 var(--red),0 0 14px rgba(255,194,28,.35)}
+    94%{text-shadow:3px 3px 0 var(--red),0 0 28px rgba(255,194,28,.8)}}
+  .view.active{animation:viewin .14s steps(2,jump-none)}
+  @keyframes viewin{0%{opacity:.25}100%{opacity:1}}
+}
+.screen::before,.bpanel::before{
+  background-image:repeating-conic-gradient(rgba(63,224,255,.03) 0% 25%, transparent 0% 50%);
+  background-size:6px 6px;background-color:var(--screen);
+}
+.mini,.reset,.tab,.gseg button,.stageseg button,.bsub .t,.guide{box-shadow:inset 0 0 0 2px var(--ph)}
+.tab.active,.gseg button.on,.stageseg button.on,.bsub .t.active{
+  box-shadow:inset 0 0 0 2px var(--ph), var(--glow-cyan)}
+.guide:hover{box-shadow:inset 0 0 0 2px var(--ph), var(--glow-cyan)}
+.oneup{position:fixed;z-index:2500;font-family:var(--display);font-size:12px;color:var(--green);
+  text-shadow:0 0 8px rgba(62,229,76,.7);pointer-events:none}
+.oneup.favup{color:var(--pink);text-shadow:0 0 8px rgba(255,110,199,.7)}
+@media (prefers-reduced-motion: no-preference){
+  .oneup{animation:oneupf .8s steps(8,jump-none) forwards}
+  @keyframes oneupf{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-46px);opacity:0}}
+}
+@media (prefers-reduced-motion: reduce){ .oneup{display:none} }
+@media (prefers-reduced-motion: no-preference){
+  body.turbo .brand h1,body.turbo .tab.active,body.turbo .lens{animation:turbohue 1.2s linear infinite}
+  @keyframes turbohue{to{filter:hue-rotate(360deg)}}
+}
+.toast{position:fixed;left:50%;top:26%;transform:translateX(-50%);z-index:3000;
+  font-family:var(--display);font-size:14px;color:var(--gold);background:var(--deep);
+  border:2px solid var(--gold);box-shadow:var(--glow-gold);padding:14px 20px}
+.guide.sfxon{color:var(--green);border-color:var(--green)}
+
 /* ---- reduced motion & mobile ---- */
 @media (prefers-reduced-motion: reduce){
   .tab.active::before,.tbadge.tS,.rar.legendary{animation:none}
@@ -1367,6 +1417,7 @@ medium-native-crt-arcade-pixel-glow).
 FINISH: unreviewed and undocumented is unfinished; this build ends with the
 finish review, the verdict, and DESIGN.md.
 -->
+<div id="bootfx" aria-hidden="true"><div class="beam"></div></div>
 <div class="device">
   <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
   <div class="hinge"></div>
@@ -1376,7 +1427,7 @@ finish review, the verdict, and DESIGN.md.
       <div class="lights"><span class="light r"></span><span class="light y"></span><span class="light g"></span></div>
     </div>
     <div class="brand">
-      <h1>PALYDEX</h1><span class="ver" id="verTag">Palworld 1.0 · build 1.100.427 · insert coin</span>
+      <h1>PALYDEX</h1><span class="ver" id="verTag">Palworld 1.0 · build 1.100.427 · <span class="coinblink">insert coin</span></span>
     </div>
     <div class="tabs" role="tablist" aria-label="App sections">
       <button class="tab active" data-view="paldex" role="tab" aria-selected="true">Paldex</button>
@@ -1387,6 +1438,7 @@ finish review, the verdict, and DESIGN.md.
       <button class="tab" data-view="map" role="tab" aria-selected="false">Map</button>
     </div>
     <div class="counts" id="counts"></div>
+    <button class="guide" id="sfxBtn" title="Sound effects: off" aria-label="Toggle sound effects" aria-pressed="false">♪</button>
     <button class="guide" id="gsBtn" title="Search everything — press /" aria-label="Search Pals, items, markers and passives">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     </button>
@@ -1947,11 +1999,15 @@ function saveSets(){ try{
 }catch(e){} }
 function trackerFilterActive(){ return ["caught","missing","fav"].some(k=>state.types.has(k)); }
 function toggleCaught(idx){
+  const adding=!CAUGHT.has(idx);
   CAUGHT.has(idx)?CAUGHT.delete(idx):CAUGHT.add(idx); saveSets(); blink("g");
+  if(adding){ SFX.play("oneup"); juice("+1UP"); }
   if(trackerFilterActive()) render(); else refreshTrackerUI(idx);
 }
 function toggleFav(idx){
+  const adding=!FAVS.has(idx);
   FAVS.has(idx)?FAVS.delete(idx):FAVS.add(idx); saveSets(); blink("y");
+  if(adding){ SFX.play("fav"); juice("+FAV","favup"); }
   if(trackerFilterActive()) render(); else refreshTrackerUI(idx);
 }
 function refreshTrackerUI(idx){
@@ -4194,6 +4250,64 @@ function closeWelcome(){
   try{ localStorage.setItem("paldex-welcomed","1"); }catch(e){}
 }
 window.closeWelcome=closeWelcome;
+/* ---- arcade bells & whistles ---- */
+const SFX={on:false,ctx:null,
+  init(){ try{ this.on=localStorage.getItem("paldex-sfx")==="1"; }catch(e){} this.sync(); },
+  sync(){ const b=$("#sfxBtn"); if(!b) return;
+    b.classList.toggle("sfxon",this.on);
+    b.title=this.on?"Sound effects: on":"Sound effects: off";
+    b.setAttribute("aria-pressed",this.on?"true":"false"); },
+  toggle(){ this.on=!this.on; try{localStorage.setItem("paldex-sfx",this.on?"1":"0");}catch(e){}
+    this.sync(); if(this.on) this.play("coin"); },
+  beep(f,dur,delay=0,type="square",vol=.045){
+    try{
+      const c=this.ctx||(this.ctx=new (window.AudioContext||window.webkitAudioContext)());
+      const o=c.createOscillator(),g=c.createGain();
+      o.type=type;o.frequency.value=f;o.connect(g);g.connect(c.destination);
+      const at=c.currentTime+delay;
+      g.gain.setValueAtTime(vol,at);g.gain.exponentialRampToValueAtTime(.0001,at+dur);
+      o.start(at);o.stop(at+dur+.02);
+    }catch(e){}
+  },
+  play(n){ if(!this.on) return;
+    if(n==="tab") this.beep(660,.05);
+    else if(n==="coin"){ this.beep(988,.07); this.beep(1319,.18,.07); }
+    else if(n==="oneup"){ this.beep(523,.08); this.beep(784,.08,.08); this.beep(1046,.16,.16); }
+    else if(n==="fav") this.beep(880,.06,0,"triangle");
+    else if(n==="blip") this.beep(330,.05);
+  }
+};
+function juice(text,cls){
+  const ev=window.event;
+  const x=(ev&&ev.clientX)||innerWidth/2, y=(ev&&ev.clientY)||140;
+  const d=document.createElement("div");
+  d.className="oneup"+(cls?" "+cls:""); d.textContent=text;
+  d.style.left=(x-16)+"px"; d.style.top=(y-20)+"px";
+  document.body.appendChild(d); setTimeout(()=>d.remove(),900);
+}
+function initBells(){
+  SFX.init();
+  const sb=$("#sfxBtn"); if(sb) sb.onclick=()=>SFX.toggle();
+  document.addEventListener("click",e=>{
+    if(e.target.closest(".tab")) SFX.play("tab");
+    else if(e.target.closest(".bsub .t,.gseg button,.stageseg button,.mini")) SFX.play("blip");
+  });
+  const boot=$("#bootfx"); if(boot) setTimeout(()=>boot.remove(),1000);
+  const seq=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+  let ki=0;
+  document.addEventListener("keydown",e=>{
+    if(/input|textarea|select/i.test(e.target.tagName||"")) return;
+    const k=e.key.length===1?e.key.toLowerCase():e.key;
+    ki=(k===seq[ki])?ki+1:(k===seq[0]?1:0);
+    if(ki===seq.length){ ki=0;
+      document.body.classList.toggle("turbo");
+      const t=document.createElement("div"); t.className="toast";
+      t.textContent=document.body.classList.contains("turbo")?"TURBO MODE ON":"TURBO MODE OFF";
+      document.body.appendChild(t); setTimeout(()=>t.remove(),1500);
+      SFX.play("oneup");
+    }
+  });
+}
 function initWelcome(){
   const w=$("#welcome"); if(!w) return;
   $("#guideBtn").onclick=openWelcome;
@@ -4334,6 +4448,7 @@ function boot(){
   window.addEventListener("hashchange",openFromHash);
   initWelcome();
   initGSearch();
+  initBells();
   // sanity log for the §10 checklist
   console.log("[Paldex] records:",PALS.length,"| combo pairs:",totalPairs,"| genderLocked:",BRD.genderLocked.length,
     "| self-only:",PALS.filter(p=>p.selfOnly).length,"| missing elements:",PALS.filter(p=>!p.elements||!p.elements.length).length);

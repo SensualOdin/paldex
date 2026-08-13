@@ -11,39 +11,57 @@
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Palydex", "item": "https://www.palydex.com/"}, {"@type": "ListItem", "position": 2, "name": "Pal", "item": "https://www.palydex.com/pal"}, {"@type": "ListItem", "position": 3, "name": "Verdash", "item": "https://www.palydex.com/pal/verdash"}]}</script>
 <style>
-*{box-sizing:border-box}body{margin:0;font:15px/1.55 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-background:#2f342a;color:#1e231a}
+@font-face{font-family:"Press Start 2P";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/ps2p.woff2) format("woff2")}
+@font-face{font-family:"VT323";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/vt323.woff2) format("woff2")}
+*{box-sizing:border-box}
+body{margin:0;font:19px/1.5 "VT323","Courier New",monospace;letter-spacing:.2px;
+background:radial-gradient(1000px 600px at 50% -8%, rgba(30,108,255,.10) 0%, transparent 60%),#05070d;
+color:#cfd9ff;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:99;pointer-events:none;
+background:repeating-linear-gradient(0deg, rgba(0,0,0,.20) 0 1px, transparent 1px 3px)}
 .wrap{max-width:760px;margin:0 auto;padding:18px 14px 40px}
-.device{background:linear-gradient(158deg,#e0362c,#a51e17);border-radius:18px;padding:14px;border:2px solid #6f120d}
-.screen{background:#eef1e2;border-radius:12px;border:3px solid #2c3128;padding:18px}
-.hd{display:flex;gap:14px;align-items:center;margin-bottom:6px}
-.hd img{width:84px;height:84px;border-radius:22%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.2)}
-h1{font-size:26px;margin:0}
-.sub{color:#5a5f4d;font-size:13px}.bt{color:#a05a00;font-style:italic;font-weight:700;font-size:13px}
-.chips{margin:8px 0}.chip{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12px;
-font-weight:800;margin-right:5px;text-transform:capitalize}
-.lore{border-left:4px solid #c77d00;background:#fff;border-radius:8px;padding:9px 12px;font-style:italic;
-color:#5a5f4d;font-size:13.5px;margin:12px 0}
-h2{font-size:15px;margin:18px 0 8px;color:#1f665d;text-transform:uppercase;letter-spacing:.6px}
-table{border-collapse:collapse;width:100%;font-size:13.5px}
-td,th{padding:5px 9px;border:1px solid #cdd1b8;text-align:left;background:#fff}
-th{background:#e3e7d2;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
-.cta{display:block;text-align:center;background:#2b8a7e;color:#fff;font-weight:800;text-decoration:none;
-padding:13px;border-radius:12px;font-size:16px;margin:18px 0 6px}
-.cta:hover{background:#1f665d}
-a{color:#1f665d}.links a,.links span{display:inline-block;background:#fff;border:1.5px solid #cdd1b8;border-radius:999px;
-padding:3px 11px;margin:3px 4px 3px 0;font-size:12.5px;text-decoration:none;font-weight:700}
+.device{background:none;border:none;padding:0}
+.screen{position:relative;background:#0a1022;border:2px solid #33479c;padding:20px 18px;
+box-shadow:inset 0 0 0 2px rgba(5,7,13,.8), inset 0 0 44px rgba(30,108,255,.05);
+clip-path:polygon(0 10px,10px 10px,10px 0,calc(100% - 10px) 0,calc(100% - 10px) 10px,100% 10px,100% calc(100% - 10px),calc(100% - 10px) calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,10px calc(100% - 10px),0 calc(100% - 10px))}
+.hd{display:flex;gap:14px;align-items:center;margin-bottom:8px}
+.hd img{width:84px;height:84px;background:#01030a;border:2px solid #22346f;image-rendering:auto}
+h1{font-family:"Press Start 2P","VT323",monospace;font-size:clamp(15px,4.2vw,22px);margin:0;line-height:1.35;
+color:#ffc21c;text-shadow:2px 2px 0 #ff4b3e, 0 0 12px rgba(255,194,28,.3)}
+.sub{color:#8fa0d8;font-size:16px}
+.bt{color:#b9a0ff;font-style:italic;font-weight:700;font-size:16px}
+.chips{margin:10px 0}
+.chip{display:inline-block;padding:3px 11px;font-size:15px;font-weight:700;margin-right:5px;
+text-transform:capitalize;border:1px solid rgba(0,0,0,.5)}
+.lore{border:2px dashed #33479c;background:#060d1d;padding:9px 12px;font-style:italic;
+color:#8fa0d8;font-size:17px;margin:12px 0}
+h2{font-family:"Press Start 2P","VT323",monospace;font-size:9px;letter-spacing:1.5px;margin:22px 0 10px;
+color:#b9a0ff;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+h2::after{content:"";flex:1;border-top:2px dashed #33479c;opacity:.7}
+table{border-collapse:collapse;width:100%;font-size:17px}
+td,th{padding:5px 9px;border:1px solid #22346f;text-align:left;background:#0b1226;color:#cfd9ff}
+th{background:#12204a;font-family:"Press Start 2P","VT323",monospace;font-size:8px;letter-spacing:1px;
+text-transform:uppercase;color:#8fa0d8}
+.cta{display:block;text-align:center;background:#1e6cff;color:#fff;text-decoration:none;
+font-family:"Press Start 2P","VT323",monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;
+padding:15px 13px;border:2px solid #3fe0ff;margin:18px 0 6px;
+box-shadow:0 0 6px rgba(63,224,255,.55),0 0 18px rgba(63,224,255,.22)}
+.cta:hover{background:#2f8dff}
+a{color:#3fe0ff;text-decoration:none}
+.links a,.links span{display:inline-block;background:#0a1022;border:1.5px solid #22346f;color:#cfd9ff;
+padding:3px 11px;margin:3px 4px 3px 0;font-size:16px;text-decoration:none;font-weight:700}
+.links a:hover{border-color:#3fe0ff;color:#fff}
 .links img{width:16px;height:16px;vertical-align:-3px;margin-right:3px}
 td img{width:18px;height:18px;vertical-align:-4px;margin-right:4px}
-.footer{color:#ffdad6;font-size:11px;text-align:center;margin-top:12px;line-height:1.7}
-.footer a{color:#fff}
-.pn{display:flex;justify-content:space-between;margin-top:14px;font-size:13px}
-.crumbs{font-size:12px;color:#5a5f4d;margin-bottom:8px}.crumbs a{color:#1f665d}
+.footer{color:#5e6da3;font-size:15px;text-align:center;margin-top:14px;line-height:1.7}
+.footer a{color:#8fa0d8}
+.pn{display:flex;justify-content:space-between;margin-top:16px;font-size:17px}
+.crumbs{font-size:16px;color:#5e6da3;margin-bottom:10px}.crumbs a{color:#3fe0ff}
 </style></head><body><div class="wrap"><div class="device"><div class="screen">
 <div class="crumbs"><a href="/">Palydex</a> › <a href="/#tab=paldex">Paldex</a> › Verdash</div>
 <div class="hd"><img src="/icon/pal/verdash.png" alt="Verdash, a grass Pal" width="84" height="84">
 <div><h1>Verdash</h1><div class="sub">Paldeck #152 · Palworld 1.0</div><div class="bt">&ldquo;Gale of the Forest&rdquo;</div></div></div>
-<div class="chips"><span class="chip" style="background:#57B947;color:#0b0d12">grass</span></div>
+<div class="chips"><span class="chip" style="background:#3ee54c;color:#0b0d12">grass</span></div>
 <div class="lore">Land that Verdash has run across becomes extremely fertile, with thick vegetation growing soon after. It will not run anywhere that herbicide has been used.</div>
 <a class="cta" href="/#pal=verdash">Open Verdash in the Palydex app &rarr;</a>
 <div class="sub" style="text-align:center">breeding family tree &middot; habitat heat map &middot; interactive world map &middot; tier lists &middot; works offline</div>
