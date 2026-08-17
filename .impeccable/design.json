@@ -1,36 +1,39 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-13T00:00:00Z",
+  "generatedAt": "2026-08-17T00:00:00Z",
   "title": "Design System: Palydex",
   "extensions": {
     "colorMeta": {
-      "phosphor-black": { "role": "neutral", "displayName": "Phosphor Black", "canonical": "#05070d", "tonalRamp": ["#05070d", "#0a1022", "#0b1226", "#0c1430", "#12204a", "#22346f", "#33479c", "#8fa0d8"] },
-      "live-cyan": { "role": "primary", "displayName": "Live Cyan", "canonical": "#3fe0ff", "tonalRamp": ["#03182b", "#0a2a3f", "#125a73", "#1e8fae", "#35c4e8", "#3fe0ff", "#8eecff", "#dffaff"] },
-      "marquee-gold": { "role": "secondary", "displayName": "Marquee Gold", "canonical": "#ffc21c", "tonalRamp": ["#241c00", "#4a3a06", "#7a600e", "#b08c14", "#e3a91f", "#ffc21c", "#ffd76a", "#fff3c4"] },
-      "rank-magenta": { "role": "secondary", "displayName": "Rank Magenta", "canonical": "#ff3fa4", "tonalRamp": ["#2b0a1e", "#4d1236", "#7a1f57", "#a82c78", "#d63690", "#ff3fa4", "#ff7ec2", "#ffc4e2"] },
-      "caught-green": { "role": "tertiary", "displayName": "Caught Green", "canonical": "#3ee54c", "tonalRamp": ["#03210c", "#074218", "#0e6b26", "#1a9636", "#2bc041", "#3ee54c", "#84f18c", "#d2fbd5"] },
-      "favorite-pink": { "role": "tertiary", "displayName": "Favorite Pink", "canonical": "#ff6ec7", "tonalRamp": ["#2b0a1e", "#54163a", "#832359", "#b23379", "#dd4f9e", "#ff6ec7", "#ff9dd9", "#ffd3ee"] },
-      "attention-orange": { "role": "tertiary", "displayName": "Attention Orange", "canonical": "#ff9427", "tonalRamp": ["#211302", "#452805", "#70410b", "#a05f12", "#d17a1a", "#ff9427", "#ffb768", "#ffe0bd"] },
-      "label-lilac": { "role": "tertiary", "displayName": "Label Lilac", "canonical": "#b9a0ff", "tonalRamp": ["#161033", "#2b2059", "#453583", "#6350ad", "#8a75d6", "#b9a0ff", "#d0c1ff", "#ece5ff"] },
-      "text": { "role": "neutral", "displayName": "Phosphor Text", "canonical": "#cfd9ff", "tonalRamp": ["#5e6da3", "#7a89c2", "#8fa0d8", "#a5b3e5", "#bac7f2", "#cfd9ff", "#e4eaff", "#f4f6ff"] }
+      "chassis-black": { "role": "neutral", "displayName": "Chassis Black", "canonical": "#0a0b0d", "tonalRamp": ["#0a0b0d", "#0e1013", "#121418", "#16181d", "#1d2026", "#26292f", "#383d45", "#8b93a0"] },
+      "plasma-orange": { "role": "primary", "displayName": "Plasma Orange", "canonical": "#ff9a1c", "tonalRamp": ["#241503", "#4a2c06", "#7a4a0a", "#b06c10", "#e08800", "#ff9a1c", "#ffb054", "#ffd9a0"] },
+      "lit-amber": { "role": "primary", "displayName": "Lit Amber", "canonical": "#ffb054", "tonalRamp": ["#221a10", "#453317", "#6f5122", "#a0732f", "#d1943f", "#ffb054", "#ffc987", "#ffe6c7"] },
+      "filament-gold": { "role": "primary", "displayName": "Filament Gold", "canonical": "#ffc46b", "tonalRamp": ["#241c08", "#4a3a12", "#7a5f1e", "#b0882c", "#e0ab42", "#ffc46b", "#ffd696", "#fff0d6"] },
+      "lamp-green": { "role": "secondary", "displayName": "Lamp Green", "canonical": "#6fe392", "tonalRamp": ["#10231a", "#1a3d2a", "#28603f", "#3a8a58", "#52b873", "#6fe392", "#9ceeb3", "#d6f9e1"] },
+      "lamp-rose": { "role": "secondary", "displayName": "Lamp Rose", "canonical": "#ff8ca6", "tonalRamp": ["#2a161d", "#4f2632", "#7c3a4d", "#ac526c", "#d96d8a", "#ff8ca6", "#ffb0c2", "#ffdae3"] },
+      "vfd-blue": { "role": "tertiary", "displayName": "VFD Blue", "canonical": "#5fe6ff", "tonalRamp": ["#0a151b", "#0e1c22", "#155463", "#1f8aa3", "#38c8e8", "#5fe6ff", "#8ceaff", "#c9f6ff"] },
+      "placard-lilac": { "role": "neutral", "displayName": "Placard Lilac", "canonical": "#aab2bd", "tonalRamp": ["#1a1d23", "#2e323a", "#454b54", "#5e6570", "#818893", "#aab2bd", "#c9ced6", "#e8eaee"] },
+      "text": { "role": "neutral", "displayName": "Instrument Text", "canonical": "#dfe2e6", "tonalRamp": ["#5e6570", "#818893", "#a2a8b1", "#b8bdc5", "#cdd1d7", "#dfe2e6", "#eceef1", "#f2f3f5"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Marquee", "purpose": "The gold PALYDEX marquee only; Press Start 2P with hard red drop-print." },
-      "label": { "displayName": "Chrome Caps", "purpose": "Tabs, badges, section headers, HUD labels — Press Start 2P 7-12px uppercase, letter-spaced." },
-      "body": { "displayName": "Terminal Body", "purpose": "All reading and data — VT323 16-21px; tabular-nums on counters." }
+      "display": { "displayName": "Engraved Brand", "purpose": "The PALYDEX engraving only — Condensed 600 caps, 6px tracking, steel-colored with top-light text-shadow, never lit." },
+      "label": { "displayName": "Placard Caps", "purpose": "Mode keys, segment keys, section headers, HUD labels, toasts — Condensed 600 uppercase, 9.5-15px, letter-spaced; engraving, never prose." },
+      "body": { "displayName": "Bench Prose", "purpose": "All reading — Barlow 400 at 15.5px/1.5; emphasis at 600. No italics anywhere." },
+      "data": { "displayName": "Glass Digits", "purpose": "Every numeral — Chivo Mono (variable, used 300-500) with tabular-nums; counts that answer the player glow with --tube." }
     },
     "shadows": [
-      { "name": "glow-cyan", "value": "0 0 6px rgba(63,224,255,.55), 0 0 18px rgba(63,224,255,.22)", "purpose": "The live-state emission: active tabs, focused inputs, hovered/selected cards. Emitted light, not cast shadow." },
-      { "name": "glow-gold", "value": "0 0 6px rgba(255,194,28,.6), 0 0 18px rgba(255,194,28,.28)", "purpose": "Glory emission on S-tier badges and the marquee bloom." },
-      { "name": "plate-inset", "value": "inset 0 0 0 2px rgba(5,7,13,.8), inset 0 0 44px rgba(30,108,255,.05)", "purpose": "The recessed-CRT interior of every .screen/.bpanel plate." },
-      { "name": "cabinet-ledge", "value": "0 3px 0 rgba(0,0,0,.6)", "purpose": "Only physical .dbtn cabinet buttons; collapses on :active press." },
-      { "name": "modal-halo", "value": "0 0 0 2px var(--line2), 0 0 60px rgba(30,108,255,.25)", "purpose": "Blue phosphor halo around modal boxes and the map popup." }
+      { "name": "plate", "value": "inset 0 1px 0 rgba(255,255,255,.05), 0 12px 30px rgba(0,0,0,.45)", "purpose": "Top-level machined plates: top-light edge plus soft offset drop. Drawn on a ::before backdrop layer where popups must escape." },
+      { "name": "control", "value": "inset 0 1px 0 rgba(255,255,255,.06), 0 2px 5px rgba(0,0,0,.4)", "purpose": "Keys and placard buttons; :active collapses into translateY(1px) plus an inset press." },
+      { "name": "well", "value": "inset 0 2px 6px rgba(0,0,0,.6), inset 0 -1px 0 rgba(255,255,255,.03)", "purpose": "Recessed glass wells: HUD counters, search, selects, stat tracks, tier-letter blocks." },
+      { "name": "tube", "value": "0 0 4px rgba(255,166,60,.85), 0 0 12px rgba(255,138,0,.5), 0 0 26px rgba(255,138,0,.22)", "purpose": "--tube: the text-shadow on glowing nixie digits. Remapped to VFD blue by body.night." },
+      { "name": "lit-ring", "value": "0 0 0 1px rgba(255,138,0,.22), 0 0 12px rgba(255,138,0,.2)", "purpose": "--glow-cyan (legacy name): the orange ring plus halo on active keys, selected cards, focused wells." },
+      { "name": "lamp-green-glow", "value": "0 0 6px rgba(110,227,146,.6), 0 0 14px rgba(95,216,130,.28)", "purpose": "Caught-lamp halo; rose twin at rgba(255,140,166,...) for favorites." },
+      { "name": "modal-halo", "value": "0 24px 70px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.05)", "purpose": "Modal boxes over the blurred rgba(6,7,9,.8) scrim." }
     ],
     "motion": [
-      { "name": "curblink", "value": "curblink 1.1s steps(2, jump-none) infinite", "purpose": "Active-tab ▶ cursor blink. Frame-quantized; gated by prefers-reduced-motion." },
-      { "name": "goldlaw", "value": "goldlaw 1.6s steps(2, jump-none) infinite", "purpose": "Brightness flash reserved for legendary/S-tier gold only (the Gold Law)." },
-      { "name": "eggWobble", "value": "eggWobble 2.4s steps(6, jump-none) infinite", "purpose": "Breeding-result egg wobble, 6-frame sprite cadence." },
-      { "name": "press", "value": "transform .1s; :active translateY(2px)", "purpose": "The only positional feedback — a hard button press. Hover never moves or scales." }
+      { "name": "boot-ignition", "value": "ignite .5s cubic-bezier(.2,.7,.3,1), bootfade .35s ease .45s; JS removes overlay at 1s", "purpose": "Power-on: a single plasma bead ignites then the black overlay fades. Skipped entirely under prefers-reduced-motion." },
+      { "name": "view-fade", "value": "viewin .18s ease-out (4px rise + fade)", "purpose": "Mode switch; reduced-motion gated." },
+      { "name": "count-juice", "value": "oneupf .7s cubic-bezier(.2,.7,.3,1) (40px rise + fade)", "purpose": "The +1 float on catch/favorite, in lit amber or lamp rose; hidden under reduced motion." },
+      { "name": "key-transition", "value": "color .15s, border-color .15s, box-shadow .15s", "purpose": "Mode-key state changes. Nothing loops, flashes, or pulses anywhere in the world." }
     ],
     "breakpoints": [
       { "name": "detail-collapse", "value": "1000px" },
@@ -40,111 +43,113 @@
   },
   "components": [
     {
-      "name": "Stage-Select Tab",
+      "name": "Mode Selector Key",
       "kind": "nav",
       "refersTo": "tab",
-      "description": "Arcade stage-select tab; active state gets cyan live treatment plus a blinking pixel cursor.",
-      "html": "<div style=\"display:flex;gap:6px;background:#05070d;padding:10px\"><button class=\"ds-tab ds-tab-active\">Paldex</button><button class=\"ds-tab\">Breeding</button><button class=\"ds-tab\">Map</button></div>",
-      "css": ".ds-tab{font-family:'Press Start 2P',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#8fa0d8;background:#0a1022;border:2px solid #22346f;padding:12px 14px 11px;border-radius:0;position:relative;cursor:pointer}.ds-tab:hover{color:#f4f6ff;border-color:#33479c}.ds-tab-active{color:#3fe0ff;border-color:#3fe0ff;background:rgba(63,224,255,.08);box-shadow:0 0 6px rgba(63,224,255,.55),0 0 18px rgba(63,224,255,.22)}.ds-tab-active::before{content:'\\25B6';position:absolute;left:3px;top:50%;transform:translateY(-50%);font-size:8px;color:#3fe0ff;animation:ds-curblink 1.1s steps(2,jump-none) infinite}@keyframes ds-curblink{0%{opacity:1}50%{opacity:0}}@media (prefers-reduced-motion:reduce){.ds-tab-active::before{animation:none}}"
+      "description": "Machined instrument key; the active mode takes the full lit treatment plus 4px screw-head ends.",
+      "html": "<div style=\"display:flex;gap:7px;background:#0a0b0d;padding:12px\"><button class=\"ds-tab ds-tab-active\">Paldex</button><button class=\"ds-tab\">Breeding</button><button class=\"ds-tab\">Map</button></div>",
+      "css": ".ds-tab{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:2px;text-transform:uppercase;color:#a2a8b1;background:linear-gradient(180deg,#1d2026,#15171c);border:1px solid #383d45;border-radius:8px;padding:10px 16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 2px 5px rgba(0,0,0,.35);cursor:pointer;position:relative;transition:color .15s,border-color .15s,box-shadow .15s}.ds-tab:hover{color:#f2f3f5;border-color:#4a505a}.ds-tab-active{color:#ff9a1c;border-color:rgba(255,154,28,.62);background:linear-gradient(180deg,#221a10,#181209);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 0 0 1px rgba(255,138,0,.22),0 0 12px rgba(255,138,0,.2);text-shadow:0 0 8px rgba(255,154,28,.45)}.ds-tab-active::before,.ds-tab-active::after{content:'';position:absolute;top:50%;width:4px;height:4px;border-radius:50%;transform:translateY(-50%);background:radial-gradient(circle at 40% 35%,#6a7078,#2a2d33 70%);box-shadow:0 1px 1px rgba(0,0,0,.6)}.ds-tab-active::before{left:6px}.ds-tab-active::after{right:6px}"
     },
     {
-      "name": "Mini Button",
+      "name": "Placard Button",
       "kind": "button",
       "refersTo": "button-mini",
-      "description": "Pixel utility button; cyan border on hover, hard 2px press on active, no lift ever.",
+      "description": "Steel utility key; hover sharpens the steel, :active is a hard 1px press. Never lifts, never glows.",
       "html": "<button class=\"ds-btn-mini\">Reset filters</button>",
-      "css": ".ds-btn-mini{font-family:'VT323',monospace;font-size:16px;line-height:1;letter-spacing:.5px;text-transform:uppercase;background:#12204a;border:2px solid #33479c;color:#cfd9ff;border-radius:0;padding:8px 13px;cursor:pointer}.ds-btn-mini:hover{border-color:#3fe0ff;color:#f4f6ff}.ds-btn-mini:active{transform:translateY(2px)}.ds-btn-mini:focus-visible{outline:2px solid #fff;outline-offset:2px}"
+      "css": ".ds-btn-mini{font:600 12.5px/1 'Barlow',sans-serif;letter-spacing:1.2px;text-transform:uppercase;background:linear-gradient(180deg,#20242b,#171a1f);border:1px solid #383d45;color:#dfe2e6;border-radius:7px;padding:9px 14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 2px 5px rgba(0,0,0,.4);cursor:pointer}.ds-btn-mini:hover{border-color:#4a505a;color:#f2f3f5;background:linear-gradient(180deg,#242830,#1a1d23)}.ds-btn-mini:active{transform:translateY(1px);box-shadow:inset 0 2px 5px rgba(0,0,0,.5)}.ds-btn-mini:focus-visible{outline:2px solid #ff9a1c;outline-offset:2px}"
     },
     {
-      "name": "Sprite Tile Card",
+      "name": "Lit Action Key",
+      "kind": "button",
+      "refersTo": "button-go",
+      "description": "The primary lit control: ember-glass fill, plasma text, lit ring, screw-head ends.",
+      "html": "<button class=\"ds-btn-go\">Find route</button>",
+      "css": ".ds-btn-go{font:600 12.5px/1 'Barlow',sans-serif;letter-spacing:1.2px;text-transform:uppercase;background:linear-gradient(180deg,#221a10,#181209);border:1px solid rgba(255,154,28,.62);color:#ffb054;border-radius:7px;padding:9px 14px;position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 0 0 1px rgba(255,138,0,.22),0 0 12px rgba(255,138,0,.2);text-shadow:0 0 8px rgba(255,154,28,.45);cursor:pointer}.ds-btn-go:hover{border-color:#ff9a1c;color:#ffc46b}.ds-btn-go::before,.ds-btn-go::after{content:'';position:absolute;top:50%;width:4px;height:4px;border-radius:50%;transform:translateY(-50%);background:radial-gradient(circle at 40% 35%,#6a7078,#2a2d33 70%);box-shadow:0 1px 1px rgba(0,0,0,.6)}.ds-btn-go::before{left:6px}.ds-btn-go::after{right:6px}"
+    },
+    {
+      "name": "Specimen Card",
       "kind": "card",
       "refersTo": "card",
-      "description": "Pal card: element edge strip, near-black portrait well, cyan glow on hover — no motion, no shadow at rest.",
-      "html": "<div class=\"ds-card\"><div class=\"ds-card-edge\"></div><div class=\"ds-card-av\"></div><div class=\"ds-card-dex\">#042</div><div class=\"ds-card-nm\">FOXPARKS</div><div class=\"ds-card-sub\">Fire · Kindling 1</div></div>",
-      "css": ".ds-card{width:184px;background:#0b1226;border:2px solid #22346f;border-radius:0;padding:0 12px 12px;cursor:pointer}.ds-card:hover{border-color:#3fe0ff;box-shadow:0 0 6px rgba(63,224,255,.55),0 0 18px rgba(63,224,255,.22)}.ds-card-edge{height:4px;background:#ff6a3d;margin:0 -12px 10px;opacity:.9}.ds-card-av{height:96px;background:#01030a;border:2px solid #22346f;box-shadow:inset 0 0 0 2px rgba(63,224,255,.06);margin-bottom:8px}.ds-card-dex{font-family:'VT323',monospace;font-size:16px;line-height:1;color:#7a89c2}.ds-card-nm{font-family:'Press Start 2P',monospace;font-size:10px;letter-spacing:.5px;color:#f4f6ff;line-height:1.5}.ds-card-sub{font-family:'VT323',monospace;font-size:14px;color:#7a89c2}"
+      "description": "Pal card: element top edge, recessed portrait well, mono dex number; hover sharpens steel, selection takes the lit ring.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-edge\"></div><div class=\"ds-card-av\"></div><div class=\"ds-card-dex\">#042</div><div class=\"ds-card-nm\">Foxparks</div><div class=\"ds-card-sub\">Fire · Kindling 1</div></div>",
+      "css": ".ds-card{width:184px;background:linear-gradient(180deg,#16181d,#13151a);border:1px solid #2a2d33;border-radius:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 3px 10px rgba(0,0,0,.35);padding:0 12px 12px;cursor:pointer}.ds-card:hover{border-color:#454b54;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 8px 20px rgba(0,0,0,.45)}.ds-card-edge{height:3px;background:#ff6a3d;border-radius:10px 10px 0 0;margin:0 -12px 10px;opacity:.85}.ds-card-av{height:96px;background:#0c0d10;border:1px solid #26292f;border-radius:8px;box-shadow:inset 0 2px 8px rgba(0,0,0,.5);margin-bottom:8px}.ds-card-dex{font-family:'Chivo Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.5px;color:#818893}.ds-card-nm{font:600 14.5px/1.3 'Barlow',sans-serif;letter-spacing:.2px;color:#f2f3f5}.ds-card-sub{font:12.5px/1.35 'Barlow',sans-serif;color:#a2a8b1}"
     },
     {
-      "name": "LCD Search Input",
+      "name": "Glass Well Search",
       "kind": "input",
       "refersTo": "input-search",
-      "description": "Recessed LCD well with cyan caret; focus is cyan border plus glow.",
-      "html": "<div class=\"ds-search\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m21 21-4.3-4.3\"/></svg><input type=\"text\" placeholder=\"Search Pals by name…\"></div>",
-      "css": ".ds-search{display:flex;align-items:center;gap:8px;background:#061224;border:2px solid #33479c;border-radius:0;padding:9px 15px;color:#7a89c2}.ds-search:focus-within{border-color:#3fe0ff;box-shadow:0 0 6px rgba(63,224,255,.55),0 0 18px rgba(63,224,255,.22)}.ds-search input{flex:1;background:none;border:none;outline:none;font-family:'VT323',monospace;font-size:18px;line-height:1.2;letter-spacing:.5px;color:#f4f6ff;caret-color:#3fe0ff}.ds-search input::placeholder{color:#7a89c2}"
+      "description": "Recessed glass well with plasma caret; focus adds the lit border and halo over the well inset.",
+      "html": "<div class=\"ds-search\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m21 21-4.3-4.3\"/></svg><input type=\"text\" placeholder=\"Search 299 Pals…\"></div>",
+      "css": ".ds-search{display:flex;align-items:center;gap:8px;background:#0b0c0f;border:1px solid #33373e;border-radius:8px;padding:9px 14px;color:#818893;box-shadow:inset 0 2px 6px rgba(0,0,0,.55)}.ds-search:focus-within{border-color:rgba(255,154,28,.62);box-shadow:inset 0 2px 6px rgba(0,0,0,.55),0 0 10px rgba(255,138,0,.22)}.ds-search input{flex:1;background:none;border:none;outline:none;font:15px/1.3 'Barlow',sans-serif;letter-spacing:.2px;color:#f2f3f5;caret-color:#ff9a1c}.ds-search input::placeholder{color:#818893}"
     },
     {
       "name": "Tier Badges",
       "kind": "chip",
       "refersTo": "badge-tier-s",
-      "description": "Ranked tier chips; only S flashes gold (the Gold Law), lower tiers are static colored text on dark tints.",
+      "description": "The plasma-intensity ramp: S gold-glow, A ember, B lamp green, C steel, D dim. Static — nothing flashes.",
       "html": "<div style=\"display:flex;gap:6px;align-items:center\"><span class=\"ds-tbadge ds-tS\">S</span><span class=\"ds-tbadge ds-tA\">A</span><span class=\"ds-tbadge ds-tB\">B</span><span class=\"ds-tbadge ds-tC\">C</span><span class=\"ds-tbadge ds-tD\">D</span></div>",
-      "css": ".ds-tbadge{font-family:'Press Start 2P',monospace;font-size:9px;padding:3px 6px;border-radius:0}.ds-tS{background:#241c00;color:#ffc21c;border:1px solid #ffc21c;box-shadow:0 0 6px rgba(255,194,28,.6),0 0 18px rgba(255,194,28,.28);animation:ds-goldlaw 1.6s steps(2,jump-none) infinite}.ds-tA{background:#2b0a1e;color:#ff3fa4;border:1px solid #ff3fa4}.ds-tB{background:#03210c;color:#3ee54c;border:1px solid #3ee54c}.ds-tC{background:#03182b;color:#3fe0ff;border:1px solid #3fe0ff}.ds-tD{background:#0a1022;color:#8b93a7;border:1px solid #33479c}@keyframes ds-goldlaw{0%{filter:brightness(1)}50%{filter:brightness(1.45)}}@media (prefers-reduced-motion:reduce){.ds-tS{animation:none}}"
+      "css": ".ds-tbadge{font-family:'Chivo Mono',monospace;font-weight:500;font-size:11px;letter-spacing:.5px;padding:3px 7px;border-radius:5px}.ds-tS{background:#241503;color:#ffc46b;border:1px solid rgba(255,196,107,.65);box-shadow:0 0 10px rgba(255,154,28,.35);text-shadow:0 0 6px rgba(255,196,107,.6)}.ds-tA{background:#221a10;color:#ffa94d;border:1px solid rgba(255,169,77,.5)}.ds-tB{background:#10231a;color:#6fe392;border:1px solid rgba(111,227,146,.45)}.ds-tC{background:#171a1f;color:#c9ced6;border:1px solid #3a3f47}.ds-tD{background:#131519;color:#818893;border:1px solid #2a2d33}"
     },
     {
-      "name": "Terminal Hint Bar",
+      "name": "Nixie Count Well",
+      "kind": "custom",
+      "refersTo": "hud-count",
+      "description": "The HUD signature: a recessed well with glass-top highlight and anode mesh, glowing mono digits over an engraved caps label; CAUGHT burns lamp green.",
+      "html": "<div class=\"ds-counts\"><span><b>299</b><i>Pals</i></span><span class=\"ds-caught\"><b>112</b><i>Caught</i></span><span><b>44,849</b><i>Pairs</i></span></div>",
+      "css": ".ds-counts{display:flex;gap:10px;background:#0a0b0d;padding:12px}.ds-counts span{display:inline-flex;flex-direction:column;align-items:center;gap:4px;line-height:1;background:linear-gradient(115deg,rgba(255,255,255,.055) 0%,transparent 34%),repeating-linear-gradient(0deg,rgba(255,255,255,.02) 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0 1px,transparent 1px 4px),linear-gradient(180deg,#0a0b0e,#0e1013);border:1px solid #2a2d33;border-radius:8px;padding:7px 12px 6px;box-shadow:inset 0 2px 6px rgba(0,0,0,.6),inset 0 -1px 0 rgba(255,255,255,.03)}.ds-counts b{font-family:'Chivo Mono',monospace;font-weight:300;font-size:21px;color:#ffb054;font-variant-numeric:tabular-nums;text-shadow:0 0 4px rgba(255,166,60,.85),0 0 12px rgba(255,138,0,.5),0 0 26px rgba(255,138,0,.22)}.ds-counts i{font-style:normal;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:9.5px;letter-spacing:1.8px;color:#818893;text-transform:uppercase}.ds-counts .ds-caught b{color:#6fe392;text-shadow:0 0 6px rgba(110,227,146,.6),0 0 14px rgba(95,216,130,.28)}"
+    },
+    {
+      "name": "Machined Plate",
       "kind": "custom",
       "refersTo": "card",
-      "description": "Dashed-border terminal message opened by the orange » prompt — the static attention channel.",
-      "html": "<div class=\"ds-hint\">The wheel below is Palworld's rock-paper-scissors: <b>arrows point from attacker to victim</b>.</div>",
-      "css": ".ds-hint{background:#060d1d;border:2px dashed #22346f;border-radius:0;color:#8fa0d8;font-family:'VT323',monospace;font-size:16px;line-height:1.55;padding:10px 12px}.ds-hint::before{content:'» ';color:#ff9427}.ds-hint b{color:#f4f6ff;font-weight:400}"
+      "description": "The top-level surface: steel gradient, 1px edge, top-light inset, soft drop, corner rivets. In the app it is drawn on a ::before backdrop layer so popups escape.",
+      "html": "<div class=\"ds-plate\"><h4 class=\"ds-plate-h\">Partner skill</h4>Machined plate — the bench's structural surface.</div>",
+      "css": ".ds-plate{position:relative;background:radial-gradient(3.5px 3.5px at 11px 11px,#3f444d 30%,#202329 60%,transparent 70%),radial-gradient(3.5px 3.5px at calc(100% - 11px) 11px,#3f444d 30%,#202329 60%,transparent 70%),radial-gradient(3.5px 3.5px at 11px calc(100% - 11px),#3f444d 30%,#202329 60%,transparent 70%),radial-gradient(3.5px 3.5px at calc(100% - 11px) calc(100% - 11px),#3f444d 30%,#202329 60%,transparent 70%),linear-gradient(180deg,#17191e 0%,#121418 100%);border:1px solid #33373e;border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 30px rgba(0,0,0,.45);padding:18px;color:#dfe2e6;font:15.5px/1.5 'Barlow',sans-serif}.ds-plate-h{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:2.2px;color:#aab2bd;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin:0 0 10px}.ds-plate-h::after{content:'';flex:1;border-top:1px solid #2e323a;opacity:.8}"
     },
     {
-      "name": "HUD Score Cluster",
-      "kind": "custom",
-      "refersTo": "tab",
-      "description": "1UP/HI-SCORE style counters: tiny caps label stacked over a tabular-nums value; CAUGHT reads green.",
-      "html": "<div class=\"ds-counts\"><span><i>PALS</i><b>299/299</b></span><span class=\"ds-caught\"><i>CAUGHT</i><b>112/299</b></span><span><i>PAIRS</i><b>44,551</b></span></div>",
-      "css": ".ds-counts{display:flex;gap:16px;background:#05070d;padding:10px}.ds-counts span{display:inline-flex;flex-direction:column;align-items:flex-end;gap:3px;line-height:1}.ds-counts i{font-style:normal;font-family:'Press Start 2P',monospace;font-size:7px;letter-spacing:1px;color:#7a89c2}.ds-counts b{font-family:'VT323',monospace;font-size:20px;line-height:1;color:#f4f6ff;font-weight:400;font-variant-numeric:tabular-nums}.ds-counts .ds-caught b{color:#3ee54c}"
-    },
-    {
-      "name": "Notched Screen Plate",
+      "name": "Filament Stat Bar",
       "kind": "custom",
       "refersTo": "card",
-      "description": "The signature panel: 2px border, recessed CRT inset, 10px-step notched corners via clip-path.",
-      "html": "<div class=\"ds-plate\">Notched pixel plate — the world's signature silhouette.</div>",
-      "css": ".ds-plate{background:#0a1022;border:2px solid #33479c;border-radius:0;box-shadow:inset 0 0 0 2px rgba(5,7,13,.8),inset 0 0 44px rgba(30,108,255,.05);clip-path:polygon(0 10px,10px 10px,10px 0,calc(100% - 10px) 0,calc(100% - 10px) 10px,100% 10px,100% calc(100% - 10px),calc(100% - 10px) calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,10px calc(100% - 10px),0 calc(100% - 10px));padding:18px;color:#cfd9ff;font-family:'VT323',monospace;font-size:18px}"
-    },
-    {
-      "name": "Segmented Stat Meter",
-      "kind": "custom",
-      "refersTo": "card",
-      "description": "Pixel stat bar: repeating 8px cyan segments in a recessed LCD track, with cyan bloom.",
+      "description": "Lit filament in a recessed glass tube: orange gradient fill with plasma halo and glass-top highlight.",
       "html": "<div class=\"ds-strack\"><div class=\"ds-sfill\" style=\"width:68%\"></div></div>",
-      "css": ".ds-strack{height:12px;border-radius:0;background:#061224;border:1px solid #22346f;overflow:hidden;width:220px}.ds-sfill{height:100%;border-radius:0;background:repeating-linear-gradient(90deg,#3fe0ff 0 8px,rgba(0,0,0,.35) 8px 10px);box-shadow:0 0 8px rgba(63,224,255,.35)}"
+      "css": ".ds-strack{height:10px;border-radius:99px;background:#0a0b0e;border:1px solid #26292f;overflow:hidden;box-shadow:inset 0 2px 4px rgba(0,0,0,.6);width:220px}.ds-sfill{height:100%;border-radius:99px;background:linear-gradient(180deg,#ffc46b,#ff8a00);box-shadow:0 0 8px rgba(255,138,0,.55),inset 0 1px 0 rgba(255,255,255,.5)}"
     }
   ],
   "narrative": {
-    "northStar": "The Arcade Cabinet Screen",
-    "overview": "Palydex is not a website about a game — it is the reference tool rendered in the medium games themselves lived in. The whole app plays on a single CRT: a 16-color sprite palette over phosphor black, fixed scanline and bloom overlays, notched pixel plates for panels, stage-select tabs, and a 1UP/HI-SCORE HUD cluster. Every answer reads like a high-score table on an attract screen.\n\nDensity is high and unapologetic. Color is law-governed rather than decorative — each hue owns exactly one meaning, and the rarest color (flashing gold) is reserved for the rarest things. Depth comes from inset borders and phosphor glow, never from drop shadows. Night mode is not a dimmer: it swaps the entire token set to a green-phosphor monochrome monitor.",
+    "northStar": "The Nixie Laboratory Counter",
+    "overview": "Palydex is a laboratory counting instrument for Palworld: every answer arrives as a lit reading on blackened steel. The whole app is a bench of machined charcoal plates — corner rivets, top-light edges, recessed glass wells — read like a cockpit by a mid-session player: mode placards across the top, a nixie count bank at the right, one glance per answer. The world deliberately refuses both the neon gaming dashboard and the dead pixel-arcade look (its own predecessor); readability outranks spectacle everywhere.\n\nThe only warm thing in the room is the lit channel: plasma-orange nixie light carried by a small set of dedicated tokens, applied to active controls and to every count. All numeric data is set in Chivo Mono glass digits with tabular numerals; the important ones glow with a tube halo. Two indicator lamps carry player state: green for caught, rose for favorite. Night mode swaps the nixie orange for cold-cathode VFD blue while every steel surface stays identical — same bench, different tubes.",
     "keyCharacteristics": [
-      "Phosphor-black ground (#05070d) with faint blue/violet CRT wash; fixed scanline + bloom overlays (off-switch: body.nofx)",
-      "16 named sprite colors, each with a single semantic job; cyan = live, gold = ranked glory, orange = attention, green = caught, pink = favorite, lilac = label",
-      "Two embedded fonts only: Press Start 2P for tiny caps chrome, VT323 for everything readable",
-      "Square corners everywhere; major plates carry a 10px-step notched clip-path",
-      "Motion is frame-quantized with steps() and fully gated behind prefers-reduced-motion"
+      "Near-black steel ground (#0a0b0d) under machined plates (#17191e → #121418) with 1px borders, inset top-light, corner rivets, and soft drop shadows",
+      "One lit channel (5 tokens: --lit, --litline, --litbg, --tube, --glow-cyan) owns every glow; night mode re-tubes it to VFD blue and touches nothing else",
+      "Three embedded faces, no italics: Barlow prose, Barlow Condensed engraved caps, Chivo Mono digits (variable 100-900, used at 300-500)",
+      "Radius ladder 5/7/8/10/12px; perfect circles only for lamps, rivets, screw heads, and bench hardware",
+      "Motion is minimal and eased — a ~1s boot tube-ignition, a .18s view fade, a .7s count float — all gated behind prefers-reduced-motion; nothing loops, nothing flashes"
     ],
     "rules": [
-      { "name": "The Gold Law", "body": "Static gold is marquee/rarity-ranked chrome — the PALYDEX marquee, S-tier badge fill, rarity-10+ chips. Flashing gold (goldlaw 1.6s steps(2) brightness pulse) is reserved for legendary/S-tier only. Nothing else on any screen may flash gold; the flash's rarity is its meaning.", "section": "colors" },
-      { "name": "The Cyan Live Rule", "body": "Cyan means 'live, selected, or focused now,' and it always glows (--glow-cyan). Hover states move borders toward cyan; rest states never wear it.", "section": "colors" },
-      { "name": "The Orange Channel Rule", "body": "Static attention (warnings, hot chips, terminal prompts) is orange, never gold and never red. Red belongs to the cabinet lights and element chips, not to messaging.", "section": "colors" },
-      { "name": "The Caps-for-Chrome Rule", "body": "Press Start 2P is chrome, not prose: tiny (7-12px), uppercase, letter-spaced. Anything a player actually reads — sentences, stats, tooltips — is VT323 at 16px or larger.", "section": "typography" },
-      { "name": "The Glow-Not-Shadow Rule", "body": "Nothing casts a shadow; things emit light. Any state change is expressed as border color plus glow, never as lift, scale, or drop shadow.", "section": "elevation" },
-      { "name": "The Square-Corner Law", "body": "Everything drawn on the screen has 0 radius. Round is reserved for the two physical cabinet buttons on the control deck.", "section": "shapes" },
-      { "name": "The Ten-Pixel Notch Rule", "body": "Top-level plates (.screen, .bpanel, .detail) get the 10px-step notched clip-path; nested cards and chips stay plain squares so the notch stays special.", "section": "shapes" }
+      { "name": "The Same-Bench Rule", "body": "body.night remaps only the lit channel and its warm aliases (--lit, --litline, --litbg, --tube, the glow tokens, --accent, --gold, --orange, --magenta, the lens) to the VFD blue family. Every neutral — chassis, plates, lines, text — stays byte-identical, and the green/rose lamps and element colors keep their hues. Same bench, different tubes. Any new lit treatment must route through these tokens or night mode silently breaks it.", "section": "colors" },
+      { "name": "The One-Warm-Channel Rule", "body": "Plasma orange is the only warm light in the room, and it means 'lit / active / an answer.' Rest states are steel; hover is brighter steel (border #4a505a + white text), never orange. Green means caught, rose means favorite — nothing else may borrow any of the three.", "section": "colors" },
+      { "name": "The Legacy-Name Rule", "body": "Role tokens keep pre-redesign names (--glow-cyan is orange, --cyan is #ff9a1c, --screen is steel). Style through the role token, never through what its name suggests.", "section": "colors" },
+      { "name": "The Engraved-Caps Rule", "body": "Barlow Condensed is engraving, not prose: 600 weight, uppercase, letter-spaced ≥1.4px, ≤15px except the brand. Anything a player reads in sentences is Barlow.", "section": "typography" },
+      { "name": "The Glass-Digit Rule", "body": "Every count, stat, rank, and ID is Chivo Mono with tabular numerals. Counts that answer the player's question glow (--tube); incidental numbers don't.", "section": "typography" },
+      { "name": "The No-Italic Rule", "body": "No italic faces are embedded and font-style: italic is never used (i elements are reset to normal); bold stops at 600 (b, strong { font-weight: 600 }).", "section": "typography" },
+      { "name": "The Backdrop-Plate Rule", "body": "Panels that host dropdowns or popups (.screen, .bpanel) draw their plate on a ::before layer at z-index: -1 with isolation: isolate, keeping the element itself background-free so overlays escape the plate. New panels with floating children must use this structure, not a plain background.", "section": "elevation" },
+      { "name": "The Machined-Light Rule", "body": "Every raised surface carries the top-light inset; every recessed surface carries the well inset. Hover never lifts, scales, or glows — it sharpens the steel (brighter border, whiter text). Glow belongs to lit data only.", "section": "elevation" },
+      { "name": "The Radius-Ladder Rule", "body": "Radii come only from the ladder (5/7/8/10/12/99px); circles are reserved for physical hardware (lamps, rivets, screws, bench buttons).", "section": "shapes" },
+      { "name": "The Rivet Rule", "body": "Corner rivets mark top-level plates only; nested cards, chips, and wells stay clean so the chassis stays legible.", "section": "shapes" }
     ],
     "dos": [
-      "Do express every live/hover/selected state as cyan border + --glow-cyan, keeping transform: none (press feedback only: translateY(2px) on :active).",
-      "Do quantize all animation with steps() (curblink steps(2), goldlaw steps(2), eggWobble steps(6)) and wrap it in @media (prefers-reduced-motion: no-preference) with an explicit reduce kill-switch.",
-      "Do route new colors through the semantic role tokens (--screen, --card, --line, --text…) so night mode's green-phosphor remap covers them for free.",
-      "Do give new top-level plates the 10px notched clip-path and 2px solid var(--line2) border; use 2px dashed --line for any separator.",
-      "Do draw new icons as pixel-grid currentColor SVG rect-paths (.pxi, ~11px, -2px baseline nudge), and keep the text-mode glyphs (▶ » × ⇅ ♀ ♂) where they already speak."
+      "Do route every lit/active/selected/focused treatment through the five lit-channel tokens (--lit, --litline, --litbg, --tube, --glow-cyan) so night mode re-tubes it for free (the Same-Bench Rule).",
+      "Do build new panels with the plate recipe — 1px steel border, inset 0 1px 0 rgba(255,255,255,.05) top-light, offset soft shadow, 10-12px radius, corner rivets at top level — and draw plates that host popups on a ::before backdrop layer (z-index:-1, isolation:isolate).",
+      "Do set every numeral in Chivo Mono with font-variant-numeric: tabular-nums (300 for big glowing digits, 400-500 for inline data), and glow only the numbers that are answers.",
+      "Do label sections with engraved Condensed 600 caps (lilac, ≥1.4px tracking) closed by a 1px hairline rule, and keep radii on the ladder (5/7/8/10/12/99px).",
+      "Do keep all motion minimal, eased, and gated behind prefers-reduced-motion — the ~1s boot ignition, .18s view fade, .7s count float, .15s control transitions are the entire vocabulary — and draw new icons in the round-cap 2-3px stroke set (currentColor), keeping the data glyphs × ⇅ ♀ ♂."
     ],
     "donts": [
-      "Don't flash gold on anything except legendary rarity and S-tier; static gold stays confined to marquee and rarity-ranked chrome (the Gold Law).",
-      "Don't add border-radius to anything on-screen; only the round cabinet .dbtn hardware is exempt (the Square-Corner Law).",
-      "Don't use drop shadows, lifts, or scale-on-hover — depth is inset strokes and emitted glow only.",
-      "Don't load external fonts, CDN assets, or any network resource; both fonts are embedded data-URI WOFF2 and the app must stay single-file offline.",
-      "Don't recolor, filter, or restyle Pal/element/item art — they are embedded Palworld game assets with no license to alter.",
-      "Don't set Press Start 2P above 12px anywhere but the marquee, and don't set body/data VT323 below 15px."
+      "Don't hardcode orange into component states — a raw #ff9a1c border or glow is a night-mode bug; use the tokens (and remember --glow-cyan is a legacy name for the orange ring).",
+      "Don't let hover lift, scale, or glow — hover sharpens steel (border #4a505a, whiter text); glow means lit data, and green/rose mean caught/favorite only.",
+      "Don't flash, pulse, or loop any animation, and don't play sound without the opt-in SFX toggle.",
+      "Don't use italics anywhere or weights above 600; Condensed caps never carry prose and never exceed 15px outside the brand.",
+      "Don't load external fonts or network assets in the app (all faces are data-URI WOFF2; static pages use local /fonts/*.woff2), and don't recolor or restyle Pal/element/item art — embedded game assets, no license to alter."
     ]
   }
 }
