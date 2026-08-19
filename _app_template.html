@@ -42,7 +42,8 @@
     "Interactive world map: 14,000+ markers, Pal spawn layers, custom pins, unlimited free tracking",
     "Item database: ~190 materials with drop sources, ranch producers and crafting recipes",
     "Combat and base-work tier lists with an Early/Mid/End game-stage selector",
-    "Team synergy planner for partner-skill and passive combos"
+    "Team synergy planner for partner-skill and passive combos",
+    "Curated community team comps — boss cores, status chains, buff stacks — verified against game data"
   ],
   "about": {"@type": "VideoGame", "name": "Palworld"}
 }
@@ -1421,6 +1422,25 @@ b,strong{font-weight:600}
 .tab.active::before,.wgo::before{left:6px}
 .tab.active::after,.wgo::after{right:6px}
 
+/* ---- community team comps ---- */
+.cteam{background:linear-gradient(180deg,#16181d,#13151a);border:1px solid #2a2d33;border-radius:10px;
+  padding:12px 14px;margin-bottom:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.cthead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.cthead b{font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:1.4px;
+  text-transform:uppercase;color:#d5d9de}
+.ctcat{font-family:var(--display);font-weight:600;font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;
+  color:var(--lilac);background:#1a1d23;border:1px solid #2e323a;border-radius:5px;padding:3px 8px}
+.ctload{margin-left:auto}
+.ctpals{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.ctsyn{font:14px/1.55 var(--font);color:var(--muted)}
+.ctsyn b{color:var(--text)}
+.ctsrc{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.6px;color:var(--muted2);
+  text-transform:uppercase;margin-top:6px}
+.ctgrouph{font-family:var(--display);font-weight:600;font-size:12.5px;letter-spacing:2.2px;color:var(--lilac);
+  text-transform:uppercase;display:flex;align-items:center;gap:12px;margin:18px 0 10px}
+.ctgrouph::after{content:"";flex:1;border-top:1px solid #2e323a;opacity:.8}
+.ctcats{margin-bottom:10px}
+
 /* ---- reduced motion & mobile ---- */
 @media(max-width:760px){
   .brand h1{font-size:20px;letter-spacing:4px}
@@ -1620,6 +1640,7 @@ finish review, the verdict, and DESIGN.md.
         <button class="t" data-tmode="mounts" role="tab" aria-selected="false">Mounts</button>
         <button class="t" data-tmode="elements" role="tab" aria-selected="false">Elements</button>
         <button class="t" data-tmode="jobs" role="tab" aria-selected="false">Jobs</button>
+        <button class="t" data-tmode="teams" role="tab" aria-selected="false">Teams</button>
       </div>
       <div id="tierBody"></div>
     </div>
@@ -1659,6 +1680,14 @@ finish review, the verdict, and DESIGN.md.
               <input id="passQ" type="text" placeholder="Search passives &amp; effects — try poison, fire, attack, lifesteal, vanguard…" autocomplete="off"></div>
             <div id="passResults"></div>
           </div>
+        </div>
+      </details>
+      <details class="mfsec ttool">
+        <summary><span class="mfarrow"></span>Community team comps<span class="mfsub">verified metas &amp; synergies, one-click load</span></summary>
+        <div class="mfbody">
+          <div class="ebsub" style="margin-bottom:8px">Curated from the August 2026 community meta — every Pal and partner-skill claim re-verified against the embedded 1.0 game data. Tap a Pal for its dex entry, or load a comp straight into your team.</div>
+          <div class="gseg ctcats" id="ctCats"></div>
+          <div id="ctList"></div>
         </div>
       </details>
       <details class="mfsec ttool">
@@ -3019,6 +3048,7 @@ function renderTiers(mode){
   else if(mode==="workers") box.innerHTML=curatedBoard("workers")+tierSources();
   else if(mode==="mounts") box.innerHTML=mountBoards();
   else if(mode==="elements") box.innerHTML=elementBoards();
+  else if(mode==="teams") box.innerHTML=teamsBoard();
   else box.innerHTML=jobBoards();
   // stage selector wiring (present on curated boards only)
   box.querySelectorAll(".stageseg button").forEach(b=>b.onclick=()=>{
@@ -3525,6 +3555,102 @@ function ebLoad(){
 }
 window.ebLoad=ebLoad;
 
+/* ============================================================= *
+ *  COMMUNITY TEAM COMPS — curated 2026-08-18, every Pal and
+ *  partner-skill claim re-verified against the embedded game data
+ * ============================================================= */
+const CTEAM_CATS=[["boss","Boss killers"],["status","Status chains"],["swarm","Buff stacks"],["util","Utility crews"],["base","Base crews"]];
+const CTEAMS=[
+ {id:"core",cat:"boss",nm:"The Universal Core",ps:["Orserk","Silvegis","Lapure","Solenne","Vanwyrm Cryst"],
+  syn:"The engine behind most 1.0 hard-tower clears. <b>Orserk</b> stacks +1–5% Atk/Def on your active Pal per bullet you land (×30 ≈ +150%), <b>Silvegis</b> cuts shield damage up to 80%, <b>Lapure</b> halves partner-skill cooldowns, <b>Solenne</b> pays up to +80% player Attack for running five different species, and <b>Vanwyrm Cryst</b> adds +50% weak-point damage. Swap any one slot for an element counter.",
+  src:"Game8 · PalMods"},
+ {id:"nuke",cat:"boss",nm:"Bellanoir Nuke",ps:["Bellanoir Libero","Orserk","Lapure","Hoocrates","Celesdir Noct"],
+  syn:"Charge <b>Orserk</b>'s bullet stacks, let <b>Lapure</b> halve the cooldown, add <b>Hoocrates</b>' +30% Dark Attack and <b>Celesdir Noct</b>'s HP-for-+80%-Attack trade — then <b>Bellanoir Libero</b> lands a ×2.5 Nightmare Bloom.",
+  src:"PalMods · Game8"},
+ {id:"solo",cat:"boss",nm:"Unkillable Solo Carry",ps:["Silvegis","Solenne","Vanwyrm","Vanwyrm Cryst","Cryolinx Terra"],
+  syn:"The player-damage stack: <b>Vanwyrm</b> (+40%) and <b>Vanwyrm Cryst</b> (+50%) both boost weak-point hits — different species, so they stack — while <b>Cryolinx Terra</b> ramps the <i>next</i> weak-point shot +60%. <b>Solenne</b> rewards the five-species spread and <b>Silvegis</b> keeps your shield alive.",
+  src:"PalMods · Mobalytics"},
+ {id:"ground",cat:"boss",nm:"Anubis Ground Convert",ps:["Anubis","Surfent Terra","Pierdon","Orserk","Kikit"],
+  syn:"<b>Anubis</b> converts your shots to Ground at +50% Attack, <b>Surfent Terra</b> coats the boss in Muddy, <b>Pierdon</b> turns Muddy into +65% damage from everyone, <b>Kikit</b> hardens Ground Pals +30% Defense, and <b>Orserk</b> stacks the core buff.",
+  src:"PalMods"},
+ {id:"arena",cat:"boss",nm:"Arena Trio (3v3)",ps:["Orserk","Shaolong","Penking Lux"],
+  syn:"The August arena ladder favorite. <b>Orserk</b> front-lines and feeds bullet stacks, <b>Shaolong</b> gains +8% Attack per Dragon teammate (Orserk counts), and <b>Penking Lux</b> boosts Water weak-point damage +40% for the finish.",
+  src:"GameNGuide"},
+ {id:"burn",cat:"status",nm:"Slow Burn",ps:["Renjishi","Jormuntide Ignis","Flaracle","Solenne","Silvegis"],
+  syn:"The apply → amplify → detonate chain, Fire edition: <b>Renjishi</b> makes your attacks inflict Burn, <b>Jormuntide Ignis</b> raises all damage to burning enemies +65%, and <b>Flaracle</b> detonates each of your hits for 60% bonus AoE. (<b>Majex</b> swaps in for a flame-aura variant.)",
+  src:"PalMods · Guidexon"},
+ {id:"poison",cat:"status",nm:"Poison Barrier",ps:["Dandilord","Prixter","Bakemi","Silvegis","Felbat"],
+  syn:"<b>Dandilord</b> poisons on hit (and immunizes your party — plus World Tree gas), <b>Prixter</b> converts Poison into +65% damage, <b>Bakemi</b> slashes poisoned enemies' Attack up to 80%, while <b>Felbat</b> life-steals and <b>Silvegis</b> armors your shield. Offense and defense from one status.",
+  src:"PalMods"},
+ {id:"blindlock",cat:"status",nm:"Blind + Poison Lock",ps:["Venusa","Roujay","Prixter","Bakemi","Solenne"],
+  syn:"The one legal two-status combo — Poison layers on top of Blind. <b>Venusa</b> blinds, <b>Roujay</b> makes blinded enemies take +65%, and the <b>Prixter</b>/<b>Bakemi</b> poison pair adds its own +65% and the −80% Attack cut.",
+  src:"PalMods"},
+ {id:"soak",cat:"status",nm:"Soak &amp; Shock",ps:["Ophydia","Prixter Lux","Jormuntide","Solenne","Slowatt"],
+  syn:"<b>Ophydia</b> soaks on hit, <b>Jormuntide</b> raises damage to soaked enemies +65%, <b>Prixter Lux</b> converts your shots to Electric at +50% Attack (Soaked targets are Electric-vulnerable), and <b>Slowatt</b> discharges 60% bonus damage off electrified enemies.",
+  src:"PalMods"},
+ {id:"ivy",cat:"status",nm:"Ivy Detonation",ps:["Needoll Noct","Needoll","Silvance","Bristla","Solenne"],
+  syn:"Grass's secret chain: <b>Needoll Noct</b> applies Ivy-Covered, <b>Needoll</b> raises damage to ivy-covered enemies +65%, <b>Silvance</b> explodes them for 60% of your Attack per hit, and <b>Bristla</b> feeds Grass Pals +30% Attack.",
+  src:"Guidexon"},
+ {id:"gobfin",cat:"swarm",nm:"Gobfin Gunner",ps:["Gobfin","Gobfin","Gobfin","Gobfin","Ragnahawk"],
+  syn:"The classic gun build: each <b>Gobfin</b> adds up to +20% player Attack and they all stack — four fins ≈ +80% — while <b>Ragnahawk</b> carries you as a Fire-converting mount at +20% more.",
+  src:"Community classic · PalMods"},
+ {id:"fluff",cat:"swarm",nm:"King of Fluff",ps:["Sweepa","Swee","Swee","Swee","Swee"],
+  syn:"Four <b>Swee</b> each buff <b>Sweepa</b>'s Attack and Defense — a permanently stacked Ice carry. Silly, adorable, and legitimately strong in the mid game.",
+  src:"PalMods"},
+ {id:"retinue",cat:"swarm",nm:"Royal Retinue",ps:["Elizabee","Beegarde","Beegarde","Beegarde","Beegarde"],
+  syn:"The Grass mirror of King of Fluff: four <b>Beegarde</b> stack Attack onto <b>Elizabee</b> — and every Beegarde moonlights as a Honey ranch worker between fights.",
+  src:"PalMods"},
+ {id:"mercy",cat:"swarm",nm:"Daedream Mercy Swarm",ps:["Daedream","Daedream","Daedream","Daedream","Hoocrates"],
+  syn:"Four <b>Daedream</b> familiars auto-fire homing Dark bullets that <b>can never drop a target below 1 HP</b> — they soften everything you meet without a single accidental kill. <b>Hoocrates</b> feeds them +30% Dark Attack. The catch-farming machine.",
+  src:"PalMods"},
+ {id:"catch",cat:"util",nm:"Catch Squad",ps:["Wispaw","Muffly","Souffline","Yakumo","Katress"],
+  syn:"Three capture-rate boosts with different triggers — <b>Wispaw</b> (back bonus), <b>Muffly</b> (frozen targets), <b>Souffline</b> (ivy-covered targets) — plus <b>Yakumo</b> raising encounters that share its passives and <b>Katress</b> refunding up to half your thrown spheres.",
+  src:"PalMods"},
+ {id:"travel",cat:"util",nm:"Traversal Kit",ps:["Verdash","Valentail","Celaray","Gorirat Terra","Starryon"],
+  syn:"Movement, fully stacked: <b>Verdash</b> grants an extra jump + air dash, <b>Valentail</b> lowers your gravity, <b>Celaray</b> upgrades the glider and kills fall damage, <b>Gorirat Terra</b> doubles climb speed, and <b>Starryon</b> is a jump-boosted mount that speeds up at night.",
+  src:"PalMods"},
+ {id:"sustain",cat:"util",nm:"Sustain &amp; Rescue",ps:["Celesdir","Felbat","Lyleen","Herbil","Solenne"],
+  syn:"Four healing layers at four trigger points: <b>Celesdir</b> heals the party over time, <b>Felbat</b> life-steals 9% of damage dealt, <b>Lyleen</b> is a 90% party-heal button, and <b>Herbil</b> revives you at up to 60% HP when you go down.",
+  src:"PalMods"},
+ {id:"foreman",cat:"base",nm:"The Foreman Program",ps:["Ribbuny","Petallia","Tetroise","Wumpo","Puffolt"],
+  syn:"Twelve Pals grant a <b>base-wide +1 work-suitability aura</b> — seed each base with the foremen its stations need. Shown: <b>Ribbuny</b> (Handiwork), <b>Petallia</b> (Planting), <b>Tetroise</b> (Mining), <b>Wumpo</b> (Transporting), <b>Puffolt</b> (Electricity). Also: <b>Katress Ignis</b> Kindling · <b>Amione</b> Watering · <b>Clovee</b> Gathering · <b>Eikthyrdeer Terra</b> Lumbering · <b>Mycora</b> Medicine · <b>Smokie Cryst</b> Cooling · <b>Cinnamoth</b> Farming — and <b>Woolipop</b> slows the whole base's hunger drain.",
+  src:"Verified from 1.0 game data"},
+ {id:"farm",cat:"base",nm:"Green Thumb Farm",ps:["Lyleen","Prunelia","Lullu","Petallia","Vixy"],
+  syn:"The crop machine: <b>Lyleen</b> plants at Lv4, <b>Prunelia</b>'s blessing raises harvest yield up to +35%, <b>Lullu</b> speeds crop growth up to +70%, <b>Petallia</b> auras +1 Planting to every worker, and <b>Vixy</b> digs up spheres in the ranch.",
+  src:"Sportskeeda · verified vs game data"},
+];
+let CT_CAT="boss";
+function ctCard(t,withLoad){
+  const chips=t.ps.map(n=>{const p=byName.get(n.toLowerCase());return p?tierPalChip(p):"";}).join("");
+  const cat=CTEAM_CATS.find(c=>c[0]===t.cat)[1];
+  const load=withLoad&&t.cat!=="base"?`<button class="mini wgo ctload" onclick="ctLoad('${t.id}')">Load team</button>`:"";
+  return `<div class="cteam"><div class="cthead"><b>${t.nm}</b><span class="ctcat">${cat}</span>${load}</div>
+    <div class="ctpals">${chips}</div>
+    <div class="ctsyn">${t.syn}</div>
+    <div class="ctsrc">source: ${t.src} · curated 2026-08-18</div></div>`;
+}
+function teamsBoard(){
+  let html=`<div class="tiernote">The community meta, one month into 1.0 — team comps and synergy chains gathered from the sources below, then <b>every Pal and partner-skill claim re-verified against the embedded game data</b> (one unverifiable claim was dropped). Load any comp from the <b>Team</b> tab, or tap a Pal for its dex entry.</div>`;
+  for(const [k,label] of CTEAM_CATS){
+    const list=CTEAMS.filter(t=>t.cat===k);
+    if(!list.length) continue;
+    html+=`<div class="ctgrouph">${label}</div>`+list.map(t=>ctCard(t,false)).join("");
+  }
+  html+=`<div class="tiersrc">Curated 2026-08-18 · sources: <a href="https://game8.co/games/Palworld/archives/440398" target="_blank" rel="noopener">Game8 — Best Team 2026</a> · <a href="https://www.palmods.gg/guides/builds" target="_blank" rel="noopener">PalMods — Build Archetypes (Aug 14)</a> · <a href="https://guidexon.com/palworld-partner-skills-list/" target="_blank" rel="noopener">Guidexon — Partner Skill Synergies</a> · <a href="https://mobalytics.gg/gamebase/guides/palworld-best-damage-comp" target="_blank" rel="noopener">Mobalytics — Best Damage Comp</a> · <a href="https://www.gamenguide.com/articles/108662/20260727/palworld-10-arena-guide-best-pals-team-builds-win-more-challenges-consistently.htm" target="_blank" rel="noopener">GameNGuide — Arena Guide</a>. Team comps are community opinion; partner-skill numbers are game data.</div>`;
+  return `<div class="tierboard">${html}</div>`;
+}
+function renderCT(){
+  $("#ctCats").innerHTML=CTEAM_CATS.map(([k,l])=>`<button data-c="${k}" class="${k===CT_CAT?"on":""}">${l}</button>`).join("");
+  $("#ctList").innerHTML=CTEAMS.filter(t=>t.cat===CT_CAT).map(t=>ctCard(t,true)).join("");
+}
+function ctLoad(id){
+  const t=CTEAMS.find(x=>x.id===id); if(!t) return;
+  TEAM=t.ps.map(n=>{const p=byName.get(n.toLowerCase());return p?{i:p.internalIndex,ps:defaultPassives(p)}:null;}).filter(Boolean).slice(0,5);
+  saveTeam(); renderTeam(); blink("g"); SFX.play("count");
+  $("#teamSlots").scrollIntoView({behavior:"smooth",block:"start"});
+}
+window.ctLoad=ctLoad;
+
 function initTeam(){
   makePicker($('.picker[data-role=team]'),p=>{ teamAdd(p); },{placeholder:"Add a Pal to your team…"});
   $("#teamClear").onclick=()=>{ TEAM=[]; saveTeam(); renderTeam(); blink("r"); };
@@ -3532,6 +3658,8 @@ function initTeam(){
   $("#pmQ").addEventListener("input",renderPassModal);
   $("#passModal").addEventListener("click",e=>{ if(e.target.id==="passModal") closePassModal(); });
   document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!$("#passModal").hidden) closePassModal(); });
+  $("#ctCats").addEventListener("click",e=>{ const b=e.target.closest("button[data-c]"); if(b){ CT_CAT=b.dataset.c; renderCT(); } });
+  renderCT();
   $("#ebElems").innerHTML=ELEMENTS.map(e=>`<button data-el="${e}" class="${e===EB.el?"on":""}">${elChipsSmall([e])}</button>`).join("");
   $("#ebElems").addEventListener("click",e=>{ const b=e.target.closest("button[data-el]"); if(b){ EB.el=b.dataset.el; renderEB(); } });
   $("#ebMode").addEventListener("click",e=>{ const b=e.target.closest("button[data-m]"); if(b){ EB.mode=b.dataset.m; renderEB(); } });
